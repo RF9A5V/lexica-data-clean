@@ -1,0 +1,436 @@
+Keyword Validation Errors
+============================
+
+[2025-08-01T20:13:57.518Z] Unknown field: 14th amendment - Field "equality law" not found in database
+[2025-08-01T20:14:51.606Z] Unknown field: abandonment notice - Field "eviction law" not found in database
+[2025-08-01T20:15:59.468Z] Unknown field: abolition of forms of action - Field "common law" not found in database
+[2025-08-01T20:16:23.834Z] Unknown field: absence of design to effect death - Field "homicide law" not found in database
+[2025-08-01T20:16:24.667Z] Unknown field: absence of design to kill - Field "homicide law" not found in database
+[2025-08-01T20:16:48.770Z] Unknown field: absence under cpl 30.30 - Field "criminal procedure" not found in database
+[2025-08-01T20:16:53.599Z] Unknown field: absentee voter qualifications - Field "voting law" not found in database
+[2025-08-01T20:17:01.093Z] Unknown field: absolute and unconditional release - Field "settlement law" not found in database
+[2025-08-01T20:17:29.950Z] Unknown field: absolute duty to maintain safe streets - Field "public safety law" not found in database
+[2025-08-01T20:17:39.021Z] Unknown field: absolute guarantor - Field "guaranty law" not found in database
+[2025-08-01T20:17:48.862Z] Unknown field: absolute merger - Field "mergers and acquisitions law" not found in database
+[2025-08-01T20:18:11.845Z] Unknown field: absolute protection under first amendment - Field "freedom of speech law" not found in database
+[2025-08-01T20:19:40.948Z] Unknown field: acceptable excuse - Field "defense law" not found in database
+[2025-08-01T20:19:49.518Z] Unknown field: acceptance of benefit - Field "unjust enrichment law" not found in database
+[2025-08-01T20:19:50.335Z] Unknown field: acceptance of benefits - Field "unjust enrichment law" not found in database
+[2025-08-01T20:20:20.423Z] Unknown field: acceptance of mortgage - Field "mortgage law" not found in database
+[2025-08-01T20:20:39.581Z] Unknown field: acceptance of title subject to mortgage - Field "mortgage law" not found in database
+[2025-08-01T20:20:57.620Z] Unknown field: access to records - Field "freedom of information law" not found in database
+[2025-08-01T20:21:00.106Z] Unknown field: access to works - Field "fair use law" not found in database
+[2025-08-01T20:21:36.577Z] Unknown field: accidental homicide - Field "homicide law" not found in database
+[2025-08-01T20:24:15.702Z] Unknown field: accumulated contributions - Field "employee benefits law" not found in database
+[2025-08-01T20:24:31.047Z] Unknown field: accusatory instrument requirements - Field "criminal procedure" not found in database
+[2025-08-01T20:24:47.972Z] Unknown field: acknowledgment of mortgage - Field "mortgage law" not found in database
+[2025-08-01T20:24:53.441Z] Unknown field: acknowledgment of signature - Field "notary law" not found in database
+[2025-08-01T20:26:01.776Z] Unknown field: action for recovery of money paid - Field "unjust enrichment law" not found in database
+[2025-08-01T20:27:09.394Z] Unknown field: active management - Field "investment law" not found in database
+[2025-08-01T20:27:10.171Z] Unknown field: active management requirement - Field "investment law" not found in database
+[2025-08-01T20:27:30.547Z] Unknown field: activities within state - Field "state law" not found in database
+[2025-08-01T20:28:00.295Z] Unknown field: actual continuous occupation - Field "adverse possession law" not found in database
+[2025-08-01T20:28:14.251Z] Unknown field: actual eviction - Field "eviction law" not found in database
+[2025-08-01T20:28:16.594Z] Unknown field: actual falsehood - Field "slander law" not found in database
+[2025-08-01T20:28:23.507Z] Unknown field: actual ignorance - Field "defense law" not found in database
+[2025-08-01T20:29:42.222Z] Unknown field: actual readiness requirement - Field "criminal procedure" not found in database
+[2025-08-01T20:30:36.070Z] Unknown field: added restraint test - Field "competition law" not found in database
+[2025-08-01T20:31:26.980Z] Unknown field: adequacy of service - Field "public services law" not found in database
+[2025-08-01T20:31:29.335Z] Unknown field: adequate and safe bridge requirement - Field "public safety law" not found in database
+[2025-08-01T20:32:07.847Z] Unknown field: adequate return on investment - Field "investment law" not found in database
+[2025-08-01T20:37:06.681Z] Unknown field: admissions of the mortgagee - Field "mortgage law" not found in database
+[2025-08-01T20:37:35.276Z] Unknown field: advance against earnings - Field "wage and hour law" not found in database
+[2025-08-01T20:38:02.538Z] Unknown field: advances under mortgage - Field "mortgage law" not found in database
+[2025-08-01T20:38:19.543Z] Unknown field: adverse party deposition - Field "discovery law" not found in database
+[2025-08-01T20:38:36.358Z] Unknown field: advice to procure miscarriage - Field "abortion law" not found in database
+[2025-08-01T20:38:51.273Z] Unknown field: affidavit and acknowledgment - Field "notary law" not found in database
+[2025-08-01T20:40:20.595Z] Unknown field: affirmative consent - Field "sexual assault law" not found in database
+[2025-08-01T20:41:12.433Z] Unknown field: affirmative steps to attract public attention - Field "public relations law" not found in database
+[2025-08-01T20:43:15.706Z] Unknown field: aggravating factors in robbery - Field "robbery law" not found in database
+[2025-08-01T20:43:28.857Z] Unknown field: aggregate limit of liability - Field "liability law" not found in database
+[2025-08-01T20:44:18.270Z] Unknown field: agreement or settlement - Field "dispute resolution law" not found in database
+[2025-08-01T20:44:55.981Z] Unknown field: aiding prosecution efforts - Field "prosecutorial misconduct law" not found in database
+[2025-08-01T20:45:07.349Z] Unknown field: alford plea - Field "plea bargaining law" not found in database
+[2025-08-01T20:45:10.520Z] Unknown field: alibi establishment - Field "defense law" not found in database
+[2025-08-01T20:45:12.673Z] Unknown field: alibi investigation - Field "defense law" not found in database
+[2025-08-01T20:45:15.480Z] Unknown field: alibi witnesses - Field "defense law" not found in database
+[2025-08-01T20:46:08.069Z] Unknown field: all-or-nothing defense tactic - Field "defense law" not found in database
+[2025-08-01T20:46:08.915Z] Unknown field: all-persons-present warrant - Field "search and seizure law" not found in database
+[2025-08-01T20:46:30.911Z] Unknown field: allocation of customers - Field "competition law" not found in database
+[2025-08-01T20:46:43.200Z] Unknown field: allocation of settlement payments - Field "settlement law" not found in database
+[2025-08-01T20:47:20.914Z] Unknown field: alter ego doctrine - Field "piercing the corporate veil" not found in database
+[2025-08-01T20:47:29.328Z] Unknown field: alteration of grade - Field "academic law" not found in database
+[2025-08-01T20:47:47.395Z] Unknown field: alternate dispute resolution - Field "dispute resolution law" not found in database
+[2025-08-01T20:48:11.900Z] Unknown field: ambiguity in billing code - Field "billing law" not found in database
+[2025-08-01T20:49:47.826Z] Unknown field: amendment xiv - Field "equality law" not found in database
+[2025-08-01T20:49:52.128Z] Unknown field: amicable settlement - Field "dispute resolution law" not found in database
+[2025-08-01T20:49:56.393Z] Unknown field: amnesia charge - Field "defense law" not found in database
+[2025-08-01T20:49:57.144Z] Unknown field: amorous design exception - Field "design law" not found in database
+[2025-08-01T20:50:37.591Z] Unknown field: animo furandi - Field "theft law" not found in database
+[2025-08-01T20:50:53.321Z] Unknown field: annual dues - Field "membership law" not found in database
+[2025-08-01T20:52:24.503Z] Unknown field: anticompetitive effect - Field "competition law" not found in database
+[2025-08-01T20:52:34.845Z] Unknown field: antisubrogation rule - Field "subrogation law" not found in database
+[2025-08-01T20:52:40.888Z] Unknown field: antommarchi waiver - Field "criminal procedure" not found in database
+[2025-08-01T20:54:19.646Z] Unknown field: applicability of industrial code - Field "safety law" not found in database
+[2025-08-01T20:54:21.340Z] Unknown field: applicability of regulations - Field "regulatory law" not found in database
+[2025-08-01T20:54:39.693Z] Unknown field: application for execution - Field "enforcement law" not found in database
+[2025-08-01T20:54:58.207Z] Unknown field: application of state law - Field "state law" not found in database
+[2025-08-01T20:55:10.937Z] Unknown field: appointment based on merit - Field "civil service law" not found in database
+[2025-08-01T20:55:28.829Z] Unknown field: appointment of deputy sheriff - Field "law enforcement law" not found in database
+[2025-08-01T20:57:50.607Z] Unknown field: appropriation of goods - Field "theft law" not found in database
+[2025-08-01T20:58:10.552Z] Unknown field: approval of county judge - Field "county law" not found in database
+[2025-08-01T21:00:31.837Z] Unknown field: arbitrator impartiality - Field "dispute resolution law" not found in database
+[2025-08-01T21:00:41.153Z] Unknown field: architect malpractice - Field "architectural law" not found in database
+[2025-08-01T21:00:43.292Z] Unknown field: architect's decision - Field "architectural law" not found in database
+[2025-08-01T21:00:45.111Z] Unknown field: architectural malpractice - Field "architectural law" not found in database
+[2025-08-01T21:00:58.357Z] Unknown field: arm of the tribe doctrine - Field "sovereign immunity law" not found in database
+[2025-08-01T21:01:04.912Z] Unknown field: armed felony definition - Field "felony law" not found in database
+[2025-08-01T21:01:10.852Z] Unknown field: arraignment - Field "criminal procedure" not found in database
+[2025-08-01T21:01:12.422Z] Unknown field: arraignment compliance - Field "criminal procedure" not found in database
+[2025-08-01T21:01:13.604Z] Unknown field: arraignment delay - Field "criminal procedure" not found in database
+[2025-08-01T21:01:14.435Z] Unknown field: arraignment notice requirement - Field "criminal procedure" not found in database
+[2025-08-01T21:01:15.355Z] Unknown field: arraignment notification requirement - Field "criminal procedure" not found in database
+[2025-08-01T21:01:17.815Z] Unknown field: arraignment requirement - Field "criminal procedure" not found in database
+[2025-08-01T21:01:20.066Z] Unknown field: arraignment warning requirement - Field "criminal procedure" not found in database
+[2025-08-01T21:02:20.949Z] Unknown field: asbestos-related injury - Field "toxic tort law" not found in database
+[2025-08-01T21:02:43.544Z] Unknown field: asportation - Field "theft law" not found in database
+[2025-08-01T21:02:54.175Z] Unknown field: assault with intent to commit rape - Field "sexual offenses law" not found in database
+[2025-08-01T21:04:43.157Z] Unknown field: assessment of property for tax purposes - Field "assessment law" not found in database
+[2025-08-01T21:04:53.586Z] Unknown field: assessment of taxable property - Field "assessment law" not found in database
+[2025-08-01T21:05:40.681Z] Unknown field: assets conversion requirement - Field "conversion law" not found in database
+[2025-08-01T21:05:59.731Z] Unknown field: assigned counsel plan - Field "public defense law" not found in database
+[2025-08-01T21:06:00.445Z] Unknown field: assigned counsel system - Field "public defense law" not found in database
+[2025-08-01T21:06:05.564Z] Unknown field: assignee of mortgage - Field "mortgage law" not found in database
+[2025-08-01T21:06:54.002Z] Unknown field: assignment of invention - Field "patent law" not found in database
+[2025-08-01T21:06:57.382Z] Unknown field: assignment of mortgage - Field "mortgage law" not found in database
+[2025-08-01T21:06:58.304Z] Unknown field: assignment of mortgages - Field "mortgage law" not found in database
+[2025-08-01T21:07:01.068Z] Unknown field: assignment of patent - Field "patent law" not found in database
+[2025-08-01T21:07:02.088Z] Unknown field: assignment of patent rights - Field "patent law" not found in database
+[2025-08-01T21:07:41.966Z] Unknown field: assumption of mortgage - Field "mortgage law" not found in database
+[2025-08-01T21:07:48.395Z] Unknown field: assured's charge - Field "insurance regulation law" not found in database
+[2025-08-01T21:08:13.058Z] Unknown field: attachment of lien - Field "lien law" not found in database
+[2025-08-01T21:08:33.948Z] Unknown field: attempt to commit bribery - Field "corruption law" not found in database
+[2025-08-01T21:08:42.506Z] Unknown field: attempted criminal impersonation - Field "identity theft law" not found in database
+[2025-08-01T21:08:48.899Z] Unknown field: attempted forgery - Field "forgery law" not found in database
+[2025-08-01T21:08:49.980Z] Unknown field: attempted grand larceny - Field "theft law" not found in database
+[2025-08-01T21:08:58.523Z] Unknown field: attempted sexual abuse - Field "sexual offender law" not found in database
+[2025-08-01T21:08:59.135Z] Unknown field: attempted sexual intercourse - Field "sexual offense law" not found in database
+[2025-08-01T21:09:00.479Z] Unknown field: attempting to avoid prosecution - Field "defense law" not found in database
+[2025-08-01T21:09:09.061Z] Unknown field: attestation of judgment - Field "judgment law" not found in database
+[2025-08-01T21:09:50.195Z] Unknown field: audible emergency signal requirement - Field "public safety law" not found in database
+[2025-08-01T21:09:57.718Z] Unknown field: audit conclusiveness - Field "audit law" not found in database
+[2025-08-01T21:10:13.789Z] Unknown field: auditor liability - Field "auditing law" not found in database
+[2025-08-01T21:10:23.008Z] Unknown field: authentication of electronic records - Field "electronic transactions law" not found in database
+[2025-08-01T21:10:26.794Z] Unknown field: authentication of mortgage - Field "mortgage law" not found in database
+[2025-08-01T21:11:19.494Z] Unknown field: authority of conservator - Field "conservatorship law" not found in database
+[2025-08-01T21:11:31.846Z] Unknown field: authority of district attorney - Field "prosecutorial law" not found in database
+[2025-08-01T21:11:44.314Z] Unknown field: authority of lienors - Field "lien law" not found in database
+[2025-08-01T21:11:52.709Z] Unknown field: authority of party committees - Field "political law" not found in database
+[2025-08-01T21:11:55.576Z] Unknown field: authority of precedent - Field "common law" not found in database
+[2025-08-01T21:12:34.822Z] Unknown field: authority of states - Field "state law" not found in database
+[2025-08-01T21:13:13.236Z] Unknown field: authority to arrest - Field "law enforcement law" not found in database
+[2025-08-01T21:13:28.931Z] Unknown field: authority to compromise - Field "settlement law" not found in database
+[2025-08-01T21:13:39.271Z] Unknown field: authority to decide compliance - Field "regulatory law" not found in database
+[2025-08-01T21:13:42.176Z] Unknown field: authority to direct traffic - Field "public safety law" not found in database
+[2025-08-01T21:13:44.636Z] Unknown field: authority to discharge mortgage - Field "mortgage law" not found in database
+[2025-08-01T21:15:14.954Z] Unknown field: authorization of party committee - Field "political law" not found in database
+[2025-08-01T21:15:21.862Z] Unknown field: authorization to conduct activities - Field "regulatory law" not found in database
+[2025-08-01T21:15:38.756Z] Unknown field: authorized purposes - Field "data protection law" not found in database
+[2025-08-01T21:16:04.564Z] Unknown field: automobile exception - Field "search and seizure law" not found in database
+[2025-08-01T21:16:22.276Z] Unknown field: availability of transportation - Field "public transportation law" not found in database
+[2025-08-01T21:17:00.985Z] Unknown field: award execution - Field "judgment enforcement law" not found in database
+[2025-08-01T21:17:12.963Z] Unknown field: awareness of impending attack - Field "self-defense law" not found in database
+[2025-08-01T21:17:32.321Z] Unknown field: bad faith claims - Field "bad faith law" not found in database
+[2025-08-01T21:17:35.799Z] Unknown field: bad faith failure to settle - Field "bad faith law" not found in database
+[2025-08-01T21:17:37.643Z] Unknown field: bad faith insurance - Field "bad faith law" not found in database
+[2025-08-01T21:17:48.361Z] Unknown field: bad faith refusal - Field "bad faith law" not found in database
+[2025-08-01T21:19:58.475Z] Unknown field: barrier removal - Field "public accommodation law" not found in database
+[2025-08-01T21:20:00.181Z] Unknown field: base group of tenants - Field "tenant rights law" not found in database
+[2025-08-01T21:20:02.440Z] Unknown field: base pay - Field "wage and hour law" not found in database
+[2025-08-01T21:20:29.877Z] Unknown field: bawdy house definition - Field "prostitution law" not found in database
+[2025-08-01T21:21:29.793Z] Unknown field: benefit of the employee - Field "employee benefits law" not found in database
+[2025-08-01T21:21:36.190Z] Unknown field: benefit received - Field "unjust enrichment law" not found in database
+[2025-08-01T21:21:36.983Z] Unknown field: benefit received standard - Field "unjust enrichment law" not found in database
+[2025-08-01T21:21:37.672Z] Unknown field: benefit reduction clause - Field "employee benefits law" not found in database
+[2025-08-01T21:21:40.024Z] Unknown field: benefit to employee - Field "employee benefits law" not found in database
+[2025-08-01T21:24:03.383Z] Unknown field: binding lien - Field "lien law" not found in database
+[2025-08-01T21:26:29.400Z] Unknown field: blanket ballot system - Field "voting law" not found in database
+[2025-08-01T21:26:30.327Z] Unknown field: blanket mortgage - Field "mortgage law" not found in database
+[2025-08-01T21:26:33.915Z] Unknown field: blight findings - Field "urban development law" not found in database
+[2025-08-01T21:26:35.812Z] Unknown field: blighted area determination - Field "urban law" not found in database
+[2025-08-01T21:26:40.160Z] Unknown field: blocked assets - Field "sanctions law" not found in database
+[2025-08-01T21:26:51.105Z] Unknown field: board approved rehabilitation program - Field "rehabilitation law" not found in database
+[2025-08-01T21:27:10.160Z] Unknown field: body execution - Field "judgment enforcement law" not found in database
+[2025-08-01T21:27:17.011Z] Unknown field: bolstering witness credibility - Field "trial law" not found in database
+[2025-08-01T21:27:21.733Z] Unknown field: bona fide claim of right - Field "adverse possession law" not found in database
+[2025-08-01T21:27:38.114Z] Unknown field: bona fide investment - Field "investment law" not found in database
+[2025-08-01T21:27:41.183Z] Unknown field: bona fide mortgagee - Field "mortgage law" not found in database
+[2025-08-01T21:29:29.526Z] Unknown field: bracing requirement - Field "building code law" not found in database
+[2025-08-01T21:29:36.696Z] Unknown field: brain death criteria - Field "medical ethics" not found in database
+[2025-08-01T21:30:35.061Z] Unknown field: breathalyzer test requirement - Field "drunk driving law" not found in database
+[2025-08-01T21:30:36.699Z] Unknown field: bribe receiving - Field "corruption law" not found in database
+[2025-08-01T21:30:38.955Z] Unknown field: bribery - Field "corruption law" not found in database
+[2025-08-01T21:30:40.387Z] Unknown field: bribery of a public officer - Field "public corruption law" not found in database
+[2025-08-01T21:32:20.739Z] Unknown field: burden and benefit analysis - Field "public policy law" not found in database
+[2025-08-01T21:33:02.004Z] Unknown field: burden of proof for insanity - Field "defense law" not found in database
+[2025-08-01T21:33:02.676Z] Unknown field: burden of proof for invitee status - Field "premises liability law" not found in database
+[2025-08-01T21:33:08.866Z] Unknown field: burden of proof for sanity - Field "insanity defense law" not found in database
+[2025-08-01T21:34:11.948Z] Unknown field: burial expense regulation - Field "funeral law" not found in database
+[2025-08-01T21:34:15.166Z] Unknown field: burial rights regulation - Field "funeral law" not found in database
+[2025-08-01T21:34:44.505Z] Unknown field: business invitee - Field "premises liability" not found in database
+[2025-08-01T21:34:57.267Z] Unknown field: business operations within state - Field "state law" not found in database
+[2025-08-01T21:35:21.142Z] Unknown field: buyer in ordinary course - Field "uniform commercial code" not found in database
+[2025-08-01T21:36:32.165Z] Unknown field: calibration requirements - Field "regulatory law" not found in database
+[2025-08-01T21:37:13.300Z] Unknown field: canine sniff - Field "search and seizure law" not found in database
+[2025-08-01T21:37:14.145Z] Unknown field: canine sniff search - Field "search and seizure law" not found in database
+[2025-08-01T21:38:39.058Z] Unknown field: capital investment assessment - Field "investment law" not found in database
+[2025-08-01T21:38:39.824Z] Unknown field: capital investment determination - Field "investment law" not found in database
+[2025-08-01T21:38:40.846Z] Unknown field: capital investment in real estate - Field "investment law" not found in database
+[2025-08-01T21:38:44.224Z] Unknown field: capital preservation - Field "investment law" not found in database
+[2025-08-01T21:39:42.695Z] Unknown field: carnal knowledge not required - Field "sexual offenses law" not found in database
+[2025-08-01T21:40:15.876Z] Unknown field: cash payments for overtime - Field "wage and hour law" not found in database
+[2025-08-01T21:40:28.367Z] Unknown field: castle doctrine - Field "self-defense law" not found in database
+[2025-08-01T21:40:39.897Z] Unknown field: catastrophic or extraordinary event - Field "emergency management law" not found in database
+[2025-08-01T21:40:39.898Z] Unknown field: catastrophic or extraordinary event - Field "disaster law" not found in database
+[2025-08-01T21:42:31.994Z] Unknown field: censorship - Field "first amendment law" not found in database
+[2025-08-01T21:43:11.390Z] Unknown field: certificate of conformity - Field "regulatory compliance law" not found in database
+[2025-08-01T21:43:22.533Z] Unknown field: certificate of engineer - Field "engineering law" not found in database
+[2025-08-01T21:43:25.928Z] Unknown field: certificate of eviction - Field "eviction law" not found in database
+[2025-08-01T21:44:13.309Z] Unknown field: certificate of the engineer - Field "engineering law" not found in database
+[2025-08-01T21:46:26.361Z] Unknown field: change of identity - Field "identity law" not found in database
+[2025-08-01T21:49:08.231Z] Unknown field: check-in/check-out pay - Field "wage and hour law" not found in database
+[2025-08-01T21:49:23.732Z] Unknown field: chemical test refusal - Field "drunk driving law" not found in database
+[2025-08-01T21:50:02.452Z] Unknown field: chilling effect - Field "free speech law" not found in database
+[2025-08-01T21:50:02.453Z] Unknown field: chilling effect - Field "first amendment law" not found in database
+[2025-08-01T21:50:03.219Z] Unknown field: chimel rule - Field "search and seizure law" not found in database
+[2025-08-01T21:50:15.857Z] Unknown field: choice-of-law analysis - Field "conflict of laws" not found in database
+[2025-08-01T21:50:32.680Z] Unknown field: circumventing normal litigation - Field "alternative dispute resolution law" not found in database
+[2025-08-01T21:50:35.890Z] Unknown field: citizen-taxpayer standing - Field "public interest law" not found in database
+[2025-08-01T21:50:36.567Z] Unknown field: citizen-taxpayer's right of action - Field "public interest law" not found in database
+[2025-08-01T21:50:55.799Z] Unknown field: civic duty defense - Field "defense law" not found in database
+[2025-08-01T21:51:23.256Z] Unknown field: civil liability under vehicle and traffic law § 1104 - Field "civil liability" not found in database
+[2025-08-01T21:51:37.031Z] Unknown field: civil prosecution - Field "civil law" not found in database
+[2025-08-01T21:51:37.979Z] Unknown field: civil regulation - Field "regulatory law" not found in database
+[2025-08-01T21:51:48.315Z] Unknown field: civil rights of married women - Field "gender discrimination law" not found in database
+[2025-08-01T21:52:37.252Z] Unknown field: civil war doctrine - Field "historical law" not found in database
+[2025-08-01T21:53:08.556Z] Unknown field: claim of right defense - Field "defense law" not found in database
+[2025-08-01T21:53:11.138Z] Unknown field: claim of title - Field "adverse possession law" not found in database
+[2025-08-01T21:53:21.949Z] Unknown field: claim-of-right defense - Field "defense law" not found in database
+[2025-08-01T21:53:46.235Z] Unknown field: clarity of charges - Field "criminal procedure" not found in database
+[2025-08-01T21:53:46.236Z] Unknown field: clarity of charges - Field "due process law" not found in database
+[2025-08-01T21:54:27.746Z] Unknown field: classification of positions - Field "human resources law" not found in database
+[2025-08-01T21:54:33.117Z] Unknown field: classification of railway crossings - Field "public safety law" not found in database
+[2025-08-01T21:54:33.936Z] Unknown field: classification of risks - Field "risk management law" not found in database
+[2025-08-01T21:56:27.857Z] Unknown field: client-counsel relationship - Field "attorney-client privilege" not found in database
+[2025-08-01T21:56:36.318Z] Unknown field: close question of identity - Field "identity law" not found in database
+[2025-08-01T21:56:45.282Z] Unknown field: closing argument remarks - Field "trial law" not found in database
+[2025-08-01T21:57:18.043Z] Unknown field: co-operative insurance - Field "cooperative law" not found in database
+[2025-08-01T21:58:40.861Z] Unknown field: coercive plea agreement - Field "plea bargaining law" not found in database
+[2025-08-01T22:01:19.635Z] Unknown field: colorable attempt to comply - Field "regulatory law" not found in database
+[2025-08-01T22:01:35.173Z] Unknown field: combination to control market - Field "competition law" not found in database
+[2025-08-01T22:01:46.489Z] Unknown field: combined un/underinsurance limit - Field "insurance regulation law" not found in database
+[2025-08-01T22:02:40.670Z] Unknown field: commercial information exemption - Field "freedom of information law" not found in database
+[2025-08-01T22:03:01.697Z] Unknown field: commercial reasonableness - Field "uniform commercial code" not found in database
+[2025-08-01T22:04:56.156Z] Unknown field: common design - Field "patent law" not found in database
+[2025-08-01T22:04:57.111Z] Unknown field: common design doctrine - Field "patent law" not found in database
+[2025-08-01T22:05:08.339Z] Unknown field: common interest privilege - Field "litigation law" not found in database
+[2025-08-01T22:05:24.580Z] Unknown field: common law disabilities of married women - Field "women's rights law" not found in database
+[2025-08-01T22:05:25.450Z] Unknown field: common law disability of married women - Field "women's rights law" not found in database
+[2025-08-01T22:05:34.924Z] Unknown field: common law fishery rights - Field "fisheries law" not found in database
+[2025-08-01T22:05:37.682Z] Unknown field: common law homicide - Field "homicide law" not found in database
+[2025-08-01T22:05:40.474Z] Unknown field: common law intoxication - Field "defense law" not found in database
+[2025-08-01T22:05:43.962Z] Unknown field: common law liability of innkeepers - Field "hospitality law" not found in database
+[2025-08-01T22:05:48.668Z] Unknown field: common law murder - Field "homicide law" not found in database
+[2025-08-01T22:06:57.789Z] Unknown field: common-law duty to provide adequate security - Field "premises liability law" not found in database
+[2025-08-01T22:07:06.014Z] Unknown field: common-law intoxication - Field "defense law" not found in database
+[2025-08-01T22:07:26.865Z] Unknown field: common-law right of sepulcher - Field "funeral law" not found in database
+[2025-08-01T22:07:32.056Z] Unknown field: common-law right to refuse treatment - Field "patient rights law" not found in database
+[2025-08-01T22:08:23.285Z] Unknown field: community standards - Field "first amendment law" not found in database
+[2025-08-01T22:08:23.961Z] Unknown field: community standards test - Field "first amendment law" not found in database
+[2025-08-01T22:08:42.905Z] Unknown field: comparable wage analysis - Field "wage and hour law" not found in database
+[2025-08-01T22:08:49.455Z] Unknown field: comparison of handwriting - Field "forensic law" not found in database
+[2025-08-01T22:08:58.384Z] Unknown field: compelled speech - Field "first amendment law" not found in database
+[2025-08-01T22:09:09.585Z] Unknown field: compelling necessity - Field "defense law" not found in database
+[2025-08-01T22:10:15.806Z] Unknown field: compensation for industrial accidents - Field "industrial law" not found in database
+[2025-08-01T22:12:01.382Z] Unknown field: competent adulthood - Field "adult guardianship law" not found in database
+[2025-08-01T22:12:33.489Z] Unknown field: competition neutral - Field "competition law" not found in database
+[2025-08-01T22:12:34.214Z] Unknown field: competition reduction - Field "competition law" not found in database
+[2025-08-01T22:12:34.920Z] Unknown field: competition requirement - Field "competition law" not found in database
+[2025-08-01T22:12:35.596Z] Unknown field: competition restraint - Field "competition law" not found in database
+[2025-08-01T22:13:16.150Z] Unknown field: complete domination - Field "competition law" not found in database
+[2025-08-01T22:13:17.620Z] Unknown field: complete eviction - Field "eviction law" not found in database
+[2025-08-01T22:13:24.854Z] Unknown field: completed act of rape - Field "sexual offenses law" not found in database
+[2025-08-01T22:13:35.658Z] Unknown field: compliance - Field "regulatory law" not found in database
+[2025-08-01T22:13:36.902Z] Unknown field: compliance and enforcement - Field "regulatory law" not found in database
+[2025-08-01T22:13:40.706Z] Unknown field: compliance proceedings - Field "regulatory law" not found in database
+[2025-08-01T22:13:42.144Z] Unknown field: compliance requirements - Field "regulatory compliance law" not found in database
+[2025-08-01T22:13:43.096Z] Unknown field: compliance schedule - Field "regulatory law" not found in database
+[2025-08-01T22:13:44.000Z] Unknown field: compliance timeframe - Field "regulatory law" not found in database
+[2025-08-01T22:13:44.000Z] Unknown field: compliance timeframe - Field "compliance law" not found in database
+[2025-08-01T22:13:59.321Z] Unknown field: compliance with lien law - Field "lien law" not found in database
+[2025-08-01T22:14:06.907Z] Unknown field: compliance with prior rules - Field "regulatory law" not found in database
+[2025-08-01T22:14:06.908Z] Unknown field: compliance with prior rules - Field "compliance law" not found in database
+[2025-08-01T22:14:09.241Z] Unknown field: compliance with regulations - Field "regulatory law" not found in database
+[2025-08-01T22:14:10.167Z] Unknown field: compliance with safety regulations - Field "occupational safety law" not found in database
+[2025-08-01T22:14:13.847Z] Unknown field: compliance with standards - Field "safety law" not found in database
+[2025-08-01T22:14:13.847Z] Unknown field: compliance with standards - Field "regulatory law" not found in database
+[2025-08-01T22:14:16.590Z] Unknown field: compliance with statute - Field "regulatory law" not found in database
+[2025-08-01T22:14:17.683Z] Unknown field: compliance with statutory directions - Field "regulatory law" not found in database
+[2025-08-01T22:14:22.349Z] Unknown field: compliance with statutory requirements - Field "regulatory law" not found in database
+[2025-08-01T22:14:28.797Z] Unknown field: complicity in forgery - Field "forgery law" not found in database
+[2025-08-01T22:15:00.136Z] Unknown field: compromise agreement - Field "dispute resolution law" not found in database
+[2025-08-01T22:15:02.853Z] Unknown field: compromise and settlement - Field "dispute resolution law" not found in database
+[2025-08-01T22:15:05.647Z] Unknown field: compromise of a doubtful claim - Field "settlement law" not found in database
+[2025-08-01T22:15:07.125Z] Unknown field: compromise of all claims - Field "settlement law" not found in database
+[2025-08-01T22:15:13.470Z] Unknown field: compulsion analysis - Field "defense law" not found in database
+[2025-08-01T22:15:17.197Z] Unknown field: compulsion standard - Field "defense law" not found in database
+[2025-08-01T22:15:41.413Z] Unknown field: compulsory retirement - Field "age discrimination law" not found in database
+[2025-08-01T22:15:54.427Z] Unknown field: concealed dangerous conditions - Field "premises liability law" not found in database
+[2025-08-01T22:16:21.875Z] Unknown field: conciliation and persuasion - Field "dispute resolution law" not found in database
+[2025-08-01T22:17:20.596Z] Unknown field: concurrent authority - Field "state law" not found in database
+[2025-08-01T22:18:17.602Z] Unknown field: condition of premises - Field "premises liability law" not found in database
+[2025-08-01T22:18:23.493Z] Unknown field: condition of the horse - Field "equine law" not found in database
+[2025-08-01T22:20:05.323Z] Unknown field: conditional lien - Field "lien law" not found in database
+[2025-08-01T22:20:18.597Z] Unknown field: conditional privilege for material prepared for litigation - Field "litigation law" not found in database
+[2025-08-01T22:20:30.274Z] Unknown field: conditional right of disaffirmance - Field "minors law" not found in database
+[2025-08-01T22:21:14.413Z] Unknown field: conditions of mortgage - Field "mortgage law" not found in database
+[2025-08-01T22:21:16.125Z] Unknown field: conditions of plea agreement - Field "plea bargaining law" not found in database
+[2025-08-01T22:21:19.397Z] Unknown field: conditions of settlement - Field "dispute resolution law" not found in database
+[2025-08-01T22:21:43.963Z] Unknown field: conduct constituting larceny - Field "theft law" not found in database
+[2025-08-01T22:21:52.445Z] Unknown field: conduct unbecoming a police officer - Field "police law" not found in database
+[2025-08-01T22:21:57.096Z] Unknown field: conducted exclusively for hospital purposes - Field "hospital law" not found in database
+[2025-08-01T22:22:01.151Z] Unknown field: confession and avoidance - Field "defense law" not found in database
+[2025-08-01T22:22:11.717Z] Unknown field: confidences and secrets - Field "confidentiality law" not found in database
+[2025-08-01T22:22:15.188Z] Unknown field: confidential communication doctrine - Field "attorney-client privilege" not found in database
+[2025-08-01T22:22:16.698Z] Unknown field: confidential communications - Field "attorney-client privilege law" not found in database
+[2025-08-01T22:22:17.353Z] Unknown field: confidential communications doctrine - Field "attorney-client privilege" not found in database
+[2025-08-01T22:22:18.430Z] Unknown field: confidential communications exception - Field "attorney-client privilege law" not found in database
+[2025-08-01T22:22:23.618Z] Unknown field: confidential information privilege - Field "attorney-client privilege law" not found in database
+[2025-08-01T22:22:44.671Z] Unknown field: confidentiality of communications - Field "attorney-client privilege" not found in database
+[2025-08-01T22:22:45.412Z] Unknown field: confidentiality of complaints - Field "whistleblower law" not found in database
+[2025-08-01T22:23:24.965Z] Unknown field: confirmatory patent - Field "patent law" not found in database
+[2025-08-01T22:24:02.361Z] Unknown field: conformance to the code - Field "building code law" not found in database
+[2025-08-01T22:24:07.176Z] Unknown field: conformity to the code - Field "compliance law" not found in database
+[2025-08-01T22:24:11.579Z] Unknown field: conformity with statutory requirements - Field "regulatory law" not found in database
+[2025-08-01T22:24:22.329Z] Unknown field: congregating with others - Field "public assembly law" not found in database
+[2025-08-01T22:24:29.806Z] Unknown field: conjunctive language in indictment - Field "criminal procedure" not found in database
+[2025-08-01T22:24:32.060Z] Unknown field: connect the defendant with the commission of the crime - Field "procedure law" not found in database
+[2025-08-01T22:24:47.931Z] Unknown field: conscious experimentation - Field "ethical law" not found in database
+[2025-08-01T22:25:07.901Z] Unknown field: consensual breathalyzer test - Field "driving under the influence law" not found in database
+[2025-08-01T22:25:11.792Z] Unknown field: consensual sex - Field "sexual offenses law" not found in database
+[2025-08-01T22:25:12.514Z] Unknown field: consensual sodomy - Field "sexual offenses law" not found in database
+[2025-08-01T22:25:23.973Z] Unknown field: consent in abortion - Field "abortion law" not found in database
+[2025-08-01T22:25:24.796Z] Unknown field: consent in sexual assault cases - Field "sexual offender law" not found in database
+[2025-08-01T22:25:25.514Z] Unknown field: consent in sexual offenses - Field "sexual offender law" not found in database
+[2025-08-01T22:25:28.954Z] Unknown field: consent judgment - Field "settlement law" not found in database
+[2025-08-01T22:25:43.561Z] Unknown field: consent of mortgagor - Field "mortgage law" not found in database
+[2025-08-01T22:26:14.662Z] Unknown field: consent to accept gross sum - Field "settlement law" not found in database
+[2025-08-01T22:26:25.725Z] Unknown field: consent to disclose - Field "data protection law" not found in database
+[2025-08-01T22:26:41.013Z] Unknown field: consent to procedure - Field "informed consent law" not found in database
+[2025-08-01T22:26:55.117Z] Unknown field: consent under lien law - Field "lien law" not found in database
+[2025-08-01T22:27:07.914Z] Unknown field: conservation law - Field "natural resources law" not found in database
+[2025-08-01T22:27:11.735Z] Unknown field: conservatorship powers - Field "conservatorship law" not found in database
+[2025-08-01T22:27:36.477Z] Unknown field: consideration for mortgage - Field "mortgage law" not found in database
+[2025-08-01T22:27:42.938Z] Unknown field: consideration for release - Field "settlement law" not found in database
+[2025-08-01T22:29:05.148Z] Unknown field: constitution and by-laws - Field "association law" not found in database
+[2025-08-01T22:29:36.682Z] Unknown field: constitutional freedom to print - Field "freedom of speech law" not found in database
+[2025-08-01T22:32:15.675Z] Unknown field: constitutionally protected expression - Field "first amendment law" not found in database
+[2025-08-01T22:32:49.506Z] Unknown field: construction of streets - Field "public works law" not found in database
+[2025-08-01T22:33:12.369Z] Unknown field: constructive compulsion - Field "defense law" not found in database
+[2025-08-01T22:34:00.361Z] Unknown field: consummated rape - Field "sexual offenses law" not found in database
+[2025-08-01T22:34:04.886Z] Unknown field: contaminant presence - Field "toxic tort law" not found in database
+[2025-08-01T22:34:13.501Z] Unknown field: contemporaneous arrest - Field "arrest law" not found in database
+[2025-08-01T22:34:22.710Z] Unknown field: contemporaneous search - Field "search and seizure law" not found in database
+[2025-08-01T22:34:25.893Z] Unknown field: contemporary community standards - Field "first amendment law" not found in database
+[2025-08-01T22:34:35.385Z] Unknown field: content-neutral regulation - Field "first amendment law" not found in database
+[2025-08-01T22:34:45.440Z] Unknown field: contextual meaning of words - Field "linguistic law" not found in database
+[2025-08-01T22:34:48.394Z] Unknown field: contiguous districts - Field "redistricting law" not found in database
+[2025-08-01T22:37:15.236Z] Unknown field: continuous adverse possession - Field "adverse possession law" not found in database
+[2025-08-01T22:37:29.471Z] Unknown field: continuous possession - Field "adverse possession law" not found in database
+[2025-08-01T22:38:47.284Z] Unknown field: contract leading to corrupt tampering - Field "corruption law" not found in database
+[2025-08-01T22:39:17.609Z] Unknown field: contract of settlement - Field "dispute resolution law" not found in database
+[2025-08-01T22:41:56.949Z] Unknown field: contractual rights of retired employees - Field "employee benefits law" not found in database
+[2025-08-01T22:42:00.123Z] Unknown field: contractual rights under state law - Field "state law" not found in database
+[2025-08-01T22:42:23.671Z] Unknown field: contribution among insurers - Field "contribution law" not found in database
+[2025-08-01T22:42:34.568Z] Unknown field: contribution rate credit - Field "employee benefits law" not found in database
+[2025-08-01T22:43:08.729Z] Unknown field: control of premises - Field "premises liability law" not found in database
+[2025-08-01T22:43:13.746Z] Unknown field: control of worksite - Field "occupational safety law" not found in database
+[2025-08-01T22:43:24.218Z] Unknown field: control over premises - Field "premises liability law" not found in database
+[2025-08-01T22:43:31.260Z] Unknown field: control over work site - Field "occupational safety law" not found in database
+[2025-08-01T22:44:24.511Z] Unknown field: conveyance pending litigation - Field "conveyancing law" not found in database
+[2025-08-01T22:44:58.708Z] Unknown field: coordinated prosecution - Field "prosecutorial misconduct law" not found in database
+[2025-08-01T22:45:11.304Z] Unknown field: core political expression - Field "freedom of speech law" not found in database
+[2025-08-01T22:45:12.229Z] Unknown field: core political speech - Field "first amendment law" not found in database
+[2025-08-01T22:45:13.558Z] Unknown field: core statutory requirement - Field "regulatory law" not found in database
+[2025-08-01T22:45:44.448Z] Unknown field: corporate citizenship - Field "social responsibility law" not found in database
+[2025-08-01T22:45:49.142Z] Unknown field: corporate consolidation - Field "mergers and acquisitions law" not found in database
+[2025-08-01T22:46:13.686Z] Unknown field: corporate franchise valuation - Field "valuation law" not found in database
+[2025-08-01T22:48:06.285Z] Unknown field: corrupt conduct indictment - Field "public corruption law" not found in database
+[2025-08-01T22:48:07.159Z] Unknown field: corrupt influence - Field "corruption law" not found in database
+[2025-08-01T22:48:07.160Z] Unknown field: corrupt influence - Field "public corruption law" not found in database
+[2025-08-01T22:48:08.259Z] Unknown field: corrupt intent - Field "public corruption law" not found in database
+[2025-08-01T22:48:09.897Z] Unknown field: corrupt practices - Field "public corruption law" not found in database
+[2025-08-01T22:48:12.049Z] Unknown field: corruption - Field "public corruption law" not found in database
+[2025-08-01T22:49:02.297Z] Unknown field: costs and allowances - Field "litigation law" not found in database
+[2025-08-01T22:50:05.704Z] Unknown field: counterattack standard - Field "defense law" not found in database
+[2025-08-01T22:50:16.071Z] Unknown field: counterclaim in tort action - Field "defense law" not found in database
+[2025-08-01T22:50:52.204Z] Unknown field: course of sexual conduct - Field "sexual offenses law" not found in database
+[2025-08-01T22:51:33.018Z] Unknown field: courtroom security - Field "public safety law" not found in database
+[2025-08-01T22:51:34.139Z] Unknown field: courtroom security standard - Field "public safety law" not found in database
+[2025-08-01T22:51:53.642Z] Unknown field: covenant in mortgage - Field "mortgage law" not found in database
+[2025-08-01T22:52:36.887Z] Unknown field: covenant to assume mortgage - Field "mortgage law" not found in database
+[2025-08-01T22:52:48.284Z] Unknown field: covenant to pay mortgage - Field "mortgage law" not found in database
+[2025-08-01T22:52:49.073Z] Unknown field: covenant to pay mortgages - Field "mortgage law" not found in database
+[2025-08-01T22:53:01.089Z] Unknown field: covenant to vacate - Field "eviction law" not found in database
+[2025-08-01T22:53:27.570Z] Unknown field: cover under ucc - Field "uniform commercial code law" not found in database
+[2025-08-01T22:53:53.657Z] Unknown field: coverage under state law - Field "state law" not found in database
+[2025-08-01T22:54:05.055Z] Unknown field: cpl 100.45 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:05.620Z] Unknown field: cpl 140.20 (1) - Field "procedure law" not found in database
+[2025-08-01T22:54:06.831Z] Unknown field: cpl 160.50 - Field "expungement law" not found in database
+[2025-08-01T22:54:14.649Z] Unknown field: cpl 190.15 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:15.263Z] Unknown field: cpl 190.25 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:15.978Z] Unknown field: cpl 190.40(2)(a) - Field "criminal procedure" not found in database
+[2025-08-01T22:54:16.799Z] Unknown field: cpl 190.45 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:17.516Z] Unknown field: cpl 190.45(2) - Field "criminal procedure" not found in database
+[2025-08-01T22:54:18.130Z] Unknown field: cpl 190.50 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:18.838Z] Unknown field: cpl 190.50 (5) - Field "criminal procedure" not found in database
+[2025-08-01T22:54:19.464Z] Unknown field: cpl 190.65 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:20.797Z] Unknown field: cpl 190.75 (3) - Field "criminal procedure" not found in database
+[2025-08-01T22:54:21.920Z] Unknown field: cpl 195.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:27.962Z] Unknown field: cpl 210.35 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:28.680Z] Unknown field: cpl 210.40 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:30.008Z] Unknown field: cpl 210.45 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:30.623Z] Unknown field: cpl 220.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:31.239Z] Unknown field: cpl 220.10 (4) (a) - Field "criminal procedure" not found in database
+[2025-08-01T22:54:31.819Z] Unknown field: cpl 220.60 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:34.415Z] Unknown field: cpl 250.10 notice requirement - Field "criminal procedure" not found in database
+[2025-08-01T22:54:35.945Z] Unknown field: cpl 255.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:45.267Z] Unknown field: cpl 30.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:48.042Z] Unknown field: cpl 30.30 motion - Field "criminal procedure" not found in database
+[2025-08-01T22:54:48.851Z] Unknown field: cpl 300.40 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:49.671Z] Unknown field: cpl 310.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:50.426Z] Unknown field: cpl 310.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:51.310Z] Unknown field: cpl 310.30 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:52.011Z] Unknown field: cpl 310.60 - Field "criminal procedure" not found in database
+[2025-08-01T22:54:58.990Z] Unknown field: cpl 40.30 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:04.008Z] Unknown field: cpl 410.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:04.623Z] Unknown field: cpl 420.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:06.403Z] Unknown field: cpl 430.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:07.246Z] Unknown field: cpl 430.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:33.949Z] Unknown field: cpl 540.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:42.315Z] Unknown field: cpl 60.50 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:43.022Z] Unknown field: cpl 670.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:51.316Z] Unknown field: cpl 710.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:53.343Z] Unknown field: cpl 710.30 - Field "criminal procedure" not found in database
+[2025-08-01T22:55:53.981Z] Unknown field: cpl 710.30 (1) (a) notice - Field "criminal procedure" not found in database
+[2025-08-01T22:55:54.696Z] Unknown field: cpl 710.30 notice - Field "criminal procedure" not found in database
+[2025-08-01T22:55:55.615Z] Unknown field: cpl 710.30 notice requirement - Field "criminal procedure" not found in database
+[2025-08-01T22:55:59.631Z] Unknown field: cpl 720.10 - Field "procedure law" not found in database
+[2025-08-01T22:56:02.795Z] Unknown field: cpl 730.10 - Field "criminal procedure" not found in database
+[2025-08-01T22:56:03.504Z] Unknown field: cpl 730.20 - Field "criminal procedure" not found in database
+[2025-08-01T22:56:07.087Z] Unknown field: cpl article 220 - Field "criminal procedure" not found in database
+[2025-08-01T22:56:08.995Z] Unknown field: cpl article 450 - Field "criminal procedure" not found in database
+[2025-08-01T22:56:09.511Z] Unknown field: cpl article 730 - Field "criminal procedure" not found in database
+[2025-08-01T22:59:09.123Z] Unknown field: cplr article 52 - Field "judgment law" not found in database
+[2025-08-01T22:59:35.476Z] Unknown field: credibility questioning - Field "trial law" not found in database
+[2025-08-01T22:59:49.710Z] Unknown field: credit application on mortgage - Field "mortgage law" not found in database

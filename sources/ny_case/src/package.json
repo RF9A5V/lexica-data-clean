@@ -1,0 +1,19 @@
+{
+  "name": "keyword-validation",
+  "version": "1.0.0",
+  "description": "Keyword field validation service for legal keywords",
+  "type": "module",
+  "main": "validateKeywordFields.js",
+  "scripts": {
+    "validate": "node validateKeywordFields.js run",
+    "verify": "node verifyValidation.js verify"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "openai": "^4.28.0",
+    "pg": "^8.11.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

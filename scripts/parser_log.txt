@@ -1,0 +1,3 @@
+Processing only file: usc01.xml
+Wrote 182 elements to /Users/byuugulbary/Projects/lexica/lexica-data/data/parsed/title_01/section_text.ndjson
+Wrote parsed data for title 01 to /Users/byuugulbary/Projects/lexica/lexica-data/data/parsed/title_01

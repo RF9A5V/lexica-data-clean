@@ -1,0 +1,37 @@
+{
+  "name": "ny-case-keyword-extraction",
+  "version": "1.0.0",
+  "description": "Keyword extraction for NY Court of Appeals cases",
+  "type": "module",
+  "main": "src/processKeywords.js",
+  "scripts": {
+    "extract-keywords": "node src/processKeywords.js",
+    "test-extraction": "node src/processKeywords.js --limit 5",
+    "embed-descriptors": "node src/embedKeywordDescriptors.js",
+    "embed-descriptors-status": "node src/embedKeywordDescriptors.js status",
+    "embed-descriptors-reset": "node src/embedKeywordDescriptors.js reset",
+    "test-embed-descriptors": "node test_embed_descriptors.js"
+  },
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "dotenv": "^16.3.1",
+    "openai": "^4.20.1",
+    "p-limit": "^4.0.0",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "legal",
+    "keyword-extraction",
+    "nlp",
+    "openai",
+    "court-opinions"
+  ],
+  "author": "Lexica Legal Research Platform",
+  "license": "MIT"
+}

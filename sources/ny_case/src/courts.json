@@ -1,0 +1,53 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "resource_uri": "https://www.courtlistener.com/api/rest/v4/courts/ny/",
+      "id": "ny",
+      "pacer_court_id": null,
+      "pacer_has_rss_feed": null,
+      "pacer_rss_entry_types": "",
+      "date_last_pacer_contact": null,
+      "fjc_court_id": "",
+      "date_modified": "2014-08-21T15:51:56.551000-07:00",
+      "in_use": true,
+      "has_opinion_scraper": true,
+      "has_oral_argument_scraper": false,
+      "position": 366.96,
+      "citation_string": "NY",
+      "short_name": "New York Court of Appeals",
+      "full_name": "New York Court of Appeals",
+      "url": "http://www.nycourts.gov/ctapps/",
+      "start_date": "1777-01-01",
+      "end_date": null,
+      "jurisdiction": "S",
+      "parent_court": null,
+      "appeals_to": []
+    },
+    {
+      "resource_uri": "https://www.courtlistener.com/api/rest/v4/courts/nychanct/",
+      "id": "nychanct",
+      "pacer_court_id": null,
+      "pacer_has_rss_feed": null,
+      "pacer_rss_entry_types": "",
+      "date_last_pacer_contact": null,
+      "fjc_court_id": "",
+      "date_modified": "2022-01-10T13:16:25.562767-08:00",
+      "in_use": false,
+      "has_opinion_scraper": false,
+      "has_oral_argument_scraper": false,
+      "position": 366.962,
+      "citation_string": "",
+      "short_name": "New York Court of Chancery",
+      "full_name": "New York Court of Chancery",
+      "url": "",
+      "start_date": "1701-01-01",
+      "end_date": "1847-12-31",
+      "jurisdiction": "S",
+      "parent_court": null,
+      "appeals_to": []
+    }
+  ]
+}

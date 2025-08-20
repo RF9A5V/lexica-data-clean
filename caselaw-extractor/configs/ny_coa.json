@@ -1,0 +1,43 @@
+{
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "ny_reporter",
+      "user": "dev",
+      "password": "dev"
+    },
+    "options": {
+      "maxConcurrency": 5,
+      "batchSize": 100,
+      "retryAttempts": 3,
+      "downloadDelayMs": 1000
+    },
+    "metadata": {
+      "jurisdiction": "New York",
+      "court_level": "supreme",
+      "enable_keywords": true,
+      "enable_holdings": true,
+      "reporter": "NY Court of Appeals",
+      "note": ""
+    },
+    "sources": [
+      {
+        "id": "ny",
+        "label": "New York Reports",
+        "scrape_urls": ["https://static.case.law/ny/"],
+        "reporter": "N.Y."
+      },
+      {
+        "id": "ny2d",
+        "label": "New York Reports, 2nd Edition",
+        "scrape_urls": ["https://static.case.law/ny-2d/"],
+        "reporter": "N.Y.2d"
+      },
+      {
+        "id": "ny3d",
+        "label": "New York Reports, 3rd Edition",
+        "scrape_urls": ["https://static.case.law/ny-3d/"],
+        "reporter": "N.Y.3d"
+      }
+    ]
+  }

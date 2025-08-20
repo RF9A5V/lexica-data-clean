@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "normalize": {
+    "removeDots": true,
+    "removeSpaces": true,
+    "uppercase": true
+  },
+  "reporters": [
+    {
+      "canonical": "N.Y.",
+      "norm": "NY",
+      "aliases": ["N.Y", "NY", "N. Y.", "N. Y", "N Y"],
+      "jurisdiction": "NY",
+      "notes": "New York Reports"
+    },
+    {
+      "canonical": "N.Y.2d",
+      "norm": "NY2D",
+      "aliases": ["N.Y.2D", "NY2d", "NY 2d", "N. Y.2d", "N Y 2d"],
+      "jurisdiction": "NY",
+      "notes": "New York Reports, Second Series"
+    },
+    {
+      "canonical": "N.Y.3d",
+      "norm": "NY3D",
+      "aliases": ["N.Y.3D", "NY3d", "NY 3d", "N. Y.3d", "N Y 3d"],
+      "jurisdiction": "NY",
+      "notes": "New York Reports, Third Series"
+    },
+    {
+      "canonical": "A.D.",
+      "norm": "AD",
+      "aliases": ["A.D", "A D", "App. Div.", "App.Div.", "App Div"],
+      "jurisdiction": "NY",
+      "notes": "Appellate Division Reports"
+    },
+    {
+      "canonical": "A.D.2d",
+      "norm": "AD2D",
+      "aliases": ["A.D.2D", "AD2d", "A D 2d", "A.D. 2d", "App. Div. 2d", "App.Div.2d"],
+      "jurisdiction": "NY",
+      "notes": "Appellate Division Reports, Second Series"
+    },
+    {
+      "canonical": "A.D.3d",
+      "norm": "AD3D",
+      "aliases": ["A.D.3D", "AD3d", "A D 3d", "A.D. 3d", "App. Div. 3d", "App.Div.3d"],
+      "jurisdiction": "NY",
+      "notes": "Appellate Division Reports, Third Series"
+    },
+    {
+      "canonical": "Misc.",
+      "norm": "MISC",
+      "aliases": ["Misc", "Misc. ", "Misc R.", "Misc. R."],
+      "jurisdiction": "NY",
+      "notes": "Miscellaneous Reports"
+    },
+    {
+      "canonical": "Misc. 2d",
+      "norm": "MISC2D",
+      "aliases": ["Misc.2d", "Misc 2d", "Misc.  2d"],
+      "jurisdiction": "NY",
+      "notes": "Miscellaneous Reports, Second Series"
+    },
+    {
+      "canonical": "Misc. 3d",
+      "norm": "MISC3D",
+      "aliases": ["Misc.3d", "Misc 3d", "Misc.  3d"],
+      "jurisdiction": "NY",
+      "notes": "Miscellaneous Reports, Third Series"
+    },
+    {
+      "canonical": "N.Y.S.",
+      "norm": "NYS",
+      "aliases": ["N.Y.S", "NY.S.", "NY S", "NYS"],
+      "jurisdiction": "NY",
+      "notes": "New York Supplement"
+    },
+    {
+      "canonical": "N.Y.S.2d",
+      "norm": "NYS2D",
+      "aliases": ["N.Y.S.2D", "NYS2d", "NY S 2d", "N. Y. S. 2d"],
+      "jurisdiction": "NY",
+      "notes": "New York Supplement, Second Series"
+    },
+    {
+      "canonical": "N.Y.S.3d",
+      "norm": "NYS3D",
+      "aliases": ["N.Y.S.3D", "NYS3d", "NY S 3d", "N. Y. S. 3d"],
+      "jurisdiction": "NY",
+      "notes": "New York Supplement, Third Series"
+    },
+    {
+      "canonical": "N.E.",
+      "norm": "NE",
+      "aliases": ["N.E", "NE", "North Eastern"],
+      "jurisdiction": "NE",
+      "notes": "North Eastern Reporter"
+    },
+    {
+      "canonical": "N.E.2d",
+      "norm": "NE2D",
+      "aliases": ["N.E.2D", "NE2d", "N E 2d"],
+      "jurisdiction": "NE",
+      "notes": "North Eastern Reporter, Second Series"
+    },
+    {
+      "canonical": "N.E.3d",
+      "norm": "NE3D",
+      "aliases": ["N.E.3D", "NE3d", "N E 3d"],
+      "jurisdiction": "NE",
+      "notes": "North Eastern Reporter, Third Series"
+    },
+    {
+      "canonical": "U.S.",
+      "norm": "US",
+      "aliases": ["US", "U. S.", "Sup. Ct."],
+      "jurisdiction": "US",
+      "notes": "United States Reports"
+    },
+    {
+      "canonical": "F.",
+      "norm": "F",
+      "aliases": ["F", "Fed.", "Federal"],
+      "jurisdiction": "US",
+      "notes": "Federal Reporter (series unspecified)"
+    },
+    {
+      "canonical": "F.2d",
+      "norm": "F2D",
+      "aliases": ["F.2D", "F2d", "F 2d"],
+      "jurisdiction": "US",
+      "notes": "Federal Reporter, Second Series"
+    },
+    {
+      "canonical": "F.3d",
+      "norm": "F3D",
+      "aliases": ["F.3D", "F3d", "F 3d"],
+      "jurisdiction": "US",
+      "notes": "Federal Reporter, Third Series"
+    }
+  ],
+  "denylist_patterns": [
+    "N\\.Y\\.Times",
+    "Wall\\s+St(reet)?\\s+J(ournal)?",
+    "Stat\\.",
+    "CPLR",
+    "U\\.S\\.C\\."
+  ]
+}

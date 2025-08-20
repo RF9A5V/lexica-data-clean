@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NY Reporter Pass 1 Output (Minimal Fields, No Evidence)",
+  "type": "object",
+  "properties": {
+    "v": { "type": "boolean" },
+    "vr": { "type": "string" },
+    "f": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["l", "sc"],
+        "properties": {
+          "l": { "type": "string" },
+          "sc": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "minItems": 1
+    },
+    "p": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["c"],
+        "properties": {
+          "c": { "type": "string" },
+          "j": { "type": "string" }
+        }
+      }
+    },
+    "o": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["c"],
+        "properties": {
+          "c": { "type": "string" },
+          "j": { "type": "string" }
+        }
+      }
+    },
+    "d": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["a", "r", "i"],
+        "properties": {
+          "a": { "type": "string", "enum": ["actor_roles_capacities", "temporal_sequence_timing", "operational_setting_conditions", "action_inaction_categories", "resource_asset_context", "communication_information_flow", "knowledge_awareness_state", "relationship_interaction_dynamics", "policy_practice_environment", "risk_safeguard_environment", "outcome_consequence_patterns", "standard_threshold_criteria"] },
+          "r": { "type": "string" },
+          "i": { "type": "string", "enum": ["low", "medium", "high"] }
+        }
+      }
+    }
+  },
+  "required": ["v"],
+  "additionalProperties": false
+}

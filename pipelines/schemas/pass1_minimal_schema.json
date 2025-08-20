@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NY Reporter Pass 1 Output (Minimal Fields)",
+  "type": "object",
+  "properties": {
+    "v": { "type": "boolean" },
+    "vr": { "type": "string" },
+    "f": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["l", "sc"],
+        "properties": {
+          "l": { "type": "string" },
+          "sc": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "minItems": 1
+    },
+    "p": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["c"],
+        "properties": {
+          "c": { "type": "string" }
+        }
+      }
+    },
+    "o": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["c"],
+        "properties": {
+          "c": { "type": "string" }
+        }
+      }
+    },
+    "d": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["a", "r", "g", "i"],
+        "properties": {
+          "a": { 
+            "type": "string", 
+            "enum": [
+              "arc", "tst", "osc", "aic", "rac", 
+              "cif", "kas", "rid", "ppe", "rse", 
+              "ocp", "stc"
+            ]
+          },
+          "r": { "type": "string" },
+          "g": { "type": "string" },
+          "i": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    { "properties": { "v": { "const": true } }, "required": ["v"] },
+    { "required": ["f", "p", "o", "d"] }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "ny_trial_courts",
+      "user": "dev",
+      "password": "dev"
+    },
+    "options": {
+      "maxConcurrency": 5,
+      "batchSize": 100,
+      "retryAttempts": 3,
+      "downloadDelayMs": 1000
+    },
+    "metadata": {
+      "jurisdiction": "New York",
+      "court_level": "trial",
+      "enable_keywords": true,
+      "enable_holdings": true,
+      "reporter": "NY Misc Reports",
+      "note": ""
+    },
+    "sources": [
+      {
+        "id": "misc",
+        "label": "New York Misc Reports",
+        "scrape_urls": ["https://static.case.law/misc/"],
+        "reporter": "Misc."
+      },
+      {
+        "id": "misc2d",
+        "label": "New York Misc Reports, 2nd Edition",
+        "scrape_urls": ["https://static.case.law/misc2d/"],
+        "reporter": "Misc. 2d"
+      },
+      {
+        "id": "misc3d",
+        "label": "New York Misc Reports, 3rd Edition",
+        "scrape_urls": ["https://static.case.law/misc3d/"],
+        "reporter": "Misc. 3d"
+      }
+    ]
+  }

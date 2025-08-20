@@ -1,0 +1,37 @@
+-- 062_mark_short_dispo_orders.sql
+-- DEPRECATED: No longer marking short dispositional orders as valueless.
+-- The pipeline now processes all opinions and returns empty arrays for categories
+-- with no meaningful content instead of flagging cases as valueless.
+--
+-- Historical approach (now disabled):
+-- Previously marked very short, order-only dispositions using conservative patterns
+-- for cases like "Judgment affirmed." with minimal substantive content.
+--
+-- New approach:
+-- All opinions are processed by the LLM, which returns empty field arrays
+-- when no substantial legal analysis is present, including short dispositional orders.
+
+-- UPDATE opinions
+-- SET is_valueless = true,
+--     valueless_reason = COALESCE(valueless_reason, 'short dispositional order')
+-- WHERE is_valueless IS DISTINCT FROM true
+--   AND char_length(text) < 160
+--   AND text NOT ILIKE '%opinion%'
+--   AND (
+--     -- Order/Judgment short dispositions
+--     text ~* '^[[:space:]]*(order|judgment)[[:space:]]+(affirmed|reversed|modified|dismissed|vacated)($|[^[:alpha:]])'
+--     OR
+--     -- Motion one-liners
+--     text ~* '^[[:space:]]*motion[[:space:]]+(denied|granted|dismissed|withdrawn)($|[^[:alpha:]])'
+--     OR
+--     -- Appeal / Petition short orders
+--     text ~* '^[[:space:]]*appeal[[:space:]]+(dismissed|denied)($|[^[:alpha:]])'
+--     OR
+--     text ~* '^[[:space:]]*petition[[:space:]]+(dismissed|denied)($|[^[:alpha:]])'
+--     OR
+--     -- Applications
+--     text ~* '^[[:space:]]*application[[:space:]]+(denied|granted)($|[^[:alpha:]])'
+--     OR
+--     -- Determination confirmed (Article 78 one-liners)
+--     text ~* '^[[:space:]]*determination[[:space:]]+confirmed($|[^[:alpha:]])'
+--   );

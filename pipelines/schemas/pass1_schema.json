@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NY Reporter Pass 1 Output",
+  "type": "object",
+  "properties": {
+    "valueless": { "type": "boolean" },
+    "valueless_reason": { "type": "string" },
+    "field_of_law": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "score"],
+        "properties": {
+          "label": { "type": "string" },
+          "score": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      },
+      "minItems": 1
+    },
+    "procedural_posture": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["canonical", "evidence_start", "evidence_end"],
+        "properties": {
+          "canonical": { "type": "string" },
+          "jurisdictional": { "type": "string" },
+          "evidence_start": { "type": "integer", "minimum": 0 },
+          "evidence_end": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "case_outcome": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "evidence_start", "evidence_end"],
+        "properties": {
+          "label": { "type": "string" },
+          "evidence_start": { "type": "integer", "minimum": 0 },
+          "evidence_end": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "distinguishing_factors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["axis", "text", "evidence_start", "evidence_end"],
+        "properties": {
+          "axis": {
+            "type": "string",
+            "enum": [
+              "industry_domain_context",
+              "organizational_structural_context",
+              "policy_practice_environment",
+              "operational_setting_conditions",
+              "actor_roles_capacities",
+              "action_inaction_categories",
+              "resource_asset_context",
+              "communication_information_flow",
+              "temporal_sequence_factors",
+              "knowledge_awareness_state",
+              "risk_safeguard_environment",
+              "impact_profile"
+            ]
+          },
+          "text": { "type": "string" },
+          "evidence_start": { "type": "integer", "minimum": 0 },
+          "evidence_end": { "type": "integer", "minimum": 0 },
+          "salience": { "type": "string", "enum": ["low", "medium", "high"] }
+        }
+      }
+    }
+  },
+  "oneOf": [
+    { "properties": { "valueless": { "const": true } }, "required": ["valueless"] },
+    { "required": ["field_of_law", "procedural_posture", "case_outcome", "distinguishing_factors"] }
+  ]
+}

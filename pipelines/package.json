@@ -1,0 +1,12 @@
+{
+  "name": "ny-reporter-keywording",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "cli-progress": "^3.12.0",
+    "p-limit": "^2.3.0",
+    "openai": "^4.52.0",
+    "pg": "^8.11.3"
+  }
+}

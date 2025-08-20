@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NY Reporter Unified Output (Minimal Fields)",
+  "type": "object",
+  "properties": {
+    "f": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["l", "sc"],
+        "properties": {
+          "l": { "type": "string" },
+          "sc": { "type": "number", "minimum": 0.5, "maximum": 1 }
+        }
+      }
+    },
+
+    "p": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["c"],
+        "properties": {
+          "c": { "type": "string" }
+        }
+      }
+    },
+
+    "o": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["c"],
+        "properties": {
+          "c": { "type": "string" }
+        }
+      }
+    },
+
+    "df": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["a", "r", "g", "i"],
+        "properties": {
+          "a": {
+            "type": "string",
+            "enum": [
+              "idc", "osc", "ppe", "ops", "arc",
+              "aic", "rac", "cif", "tsf", "kas",
+              "rse", "imp"
+            ]
+          },
+          "r": { "type": "string" },
+          "g": { "type": "string" },
+          "i": { "type": "string", "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+
+    "h": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["is", "ho", "ru", "re", "pv", "cf"],
+        "properties": {
+          "is": { "type": "string" },
+          "ho": { "type": "string" },
+          "ru": { "type": "string" },
+          "re": { "type": "string" },
+          "pv": { "type": "string", "enum": ["high", "medium", "low"] },
+          "cf": { "type": "number", "minimum": 0.5, "maximum": 1 }
+        }
+      }
+    },
+
+    "oc": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["cn", "s", "ol"],
+        "properties": {
+          "cn": { "type": "string" },
+          "ct": { "type": "string" },
+          "s": { "type": "string", "enum": ["complete", "partial"] },
+          "ol": { "type": "string" },
+          "ot": { "type": "string", "enum": ["direct", "reported"] },
+          "ocourt": { "type": "string" },
+          "ocase": { "type": "string" }
+        }
+      }
+    },
+    "ci": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ct": { "type": "string" },
+          "cn": { "type": "string" },
+          "cn_norm": { "type": "string" },
+          "at": { "type": "string", "enum": ["case", "statute", "regulation", "constitutional", "secondary"] },
+          "j": { "type": "string" },
+          "cl": { "type": "string", "enum": ["supreme", "appellate", "trial", "federal_appellate", "federal_district"] },
+          "y": { "type": "integer" },
+          "pc": { "type": "string" },
+          "cc": { "type": "string" },
+          "cs": { "type": "string" },
+          "pw": { "type": "string", "enum": ["binding", "highly_persuasive", "persuasive", "non_binding"] },
+          "dl": { "type": "string" },
+          "lp": { "type": "string" },
+          "cf": { "type": "number", "minimum": 0.5, "maximum": 1 }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "allOf": [
+    {
+      "properties": {
+        "dc": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["n"],
+            "properties": {
+              "n": { "type": "string" },
+              "s": { "type": "integer", "minimum": 0 },
+              "e": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "dt": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["n"],
+            "properties": {
+              "n": { "type": "string" },
+              "al": { "type": "array", "items": { "type": "string" } },
+              "pc": { "type": "string" },
+              "tt": { "type": "string", "enum": ["jurisdictional", "substantive", "standard_of_review", "procedural"] },
+              "dn": { "type": "array", "items": { "type": "string" } },
+              "s": { "type": "integer", "minimum": 0 },
+              "e": { "type": "integer", "minimum": 0 }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "required": ["f", "p", "o", "df", "dc", "dt", "oc"]
+}

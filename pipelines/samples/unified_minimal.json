@@ -1,0 +1,64 @@
+{
+  "f": [
+    { "l": "Criminal Law", "sc": 0.92 }
+  ],
+  "p": [
+    { "c": "appeal from conviction" }
+  ],
+  "o": [
+    { "c": "affirmed" }
+  ],
+  "df": [
+    {
+      "a": "arc",
+      "r": "Police officers acting in official capacity conducted search",
+      "g": "Search by law enforcement during arrest",
+      "i": "medium"
+    }
+  ],
+  "dc": [
+    { "n": "Exclusionary Rule", "s": 120, "e": 145 }
+  ],
+  "dt": [
+    { "n": "Strickland test", "dn": ["Ineffective assistance of counsel"], "tt": "substantive", "s": 300, "e": 340 }
+  ],
+  "h": [
+    {
+      "is": "Ineffective assistance claim",
+      "ho": "Counsel's performance did not fall below objective standard",
+      "ru": "Two-prong Strickland standard applies",
+      "re": "No prejudice shown under second prong",
+      "pv": "medium",
+      "cf": 0.8
+    }
+  ],
+  "oc": [
+    {
+      "cn": "People v. Example",
+      "ct": "People v. Example, 10 N.Y.3d 123 (2008)",
+      "s": "partial",
+      "ol": "Overruled in part on issue of consent search",
+      "ot": "direct",
+      "ocourt": "New York Court of Appeals",
+      "ocase": "People v. Sample, 15 N.Y.3d 456 (2010)"
+    }
+  ],
+  "ci": [
+    {
+      "ct": "People v. Sample, 15 N.Y.3d 456, 460 (2010)",
+      "cn": "People v. Sample",
+      "cn_norm": "15 N.Y.3d 456",
+      "at": "case",
+      "j": "NY",
+      "cl": "supreme",
+      "y": 2010,
+      "pc": "460",
+      "cc": "See also",
+      "cs": "see also",
+      "pw": "binding",
+      "dl": "discussed",
+      "lp": "Defines standard for consent searches",
+      "cf": 0.9
+    }
+  ]
+}

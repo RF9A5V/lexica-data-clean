@@ -1,0 +1,15 @@
+-- 061_mark_valueless_opinions.sql
+-- DEPRECATED: No longer marking opinions as valueless.
+-- The pipeline now processes all opinions and returns empty arrays for categories
+-- with no meaningful content instead of flagging cases as valueless.
+--
+-- Historical approach (now disabled):
+-- Previously marked non-substantive opinions using conservative textual patterns
+-- for phrases like "no opinion", "without opinion", "summary order".
+--
+-- New approach:
+-- All opinions are processed by the LLM, which returns empty field arrays
+-- when no substantial legal analysis is present.
+
+-- All UPDATE statements have been commented out as they are no longer needed.
+-- The pipeline will handle minimal content cases by returning appropriate empty arrays.

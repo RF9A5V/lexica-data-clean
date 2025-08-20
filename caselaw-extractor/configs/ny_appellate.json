@@ -1,0 +1,43 @@
+{
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "ny_appellate_division",
+      "user": "dev",
+      "password": "dev"
+    },
+    "options": {
+      "maxConcurrency": 5,
+      "batchSize": 100,
+      "retryAttempts": 3,
+      "downloadDelayMs": 1000
+    },
+    "metadata": {
+      "jurisdiction": "New York",
+      "court_level": "appellate",
+      "enable_keywords": true,
+      "enable_holdings": true,
+      "reporter": "Appellate Division Reports",
+      "note": ""
+    },
+    "sources": [
+      {
+        "id": "ad",
+        "label": "New York Appellate Division Reports, 1st Edition",
+        "scrape_urls": ["https://static.case.law/ad/"],
+        "reporter": "A.D."
+      },
+      {
+        "id": "ad2d",
+        "label": "New York Appellate Division Reports, 2nd Edition",
+        "scrape_urls": ["https://static.case.law/ad2d/"],
+        "reporter": "A.D.2d"
+      },
+      {
+        "id": "ad3d",
+        "label": "New York Appellate Division Reports, 3rd Edition",
+        "scrape_urls": ["https://static.case.law/ad3d/"],
+        "reporter": "A.D.3d"
+      }
+    ]
+  }

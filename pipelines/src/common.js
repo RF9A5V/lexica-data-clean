@@ -46,11 +46,10 @@ function parseCommonArgs(argv, additionalOptions = {}) {
     else if (a === '--cleanup-older-than') { args.cleanupOlderThan = argv[++i]; }
     else if (a === '--help') { args.help = true; }
     else if (a === '--batch-id') { args.batchId = argv[++i]; }
-    else if (a === '--scenario') { args.scenario = argv[++i]; }
-    else if (additionalOptions[a]) {
-      additionalOptions[a](args, argv, i);
-      if (additionalOptions[a].incrementIndex) i++;
-    }
+    else if (a === '--with-evidence') { args.withEvidence = true; }
+    else if (a === '--include-valueless') { args.includeValueless = true; }
+    else if (additionalOptions[a]) { additionalOptions[a](args); }
+    else { console.error(`Unknown argument: ${a}`); process.exit(1); }
   }
   
   // Validate and clamp arguments
@@ -84,6 +83,7 @@ function printCommonUsage(scriptName, specificOptions = '') {
     --samples-dir path        Directory for sample payloads
     --verbose-fields          Use verbose field names in LLM output (default: minimal fields for efficiency)
     --with-evidence           Include evidence character indices in LLM output (default: evidence-free for max efficiency)
+    --include-valueless       Include opinions marked as valueless (default: skip valueless)
     --dry-run                 No DB commits (rollback transactions)
     --debug                   Verbose logging
 ${specificOptions}`);
@@ -187,7 +187,7 @@ async function getOpinionCandidates(client, args, whereClause = '', additionalPa
     SELECT o.id, o.text, c.jurisdiction_name, c.court_name, c.decision_date
     FROM opinions o
     INNER JOIN cases c ON o.case_id = c.id
-    WHERE o.is_valueless = false
+    WHERE ${args.includeValueless ? 'TRUE' : 'o.is_valueless = false'}
   `;
   
   let params = [];

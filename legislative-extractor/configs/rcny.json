@@ -1,0 +1,60 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "rcny_legislative",
+    "user": "dev",
+    "password": "dev"
+  },
+  "metadata": {
+    "jurisdiction": "New York City",
+    "publisher": "American Legal Publishing",
+    "current_edition_date": "2024-01-01"
+  },
+  "sources": [
+    {
+      "id": "rcny",
+      "label": "Rules of the City of New York",
+      "instrument_kind": "regulatory_code",
+      "code_key": "rcny",
+      "jurisdiction_scope": "city",
+      "zip_urls": [
+        "http://files.amlegal.com/pdffiles/NewYorkCity/Rules/XML.zip"
+      ],
+      "staging_dir": "./data/staging/rcny",
+      "ndjson_output": "./data/processed/rcny-statutes.ndjson",
+      "zip_dir": "./data/zips/rcny"
+    }
+  ],
+  "xml_structure": {
+    "root_element": "Statute",
+    "hierarchy": [
+      {
+        "level": "title",
+        "xpath": "Title",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "chapter",
+        "xpath": "Chapter",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "subchapter",
+        "xpath": "Subchapter",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "section",
+        "xpath": "Section",
+        "fields": ["number", "title", "text"]
+      }
+    ]
+  },
+  "extraction": {
+    "maxConcurrency": 3,
+    "batchSize": 500,
+    "retryAttempts": 3,
+    "downloadDelayMs": 500
+  }
+}

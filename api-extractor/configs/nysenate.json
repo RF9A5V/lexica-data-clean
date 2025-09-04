@@ -1,0 +1,55 @@
+{
+  "source_id": "nysenate",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "nysenate_legislative",
+    "user": "dev",
+    "password": "dev"
+  },
+  "metadata": {
+    "jurisdiction": "New York State",
+    "publisher": "New York State Senate",
+    "current_edition_date": "2024-01-01"
+  },
+  "baseUrlEnv": "NYSENATE_BASE_URL",
+  "defaultBaseUrl": "https://legislation.nysenate.gov/api/3",
+  "apiKeyEnv": "NYSENATE_API_KEY",
+  "headers": {},
+  "rate": {
+    "rpsEnv": "NYSENATE_RATE_RPS",
+    "defaultRps": 3
+  },
+  "retry": {
+    "maxEnv": "NYSENATE_RETRY_MAX",
+    "defaultMax": 5,
+    "baseDelayMs": 500
+  },
+  "endpoints": {
+    "lawsIndex": "/laws",
+    "lawStructure": "/laws/{lawId}?view=structure",
+    "document": "/laws/{lawId}/{docType}/{docId}?view=full",
+    "subDocuments": "/laws/{lawId}/{docType}/{docId}/documents{?page,size}",
+    "rootDocuments": "/laws/{lawId}/documents{?page,size}"
+  },
+  "response": {
+    "okField": "success",
+    "dataField": ["result", "items"],
+    "totalPagesField": ["result", "totalPages"],
+    "pageField": ["result", "page"],
+    "pageSizeField": ["result", "pageSize"]
+  },
+  "mapping": {
+    "lawIdField": ["lawId"],
+    "lawNameField": ["name"],
+    "lawTypeField": ["lawType", "type", "category"],
+    "articleIdField": ["articleId"],
+    "sectionIdField": ["sectionId", "lawSection", "section"],
+    "sectionNumField": ["lawSection", ["section", "number"], "section"],
+    "sectionHeadingField": ["title", "heading"],
+    "sectionTextHtmlField": ["textHtml", "html"],
+    "sectionTextPlainField": ["text", "plain", ["text", "plainText"], ["fullText", "text"], ["fullText", "plain"]],
+    "effectiveStartField": ["effectiveDate", "start"],
+    "effectiveEndField": ["effectiveDate", "end"]
+  }
+}

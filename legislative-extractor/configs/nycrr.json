@@ -1,0 +1,66 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "nycrr_legislative",
+    "user": "dev",
+    "password": "dev"
+  },
+  "metadata": {
+    "jurisdiction": "New York State",
+    "publisher": "New York State Department of State",
+    "current_edition_date": "2024-01-01"
+  },
+  "sources": [
+    {
+      "id": "nycrr",
+      "label": "New York Codes, Rules and Regulations",
+      "instrument_kind": "regulatory_code",
+      "code_key": "nycrr",
+      "jurisdiction_scope": "state",
+      "zip_urls": [
+        "https://example.com/nycrr-2024-vol1.zip",
+        "https://example.com/nycrr-2024-vol2.zip"
+      ],
+      "staging_dir": "./data/staging/nycrr",
+      "ndjson_output": "./data/processed/nycrr-regulations.ndjson",
+      "zip_dir": "./data/zips/nycrr"
+    }
+  ],
+  "xml_structure": {
+    "root_element": "Regulation",
+    "hierarchy": [
+      {
+        "level": "title",
+        "xpath": "Title",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "chapter",
+        "xpath": "Chapter",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "part",
+        "xpath": "Part",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "subpart",
+        "xpath": "Subpart",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "section",
+        "xpath": "Section",
+        "fields": ["number", "title", "text"]
+      }
+    ]
+  },
+  "extraction": {
+    "maxConcurrency": 3,
+    "batchSize": 750,
+    "retryAttempts": 3,
+    "downloadDelayMs": 750
+  }
+}

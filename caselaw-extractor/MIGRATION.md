@@ -179,19 +179,4 @@ DROP INDEX IF EXISTS idx_cases_original_id;
 DROP INDEX IF EXISTS idx_case_citations_cited_case_ids;
 ```
 
-## Integration with Collection Server
-
-The collection server's `citation_linkages` table will leverage these original IDs:
-
-```sql
--- citation_linkages table structure
-CREATE TABLE citation_linkages (
-  citing_source_ref TEXT NOT NULL,
-  citing_case_id BIGINT NOT NULL,  -- Maps to cases.original_id
-  cited_source_ref TEXT,
-  cited_case_id BIGINT,            -- Maps to cases.original_id
-  ...
-);
-```
-
 This enables the dual-source citation API to accurately resolve citations across databases.

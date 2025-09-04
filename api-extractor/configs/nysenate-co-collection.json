@@ -1,0 +1,23 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "nysenate_legislative",
+    "user": "dev",
+    "password": "dev"
+  },
+  "metadata": {
+    "jurisdiction": "New York State",
+    "publisher": "New York State Senate",
+    "current_edition_date": "2024-01-01"
+  },
+  "sources": [
+    {
+      "id": "nysenate_legislative",
+      "label": "New York State Consolidated Laws",
+      "instrument_kind": "statute_code",
+      "code_key": "nys",
+      "jurisdiction_scope": "state"
+    }
+  ]
+}

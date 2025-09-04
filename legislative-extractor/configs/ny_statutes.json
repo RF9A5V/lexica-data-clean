@@ -1,0 +1,55 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "ny_statutes_legislative",
+    "user": "dev",
+    "password": "dev"
+  },
+  "metadata": {
+    "jurisdiction": "New York State",
+    "publisher": "New York State Legislature",
+    "current_edition_date": "2024-01-01"
+  },
+  "sources": [
+    {
+      "id": "ny_statutes",
+      "label": "New York Consolidated Laws",
+      "instrument_kind": "statute_code",
+      "code_key": "nys",
+      "jurisdiction_scope": "state",
+      "zip_urls": [
+        "https://example.com/ny-consolidated-laws-2024.zip"
+      ],
+      "staging_dir": "./data/staging/ny_statutes",
+      "ndjson_output": "./data/processed/ny-statutes.ndjson",
+      "zip_dir": "./data/zips/ny_statutes"
+    }
+  ],
+  "xml_structure": {
+    "root_element": "Statute",
+    "hierarchy": [
+      {
+        "level": "law",
+        "xpath": "Law",
+        "fields": ["name", "title"]
+      },
+      {
+        "level": "article",
+        "xpath": "Article",
+        "fields": ["number", "title"]
+      },
+      {
+        "level": "section",
+        "xpath": "Section",
+        "fields": ["number", "title", "text"]
+      }
+    ]
+  },
+  "extraction": {
+    "maxConcurrency": 5,
+    "batchSize": 1000,
+    "retryAttempts": 3,
+    "downloadDelayMs": 1000
+  }
+}

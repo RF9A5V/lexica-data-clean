@@ -1,0 +1,169 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "nysenate_legislative_tokenized",
+    "user": "dev",
+    "password": "dev"
+  },
+  "metadata": {
+    "jurisdiction": "New York State",
+    "publisher": "New York State Senate",
+    "current_edition_date": "2024-01-01",
+    "tokenization_enabled": true,
+    "tokenization_format": "hierarchical_curie"
+  },
+  "sources": [
+    {
+      "id": "nysenate_legislative",
+      "label": "New York State Legislative Database (Tokenized)",
+      "instrument_kind": "statute_code",
+      "code_key": "nysenate",
+      "jurisdiction_scope": "state",
+      "api_base_url": "https://legislation.nysenate.gov/api/3",
+      "api_key_env": "NYSENATE_API_KEY",
+      "staging_dir": "./data/staging/nysenate",
+      "ndjson_output": "./data/processed/nysenate-tokenized.ndjson",
+      "cache_dir": "./data/cache/nysenate",
+      "tokenization": {
+        "enabled": true,
+        "token_format": "{{TYPE_SECTION.SUBSECTION}}",
+        "hierarchical_paths": true,
+        "preserve_structure": true,
+        "cache_original_text": true
+      }
+    }
+  ],
+  "api_structure": {
+    "laws_endpoint": "/laws",
+    "law_detail_endpoint": "/laws/{lawId}",
+    "sections_endpoint": "/laws/{lawId}/sections",
+    "section_detail_endpoint": "/laws/{lawId}/sections/{sectionId}",
+    "hierarchy": [
+      {
+        "level": "law",
+        "api_field": "lawId",
+        "display_fields": ["name", "lawType", "chapter"]
+      },
+      {
+        "level": "section",
+        "api_field": "sectionNum",
+        "display_fields": ["sectionNum", "title", "text"],
+        "tokenizable_fields": ["text"]
+      },
+      {
+        "level": "subsection",
+        "api_field": "subsectionId",
+        "display_fields": ["identifier", "text"],
+        "tokenizable_fields": ["text"],
+        "parent_reference": "sectionNum"
+      }
+    ]
+  },
+  "law_mappings": {
+    "PEN": "Penal Law",
+    "CPL": "Criminal Procedure Law", 
+    "COR": "Correction Law",
+    "VAT": "Vehicle and Traffic Law",
+    "GBS": "General Business Law",
+    "EDN": "Education Law",
+    "DOM": "Domestic Relations Law",
+    "CVP": "Civil Practice Law and Rules",
+    "GOB": "General Obligations Law",
+    "EST": "Estates, Powers and Trusts Law",
+    "RPP": "Real Property Law",
+    "TAX": "Tax Law",
+    "LAB": "Labor Law",
+    "SOC": "Social Services Law",
+    "PBH": "Public Health Law",
+    "ENV": "Environmental Conservation Law",
+    "AGM": "Agriculture and Markets Law",
+    "BCL": "Business Corporation Law",
+    "LLC": "Limited Liability Company Law",
+    "PAR": "Partnership Law",
+    "INS": "Insurance Law",
+    "BNK": "Banking Law",
+    "EXC": "Executive Law",
+    "STA": "State Law",
+    "CNT": "County Law",
+    "TWN": "Town Law",
+    "VIL": "Village Law",
+    "GCT": "General City Law",
+    "MHY": "Mental Hygiene Law",
+    "JUD": "Judiciary Law",
+    "CVR": "Civil Rights Law",
+    "ELN": "Election Law",
+    "MIL": "Military Law",
+    "NAV": "Navigation Law",
+    "PRH": "Parks, Recreation and Historic Preservation Law",
+    "PML": "Public Lands Law",
+    "RAC": "Racing, Pari-Mutuel Wagering and Breeding Law",
+    "RET": "Retirement and Social Security Law",
+    "STF": "State Finance Law",
+    "UCC": "Uniform Commercial Code",
+    "WOR": "Workers' Compensation Law"
+  },
+  "extraction": {
+    "maxConcurrency": 3,
+    "batchSize": 500,
+    "retryAttempts": 5,
+    "requestDelayMs": 2000,
+    "tokenization_batch_size": 100,
+    "preserve_cache": true,
+    "validate_tokens": true
+  },
+  "database_schema": {
+    "tables": {
+      "units": {
+        "primary_key": "id",
+        "fields": ["id", "unit_type", "number", "label", "parent_id", "sort_key", "citation", "canonical_id", "source_id", "law_id", "is_active", "created_at", "updated_at"],
+        "foreign_keys": {
+          "parent_id": "units.id"
+        }
+      },
+      "unit_text_versions": {
+        "primary_key": "id",
+        "fields": ["id", "unit_id", "effective_start", "effective_end", "text_html", "text_plain", "checksum", "created_at"],
+        "foreign_keys": {
+          "unit_id": "units.id"
+        }
+      },
+      "citations": {
+        "primary_key": "id",
+        "fields": ["id", "source_unit_id", "raw_citation", "target_kind", "target_unit_id", "external_curie", "context", "created_at"],
+        "foreign_keys": {
+          "source_unit_id": "units.id",
+          "target_unit_id": "units.id"
+        }
+      },
+      "unit_search": {
+        "primary_key": "unit_id",
+        "fields": ["unit_id", "heading", "text_plain", "tsv", "updated_at"],
+        "foreign_keys": {
+          "unit_id": "units.id"
+        }
+      }
+    },
+    "indexes": [
+      "CREATE INDEX IF NOT EXISTS idx_units_parent_id ON units(parent_id)",
+      "CREATE INDEX IF NOT EXISTS idx_units_type ON units(unit_type)",
+      "CREATE INDEX IF NOT EXISTS idx_units_law_id ON units(law_id)",
+      "CREATE INDEX IF NOT EXISTS idx_unit_text_versions_unit_id ON unit_text_versions(unit_id)",
+      "CREATE INDEX IF NOT EXISTS idx_citations_source_unit_id ON citations(source_unit_id)",
+      "CREATE INDEX IF NOT EXISTS idx_unit_search_tsv ON unit_search USING gin(tsv)"
+    ]
+  },
+  "validation": {
+    "required_tables": ["units", "unit_text_versions", "citations", "unit_search"],
+    "tokenization_checks": [
+      "v.text_plain IS NOT NULL",
+      "v.text_plain LIKE '%{{%}}%'",
+      "LENGTH(v.text_plain) > 0"
+    ],
+    "sample_token_patterns": [
+      "{{PARAGRAPH_\\d+\\.\\d+}}",
+      "{{SUBDIVISION_\\d+\\.\\d+\\.[a-z]+}}",
+      "{{SUBPARAGRAPH_\\d+\\.\\d+\\.[a-z]+\\.[ivx]+}}"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "database": "nyc_admin_legislative",
+      "user": "dev",
+      "password": "dev"
+    },
+    "metadata": {
+      "jurisdiction": "New York City",
+      "publisher": "American Legal Publishing",
+      "current_edition_date": "2024-01-01"
+    },
+    "sources": [
+      {
+        "id": "nyc-admin",
+        "label": "New York City Administrative Code",
+        "instrument_kind": "regulatory_code",
+        "code_key": "nyc-admin",
+        "jurisdiction_scope": "city",
+        "zip_urls": [
+          "http://files.amlegal.com/pdffiles/NewYorkCity/Admin/XML.zip"
+        ],
+        "staging_dir": "./data/staging/nyc-admin",
+        "ndjson_output": "./data/processed/nyc-admin/nyc-admin-statutes.ndjson",
+        "zip_dir": "./data/zips/nyc-admin"
+      }
+    ],
+    "extraction": {
+      "maxConcurrency": 3,
+      "batchSize": 500,
+      "retryAttempts": 3,
+      "downloadDelayMs": 500
+    }
+  }

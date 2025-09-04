@@ -1,0 +1,330 @@
+{
+  "timestamp": "2025-08-29T13:44:30.979Z",
+  "source": "nyc-admin",
+  "xmlFiles": [
+    "0-0-0-1.xml",
+    "0-0-0-10063.xml",
+    "0-0-0-108.xml"
+  ],
+  "analysis": {
+    "rootElement": "DOCUMENT",
+    "hierarchyLevels": [
+      {
+        "level": "title",
+        "xpath": "LEVEL",
+        "fields": [
+          "RECORD.HEADING",
+          "RECORD.PARA"
+        ],
+        "level_filter": "@_level-depth=1",
+        "style_filter": "@_style-name=\"Title\""
+      }
+    ],
+    "structure": {
+      "": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "@_source-infobase-name": "Admin",
+            "@_content-collection-id": "NYCadmin",
+            "@_source-infobase-title": "New York City Administrative Code",
+            "@_base-output-dir": "D:\\process\\NFOProcess\\codes\\ny\\newyorkcity\\NYCadmin\\output\\WEFUYOPVDLAFVURV\\",
+            "@_default-split-level": "Chapter",
+            "@_makefile-filename": "D:\\process\\NFOProcess\\codes\\ny\\newyorkcity\\NYCadmin\\output\\WEFUYOPVDLAFVURV\\NYCadmin.mak",
+            "@_css-stylesheet-href": "#!-- #ID=NYCadmin_css_id --#",
+            "@_xml-output-dir": "D:\\process\\NFOProcess\\codes\\ny\\newyorkcity\\NYCadmin\\output\\WEFUYOPVDLAFVURV\\XML\\",
+            "@_css-stylesheet-name": "NYCadmin_css",
+            "@_makefile-document-depth": 1
+          }
+        ]
+      },
+      "LEVEL": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "@_style-name": "Title",
+            "@_style-name-escaped": "Title",
+            "@_style-id": "0-0-0-682",
+            "@_level-depth": 1,
+            "@_toc-section": false
+          }
+        ]
+      },
+      "LEVEL.RECORD": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "HEADING": "NEW YORK CITY ADMINISTRATIVE CODE",
+            "@_id": "0-0-0-1",
+            "@_number": 1,
+            "@_version": 2141
+          }
+        ]
+      },
+      "LEVEL.RECORD.PARA": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "LINEBRK": "",
+            "#text": "NEW YORK CITYADMINISTRATIVE CODE"
+          }
+        ]
+      },
+      "LEVEL.LEVEL": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "@_style-name": "Normal Level",
+            "@_style-name-escaped": "Normal-Level",
+            "@_style-id": "0-0-0-0",
+            "@_level-depth": 0,
+            "@_toc-section": false
+          }
+        ]
+      },
+      "LEVEL.LEVEL.RECORD": {
+        "count": 2,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "@_id": "0-0-0-2",
+            "@_number": 2,
+            "@_version": 2228
+          },
+          {
+            "@_id": "0-0-0-3",
+            "@_number": 3,
+            "@_version": 1323
+          }
+        ]
+      },
+      "LEVEL.LEVEL.RECORD.PARA": {
+        "count": 2,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "#text": "&#160;",
+            "@_style-name": "Introduction",
+            "@_style-name-escaped": "Introduction",
+            "@_style-id": "0-0-0-19"
+          },
+          {
+            "#text": "Cincinnati, Ohio800-445-5588",
+            "@_style-name": "Introduction",
+            "@_style-name-escaped": "Introduction",
+            "@_style-id": "0-0-0-19"
+          }
+        ]
+      },
+      "LEVEL.LEVEL.RECORD.PARA.CHARFORMAT": {
+        "count": 6,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "LINEBRK": "",
+            "#text": "Current through Local Law 2025/121, enacted August 13, 2025,and includes amendments effective through August 15, 2025.",
+            "@_bold": 1,
+            "@_italic": 0,
+            "@_underline": 0,
+            "@_strike-out": 0,
+            "@_hidden": 0
+          },
+          {
+            "LINEBRK": "",
+            "#text": "Published by:",
+            "@_bold": 0,
+            "@_italic": 0,
+            "@_underline": 0,
+            "@_strike-out": 0,
+            "@_hidden": 0,
+            "@_point-size": 12
+          },
+          {
+            "@_bold": 1,
+            "@_italic": 0,
+            "@_underline": 0,
+            "@_strike-out": 0,
+            "@_hidden": 0,
+            "@_point-size": 12
+          }
+        ]
+      },
+      "LEVEL.LEVEL.RECORD.PARA.HIGHLIGHTER": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "#text": "[ALP S-112]",
+            "@_style": "ALP",
+            "@_style-name-escaped": "ALP",
+            "@_name": "ALP",
+            "@_id": "0-0-0-25"
+          }
+        ]
+      },
+      "LEVEL.LEVEL.RECORD.PARA.LINK": {
+        "count": 1,
+        "attributes": {},
+        "children": {},
+        "samples": [
+          {
+            "#text": "www.amlegal.com",
+            "@_style-name": "Web",
+            "@_style-name-escaped": "Web",
+            "@_style-id": "0-0-0-24",
+            "@_type": "Web",
+            "@_url": "http://www.amlegal.com"
+          }
+        ]
+      }
+    },
+    "sampleData": {}
+  },
+  "uniquePaths": [
+    {
+      "path": "LEVEL",
+      "count": 3
+    },
+    {
+      "path": "LEVEL.RECORD",
+      "count": 3
+    },
+    {
+      "path": "LEVEL.RECORD.PARA",
+      "count": 3
+    },
+    {
+      "path": "LEVEL.LEVEL",
+      "count": 3
+    },
+    {
+      "path": "LEVEL.LEVEL.RECORD",
+      "count": 3
+    },
+    {
+      "path": "LEVEL.LEVEL.RECORD.PARA",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.RECORD.PARA.DESTINATION",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.RECORD",
+      "count": 2
+    },
+    {
+      "path": "LEVEL.LEVEL.RECORD.PARA.CHARFORMAT",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.RECORD.PARA.HIGHLIGHTER",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.RECORD.PARA.LINK",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA.DESTINATION",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA.CHARFORMAT",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.RECORD.PARA.DESTINATION",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.RECORD",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.LEVEL.RECORD",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA.CHARFORMAT",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA.LINK",
+      "count": 1
+    },
+    {
+      "path": "LEVEL.LEVEL.LEVEL.LEVEL.RECORD.PARA.HIGHLIGHTER",
+      "count": 1
+    }
+  ],
+  "trieStructure": {
+    "LEVEL": {
+      "children": {},
+      "count": 52,
+      "samples": []
+    }
+  }
+}

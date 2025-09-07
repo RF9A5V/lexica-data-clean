@@ -1,0 +1,25 @@
+{
+  "name": "legislative-enrichment",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One-shot pipeline to enrich legislative sections with keywords and simple digests.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "init-db": "node scripts/init-db.js",
+    "seed:keywords": "node scripts/seed-keywords.js --file keywords.json",
+    "enrich": "node scripts/enrich.js",
+    "export": "node scripts/export.js",
+    "resume": "node scripts/resume.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.56.0",
+    "p-limit": "^5.0.0",
+    "pg": "^8.12.0",
+    "yargs": "^17.7.2",
+    "zod": "^3.23.8"
+  }
+}

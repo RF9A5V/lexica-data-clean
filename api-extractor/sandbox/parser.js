@@ -49,9 +49,6 @@ const UNIT_DEPTH = [
 
 //(?<!(paragraphs)|(paragraph))\s\(([\w+])\)\s+(?!of)([\w\s]|(\{\#\d+(\_\d+)?\}))+
 
-
-
-
 // Look up the return value from regex.exec if confused
 function* matchGenerator(text, regex) {
   let iter;
@@ -107,7 +104,13 @@ function tokenizeSectionCitations(text) {
     let subunitIdentifiers = [null]; 
     
     if(item.groups.subunitId) {
-      subunitIdentifiers = item.groups.subunitId.split(",").map(id => parseEnglishToNumber(id));
+      try {
+        subunitIdentifiers = item.groups.subunitId.split(/(,|or|and)/g).map(id => parseEnglishToNumber(id));
+      }
+      catch (e) {
+        console.log(item.rawMatch);
+        throw e;
+      }
     }
 
     const tokens = subunitIdentifiers.map(

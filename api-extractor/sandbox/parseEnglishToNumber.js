@@ -46,6 +46,10 @@ function parseEnglishToNumber(text) {
         if (i > 0 && tens.hasOwnProperty(parts[i-1]) && basicNumbers.hasOwnProperty(part)) {
           currentNumber += basicNumbers[part] - (basicNumbers[part] > 9 ? 10 : 0);
         } else {
+          // Ignore conjunctions like "and" within number phrases (e.g., "one hundred and one")
+          if (part === 'and') {
+            continue;
+          }
           throw new Error(`Unknown number word: ${part}`);
         }
       }

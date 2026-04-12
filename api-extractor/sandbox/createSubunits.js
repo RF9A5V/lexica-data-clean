@@ -1,6 +1,7 @@
 import pg from "pg";
 import { createHash } from "crypto";
 import { getTokenizedText } from "./parser.js";
+import wordBasedFSM from "./wordBasedFSM.js";
 
 const { Pool } = pg;
 
@@ -19,7 +20,47 @@ const DEFAULT_OPTIONS = {
   offset: Number(process.env.OFFSET || 0) || 0,
   dryRun: (process.env.DRY_RUN ?? "true").toLowerCase() !== "false",
   applyMigrations: (process.env.APPLY_MIGRATIONS ?? "true").toLowerCase() !== "false",
+  mode: (process.env.MODE || 'fsm').toLowerCase(), // 'fsm' or 'parser'
 };
+
+function parseCliArgs(argv) {
+  const opts = {};
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a === "--write" || a === "-w") {
+      opts.dryRun = false;
+    } else if (a === "--dry" || a === "--dry-run") {
+      opts.dryRun = true;
+    } else if (a === "--migrate") {
+      opts.applyMigrations = true;
+    } else if (a === "--no-migrate") {
+      opts.applyMigrations = false;
+    } else if (a === "--law" || a === "-l") {
+      const v = argv[++i];
+      if (v) opts.lawId = String(v).toUpperCase();
+    } else if (a.startsWith("--law=")) {
+      opts.lawId = a.split("=")[1].toUpperCase();
+    } else if (a === "--limit") {
+      const v = argv[++i];
+      if (v != null) opts.limit = Number(v);
+    } else if (a.startsWith("--limit=")) {
+      opts.limit = Number(a.split("=")[1]);
+    } else if (a === "--offset") {
+      const v = argv[++i];
+      if (v != null) opts.offset = Number(v);
+    } else if (a.startsWith("--offset=")) {
+      opts.offset = Number(a.split("=")[1]);
+    } else if (a === "--mode") {
+      const v = argv[++i];
+      if (v) opts.mode = String(v).toLowerCase();
+    } else if (a.startsWith("--mode=")) {
+      opts.mode = a.split("=")[1].toLowerCase();
+    } else if (a === "--help" || a === "-h") {
+      opts.help = true;
+    }
+  }
+  return opts;
+}
 
 // Layer codes to enforce sort order when all subunits are direct children of the section
 const LAYER = {
@@ -59,6 +100,38 @@ function romanToInt(roman) {
   return total;
 }
 
+function isRomanStr(s) {
+  return /^[ivxlcdm]+$/i.test(String(s || ''));
+}
+
+function computeAlphaNumIndex(id) {
+  // Split on common separators and compute an ordered tuple index
+  // for segments: numbers > letters > roman > fallback
+  const raw = String(id || '').trim();
+  if (!raw) return [0];
+  const segs = raw.split(/[-._]/g).filter(Boolean);
+  const parts = [];
+  for (const seg of segs) {
+    if (/^\d+$/.test(seg)) {
+      parts.push(parseInt(seg, 10));
+      continue;
+    }
+    if (/^[A-Za-z]+$/.test(seg)) {
+      if (isRomanStr(seg)) {
+        parts.push(romanToInt(seg));
+      } else {
+        parts.push(alphaIndex(seg));
+      }
+      continue;
+    }
+    // Fallback: hash-ish stable value based on char codes
+    let acc = 0;
+    for (let i = 0; i < seg.length; i++) acc += seg.charCodeAt(i);
+    parts.push(acc % 1000);
+  }
+  return parts.length ? parts : [0];
+}
+
 function computeSortKey(unitType, localId, pathParts = []) {
   // Build a hierarchical sort key using ancestor indices + current index
   // Example: subdivision 1 => 1.001
@@ -69,10 +142,19 @@ function computeSortKey(unitType, localId, pathParts = []) {
   const pushIndex = (t, id) => {
     const layer = LAYER[t] || 9;
     let idx = 0;
-    if (t === "subdivision") idx = Number(String(id).replace(/[^0-9]/g, "")) || 0;
-    else if (t === "paragraph") idx = alphaIndex(id);
-    else if (t === "subparagraph") idx = romanToInt(id);
-    parts.push(`${layer}.${zeroPad(idx)}`);
+    if (t === "subdivision") {
+      idx = Number(String(id).replace(/[^0-9]/g, "")) || 0;
+      parts.push(`${layer}.${zeroPad(idx)}`);
+    } else if (t === "paragraph") {
+      // Paragraphs can be alphanumeric like '14', '14-a', 'A-1'
+      const tuple = computeAlphaNumIndex(id);
+      parts.push(`${layer}.${tuple.map(n => zeroPad(n)).join('.')}`);
+    } else if (t === "subparagraph") {
+      idx = romanToInt(id);
+      parts.push(`${layer}.${zeroPad(idx)}`);
+    } else {
+      parts.push(`${layer}.${zeroPad(0)}`);
+    }
   };
 
   for (const p of pathParts) pushIndex(p.unitType, p.localId);
@@ -193,11 +275,10 @@ async function upsertSubunit(pool, { sectionId, lawId, effectiveStart, effective
 
   // Upsert unit_text_versions by (unit_id, effective_start)
   const upsertUtvSql = `
-    INSERT INTO unit_text_versions (unit_id, effective_start, effective_end, text_html, text_plain, checksum, text_tokenized, citations_extracted, tokenization_checksum)
-    VALUES ($1, $2, $3, NULL, $4, $5, $6, NULL, $7)
+    INSERT INTO unit_text_versions (unit_id, effective_start, effective_end, text_plain, checksum, text_tokenized, citations_extracted, tokenization_checksum)
+    VALUES ($1, $2, $3, $4, $5, $6, NULL, $7)
     ON CONFLICT (unit_id, effective_start) DO UPDATE SET
       effective_end = EXCLUDED.effective_end,
-      text_html = EXCLUDED.text_html,
       text_plain = EXCLUDED.text_plain,
       checksum = EXCLUDED.checksum,
       text_tokenized = EXCLUDED.text_tokenized,
@@ -230,10 +311,43 @@ async function processSection(pool, sectionRow, options) {
   const { dryRun } = options;
   const { unit_id: sectionId, utv_id: sectionUtvId, law_id: lawId, effective_start, effective_end } = sectionRow;
 
-  const parsed = await getTokenizedText(sectionId);
-  if (!parsed) return { sectionId, skipped: true, reason: "No text returned from parser" };
+  let tokenizedText = '';
+  let matches = [];
+  let citations = [];
 
-  const { text: tokenizedText, matches, citations } = parsed;
+  if ((options.mode || 'fsm') === 'parser') {
+    const parsed = await getTokenizedText(sectionId);
+    if (!parsed) return { sectionId, skipped: true, reason: "No text returned from parser" };
+    tokenizedText = parsed.text || '';
+    matches = Array.isArray(parsed.matches) ? parsed.matches : [];
+    citations = Array.isArray(parsed.citations) ? parsed.citations : [];
+  } else {
+    // FSM-only subdivisions with preamble token
+    const fsm = await wordBasedFSM(sectionId);
+    if (!fsm) return { sectionId, skipped: true, reason: "No text returned from FSM" };
+
+    const parts = [];
+    const header = (fsm.header || '').trim();
+    if (header) {
+      parts.push(`{PREAMBLE}\n${header}\n`);
+    }
+    const subs = Array.isArray(fsm.subdivisions) ? fsm.subdivisions : [];
+    for (const s of subs) {
+      const id = String(s.id || '').trim();
+      const body = String(s.text || '').trim();
+      if (!id) continue;
+      parts.push(`{SUBDIVISION_${id}}\n${body}\n`);
+      // Construct a pseudo-match consumable by upsertSubunit
+      matches.push({
+        token: `{SUBDIVISION_${id}}`,
+        groups: { text: body },
+        tokenizedText: null,
+        matches: [],
+      });
+    }
+    tokenizedText = parts.join("\n");
+    citations = [];
+  }
 
   if (dryRun) {
     return {
@@ -277,6 +391,7 @@ async function processSection(pool, sectionRow, options) {
 
     await pool.query("COMMIT");
   } catch (err) {
+    console.log(err)
     await pool.query("ROLLBACK");
     throw err;
   }
@@ -300,6 +415,7 @@ export async function run(userOptions = {}) {
       try {
         const res = await processSection(pool, sectionRow, options);
         if (res.skipped) results.skipped++; else if (res.updated || res.plan) results.updated++;
+
       } catch (err) {
         results.errors++;
         console.error(`Error processing section ${sectionRow.unit_id}:`, err.message);
@@ -322,6 +438,20 @@ export async function run(userOptions = {}) {
 //   LAW_ID=ABC DRY_RUN=true node co-data/api-extractor/sandbox/createSubunits.js
 //   DRY_RUN=false to write changes; LIMIT/OFFSET to chunk; APPLY_MIGRATIONS=false to skip ALTERs.
 if (import.meta.url === `file://${process.argv[1]}`) {
-  // Intentionally do not auto-run. Uncomment when ready to execute from CLI.
-  run().catch(err => { console.error(err); process.exit(1); });
+  const cli = parseCliArgs(process.argv.slice(2));
+  if (cli.help) {
+    console.log(`Usage: node createSubunits.js [options]\n\n` +
+      `Options:\n` +
+      `  --law, -l <LAW>         Limit to a specific law (e.g., ABC, PEN)\n` +
+      `  --write, -w             Run in write mode (dryRun=false)\n` +
+      `  --dry, --dry-run        Run in dry mode (default)\n` +
+      `  --limit <N>             Limit number of sections processed\n` +
+      `  --offset <N>            Offset for section processing\n` +
+      `  --migrate               Apply migrations before processing\n` +
+      `  --no-migrate            Skip migrations\n` +
+      `  --mode <fsm|parser>     Choose tokenizer: FSM (default) or legacy parser\n` +
+      `  --help, -h              Show this help\n`);
+    process.exit(0);
+  }
+  run(cli).catch(err => { console.error(err); process.exit(1); });
 }

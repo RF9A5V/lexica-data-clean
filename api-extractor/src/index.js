@@ -6,11 +6,10 @@ import { fileURLToPath } from 'url';
 import { appendLine, ensureDir, getIn } from './lib/utils.js';
 import { NysenateClient } from './client/nysenate.js';
 import { mapNodeToUnit, unitIdFor } from './transform/nysenate.js';
-import { parseSubsections, splitCaptionAndBody, classifyLevel } from './transform/subsection_parser.js';
+import { splitSection, buildSubUnitCitation } from './transform/section_splitter.js';
 import { ReconstitutionTester } from './test/reconstitution-test.js';
 import { loadNdjsonToDatabase } from './db/loader.js';
 import { SectionCache } from './cache/section-cache.js';
-import { TextParser } from './parser/text-parser.js';
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -290,59 +289,13 @@ async function processLawViaLawTreeFull({ client, lawId, outFile, checkpointFile
     const unit = mapNodeToUnit({ sourceId, lawId, node, parentId, mapping });
 
     if (splitSubsections && unit.type === 'section' && unit.text) {
-      // Separate caption from body before parsing subsections
-      const { caption, body } = splitCaptionAndBody(unit.text);
-      const subs = parseSubsections(body);
-      if (subs.length > 0) {
-        const { text, ...unitNoText } = unit; // remove original text from section
-        if (caption && caption.length > 0) unitNoText.text = caption; // preserve caption only
+      const { caption, units: subUnits } = splitSection(unit.text);
+      if (subUnits.length > 0) {
+        // Section record keeps only the caption/intro text
+        const { text, ...unitNoText } = unit;
+        unitNoText.text = caption || undefined;
         if (!dryRun) await appendLine(outFile, JSON.stringify(unitNoText));
-        for (let subIndex = 0; subIndex < subs.length; subIndex++) {
-          const s = subs[subIndex];
-          const ut = classifyLevel(s.level);
-          if (!ut || !s.text) continue;
-          
-          const markerPath = String(s.marker || '').split('.').filter(Boolean);
-          
-          // Generate fallback identifier for subdivisions without proper markers
-          let docId, number, label, sortKey, citation, canonicalId;
-          
-          if (markerPath.length === 0) {
-            // Use fallback identifiers instead of dropping the subdivision
-            const fallbackId = `${s.level}-${subIndex + 1}`;
-            docId = fallbackId;
-            number = `${subIndex + 1}`;
-            label = `${ut} ${subIndex + 1}`;
-            sortKey = `${unit.sort_key}.${String(subIndex + 1).padStart(3, '0')}`;
-            citation = unit.citation ? `${unit.citation}(${ut}-${subIndex + 1})` : null;
-            canonicalId = unit.canonical_id ? `${unit.canonical_id}(${ut}-${subIndex + 1})` : null;
-          } else {
-            // Use parsed markers - join with dashes for docId to create proper hierarchical IDs
-            docId = markerPath.join('-');
-            number = markerPath[markerPath.length - 1];
-            label = markerPath[markerPath.length - 1];
-            sortKey = `${unit.sort_key}.${markerPath.map(p => p.padStart(3, '0')).join('.')}`;
-            citation = unit.citation ? `${unit.citation}(${markerPath.join('.')})` : null;
-            canonicalId = unit.canonical_id ? `${unit.canonical_id}(${markerPath.join('.')})` : null;
-          }
-          
-          const childId = unitIdFor({ sourceId, lawId, docType: ut.toUpperCase(), docId });
-          const child = {
-            id: childId,
-            type: ut,
-            number,
-            label,
-            parent_id: unit.id,
-            sort_key: sortKey,
-            citation,
-            canonical_id: canonicalId,
-            source_id: sourceId,
-            effective_start: '1900-01-01',
-            effective_end: null,
-            text: s.text
-          };
-          if (!dryRun) await appendLine(outFile, JSON.stringify(child));
-        }
+        await emitSubUnits(outFile, subUnits, unit, sourceId, lawId, dryRun);
       } else {
         if (!dryRun) await appendLine(outFile, JSON.stringify(unit));
       }
@@ -553,62 +506,13 @@ async function processLawFromCache({ cache, lawId, outFile, sourceId, mapping, d
       };
 
       if (splitSubsections && unit.type === 'section' && unit.text) {
-        // Use new parser for subsection splitting
-        const parser = new TextParser();
-        const { caption, body } = splitCaptionAndBody(unit.text || '');
-        
-        try {
-          const tokens = parseSubsections(body, unit.number);
-          
-          if (tokens.length > 0) {
-            // Section with parsed subsections
-            const { text, ...unitNoText } = unit;
-            
-            // Create interpolatable tokens for child subdivisions
-            const childTokens = tokens.map(token => {
-              const tokenType = (token.type || 'unknown').toUpperCase();
-              return `{{${tokenType}_${unit.number}.${token.marker}}}`;
-            });
-            
-            // Combine caption with child tokens
-            let sectionText = caption && caption.length > 0 ? caption : '';
-            if (childTokens.length > 0) {
-              if (sectionText) sectionText += '\n';
-              sectionText += childTokens.join('\n');
-            }
-            
-            unitNoText.text = sectionText;
-            if (!dryRun) await appendLine(outFile, JSON.stringify(unitNoText));
-
-            // Process each token as a subsection
-            for (const token of tokens) {
-              // Skip tokens with undefined type or marker
-              if (!token.type || !token.marker) {
-                console.warn(`  ⚠️  Skipping malformed token in section ${unit.number}: type=${token.type}, marker=${token.marker}`);
-                continue;
-              }
-              
-              const childUnit = {
-                id: `${unit.id}_${token.type}_${token.marker}`,
-                type: token.type,
-                number: token.marker,
-                label: token.marker,
-                parent_id: unit.id,
-                sort_key: `${unit.sort_key}.${token.marker}`,
-                citation: unit.citation ? `${unit.citation}(${token.marker})` : null,
-                canonical_id: unit.canonical_id ? `${unit.canonical_id}(${token.marker})` : null,
-                source_id: sourceId,
-                effective_start: '1900-01-01',
-                effective_end: null,
-                text: token.text
-              };
-              if (!dryRun) await appendLine(outFile, JSON.stringify(childUnit));
-            }
-          } else {
-            if (!dryRun) await appendLine(outFile, JSON.stringify(unit));
-          }
-        } catch (error) {
-          console.warn(`  ⚠️  Parser error for section ${section.docId}: ${error.message}`);
+        const { caption, units: subUnits } = splitSection(unit.text);
+        if (subUnits.length > 0) {
+          const { text, ...unitNoText } = unit;
+          unitNoText.text = caption || undefined;
+          if (!dryRun) await appendLine(outFile, JSON.stringify(unitNoText));
+          await emitSubUnits(outFile, subUnits, unit, sourceId, lawId, dryRun);
+        } else {
           if (!dryRun) await appendLine(outFile, JSON.stringify(unit));
         }
       } else {
@@ -756,6 +660,64 @@ async function testReconstitution() {
     process.exitCode = 1;
   } else {
     console.log(`\n✅ All reconstitution tests passed for ${lawCode}${sectionNumber ? ` section ${sectionNumber}` : ''}`);
+  }
+}
+
+/**
+ * Emit NDJSON records for sub-units (subdivision, paragraph, subparagraph,
+ * clause, item) derived from a parent section unit.
+ *
+ * Sub-units are stored as independent DB units with their own IDs and proper
+ * parent_id references — no token placeholders in parent text.
+ *
+ * @param {string}   outFile   NDJSON output path
+ * @param {Array}    subUnits  Output of splitSection()
+ * @param {Object}   section   The parent section unit record
+ * @param {string}   sourceId  e.g. 'nysenate'
+ * @param {string}   lawId     e.g. 'ABC'
+ * @param {boolean}  dryRun
+ */
+async function emitSubUnits(outFile, subUnits, section, sourceId, lawId, dryRun) {
+  // Build a map from path-string → emitted unit ID so we can look up parent IDs.
+  // path-string for the section itself is '' (empty).
+  const pathToId = new Map();
+  pathToId.set('', section.id);
+
+  for (let i = 0; i < subUnits.length; i++) {
+    const u = subUnits[i];
+    const pathStr = u.path.join('.');
+    const parentPathStr = u.parentPath.join('.');
+
+    // Stable ID: append type+path to the section ID
+    const id = `${section.id}:${u.type}:${pathStr}`;
+    pathToId.set(pathStr, id);
+
+    const parentId = pathToId.get(parentPathStr) ?? section.id;
+
+    // Sort key: section sort key + zero-padded path components
+    const sortKey = `${section.sort_key}.${u.path.map(p => p.padStart(4, '0')).join('.')}`;
+
+    const citation = buildSubUnitCitation(section.citation, u.path);
+    const canonicalId = section.canonical_id
+      ? `${section.canonical_id}(${u.path.join('.')})`
+      : null;
+
+    const record = {
+      id,
+      type: u.type,
+      number: u.label,
+      label: u.label,
+      parent_id: parentId,
+      sort_key: sortKey,
+      citation,
+      canonical_id: canonicalId,
+      source_id: sourceId,
+      effective_start: section.effective_start || '1900-01-01',
+      effective_end: section.effective_end || null,
+      text: u.text || null,
+    };
+
+    if (!dryRun) await appendLine(outFile, JSON.stringify(record));
   }
 }
 

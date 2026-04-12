@@ -31,9 +31,9 @@ const UNIT_DEPTH = [
   { 
     unitType: "paragraph", 
     regex: /(?<!(paragraphs)|(paragraph))\((?<id>\w+)\)\s+(?!of)(?<text>[\w\s",:\\\.\-\/]+)/g,
-    cleanerRegex: /(?<!(paragraphs)|(paragraph))\s*\((?<id>[\w]+)\)\s+(?!of)/g,
+    cleanerRegex: /(?<!(paragraphs)|(paragraph))\s*\((?<id>[\w-]+)\)\s+(?!of)/g,
     // I hate my life
-    postCleanRegex: /^\s*\((?<id>\w+)\)(?<text>.+)(?:\.|\n)/gm,
+    postCleanRegex: /^\s*\((?<id>\w+-?\w+?)\)(?<text>.+)(?:\.|\n)/gm,
     replacer: (text, item) => {
       const exactValue = text.slice(item.startIndex, item.startIndex + item.length);
 
@@ -175,7 +175,7 @@ function tokenizeText(text, unitIndex) {
       if(nextUnit.regex.test(match.groups.text)) {
         const internalReplObj = tokenizeText(match.groups.text, unitIndex + 1);
 
-        const romanRegex = /(?<id>[xiv]+)/g;
+        const romanRegex = /(?<id>[xiv]+-?\w?)/g;
 
         let currentItem;
         let replacementMatches = [];

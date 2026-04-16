@@ -270,9 +270,19 @@ async function runConfigPipeline(configPath, step, options) {
           // Write config metadata (jurisdiction, court_level, reporter, etc.)
           await insertMetadata(pool, cfg.metadata, { verbose });
           const dataFile = path.resolve(`./data/processed/${sourceId}-cases.json`);
-          const result = await loadCasesFromFile(pool, dataFile, { verbose });
+          const result = await loadCasesFromFile(pool, dataFile, {
+            verbose,
+            sourceId,
+            expectedReporter: source.reporter || null,
+          });
           const stats = await getDatabaseStats(pool);
           console.log(`  ✅ Loaded ${result.inserted} cases (${result.skipped} skipped)`);
+          if (result.officialCitesRebuilt) {
+            console.log(`  🔧 Rebuilt ${result.officialCitesRebuilt} official citations from archive provenance`);
+          }
+          if (result.officialCitesFallback) {
+            console.log(`  ⚠️  Fell back to CAP cite for ${result.officialCitesFallback} cases (missing source/volume/first_page)`);
+          }
           console.log(`  📊 Database now contains ${stats.cases} total cases`);
         } finally {
           await pool.end();

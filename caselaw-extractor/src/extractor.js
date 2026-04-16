@@ -12,9 +12,14 @@ import { getJurisdiction, getCliArgs, PATHS, EXTRACTION_CONFIG } from './config.
 const openZip = promisify(yauzl.open);
 
 /**
- * Extract required fields from a case JSON object
+ * Extract required fields from a case JSON object.
+ *
+ * `provenance` attaches source-volume context so the loader can rebuild the
+ * official citation from the ZIP archive's folder+filename instead of trusting
+ * CAP's free-text `citations[].cite` string, which is often wrong (e.g. a 2004
+ * case in the ny3d ZIP mislabeled as "N.Y." 1st series).
  */
-function extractCaseFields(caseData) {
+function extractCaseFields(caseData, provenance = {}) {
   try {
     const extracted = {
       // Basic case information
@@ -22,33 +27,37 @@ function extractCaseFields(caseData) {
       name: caseData.name,
       name_abbreviation: caseData.name_abbreviation,
       decision_date: caseData.decision_date,
-      
+
       // Citations
       citations: caseData.citations || [],
-      
+
       // Court information
       court_name: caseData.court?.name || null,
       court_name_abbreviation: caseData.court?.name_abbreviation || null,
       court_id: caseData.court?.id || null,
-      
+
       // Jurisdiction
       jurisdiction_name: caseData.jurisdiction?.name_long || null,
       jurisdiction_abbreviation: caseData.jurisdiction?.name || null,
       jurisdiction_id: caseData.jurisdiction?.id || null,
-      
+
       // Citations to other cases
       cites_to: caseData.cites_to || [],
-      
+
       // Opinions
       opinions: caseData.casebody?.opinions || [],
-      
+
       // Additional metadata that might be useful
       docket_number: caseData.docket_number || null,
       first_page: caseData.first_page || null,
       last_page: caseData.last_page || null,
-      file_name: caseData.file_name || null
+      file_name: caseData.file_name || null,
+
+      // Archive provenance — not sourced from CAP, populated by the extractor.
+      _source_id: provenance.source_id ?? null,
+      _file_volume: provenance.file_volume ?? null
     };
-    
+
     return extracted;
   } catch (error) {
     throw new Error(`Failed to extract fields from case ${caseData?.id || 'unknown'}: ${error.message}`);
@@ -70,24 +79,32 @@ async function extractZipFile(zipPath, outputDir, options = {}) {
     errors: []
   };
   
+  // Volume is encoded in the ZIP filename (e.g. "2.zip" → volume 2).
+  // Source id is the immediate parent directory of outputDir
+  // (e.g. data/extracted/ny3d → "ny3d").
+  const volumeRaw = path.basename(zipPath, '.zip');
+  const fileVolume = Number.isFinite(parseInt(volumeRaw, 10)) ? parseInt(volumeRaw, 10) : null;
+  const sourceId = path.basename(outputDir) || null;
+  const provenance = { source_id: sourceId, file_volume: fileVolume };
+
   try {
     const zipFile = await openZip(zipPath, { lazyEntries: true });
     const processedCases = [];
-    
+
     await new Promise((resolve, reject) => {
       zipFile.readEntry();
-      
+
       zipFile.on('entry', async (entry) => {
         try {
           // Only process JSON files in 'json' directories
           if ((entry.fileName.includes('/json/') || entry.fileName.startsWith('json/')) && entry.fileName.endsWith('.json')) {
             results.jsonFiles++;
-            
+
             // Extract the JSON content
             const jsonContent = await new Promise((resolveJson, rejectJson) => {
               zipFile.openReadStream(entry, (err, readStream) => {
                 if (err) return rejectJson(err);
-                
+
                 const chunks = [];
                 readStream.on('data', chunk => chunks.push(chunk));
                 readStream.on('end', () => {
@@ -102,9 +119,9 @@ async function extractZipFile(zipPath, outputDir, options = {}) {
                 readStream.on('error', rejectJson);
               });
             });
-            
+
             // Extract required fields
-            const extractedCase = extractCaseFields(jsonContent);
+            const extractedCase = extractCaseFields(jsonContent, provenance);
             processedCases.push(extractedCase);
             results.casesProcessed++;
             

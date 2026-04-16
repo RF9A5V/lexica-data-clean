@@ -205,10 +205,36 @@ async function insertMetadata(pool, metadata, options = {}) {
 }
 
 /**
+ * Build the canonical official citation from filesystem provenance.
+ *
+ * The ZIP archive's folder organization (source_id → reporter edition) and
+ * filename (volume number) are reliable; CAP's free-text `citations[].cite`
+ * string is not (e.g. 2004 cases in ny3d archives sometimes labeled "N.Y.").
+ * When all inputs are present we reconstruct `<vol> <reporter> <first_page>`
+ * and use it in place of the CAP-provided official cite.
+ *
+ * Returns null when any input is missing — caller falls back to the CAP cite.
+ */
+function buildOfficialCite({ reporter, fileVolume, firstPage }) {
+  if (!reporter) return null;
+  if (!Number.isFinite(fileVolume)) return null;
+  const pageNum = parseInt(String(firstPage ?? ''), 10);
+  if (!Number.isFinite(pageNum)) return null;
+  return `${fileVolume} ${reporter} ${pageNum}`;
+}
+
+/**
  * Insert a batch of cases into the database
  */
 async function insertCases(pool, cases, options = {}) {
-  const { verbose = false, batchSize = EXTRACTION_CONFIG.batchSize } = options;
+  const {
+    verbose = false,
+    batchSize = EXTRACTION_CONFIG.batchSize,
+    expectedReporter = null,
+    sourceId = null,
+  } = options;
+  let officialCitesRebuilt = 0;
+  let officialCitesFallback = 0;
   
   const client = await pool.connect();
   let totalInserted = 0;
@@ -259,14 +285,43 @@ async function insertCases(pool, cases, options = {}) {
             caseData.id // Store the original case.law ID
           ]);
           
-          // Insert citations
-          if (caseData.citations && caseData.citations.length > 0) {
-            for (const citation of caseData.citations) {
-              await client.query(`
-                INSERT INTO citations (case_id, citation_type, cite)
-                VALUES ($1, $2, $3)
-              `, [caseData.id, citation.type, citation.cite]);
+          // Build the authoritative official citation from archive provenance
+          // when available, rather than trusting CAP's free-text cite string.
+          const fileVolume = caseData._file_volume;
+          const reporterForCase = expectedReporter;
+          const reconstructedOfficial = buildOfficialCite({
+            reporter: reporterForCase,
+            fileVolume,
+            firstPage: caseData.first_page,
+          });
+
+          const incomingCitations = Array.isArray(caseData.citations) ? caseData.citations : [];
+          const hasOfficial = incomingCitations.some(c => c.type === 'official');
+          let officialOverwritten = false;
+
+          for (const citation of incomingCitations) {
+            let citeToInsert = citation.cite;
+            if (citation.type === 'official' && reconstructedOfficial && !officialOverwritten) {
+              citeToInsert = reconstructedOfficial;
+              officialOverwritten = true;
+              officialCitesRebuilt++;
             }
+            await client.query(`
+              INSERT INTO citations (case_id, citation_type, cite)
+              VALUES ($1, $2, $3)
+            `, [caseData.id, citation.type, citeToInsert]);
+          }
+
+          // No official citation from CAP: synthesize one when possible so the
+          // loader never produces a case without an official cite.
+          if (!hasOfficial && reconstructedOfficial) {
+            await client.query(`
+              INSERT INTO citations (case_id, citation_type, cite)
+              VALUES ($1, 'official', $2)
+            `, [caseData.id, reconstructedOfficial]);
+            officialCitesRebuilt++;
+          } else if (!reconstructedOfficial && hasOfficial) {
+            officialCitesFallback++;
           }
           
           // Insert case citations (cites_to) with cited_case_ids
@@ -315,8 +370,18 @@ async function insertCases(pool, cases, options = {}) {
   } finally {
     client.release();
   }
-  
-  return { inserted: totalInserted, skipped: totalSkipped };
+
+  if (verbose && (officialCitesRebuilt > 0 || officialCitesFallback > 0)) {
+    console.log(`  Official citations rebuilt from archive provenance: ${officialCitesRebuilt}` +
+      (officialCitesFallback > 0 ? ` (fell back to CAP cite for ${officialCitesFallback})` : ''));
+  }
+
+  return {
+    inserted: totalInserted,
+    skipped: totalSkipped,
+    officialCitesRebuilt,
+    officialCitesFallback,
+  };
 }
 
 /**
@@ -360,8 +425,18 @@ async function loadCasesFromFile(pool, filePath, options = {}) {
   let batch = [];
   let totalInserted = 0;
   let totalSkipped = 0;
+  let totalRebuilt = 0;
+  let totalFallback = 0;
   let lineNo = 0;
-  
+
+  const runBatch = async (b) => {
+    const result = await insertCases(pool, b, options);
+    totalInserted += result.inserted;
+    totalSkipped += result.skipped;
+    totalRebuilt += result.officialCitesRebuilt || 0;
+    totalFallback += result.officialCitesFallback || 0;
+  };
+
   for await (const line of rl) {
     lineNo++;
     const trimmed = line.trim();
@@ -375,22 +450,23 @@ async function loadCasesFromFile(pool, filePath, options = {}) {
     }
     batch.push(obj);
     if (batch.length >= batchSize) {
-      const result = await insertCases(pool, batch, options);
-      totalInserted += result.inserted;
-      totalSkipped += result.skipped;
+      await runBatch(batch);
       batch = [];
       if (verbose) console.log(`  Inserted ${totalInserted} so far...`);
     }
   }
-  
+
   if (batch.length > 0) {
-    const result = await insertCases(pool, batch, options);
-    totalInserted += result.inserted;
-    totalSkipped += result.skipped;
+    await runBatch(batch);
   }
-  
-  if (verbose) console.log(`Loaded NDJSON: inserted=${totalInserted}, skipped=${totalSkipped}`);
-  return { inserted: totalInserted, skipped: totalSkipped };
+
+  if (verbose) console.log(`Loaded NDJSON: inserted=${totalInserted}, skipped=${totalSkipped}, official_rebuilt=${totalRebuilt}, official_fallback=${totalFallback}`);
+  return {
+    inserted: totalInserted,
+    skipped: totalSkipped,
+    officialCitesRebuilt: totalRebuilt,
+    officialCitesFallback: totalFallback,
+  };
 }
 
 /**

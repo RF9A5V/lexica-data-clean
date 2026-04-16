@@ -294,7 +294,7 @@ async function processBatchResults(dbClient, results, args, batchId) {
       upsert_successful: false,
       keywords_extracted: 0,
       holdings_extracted: 0,
-      overruled_cases_extracted: 0
+      negative_treatments_extracted: 0
     };
     
     try {
@@ -373,7 +373,9 @@ async function processBatchResults(dbClient, results, args, batchId) {
                                      (expandedResponse.procedural_posture?.length || 0) +
                                      (expandedResponse.case_outcome?.length || 0);
       statusData.holdings_extracted = expandedResponse.holdings?.length || 0;
-      statusData.overruled_cases_extracted = expandedResponse.overruled_cases?.length || 0;
+      statusData.negative_treatments_extracted =
+        (expandedResponse.negative_treatment?.hard_negative?.length || 0) +
+        (expandedResponse.negative_treatment?.advisory?.length || 0);
       
       if (args.debug) {
         console.log(`[batch] Opinion ${opinionId} extracted:`, {
@@ -384,7 +386,9 @@ async function processBatchResults(dbClient, results, args, batchId) {
           procedural_posture: expandedResponse.procedural_posture?.length || 0,
           case_outcome: expandedResponse.case_outcome?.length || 0,
           holdings: expandedResponse.holdings?.length || 0,
-          overruled_cases: expandedResponse.overruled_cases?.length || 0
+          negative_treatment:
+            (expandedResponse.negative_treatment?.hard_negative?.length || 0) +
+            (expandedResponse.negative_treatment?.advisory?.length || 0)
         });
       }
       

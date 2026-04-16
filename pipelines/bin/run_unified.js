@@ -168,7 +168,7 @@ async function main() {
             `doctrines=${expandedPayload.doctrines?.length || 0}`,
             `tests=${expandedPayload.doctrinal_tests?.length || 0}`,
             `holdings=${expandedPayload.holdings?.length || 0}`,
-            `overruled=${expandedPayload.overruled_cases?.length || 0}`,
+            `neg_treat=${(expandedPayload.negative_treatment?.hard_negative?.length || 0) + (expandedPayload.negative_treatment?.advisory?.length || 0)}`,
             `citations=${expandedPayload.citations?.length || 0}`
           );
           

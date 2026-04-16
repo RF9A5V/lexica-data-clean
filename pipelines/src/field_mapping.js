@@ -304,19 +304,20 @@ function expandUnifiedResponse(minimalPayload) {
     };
   }
 
-  // Overruled Cases (unified-only)
-  let overruledCasesExpanded = {};
-  if (Array.isArray(minimalPayload.oc)) {
-    overruledCasesExpanded = {
-      overruled_cases: minimalPayload.oc.map(item => ({
-        case_name: item.cn,
-        citation: item.ct,
-        scope: item.s,
-        overruling_language: item.ol,
-        ...(item.ot && { overruling_type: item.ot }),
-        ...(item.ocourt && { overruling_court: item.ocourt }),
-        ...(item.ocase && { overruling_case: item.ocase })
-      }))
+  // Negative Treatment (unified-only)
+  let negativeTreatmentExpanded = {};
+  if (minimalPayload.nt && typeof minimalPayload.nt === 'object') {
+    const expandEntry = item => ({
+      ...(item.cn && { case_name: item.cn }),
+      ...(item.ct && { citation: item.ct }),
+      type: item.t,
+      basis: item.b
+    });
+    negativeTreatmentExpanded = {
+      negative_treatment: {
+        hard_negative: Array.isArray(minimalPayload.nt.hn) ? minimalPayload.nt.hn.map(expandEntry) : [],
+        advisory: Array.isArray(minimalPayload.nt.ad) ? minimalPayload.nt.ad.map(expandEntry) : []
+      }
     };
   }
 
@@ -343,7 +344,7 @@ function expandUnifiedResponse(minimalPayload) {
     };
   }
 
-  return { ...p1Expanded, ...p2Expanded, ...holdingsExpanded, ...overruledCasesExpanded, ...citationsExpanded };
+  return { ...p1Expanded, ...p2Expanded, ...holdingsExpanded, ...negativeTreatmentExpanded, ...citationsExpanded };
 }
 
 module.exports.expandUnifiedResponse = expandUnifiedResponse;

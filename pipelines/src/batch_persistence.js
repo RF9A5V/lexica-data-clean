@@ -140,7 +140,7 @@ async function updateOpinionRequestStatus(client, batchJobId, opinionId, statusD
       upsert_successful = $8,
       keywords_extracted = $9,
       holdings_extracted = $10,
-      overruled_cases_extracted = $11
+      negative_treatments_extracted = $11
     WHERE batch_job_id = $1 AND opinion_id = $2
   `;
   
@@ -155,7 +155,7 @@ async function updateOpinionRequestStatus(client, batchJobId, opinionId, statusD
     statusData.upsert_successful || null,
     statusData.keywords_extracted || 0,
     statusData.holdings_extracted || 0,
-    statusData.overruled_cases_extracted || 0
+    statusData.negative_treatments_extracted || 0
   ];
   
   await client.query(query, values);

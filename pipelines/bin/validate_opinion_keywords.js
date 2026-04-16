@@ -147,18 +147,19 @@ async function fetchOpinionHoldings(pool, opinionIds) {
   return byOpinion;
 }
 
-async function fetchOpinionOverruledCases(pool, opinionIds) {
+async function fetchOpinionNegativeTreatments(pool, opinionIds) {
   if (!opinionIds || opinionIds.length === 0) return new Map();
   const sql = `
-    SELECT 
-      ooc.opinion_id,
-      ooc.case_name,
-      ooc.citation,
-      ooc.scope,
-      ooc.overruling_language
-    FROM opinion_overruled_cases ooc
-    WHERE ooc.opinion_id = ANY($1::int[])
-    ORDER BY ooc.case_name, ooc.id
+    SELECT
+      ont.opinion_id,
+      ont.tier,
+      ont.type,
+      ont.case_name,
+      ont.citation,
+      ont.basis
+    FROM opinion_negative_treatments ont
+    WHERE ont.opinion_id = ANY($1::int[])
+    ORDER BY ont.tier, ont.type, ont.case_name NULLS LAST, ont.id
   `;
   const res = await pool.query(sql, [opinionIds]);
   const byOpinion = new Map();
@@ -169,7 +170,7 @@ async function fetchOpinionOverruledCases(pool, opinionIds) {
   return byOpinion;
 }
 
-function formatOpinionPretty(op, keywords, holdings, overruledCases) {
+function formatOpinionPretty(op, keywords, holdings, negativeTreatments) {
   const header = `Opinion ${op.opinion_id} (case_id=${op.case_id || 'n/a'}) [${op.opinion_type || 'n/a'}]`;
   const lines = [header];
   if (op.case_name) lines.push(`  Case: ${op.case_name}`);
@@ -239,14 +240,13 @@ function formatOpinionPretty(op, keywords, holdings, overruledCases) {
     }
   }
 
-  // Add overruled cases section
-  if (overruledCases && overruledCases.length > 0) {
-    lines.push('  overruled_cases:');
-    for (const oc of overruledCases) {
-      lines.push(`    - Case: ${oc.case_name}`);
-      if (oc.citation) lines.push(`      Citation: ${oc.citation}`);
-      lines.push(`      Scope: ${oc.scope}`);
-      lines.push(`      Overruling Language: ${oc.overruling_language}`);
+  // Add negative treatment section
+  if (negativeTreatments && negativeTreatments.length > 0) {
+    lines.push('  negative_treatment:');
+    for (const nt of negativeTreatments) {
+      lines.push(`    - [${nt.tier}/${nt.type}] ${nt.case_name || '(unnamed)'}`);
+      if (nt.citation) lines.push(`      Citation: ${nt.citation}`);
+      lines.push(`      Basis: ${nt.basis}`);
       lines.push('');
     }
   }
@@ -262,10 +262,10 @@ async function main() {
   try {
     const opinions = await fetchOpinions(pool, args);
     const opinionIds = opinions.map(o => o.opinion_id);
-    const [kwMap, holdingsMap, overruledCasesMap] = await Promise.all([
+    const [kwMap, holdingsMap, negativeTreatmentsMap] = await Promise.all([
       fetchOpinionKeywords(pool, opinionIds),
       fetchOpinionHoldings(pool, opinionIds),
-      fetchOpinionOverruledCases(pool, opinionIds)
+      fetchOpinionNegativeTreatments(pool, opinionIds)
     ]);
 
     if (args.json) {
@@ -273,7 +273,7 @@ async function main() {
         opinion: op,
         keywords: kwMap.get(op.opinion_id) || [],
         holdings: holdingsMap.get(op.opinion_id) || [],
-        overruled_cases: overruledCasesMap.get(op.opinion_id) || []
+        negative_treatment: negativeTreatmentsMap.get(op.opinion_id) || []
       }));
       console.log(JSON.stringify(out, null, 2));
       return;
@@ -287,8 +287,8 @@ async function main() {
     for (const op of opinions) {
       const kw = kwMap.get(op.opinion_id) || [];
       const holdings = holdingsMap.get(op.opinion_id) || [];
-      const overruledCases = overruledCasesMap.get(op.opinion_id) || [];
-      console.log(formatOpinionPretty(op, kw, holdings, overruledCases));
+      const negativeTreatments = negativeTreatmentsMap.get(op.opinion_id) || [];
+      console.log(formatOpinionPretty(op, kw, holdings, negativeTreatments));
       console.log('');
     }
   } catch (err) {

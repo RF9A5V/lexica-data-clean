@@ -17,12 +17,12 @@ async function insertKeyword(client, keywordText, tier) {
   return existing;
 }
 
-async function upsertOpinionKeyword(client, opinionId, keywordId, { relevanceScore = null, method = null, category = null, context = {} } = {}) {
+async function upsertOpinionKeyword(client, opinionCurie, keywordId, { relevanceScore = null, method = null, category = null, context = {} } = {}) {
   await client.query(
     `WITH up AS (
-       INSERT INTO opinion_keywords (opinion_id, keyword_id, relevance_score, extraction_method, category, context)
+       INSERT INTO opinion_keywords (opinion_curie, keyword_id, relevance_score, extraction_method, category, context)
        VALUES ($1, $2, $3, $4, $5, $6)
-       ON CONFLICT (opinion_id, keyword_id) DO UPDATE
+       ON CONFLICT (opinion_curie, keyword_id) DO UPDATE
          SET relevance_score = COALESCE(EXCLUDED.relevance_score, opinion_keywords.relevance_score),
              extraction_method = COALESCE(EXCLUDED.extraction_method, opinion_keywords.extraction_method),
              category = COALESCE(EXCLUDED.category, opinion_keywords.category),
@@ -31,7 +31,7 @@ async function upsertOpinionKeyword(client, opinionId, keywordId, { relevanceSco
      )
      UPDATE keywords SET frequency = frequency + 1
      WHERE id = $2 AND EXISTS (SELECT 1 FROM up WHERE inserted)`,
-    [opinionId, keywordId, relevanceScore, method, category, JSON.stringify(context)]
+    [opinionCurie, keywordId, relevanceScore, method, category, JSON.stringify(context)]
   );
 }
 
@@ -49,42 +49,46 @@ function extractEvidence(opinionText, start, end) {
   return opinionText.slice(start, end);
 }
 
-// Upsert a single holding row for an opinion (dedupe on opinion_id + issue + holding + rule)
-async function upsertOpinionHolding(client, opinionId, holding) {
+async function upsertOpinionHolding(client, opinionCurie, holding) {
   const { issue, holding: holdingText, rule, reasoning, precedential_value, confidence } = holding || {};
   if (!issue || !holdingText || !rule || !reasoning || !precedential_value || confidence == null) return;
 
   await client.query(
-    `INSERT INTO opinion_holdings (opinion_id, issue, holding, rule, reasoning, precedential_value, confidence)
+    `INSERT INTO opinion_holdings (opinion_curie, issue, holding, rule, reasoning, precedential_value, confidence)
      SELECT $1, $2, $3, $4, $5, $6, $7
      WHERE NOT EXISTS (
        SELECT 1 FROM opinion_holdings
-       WHERE opinion_id = $1 AND issue = $2 AND holding = $3 AND rule = $4
+       WHERE opinion_curie = $1 AND issue = $2 AND holding = $3 AND rule = $4
      )`,
-    [opinionId, issue, holdingText, rule, reasoning, precedential_value, confidence]
+    [opinionCurie, issue, holdingText, rule, reasoning, precedential_value, confidence]
   );
 }
 
-async function upsertOpinionOverruledCase(client, opinionId, overruledCase) {
-  const { case_name, citation, scope, overruling_language, overruling_type, overruling_court, overruling_case } = overruledCase || {};
-  if (!case_name || !scope || !overruling_language) return;
+const HARD_NEGATIVE_TYPES = new Set(['overruled', 'reversed']);
+const ADVISORY_TYPES = new Set(['declined_to_follow', 'distinguished', 'criticized', 'limited']);
 
-  const TYPE_SET = new Set(['direct', 'reported']);
-  const safe_type = overruling_type && TYPE_SET.has(overruling_type) ? overruling_type : null;
+async function upsertOpinionNegativeTreatment(client, opinionCurie, tier, entry) {
+  const { type, basis, case_name, citation } = entry || {};
+  if (!type || !basis) return;
+  const allowed = tier === 'hard_negative' ? HARD_NEGATIVE_TYPES : ADVISORY_TYPES;
+  if (!allowed.has(type)) return;
 
   await client.query(
-    `INSERT INTO opinion_overruled_cases (opinion_id, case_name, citation, scope, overruling_language, overruling_type, overruling_court, overruling_case)
-     SELECT $1, $2, $3, $4, $5, $6, $7, $8
+    `INSERT INTO opinion_negative_treatments (opinion_curie, tier, type, case_name, citation, basis)
+     SELECT $1, $2, $3, $4, $5, $6
      WHERE NOT EXISTS (
-       SELECT 1 FROM opinion_overruled_cases
-       WHERE opinion_id = $1 AND case_name = $2 AND scope = $3 AND overruling_language = $4 AND COALESCE(overruling_type, '') = COALESCE($6, '')
+       SELECT 1 FROM opinion_negative_treatments
+       WHERE opinion_curie = $1 AND tier = $2 AND type = $3
+         AND COALESCE(case_name, '') = COALESCE($4, '')
+         AND COALESCE(citation, '')  = COALESCE($5, '')
+         AND basis = $6
      )`,
-    [opinionId, case_name, citation || null, scope, overruling_language, safe_type, overruling_court || null, overruling_case || null]
+    [opinionCurie, tier, type, case_name || null, citation || null, basis]
   );
 }
 
 // Upsert an extracted citation for an opinion (dedupe conservatively on several fields)
-async function upsertOpinionCitation(client, opinionId, citation) {
+async function upsertOpinionCitation(client, opinionCurie, citation) {
   if (!citation || typeof citation !== 'object') return;
   const {
     cite_text,
@@ -118,7 +122,7 @@ async function upsertOpinionCitation(client, opinionId, citation) {
 
   await client.query(
     `INSERT INTO opinion_citations (
-        opinion_id, cite_text, case_name, normalized_citation, authority_type,
+        opinion_curie, cite_text, case_name, normalized_citation, authority_type,
         jurisdiction, court_level, year, pincite, citation_context,
         citation_signal, precedential_weight, discussion_level, legal_proposition, confidence
      )
@@ -127,13 +131,13 @@ async function upsertOpinionCitation(client, opinionId, citation) {
             $11, $12, $13, $14, $15
      WHERE NOT EXISTS (
        SELECT 1 FROM opinion_citations oc
-       WHERE oc.opinion_id = $1
+       WHERE oc.opinion_curie = $1
          AND COALESCE(oc.normalized_citation, '') = COALESCE($4, '')
          AND COALESCE(oc.cite_text, '') = COALESCE($2, '')
          AND COALESCE(oc.pincite, '') = COALESCE($9, '')
      )`,
     [
-      opinionId,
+      opinionCurie,
       cite_text || null,
       case_name || null,
       normalized_citation || null,
@@ -152,12 +156,12 @@ async function upsertOpinionCitation(client, opinionId, citation) {
   );
 }
 
-async function _upsertCoreCategories(client, opinionId, payload, { method = 'pass1_llm', opinionText = null } = {}) {
+async function _upsertCoreCategories(client, opinionCurie, payload, { method = 'pass1_llm', opinionText = null } = {}) {
   // field_of_law
   for (const item of payload.field_of_law || []) {
     const kw = await insertKeyword(client, item.label, 'field_of_law');
     if (!kw) continue;
-    await upsertOpinionKeyword(client, opinionId, kw.id, {
+    await upsertOpinionKeyword(client, opinionCurie, kw.id, {
       relevanceScore: item.score ?? null,
       method,
       category: 'field_of_law'
@@ -167,7 +171,7 @@ async function _upsertCoreCategories(client, opinionId, payload, { method = 'pas
   for (const item of payload.procedural_posture || []) {
     const kw = await insertKeyword(client, item.canonical, 'procedural_posture');
     if (!kw) continue;
-    await upsertOpinionKeyword(client, opinionId, kw.id, {
+    await upsertOpinionKeyword(client, opinionCurie, kw.id, {
       method,
       category: 'procedural_posture'
     });
@@ -176,7 +180,7 @@ async function _upsertCoreCategories(client, opinionId, payload, { method = 'pas
   for (const item of payload.case_outcome || []) {
     const kw = await insertKeyword(client, item.canonical, 'case_outcome');
     if (!kw) continue;
-    await upsertOpinionKeyword(client, opinionId, kw.id, {
+    await upsertOpinionKeyword(client, opinionCurie, kw.id, {
       method,
       category: 'case_outcome'
     });
@@ -190,7 +194,7 @@ async function _upsertCoreCategories(client, opinionId, payload, { method = 'pas
     if (!kw) continue;
     
     // Store full context including axis, specific reasoning, and generalized pattern
-    await upsertOpinionKeyword(client, opinionId, kw.id, {
+    await upsertOpinionKeyword(client, opinionCurie, kw.id, {
       method,
       category: 'distinguishing_factor',
       context: { 
@@ -204,23 +208,27 @@ async function _upsertCoreCategories(client, opinionId, payload, { method = 'pas
   }
 }
 
-async function upsertUnified(client, opinionId, payload, { method = 'unified_llm', opinionText = null } = {}) {
+async function upsertUnified(client, opinionCurie, payload, { method = 'unified_llm', opinionText = null } = {}) {
   // First, handle all Pass 1 categories
-  await _upsertCoreCategories(client, opinionId, payload, { method, opinionText });
+  await _upsertCoreCategories(client, opinionCurie, payload, { method, opinionText });
 
   // Holdings (unified-only)
   for (const h of payload.holdings || []) {
-    await upsertOpinionHolding(client, opinionId, h);
+    await upsertOpinionHolding(client, opinionCurie, h);
   }
 
-  // Overruled Cases (unified-only)
-  for (const oc of payload.overruled_cases || []) {
-    await upsertOpinionOverruledCase(client, opinionId, oc);
+  // Negative Treatment (unified-only)
+  const nt = payload.negative_treatment || {};
+  for (const entry of nt.hard_negative || []) {
+    await upsertOpinionNegativeTreatment(client, opinionCurie, 'hard_negative', entry);
+  }
+  for (const entry of nt.advisory || []) {
+    await upsertOpinionNegativeTreatment(client, opinionCurie, 'advisory', entry);
   }
 
   // Citations (unified-only)
   for (const ci of payload.citations || []) {
-    await upsertOpinionCitation(client, opinionId, ci);
+    await upsertOpinionCitation(client, opinionCurie, ci);
   }
 
   // Doctrines as normal keywords
@@ -229,7 +237,7 @@ async function upsertUnified(client, opinionId, payload, { method = 'unified_llm
     const kw = await insertKeyword(client, item.name, 'doctrine');
     if (!kw) continue;
     const evidence_text = extractEvidence(opinionText, item.evidence_start, item.evidence_end);
-    await upsertOpinionKeyword(client, opinionId, kw.id, {
+    await upsertOpinionKeyword(client, opinionCurie, kw.id, {
       method,
       category: 'doctrine',
       context: {
@@ -246,7 +254,7 @@ async function upsertUnified(client, opinionId, payload, { method = 'unified_llm
     const kw = await insertKeyword(client, item.name, 'doctrinal_test');
     if (!kw) continue;
     const evidence_text = extractEvidence(opinionText, item.evidence_start, item.evidence_end);
-    await upsertOpinionKeyword(client, opinionId, kw.id, {
+    await upsertOpinionKeyword(client, opinionCurie, kw.id, {
       method,
       category: 'doctrinal_test',
       context: {
@@ -263,16 +271,16 @@ async function upsertUnified(client, opinionId, payload, { method = 'unified_llm
 }
 
 // Deprecated: keep for legacy callers until all references are removed
-async function upsertPass1(client, opinionId, payload, opts = {}) {
+async function upsertPass1(client, opinionCurie, payload, opts = {}) {
   console.warn('[deprec] upsertPass1() is deprecated; forwarding to unified core categories');
-  return _upsertCoreCategories(client, opinionId, payload, opts);
+  return _upsertCoreCategories(client, opinionCurie, payload, opts);
 }
 
 module.exports = {
   insertKeyword,
   upsertOpinionKeyword,
   upsertOpinionHolding,
-  upsertOpinionOverruledCase,
+  upsertOpinionNegativeTreatment,
   upsertOpinionCitation,
   upsertPass1,
   upsertUnified,

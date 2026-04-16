@@ -413,45 +413,45 @@ Extract the court's legal holdings - the specific legal rules or principles esta
 **MEDIUM**: Broader rule with some factual specificity
 **LOW**: Very broad principle or highly fact-specific ruling
 
-### 8. Overruled Cases
+### 8. Negative Treatment
 
-Extract cases that **this opinion explicitly overrules** versus cases where **this opinion reports prior overruling by other courts**.
+Identify prior cases that this opinion treats negatively, classified into two tiers. Each entry has `case_name` (preferred), `citation` (optional), `type` (enum), and `basis` (one-sentence explanation grounded in the opinion's language).
 
-#### Direct Overruling (Primary Category):
-Cases that THIS court explicitly overrules in THIS opinion.
+#### Tier 1 — Hard Negative (flag prominently)
 
-**Detection patterns**:
-- "We overrule [Case]"
-- "We expressly abandon [Case]" 
-- "We reject the rule established in [Case]"
-- "[Case] is hereby overruled"
+The prior case's core legal rule has been invalidated or its outcome rejected by a court with authority over it.
 
-#### Reported Overruling (Secondary Category):
-Cases where THIS court mentions that ANOTHER court previously overruled a case.
+**`type: "overruled"`** — a court expressly declares the earlier case is no longer valid precedent ("We overrule X", "X is hereby overruled", "X is no longer good law", "We disapprove X").
 
-**Detection patterns**:
-- "[Case] was overruled by [Other Case]"
-- "Since [Case] was overruled in [Year]..."
-- "[Case], which has since been overruled..."
-- "The rule in [Case] was rejected by [Other Court] in [Other Case]"
+**`type: "reversed"`** — a higher court rejects the **legal reasoning** of a lower court's decision on appeal (not merely the outcome). Do NOT flag reversal on purely procedural/harmless-error grounds or where only factual conclusions differ.
+
+#### Tier 2 — Advisory (flag as advisory)
+
+The case remains citable authority but this opinion signals friction or limitation.
+
+**`type: "declined_to_follow"`** — "We decline to follow [Case]", "We disagree with [Case]", "We are unpersuaded by [Case]".
+
+**`type: "distinguished"`** — substantive distinctions only. The court holds the earlier rule inapplicable because a meaningful difference narrows the rule's scope (e.g., "The X rule applies to Y, not Z"). Do NOT flag trivial factual distinctions like "unlike in X, the plaintiff here had been deposed" without rule-narrowing analysis.
+
+**`type: "criticized"`** — reservations about the earlier reasoning without overruling or declining to follow.
+
+**`type: "limited"`** — earlier rule expressly described as narrow or confined to a category, without fully overruling.
 
 ```
-Direct Overruling (ot: "direct"):
-✅ "We overrule [Case]" 
-✅ "We reject [Case]"
-✅ "[Case] is overruled"
-✅ "We abandon the rule in [Case]"
+Flag (hard_negative):
+✅ "We overrule [Case]"                       → type: overruled
+✅ "[Case] is no longer good law"             → type: overruled
+✅ "The lower court's legal analysis is wrong; reverse" → type: reversed
 
-Reported Overruling (ot: "reported"):
-✅ "[Case] was overruled by [Other Case]"
-✅ "[Case], overruled in [Other Case]"
-✅ "Since [Case] was rejected by [Other Court]"
-✅ "The rule in [Case] no longer applies after [Other Case]"
+Flag (advisory):
+✅ "We decline to follow [Case]"              → type: declined_to_follow
+✅ "[Case] is limited to [narrow category]"   → type: limited
+✅ "[Case]'s reasoning is unpersuasive"       → type: criticized
 
-Not Overruling (exclude):
-❌ "We distinguish [Case]"
-❌ "[Case] is factually different"
-❌ "We limit [Case] to its facts"
+Do NOT flag:
+❌ "Unlike in [Case], ..." with no rule-narrowing → trivial distinction
+❌ Procedural reversal leaving the rule intact   → not "reversed"
+❌ Approving citation with only factual diffs    → no negative treatment
 ```
 
 ## 9. Citations
@@ -571,7 +571,7 @@ For opinions with minimal substantive content, DO NOT mark them as valueless. In
   - Empty `dc` array if no doctrines substantively discussed
   - Empty `dt` array if no legal tests applied
   - Empty `h` array if no legal holdings established
-  - Empty `oc` array if no cases overruled
+  - Empty `nt.hn` and `nt.ad` arrays if no negative treatment detected
   - Empty `ci` array if no meaningful legal citations
 
 ### **Examples of Minimal Content Handling:**
@@ -741,7 +741,7 @@ Top-level fields:
 - doctrines → dc
 - doctrinal_tests → dt
 - holdings → h
-- overruled_cases → oc
+- negative_treatment → nt (object with `hn` and `ad` arrays)
 - valueless → v
 - valueless_reason → vr
 
@@ -764,13 +764,10 @@ Item-level fields:
 - reasoning → re (only for holdings)
 - precedential_value → pv (only for holdings; enum: high, medium, low)
 - confidence → cf (only for holdings; 0..1 confidence score)
-- case_name → cn (only for overruled_cases)
-- citation → ct (only for overruled_cases)
-- scope → s (only for overruled_cases; enum: complete, partial)
-- overruling_language → ol (only for overruled_cases)
-- overruling_type → ot (enum: direct, reported)
-- overruling_court → ocourt (optional string, for reported overruling)
-- overruling_case → ocase (optional string, for reported overruling)
+- case_name → cn (optional, for negative_treatment entries)
+- citation → ct (optional, for negative_treatment entries)
+- type → t (for negative_treatment entries; hard_negative enum: overruled, reversed; advisory enum: declined_to_follow, distinguished, criticized, limited)
+- basis → b (one-sentence explanation for negative_treatment entries)
 
 Structure (minimal field names):
 - f = field_of_law array: [{"l": string, "sc": number 0..1}] (select 1–3)
@@ -780,7 +777,7 @@ Structure (minimal field names):
 - dc = doctrines array: [{"n": string}]
 - dt = doctrinal_tests array: [{"n": string, "dn": [string], "al": [string] (optional), "pc": string (optional), "tt": enum (optional)}]
 - h = holdings array: [{"is": string, "ho": string, "ru": string, "re": string, "pv": precedential_value_enum, "cf": number 0..1}]
-- oc = overruled_cases array: [{"cn": string, "ct": string (optional), "s": scope_enum, "ol": string}]
+- nt = negative_treatment object: {"hn": [{"cn": string (optional), "ct": string (optional), "t": hard_negative_type, "b": string}], "ad": [{"cn": string (optional), "ct": string (optional), "t": advisory_type, "b": string}]}
 
 Axis code set for distinguishing_factors:
 - idc = industry_domain_context
@@ -854,8 +851,8 @@ For citations item-level fields:
 ❌ Wrong: Doctrine = "Contract Breach" 
 ✅ Right: Doctrine = "Breach of Contract"
 
-❌ Wrong: Overruled case = Case merely distinguished or limited
-✅ Right: Only cases explicitly overruled or where legal rule is rejected
+❌ Wrong: hard_negative entry = case merely distinguished on trivial facts
+✅ Right: hard_negative only for overruled or reversed-on-merits; advisory for substantive distinctions, declined-to-follow, criticized, limited
 
 Example minimal output:
 ```json
@@ -882,24 +879,24 @@ Example minimal output:
       "cf": 0.9
     }
   ],
-  "oc": [
-    {
-      "cn": "Smith v. Jones",
-      "ct": "123 N.Y. 456 (1990)", 
-      "s": "complete",
-      "ol": "We expressly overrule Smith v. Jones",
-      "ot": "direct"  // NEW FIELD
-    },
-    {
-      "cn": "Brown v. Corp", 
-      "ct": "145 N.Y. 789 (1985)",
-      "s": "partial",
-      "ol": "Brown was overruled by Wilson v. Co (1995)",
-      "ot": "reported",  // NEW FIELD
-      "ocourt": "Court of Appeals",  // NEW FIELD
-      "ocase": "Wilson v. Co"  // NEW FIELD
-    }
-  ],
+  "nt": {
+    "hn": [
+      {
+        "cn": "Smith v. Jones",
+        "ct": "123 N.Y. 456 (1990)",
+        "t": "overruled",
+        "b": "Court expressly overruled Smith v. Jones, declaring its rule no longer good law."
+      }
+    ],
+    "ad": [
+      {
+        "cn": "Brown v. Corp",
+        "ct": "145 N.Y. 789 (1985)",
+        "t": "limited",
+        "b": "Court described Brown's rule as confined to its narrow facts without overruling it."
+      }
+    ]
+  },
   "ci": [
     {
       "ct": "Smith v. Jones, 150 N.Y. 245, 248-49 (1896)",
@@ -937,7 +934,7 @@ Example minimal output:
 - Distinguishing factors: Must relate to legal analysis, not just case facts
 - Doctrines: Must be substantively discussed, not just mentioned
 - Holdings: Must pass all four criteria (necessity, application, scope, specificity)
-- Overruled cases: Must have explicit overruling language or clear rejection of legal rule
+- Negative treatment: Must be supported by explicit language in the opinion; never infer hard_negative from tone alone, and ignore trivial factual distinctions
 
 ## Processing Approach:
 1. **First, assess if opinion is valueless** - check for minimal substantive content
@@ -948,7 +945,7 @@ Example minimal output:
 6. **Extract legally significant distinguishing factors** - focus on under-extracted axes
 7. **Identify substantively discussed doctrines** - including implicit applications
 8. **Extract holdings using necessity test** - focus on precedential value
-9. **Scan for overruling language** - identify cases explicitly overruled
+9. **Scan for negative treatment language** — classify into hard_negative (overruled, reversed-on-merits) and advisory (declined_to_follow, distinguished, criticized, limited)
 10. **Apply standardized terminology** - use consistent formatting rules
 11. **Focus on elements that affect precedential value**
 

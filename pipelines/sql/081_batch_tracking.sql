@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS batch_opinion_requests (
     -- Extracted data summary
     keywords_extracted INTEGER DEFAULT 0,
     holdings_extracted INTEGER DEFAULT 0,
-    overruled_cases_extracted INTEGER DEFAULT 0,
+    negative_treatments_extracted INTEGER DEFAULT 0,
     
     UNIQUE(batch_job_id, opinion_id)
 );

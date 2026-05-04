@@ -1,0 +1,21 @@
+# Input PDFs are large; place locally, not in git.
+pdfs/*.pdf
+pdfs/*.PDF
+
+# All generated artifacts.
+output/*
+!output/.gitkeep
+
+audit/*
+!audit/.gitkeep
+
+# Per-run intermediate files.
+.cache/
+*.raw.json
+
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+
+.env

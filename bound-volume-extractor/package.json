@@ -1,0 +1,14 @@
+{
+  "name": "bound-volume-extractor",
+  "version": "0.1.0",
+  "description": "Parse NY official-reports bound-volume PDFs (NY3d, AD3d, Misc 3d) into structured JSON/SQL for import into Curia Obscura source DBs.",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}

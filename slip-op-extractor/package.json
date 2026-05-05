@@ -1,0 +1,17 @@
+{
+  "name": "slip-op-extractor",
+  "version": "0.1.0",
+  "description": "Parse NY Slip Opinion HTML/PDF documents into bulk-ingest JSON for the Curia Obscura source DBs.",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}

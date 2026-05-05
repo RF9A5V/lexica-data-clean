@@ -34,6 +34,9 @@
  *   }, ...]
  */
 
+import { recombineWords } from './small_caps.js';
+import { spliceOrphanBodyRows } from './case_boundaries.js';
+
 // The small subtitle sits in a narrow band: the cap-sized baseline at
 // top≈127.5 (sz≈8) and the small-caps body baseline at top≈130 (sz≈5).
 // We collect words from both baselines and join by x-position without
@@ -173,67 +176,6 @@ function stripPageHeader(text) {
     break;
   }
   return lines.slice(drop).join('\n');
-}
-
-/**
- * Heuristic body-start detector for AD3d/Misc 3d memos.
- *
- * After `]—` on a memo's first line, content can take two forms:
- *  (a) Body starts immediately on the same line: `]—An appeal having been…`
- *  (b) A topic block intervenes:
- *        `]—`
- *        `MotionsandOrders—ReargumentorRenewal—LackofReasonable…`
- *        `tion for Failure to Present New Facts on Prior Motion…`     ← wraps from prev with `-`
- *        `PriorDetermination`
- *        `Order, Supreme Court, New York County (Anil C. Singh, J.),`  ← body starts here
- *
- * Topic-block lines have an em/en dash or a CamelCase boundary
- * `[a-z][A-Z]`. A body line lacks both. Wrap continuations (where the
- * previous topic line ended with a hyphen) are treated as topic too, so
- * `tion for Failure…` is correctly skipped despite looking like prose.
- *
- * Returns the offset (in `text`) of the first body line. Falls back to the
- * given start offset if no body line is found.
- */
-function findMemoBodyStart(text, fromOffset) {
-  let pos = fromOffset;
-  while (pos < text.length && /\s/.test(text[pos])) pos++;
-  let cur = pos;
-  let prevWasTopic = false;
-  let prevEndedWithHyphen = false;
-  while (cur < text.length) {
-    const lineEnd = text.indexOf('\n', cur);
-    const lineStop = lineEnd === -1 ? text.length : lineEnd;
-    const line = text.slice(cur, lineStop).trim();
-    if (line) {
-      const topic = isTopicLine(line);
-      const wrap = isTopicWrapContinuation(line, prevWasTopic, prevEndedWithHyphen);
-      if (!topic && !wrap) return cur;
-      prevWasTopic = true;
-      prevEndedWithHyphen = line.endsWith('-');
-    }
-    cur = lineStop + 1;
-  }
-  return pos;
-}
-
-function isTopicLine(line) {
-  if (line.includes('—') || line.includes('–')) return true;
-  if (/[a-z][A-Z]/.test(line)) return true;
-  return false;
-}
-
-// Detect a topic continuation: a line that's not itself topic-shaped but
-// follows one (because it wraps from the prior topic line). Two cases:
-//   - prior line ended with hyphen (`Cross-` → `Examine…`)
-//   - current line is a single word (`Adequate Notice of` → `Charges`)
-// Both only fire after a topic line; otherwise normal body lines that
-// happen to be short ("An appeal" right after `]—`) are not skipped.
-function isTopicWrapContinuation(line, prevWasTopic, prevEndedWithHyphen) {
-  if (!prevWasTopic) return false;
-  if (prevEndedWithHyphen) return true;
-  if (!/\s/.test(line.trim())) return true;  // single-word continuation
-  return false;
 }
 
 /**
@@ -462,8 +404,9 @@ const OPINION_MARKER_RE = /(?:OPINION|DECISION)\s*OF\s*THE\s*COURT/;
 function parseAd3dByline(line1, line2) {
   const l1 = (line1 || '').trim();
   const l2 = (line2 || '').trim();
-  // Per Curiam form
-  if (/^Per\s+Curiam\.?$/i.test(l1)) {
+  // Per Curiam form. Allow `\s*` before the trailing period — pdfplumber
+  // sometimes splits the period into its own token after recombination.
+  if (/^Per\s+Curiam\s*\.?$/i.test(l1)) {
     return { author: 'Per Curiam.', kind: 'per_curiam', linesUsed: 1 };
   }
   // Memorandum form: "M ." + "EMORANDUM"
@@ -472,8 +415,10 @@ function parseAd3dByline(line1, line2) {
   }
   // Memorandum form (single line, recombined): "Memorandum." — observed
   // in some short Misc 3d procedural memos where the typesetter recombined
-  // the lead+small-caps into one mixed-case line.
-  if (/^Memorandum\.?$/i.test(l1)) {
+  // the lead+small-caps into one mixed-case line. Allow whitespace before
+  // the trailing period since pdfplumber sometimes splits the period
+  // into its own token (`Memorandum .`).
+  if (/^Memorandum\s*\.?$/i.test(l1)) {
     return { author: null, kind: 'memorandum', linesUsed: 1 };
   }
   // Signed opinion: "<caps with separators>, <Title>." + "<all-caps body>"
@@ -499,9 +444,22 @@ function parseAd3dByline(line1, line2) {
   // extra trailing comma (`H , J.,`) or a superscript footnote marker
   // (`T M , J. 1`) — both observed in newer volumes.
   const m = l1.match(/^(.+?)\s*,?\s*(P\.\s*J|J\.\s*P|J|S|Surr|JJ)\.?\s*(?:,|\d+)?\s*$/);
-  if (!m || !/^[A-Z]/.test(l2)) return null;
+  if (!m) return null;
   const leadStr = m[1];
   const title = m[2];
+
+  // If the lead already has lowercase letters, the small-caps recombiner
+  // already merged the lead-cap with its body fragments — l1 IS the full
+  // mixed-case byline (e.g. "Kapnick , J.") and we don't need l2 to
+  // reconstruct it. Without this short-circuit the existing two-line
+  // logic falls through to the `!/^[A-Z]/.test(l2)` reject when l2 is
+  // the next page's content (or a page-break sentinel) instead of an
+  // all-caps body fragment.
+  if (/[a-z]/.test(leadStr)) {
+    return { author: leadStr.trim() + ', ' + title + '.', kind: 'majority', linesUsed: 1 };
+  }
+
+  if (!/^[A-Z]/.test(l2)) return null;
 
   // Tokenize lead, distinguishing main caps (need body), middle initials
   // (have a period), and hyphen separators.
@@ -603,10 +561,16 @@ function extractOpinionSectionText(pages, range) {
         text: processed.text,
         footnote_markers: processed.footnote_markers,
         page_breaks: processed.page_breaks,
+        body_start_page: null,
       };
     }
     return null;
   }
+  // The OPINION OF THE COURT page — used downstream as the fallback page
+  // anchor for the FIRST segment, which starts on this page but contains
+  // no page-break sentinel for it (the sentinel lives in the editorial
+  // preamble that we slice off below). Mirrors the NY3d path.
+  const bodyStartPageBreak = findPageBreakBefore(combined, markerMatch.index);
   let pos = markerMatch.index + markerMatch[0].length;
 
   // Skip whitespace then read up to next 2 non-empty lines for the byline.
@@ -653,6 +617,7 @@ function extractOpinionSectionText(pages, range) {
     text: processed.text,
     footnote_markers: processed.footnote_markers,
     page_breaks: processed.page_breaks,
+    body_start_page: bodyStartPageBreak,
   };
 }
 
@@ -729,10 +694,11 @@ function combineNy3dPages(pages, range, opts = {}) {
   const startP = range.start_page_index;
   const endP   = opts.endPage ?? range.end_page_index;
   const endOff = opts.endOffset;  // optional truncation on endP
+  const dropAllSmallFont = !!opts.dropAllSmallFont;
   const parts = [];
   for (const p of pages) {
     if (p.page_index < startP || p.page_index > endP) continue;
-    parts.push(buildNy3dPageText(p, p.page_index === endP ? endOff : null));
+    parts.push(buildNy3dPageText(p, p.page_index === endP ? endOff : null, { dropAllSmallFont }));
   }
   return parts.join('\n');
 }
@@ -752,10 +718,18 @@ const NY3D_HEADER_BAND_BOTTOM = 135;
 // with size < NY3D_BODY_SIZE_MIN AND top > lastBodyTop is in the footnote
 // band; small-caps body fragments interspersed with body text (sitting
 // at top values within the body region) are kept.
+//
+// Reporter annotations like `[Next page is 1201.]` are typeset at body
+// size at the very bottom of the last page of a case (after the footnote
+// band). Including them in `lastBodyTop` pushes the threshold below the
+// real footnote band and silently drops every footnote on that page.
+// Skip them via the regex below.
+const REPORTER_ANNOTATION_RE = /^\s*\[\s*Next\s+page\s+is\s+\d+\.?\s*\]\s*$/i;
 function computeLastBodyTop(lines) {
   let lastBodyTop = -Infinity;
   for (const l of lines) {
     if (l.size >= NY3D_BODY_SIZE_MIN && l.top >= NY3D_HEADER_BAND_BOTTOM) {
+      if (REPORTER_ANNOTATION_RE.test(l.text || '')) continue;
       lastBodyTop = Math.max(lastBodyTop, l.top);
     }
   }
@@ -772,28 +746,81 @@ function computeLastBodyTop(lines) {
 // The page record's running-head + subtitle band sit ABOVE the body and
 // also contain small-font lines, so we constrain to lines whose top is
 // strictly below the last body-size line.
-function extractPageFootnotes(page) {
+function extractPageFootnotes(page, prevPageLastMarker = null) {
   const lines = (page.lines || []).slice().sort((a, b) => a.top - b.top);
   if (!lines.length) return [];
   const lastBodyTop = computeLastBodyTop(lines);
+  // No body content on this page → can't have footnotes attributed to body.
+  // Without this guard, an adjacent case's start page (where caseRange's
+  // text_end_page_index extends one page past where the case actually
+  // ends) gets its numbered HEADNOTE entries (`1.`, `2.`, …) misclassified
+  // as footnotes, because computeLastBodyTop returns -Infinity and every
+  // headnote line passes the `top > lastBodyTop` test. Real footnotes
+  // always sit beneath body prose; if there is no body prose, the page
+  // has no footnotes either.
+  if (!Number.isFinite(lastBodyTop)) return [];
   const fnLines = lines.filter(l =>
     l.size < NY3D_BODY_SIZE_MIN &&
     l.size > 6 &&                       // exclude superscript-tier sizes (~5.5)
     l.top > lastBodyTop &&
     l.text && l.text.trim()
   );
+  if (!fnLines.length) return [];
+
   const footnotes = [];
   let current = null;
+  // `prevForCheck` is the prior marker number used by `isPlausible` to
+  // decide if a candidate is a real new footnote vs a continuation line
+  // that happens to start with `<digits>.`. Seed from the previous
+  // page's last marker so a sequence crossing page boundaries (fn 99
+  // ending on page N, fn 100 starting on page N+1) keeps its monotonic
+  // check intact — the first marker on a new page is no longer treated
+  // as having no context, and the cap-at-99 fallback that would reject
+  // `100` doesn't fire.
+  let prevForCheck = prevPageLastMarker;
   // Marker forms observed in NY3d: `1.` (numbered, common) and `*`
   // (asterisk, used in some opinions for an unnumbered initial note).
   // Other symbols (†, ‡, §) appear rarely in older volumes — left as TODO.
   const markerRe = /^(?:(\d+)\.|(\*))\s+(.*)$/;
+  // Plausible-marker check. A real footnote marker is a small integer
+  // that follows the previous one in sequence (allowing `*` as the
+  // first marker on a page). A continuation line that happens to start
+  // with `<year>. ` (`2023. The motion court ordered…`) reads as a
+  // marker `2023` to the regex; reject it by requiring the marker
+  // number to be either ≤ prev+5 (normal increment) or a small
+  // single-/double-digit number when prev is unknown.
+  const isPlausible = (markerStr, prev) => {
+    if (markerStr === '*') return true;
+    const n = parseInt(markerStr, 10);
+    if (!Number.isFinite(n)) return false;
+    if (prev == null) {
+      // Page's first marker — may be high (long fn run continuing across
+      // pages, observed up to ~99 in single cases). Reject likely year
+      // strings by capping at 99 in the no-prior-context state.
+      return n <= 99;
+    }
+    const prevN = parseInt(prev, 10);
+    if (!Number.isFinite(prevN)) return n <= 99; // prev was `*`
+    // Two valid forms after a numeric prev:
+    //   - sequential continuation in the same opinion (n is `prevN+1..prevN+5`),
+    //     ALLOWED to exceed 99 when prev was already large (a 100-fn
+    //     opinion's marker `100` follows `99` legitimately)
+    //   - restart at the start of a new opinion's footnote sequence on the
+    //     same page (e.g. majority's fn 7 immediately followed by the
+    //     dissent's fn 1). NY3d typesets all opinion fns on the same page
+    //     in the same band, so a downward jump to a small number is real.
+    if (n > prevN && n <= prevN + 5) return true;
+    if (n <= 5) return true;                     // restart-at-small permitted
+    return false;
+  };
   for (const l of fnLines) {
     const t = l.text.trim();
     const m = t.match(markerRe);
-    if (m) {
+    const candidate = m ? (m[1] || m[2]) : null;
+    if (m && isPlausible(candidate, prevForCheck)) {
       if (current) footnotes.push(current);
-      current = { marker: m[1] || m[2], text: m[3] };
+      current = { marker: candidate, text: m[3] };
+      prevForCheck = candidate;
     } else if (current) {
       // Glue continuation lines with `\n` so normalizeLineWraps can apply
       // its end-of-line dehyphenation rules. Joining with space here would
@@ -881,10 +908,19 @@ function processBodyText(text) {
 // the page recorded in `fallbackPageBreak` (the page break that preceded
 // the segment, captured before slicing) if no page break sits within the
 // segment yet.
+//
+// Strict `<` matters for the page-boundary case: a footnote marker that
+// is the LAST visible token on a page sits in source text immediately
+// before the next page's PB sentinel. After normalizeLineWraps collapses
+// the trailing `\n`, the marker and the PB end up at the same character
+// offset. With `<=` the marker would attribute to the next page and miss
+// its footnote text (which is in the previous page's footnote band). The
+// strict comparison keeps such markers on the page they actually came
+// from in source order.
 function pageIndexAtOffset(offset, pageBreaks, fallbackPageBreak) {
   let current = fallbackPageBreak || null;
   for (const pb of pageBreaks) {
-    if (pb.offset <= offset) current = pb;
+    if (pb.offset < offset) current = pb;
     else break;
   }
   return current?.page_index ?? null;
@@ -919,25 +955,177 @@ function findPageBreakBefore(text, pos) {
   return result;
 }
 
+// Inject asterisk in-body markers detected in the cleaned body text.
+//
+// NY official-reports often use `*` as the marker for a single footnote.
+// Unlike numeric markers, the asterisk is typeset at body size (10.98pt),
+// not as a smaller superscript. pdf_parse.py's `size < 6` sentinel-wrap
+// rule never fires for it, AND pdfplumber bundles the asterisk into the
+// preceding word (`644),*` — citation+comma+asterisk as one token), so
+// it never enters the marker pipeline at all.
+//
+// Once the body text is fully cleaned, scan for asterisk-shaped markers
+// and add them to the marker list. Guarded on the case actually carrying
+// at least one `*` footnote at the case level — without that, ANY stray
+// `*` in the body (block quotes that use `* * *`, math, redactions like
+// `* * *`) would surface as a phantom marker.
+//
+// The detection pattern requires the `*` to be the LAST char of a body
+// word (preceded by alphanum/`)`/`]`/punctuation, followed by whitespace
+// or end-of-string), and explicitly rejects multi-asterisk runs like
+// `* * *` (a common reporter convention for elision).
+function injectAsteriskMarkers(cleanedText, existingMarkers, caseFootnotes) {
+  const hasAsteriskFn = (caseFootnotes || []).some(f => f.marker === '*');
+  if (!hasAsteriskFn) return existingMarkers;
+  const out = existingMarkers.slice();
+  const seen = new Set(existingMarkers.map(m => m.offset));
+  // Pattern 1: asterisk glued to a non-whitespace, non-asterisk char and
+  // followed by whitespace, closing punctuation, or EOL. Catches
+  //   `(644),*` `word.*` `word*` `districts*]` `cite*);`
+  // The forward set must NOT include `*` (so the second `*` in `**` won't
+  // qualify) or letters/digits (an asterisk inside a token like `R*v` is
+  // not a marker). The trailing `(?!\s+\d)` excludes slip-op pinpoint
+  // citations of the form `2009 NY Slip Op 51552[U], * 6 [Sup Ct, …]`
+  // where the `*` is followed by a page-number digit. The trailing
+  // `(?!\s+\*)` excludes the FIRST `*` of a `. * * *` elision run.
+  const re1 = /(?<=[^\s*])\*(?=[\]\)\.,;:!?]|$|\s(?![\s\d]*[\d*]))/g;
+  // Pattern 2: asterisk standing alone (preceded by a single space, but
+  // that space must be preceded by alphanumeric or sentence-ending
+  // punctuation — NOT another asterisk, and NOT a single letter, which
+  // catches citation-style "section star" references like `(L 1963, ch
+  // 136, § 1 n *)` where the standalone `n` is a citation marker, not
+  // body prose). Catches `Ortiz. *` where the typesetter inserts a thin
+  // space between the period and the marker. Rejects `* * *` elisions
+  // and slip-op pinpoint `* 6` via the trailing guards.
+  const re2 = /(?<=[a-zA-Z0-9]{2,} |[)\]\.,;:!?] )\*(?=[\]\)\.,;:!?]|$|\s(?![\s\d]*[\d*]))/g;
+  for (const re of [re1, re2]) {
+    let m;
+    while ((m = re.exec(cleanedText)) !== null) {
+      if (seen.has(m.index)) continue;
+      seen.add(m.index);
+      out.push({ offset: m.index, marker: '*' });
+    }
+  }
+  out.sort((a, b) => a.offset - b.offset);
+  return out;
+}
+
 // Match each in-body marker found in a segment to a case-level footnote
 // text by `(marker, page_index)`. The page is determined from the segment's
 // page_breaks list. Returns the per-segment footnotes array with each
 // entry carrying `body_offset`, `marker`, `text`, `page_index`,
 // `volume_page`, and `footnote_index` (ordinal within the segment).
-function attributeSegmentFootnotes(segment, caseFootnotes, fallbackPageBreak) {
+//
+// `normalizeMarker` strips wrapping punctuation that the typesetter sometimes
+// applies to in-body markers but not to the footnote-text prefix. Observed
+// patterns:
+//   - `[10]`  in body → `10.` in footnote band  (Save America's Clocks)
+//   - `(2)`   in body → `2.`  in footnote band  (rare, older opinions)
+//   - `*`     same on both sides — keep as-is
+//   - `1,`    trailing comma; emitted when typesetter sets `<sup>1</sup>,`
+//             with the comma at superscript size and pdfplumber merges them
+//             into one word
+// We also tolerate trailing `.`/`)`/`]` because some PDFs dump the marker
+// glyph with closing punctuation attached when the superscript shares its
+// baseline with the following body punctuation.
+function normalizeMarker(s) {
+  if (!s) return s;
+  return s.replace(/^[\[\(]+|[\]\)\.,]+$/g, '');
+}
+
+// Split a body-marker text into its constituent markers. Composite markers
+// like `1,2` (citing footnotes 1 AND 2 at the same caret) appear when both
+// numerals are typeset at superscript size and pdfplumber bundles them
+// into a single word `1,2`. Each constituent is matched against case-level
+// footnotes independently and surfaces as its own opinion-footnote row.
+function splitCompositeMarker(s) {
+  if (!s) return [s];
+  const parts = s.split(/,/g).map(p => p.trim()).filter(p => p.length);
+  return parts.length ? parts : [s];
+}
+
+// Build a list of unanchored footnote rows from all case-level footnotes
+// not yet claimed by any segment. Used to attach designated-judge byline
+// asterisks, motion-table column-header asterisks, and any other case-level
+// note that exists in the footnote band but doesn't have a matching body
+// marker (because the marker lives in a part of the case — byline, tabular
+// column header — that the body extractor has stripped out). Surfaced on
+// opinion 0 with `body_offset: null`, so the UI can list them as "case
+// notes" without claiming a specific anchor.
+function unanchoredCaseFootnotes(caseFootnotes, claimed, baseIndex, bodyMarkerSet = null) {
   const out = [];
-  let i = 0;
-  for (const m of segment.footnote_markers) {
-    const pageIdx = pageIndexAtOffset(m.offset, segment.page_breaks, fallbackPageBreak);
-    const fn = caseFootnotes.find(f => f.marker === m.marker && f.page_index === pageIdx);
+  let i = baseIndex;
+  for (const fn of caseFootnotes || []) {
+    if (claimed.has(fn)) continue;
+    // When a body-marker set is supplied, drop unclaimed footnotes whose
+    // marker doesn't appear anywhere in this case's body. Those are
+    // wrap-around footnotes from a neighboring case that the page-aligned
+    // walker picked up — typical when memo N's footnote text wraps onto
+    // memo N+1's start page. Without this filter such footnotes attach to
+    // the wrong case (e.g. Mercado picking up Dunkez's fn 5 at 243 AD3d).
+    if (bodyMarkerSet && !bodyMarkerSet.has(normalizeMarker(fn.marker))) continue;
     out.push({
       footnote_index: i++,
-      marker: m.marker,
-      text: fn ? fn.text : null,
-      body_offset: m.offset,
-      page_index: pageIdx,
-      volume_page: fn ? fn.volume_page : null,
+      marker: fn.marker,
+      text: fn.text,
+      body_offset: null,
+      page_index: fn.page_index,
+      volume_page: fn.volume_page,
     });
+    claimed.add(fn);
+  }
+  return out;
+}
+
+function attributeSegmentFootnotes(segment, caseFootnotes, fallbackPageBreak, claimed) {
+  const out = [];
+  let i = 0;
+  // `claimed` is a Set of case-footnote objects already attributed to a body
+  // marker (across all segments of the same case). Sharing the set across
+  // segment calls prevents cross-segment misattribution: when the majority
+  // and the dissent both restart numbering at `1`, the majority claims its
+  // `1` first; the dissent's marker `1` then can't accidentally match the
+  // majority's `1` via the ±1 page fallback.
+  if (!claimed) claimed = new Set();
+  for (const m of segment.footnote_markers) {
+    const pageIdx = pageIndexAtOffset(m.offset, segment.page_breaks, fallbackPageBreak);
+    const pieces = splitCompositeMarker(m.marker);
+    for (const piece of pieces) {
+      const wantedMarker = normalizeMarker(piece);
+      // Try exact page; then ±1 (forward first, since the typesetter is
+      // more likely to push a footnote whose marker won't fit on its own
+      // page onto the NEXT page than to retroactively place it on the
+      // previous one). Each candidate must be unclaimed.
+      let fn = null;
+      const candidates = pageIdx == null
+        ? [null]
+        : [pageIdx, pageIdx + 1, pageIdx - 1];
+      for (const tryPage of candidates) {
+        if (tryPage == null) {
+          // pageIdx is null only when no page break / fallback was found.
+          // Still try a marker-only match (rare; happens for cases whose
+          // body has no page-break sentinel at all).
+          fn = caseFootnotes.find(f =>
+            normalizeMarker(f.marker) === wantedMarker && !claimed.has(f)
+          );
+        } else {
+          fn = caseFootnotes.find(f =>
+            normalizeMarker(f.marker) === wantedMarker &&
+            f.page_index === tryPage &&
+            !claimed.has(f)
+          );
+        }
+        if (fn) { claimed.add(fn); break; }
+      }
+      out.push({
+        footnote_index: i++,
+        marker: piece,
+        text: fn ? fn.text : null,
+        body_offset: m.offset,
+        page_index: pageIdx,
+        volume_page: fn ? fn.volume_page : null,
+      });
+    }
   }
   return out;
 }
@@ -960,14 +1148,101 @@ const SENTINEL_FN_END     = '';
 const SENTINEL_PB_START   = '';
 const SENTINEL_PB_END     = '';
 
+// Build a synthetic `page.lines`-shaped array from the page's words after
+// running them through the small-caps recombiner. pdfplumber's native
+// page.lines uses the raw words, so a concur block like "S , J.P., L -C
+// and G , JJ., concur." sits next to a separate body line "CHOENFELD ING
+// OHAN ONZÁLEZ" — the surnames never get reassembled. By recombining the
+// words first and clustering them into lines by `top`, the lead+body
+// fragments collapse into a single line "Schoenfeld, J.P., Ling-Cohan and
+// González, JJ., concur." and the orphan body row goes away entirely.
+// This is the same machinery the caption path uses.
+//
+// Superscript footnote markers (e.g. "2" at size ~5.5pt) are wrapped with
+// FN sentinel chars during text assembly. pdf_parse.py only wraps them
+// when building its native `page.lines` array; rebuilding line text from
+// `page.words` here drops that wrap, so processBodyText sees the marker
+// as inline body text and never extracts it. Mirroring the threshold
+// keeps in-body marker attribution working in the recombined-lines path.
+const SUPERSCRIPT_SIZE_MAX = 6.0;
+// Marker shape filter — a real footnote marker is a short numeric or
+// asterisk token (`1`, `12`, `*`, `[10]`, `1,`, `1,2`). A few PDFs (most
+// notably 42 NY3d 1, "Tax Equity Now") have body words like
+// "$100,000,000" or "Assessment" typeset at superscript size due to
+// font-table quirks; wrapping those as markers strips them out of the
+// body text and produces phantom unmatched markers. Restricting the wrap
+// to marker-shaped strings preserves body content for those cases while
+// retaining every legitimate marker form we've observed.
+const MARKER_SHAPE_RE = /^(?:\[?\d{1,3}[,]?\]?|\d{1,2},\d{1,2}|\*)$/;
+function renderWordWithSentinels(w) {
+  if (w._recombined) return w.text;  // merged small-caps name — never a marker
+  if (
+    typeof w.size === 'number' &&
+    w.size < SUPERSCRIPT_SIZE_MAX &&
+    MARKER_SHAPE_RE.test(w.text)
+  ) {
+    return `${SENTINEL_FN_START}${w.text}${SENTINEL_FN_END}`;
+  }
+  return w.text;
+}
+function buildRecombinedLines(page) {
+  const recombined = recombineWords(page.words || []);
+  if (!recombined.length) return null;
+  const sorted = recombined.slice().sort((a, b) => (a.top - b.top) || (a.x0 - b.x0));
+  const lines = [];
+  let cur = [];
+  let curTop = null;
+  const flush = () => {
+    if (!cur.length) return;
+    const ws = cur.slice().sort((a, b) => a.x0 - b.x0);
+    // Line size is the MAX word size on the line, not the leftmost word's
+    // size. Some volumes typeset the cite-header tail (`745] —`) at 8.98pt
+    // alongside body words at 10.98pt on the same visual line; treating the
+    // line as 8.98pt would strip body content under dropAllSmallFont.
+    let maxSize = 0;
+    for (const w of ws) if (typeof w.size === 'number' && w.size > maxSize) maxSize = w.size;
+    lines.push({
+      top: curTop,
+      x0: ws[0].x0,
+      x1: ws[ws.length - 1].x1,
+      size: maxSize,
+      text: ws.map(renderWordWithSentinels).join(' '),
+      words: ws,
+    });
+  };
+  for (const w of sorted) {
+    if (curTop === null || Math.abs(w.top - curTop) <= 2.5) {
+      cur.push(w);
+      if (curTop === null) curTop = w.top;
+    } else {
+      flush();
+      cur = [w];
+      curTop = w.top;
+    }
+  }
+  flush();
+  return spliceOrphanBodyRows(lines);
+}
+
 // Build a page's text from its `lines` array (top-sorted) with running-head
 // + subtitle stripped, footnote lines stripped, and a blank line inserted
 // before each indented line (paragraph start). `endOff` (when provided for
 // the last page) truncates to the byte offset in `text_raw` where the next
 // case begins — we map this to a top boundary by walking lines until we
 // cross the cumulative offset.
-function buildNy3dPageText(page, endOff) {
-  const lines = (page.lines || []).slice().sort((a, b) => (a.top - b.top) || (a.x0 - b.x0));
+function buildNy3dPageText(page, endOff, opts = {}) {
+  // dropAllSmallFont — strip every sub-body-size line on the page, not just
+  // those below the body band. AD3d memos place topic-block headnotes ABOVE
+  // the body at ~7.98pt; the default builder keeps those because the
+  // existing strip rule requires `top > lastBodyTop`. Memos use this flag
+  // so topic-block content (West-prepared editorial) doesn't bleed into
+  // the body text.
+  const dropAllSmallFont = !!opts.dropAllSmallFont;
+  // Use recombined-words lines (small-caps name fragments merged) when
+  // possible; fall back to pdfplumber's raw page.lines if the page has no
+  // words array (rare).
+  const lines = buildRecombinedLines(page)
+    ?? (page.lines || []).slice().sort((a, b) => (a.top - b.top) || (a.x0 - b.x0));
   if (!lines.length) {
     let txt = page.text_raw || '';
     if (endOff != null) txt = txt.slice(0, endOff);
@@ -1034,6 +1309,22 @@ function buildNy3dPageText(page, endOff) {
   // Real footnote bands always have a vertical gap > ~6pt between body and
   // notes; small-caps fragments sit ~3pt below their lead.
   let prevBodyLineTop = -Infinity;
+  // Track whether the last emitted body line ended a sentence — used to gate
+  // section-header detection. Only short non-indented unpunctuated lines
+  // SANDWICHED between a paragraph end and a paragraph start are treated as
+  // headers; anything else stays as a regular body line.
+  let prevBodyEndedSentence = false;
+
+  // A line "ends a sentence" if its trailing visible char is `.`, `!`, or
+  // `?` (allowing a closing quote/right-bracket after). Colons / semicolons
+  // can also end paragraphs but in the middle of legal prose they more
+  // often introduce a list, so we accept them too as a soft paragraph-end.
+  const SENTENCE_END_RE = /[.!?:;]\s*[)'"”’]?$/;
+  // For the header line itself we require NO terminal punctuation at all
+  // (a real header — "CPL 330.30 Hearing", "Findings of Fact" — never has
+  // one). Trailing colon disqualifies because list-introducers sometimes
+  // sit alone on a line and we must not break those into pseudo-sections.
+  const HEADER_TERMINAL_RE = /[.!?,;:]\s*[)'"”’]?$/;
 
   for (let i = drop; i < stopIdx; i++) {
     const l = lines[i];
@@ -1045,7 +1336,26 @@ function buildNy3dPageText(page, endOff) {
     // with body text (above lastBodyTop) are kept; small-caps body
     // fragments riding directly under a body line on an opinion-start
     // page (within ~6pt) are also kept.
-    if (l.size < NY3D_BODY_SIZE_MIN && l.top > lastBodyTop && (l.top - prevBodyLineTop >= 6)) continue;
+    //
+    // dropAllSmallFont (memo path): strip ALL sub-body-size lines, not just
+    // those below the body band. Memos place a topic-block of editorial
+    // headnotes ABOVE the body at ~7.98pt; the default rule keeps them
+    // because their `top` is less than `lastBodyTop`. Exempt the cite
+    // header itself — some volumes (233 AD3d) typeset the parallel-cite
+    // bracketed pair at 8.98pt rather than body 10.98pt, and the memo
+    // anchor depends on it surviving the strip.
+    if (dropAllSmallFont) {
+      if (l.size < NY3D_BODY_SIZE_MIN) {
+        // Cite headers may render at 8.98pt (e.g. 233 AD3d) and may also
+        // span two lines, with the `[<vol>` opener on a body-size line and
+        // `NYS3d <pg>] —` continuing on a small-font line. Preserve any
+        // small-font line that mentions a regional reporter cite token so
+        // the memo anchor survives.
+        if (!/\b(?:NYS3d|NE3d)\b/.test(l.text || '')) continue;
+      }
+    } else {
+      if (l.size < NY3D_BODY_SIZE_MIN && l.top > lastBodyTop && (l.top - prevBodyLineTop >= 6)) continue;
+    }
     // Suppress paragraph break for orphan small-caps body fragments. The
     // pdfplumber output renders the small-caps remnant of a surname (e.g.
     // `ILSON` under lead `W`, `EMORANDUM` under lead `M`) as its own line
@@ -1062,14 +1372,49 @@ function buildNy3dPageText(page, endOff) {
       !/[a-z]/.test(t) &&
       !/^[IVX]+\.?$/i.test(t) &&     // Roman numeral section header
       !/^[A-Z]\.?$/.test(t);          // single-letter section header
-    if (l.x0 >= indentThreshold && !isOrphanFrag) {
+
+    // Section-header detection. Some opinions break sections with a short
+    // body-size line set at body x0 (not indented) with no terminal
+    // punctuation — e.g. "CPL 330.30 Hearing" between two paragraphs. The
+    // typesetter signals the header structurally (extra vertical air on
+    // both sides) but visually it's the same font/size as body text, so we
+    // can't detect it from font metrics. Use the surrounding-paragraph
+    // pattern instead: a header sits between a sentence-ending line and an
+    // indented line (paragraph start). Without this, the header gets glued
+    // to the prior paragraph's last line.
+    let isSectionHeader = false;
+    if (
+      l.size >= NY3D_BODY_SIZE_MIN &&
+      l.x0 < indentThreshold &&
+      !isOrphanFrag &&
+      t.length > 0 && t.length <= 60 &&
+      prevBodyEndedSentence &&
+      !HEADER_TERMINAL_RE.test(t)
+    ) {
+      // Look ahead for the next non-empty body-size line. If it's indented,
+      // we have a header sandwich.
+      for (let k = i + 1; k < stopIdx; k++) {
+        const nl = lines[k];
+        if (!nl.text || !nl.text.trim()) continue;
+        if (nl.size < NY3D_BODY_SIZE_MIN && nl.top > lastBodyTop) continue;
+        if (nl.x0 >= indentThreshold) isSectionHeader = true;
+        break;
+      }
+    }
+
+    if (isSectionHeader || (l.x0 >= indentThreshold && !isOrphanFrag)) {
       // Mark a paragraph break before this line. We emit even when `out` is
       // empty (the leading blank line ensures a paragraph break is preserved
-      // when this page is concatenated to the previous one).
+      // when this page is concatenated to the previous one). Section headers
+      // produce TWO breaks (before+after) because the line after the header
+      // is itself an indented paragraph-start that triggers its own break.
       out.push('');
     }
     out.push(l.text);
-    if (l.size >= NY3D_BODY_SIZE_MIN) prevBodyLineTop = l.top;
+    if (l.size >= NY3D_BODY_SIZE_MIN) {
+      prevBodyLineTop = l.top;
+      prevBodyEndedSentence = SENTENCE_END_RE.test(t);
+    }
   }
   return out.join('\n');
 }
@@ -1248,7 +1593,7 @@ function extractNy3dOpinions(pages, range, caseFootnotes = []) {
   const normalized = normalizeLineWraps(bodyMain.trim());
   const processed = processBodyText(normalized);
   const cleaned = processed.text;
-  const allFnMarkers = processed.footnote_markers;
+  const allFnMarkers = injectAsteriskMarkers(cleaned, processed.footnote_markers, caseFootnotes);
   const allPageBreaks = processed.page_breaks;
 
   // Find inline concurrence/dissent markers on the CLEANED text.
@@ -1279,10 +1624,26 @@ function extractNy3dOpinions(pages, range, caseFootnotes = []) {
   // page-break arrays by [rawStart, rawEnd], translate offsets to be
   // segment-local, splice out any small-caps fragment, then attribute
   // footnote markers to case-level footnotes via (marker, page_index).
-  return rawSegments.map((seg, i) => {
+  // `claimed` is shared across segments so an attributed footnote isn't
+  // re-claimed by another segment via the ±1 page fallback.
+  const claimed = new Set();
+  const result = rawSegments.map((seg, i) => {
     let segText = cleaned.slice(seg.rawStart, seg.rawEnd);
+    // NY3d segments are non-overlapping with a gap: seg[i].rawEnd is the
+    // next byline's consumeStart (offset N) and seg[i+1].rawStart is
+    // consumeEnd (offset N + consumed_byline_length). A footnote marker
+    // that sat right before the next byline gets recorded at offset N
+    // after sentinel stripping (the marker is removed from the cleaned
+    // text but its offset is the position of the following character —
+    // which is the byline's first letter). Without an inclusive upper
+    // bound here, that marker falls into the gap between seg[i].rawEnd
+    // and seg[i+1].rawStart and gets dropped from both segments. Shifting
+    // the upper bound to `<=` re-attaches such markers to the segment
+    // whose body they actually closed. The gap between rawEnd and the
+    // next rawStart guarantees no double-attribution; markers AT
+    // rawStart of seg[i+1] still go to seg[i+1] under `>= rawStart`.
     let segFnMarkers = allFnMarkers
-      .filter(m => m.offset >= seg.rawStart && m.offset < seg.rawEnd)
+      .filter(m => m.offset >= seg.rawStart && m.offset <= seg.rawEnd)
       .map(m => ({ offset: m.offset - seg.rawStart, marker: m.marker }));
     let segPageBreaks = allPageBreaks
       .filter(pb => pb.offset >= seg.rawStart && pb.offset < seg.rawEnd)
@@ -1322,8 +1683,20 @@ function extractNy3dOpinions(pages, range, caseFootnotes = []) {
     const trimmed = segText.trim();
     const trimAdjustment = segText.indexOf(trimmed);
     const adjOffset = (off) => off - trimAdjustment;
+    // A marker right at the segment boundary (e.g. the footnote marker
+    // that closes a dissent's body text immediately before the next
+    // byline begins) lands at offset `segText.length`. After
+    // segText.trim() strips a trailing space, that offset is one past
+    // trimmed.length and gets dropped. Clamp such boundary markers to
+    // trimmed.length so they survive into the segment's footnote list.
     const finalFnMarkers = segFnMarkers
-      .map(m => ({ offset: adjOffset(m.offset), marker: m.marker }))
+      .map(m => {
+        const off = adjOffset(m.offset);
+        return {
+          offset: off > trimmed.length ? trimmed.length : off,
+          marker: m.marker,
+        };
+      })
       .filter(m => m.offset >= 0 && m.offset <= trimmed.length);
     const finalPageBreaks = segPageBreaks
       .map(pb => ({ ...pb, offset: adjOffset(pb.offset) }))
@@ -1333,7 +1706,7 @@ function extractNy3dOpinions(pages, range, caseFootnotes = []) {
       footnote_markers: finalFnMarkers,
       page_breaks: finalPageBreaks,
     };
-    const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, fallbackPageBreak);
+    const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, fallbackPageBreak, claimed);
 
     return {
       opinion_index: i,
@@ -1346,6 +1719,23 @@ function extractNy3dOpinions(pages, range, caseFootnotes = []) {
       page_breaks: finalPageBreaks,
     };
   });
+  // Surface any case-level footnotes that no segment's body markers
+  // claimed onto opinion 0, with body_offset=null. Typical sources:
+  //   - designated-judge byline asterisks ("Designated pursuant to NY
+  //     Constitution, art VI, § 2.")
+  //   - NY3d motion-table column-header asterisks ("Includes only
+  //     applications that were granted.")
+  //   - footnotes whose marker lives in a part of the case the body
+  //     extractor strips (preamble, headnotes, tabular layout)
+  // The data is correctly extracted at the case level — this just
+  // attaches it to the opinion record so downstream consumers don't have
+  // to consult the case.footnotes catalog separately.
+  if (result[0]) {
+    result[0].footnotes = (result[0].footnotes || []).concat(
+      unanchoredCaseFootnotes(caseFootnotes, claimed, (result[0].footnotes || []).length)
+    );
+  }
+  return result;
 }
 
 function extractNy3dMemo(pages, range, caseFootnotes = []) {
@@ -1364,6 +1754,11 @@ function extractNy3dMemo(pages, range, caseFootnotes = []) {
   if (!markerMatch) {
     return [];
   }
+
+  // OPINION OF THE COURT page — fallback page anchor for markers on the
+  // memo's first body page (whose PB sentinel sat in the editorial
+  // preamble we slice off below).
+  const memoStartPage = findPageBreakBefore(combined, markerMatch.index);
 
   let pos = markerMatch.index + markerMatch[0].length;
   while (pos < combined.length && /\s/.test(combined[pos])) pos++;
@@ -1395,11 +1790,18 @@ function extractNy3dMemo(pages, range, caseFootnotes = []) {
   // segments, so the whole body is one segment.
   const normalized = normalizeLineWraps(bodyTextRaw.trim());
   const processed = processBodyText(normalized);
+  const augmentedMarkers = injectAsteriskMarkers(processed.text, processed.footnote_markers, caseFootnotes);
   const segObj = {
-    footnote_markers: processed.footnote_markers,
+    footnote_markers: augmentedMarkers,
     page_breaks: processed.page_breaks,
   };
-  const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, null);
+  const claimed = new Set();
+  const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, memoStartPage, claimed);
+  // Attach any case-level footnotes the body markers didn't claim, as
+  // unanchored fns on the (single) memo opinion. Covers designated-judge
+  // byline asterisks and motion-table column-header asterisks; see the
+  // parallel comment in extractNy3dOpinions.
+  footnotes.push(...unanchoredCaseFootnotes(caseFootnotes, claimed, footnotes.length));
 
   return [{
     opinion_index: 0,
@@ -1414,49 +1816,85 @@ function extractNy3dMemo(pages, range, caseFootnotes = []) {
 }
 
 /**
- * Extract the body text of a single AD3d/Misc 3d memo. The walker has
- * already given us start_page+start_offset (right after `]—`) and
- * end_page+end_offset (just before the next memo's `[`). We walk pages in
- * that range, stripping running-head lines from continuation pages, then
- * apply the body-start heuristic to skip the topic block.
+ * Extract memo body text + sentinel-derived markers and page-breaks.
+ *
+ * Mirrors extractOpinionSectionText but uses the cite-header
+ * (`[<n> NYS3d <m>]—`) as the body anchor. Memos lack the OPINIONOFTHECOURT
+ * banner that opinion-section cases use; their body simply follows the
+ * cite header (after the topic-block headnotes, which we strip via the
+ * page-builder's `dropAllSmallFont` mode since they're at ~7.98pt vs. body
+ * 10.98pt).
+ *
+ * Returns the same shape as extractOpinionSectionText so the
+ * segment+attribute machinery in extractAd3dMemo is reusable. Returns
+ * null if the cite header can't be found.
+ *
+ * Topic-block lines are reporter-prepared editorial content (West/NY-
+ * Reporter copyright); we drop them by font-size at the page-builder
+ * level, never including them in the emitted body.
  */
-function extractMemoText(pages, range) {
-  // Walk from the cite page (where `[NYS3d]—` is) — for off-by-one cases
-  // the start_page_index can be earlier than the cite page (when the memo
-  // caption wraps from the prior page), but text_start_offset is on the
-  // cite page.
-  const citeP   = range.cite_page_index ?? range.start_page_index;
-  const endP    = range.text_end_page_index;
-  const startOff = range.text_start_offset;
-  const endOff   = range.text_end_offset;     // null → end of endP's text
+function buildMemoCiteRe(range) {
+  // Build a cite-header anchor from this case's known parallel cite.
+  // Anchoring on the exact cite avoids matching unrelated bracketed cites
+  // in body text (which would otherwise win as the FIRST match of a
+  // generic `\[\s*\d+\s*NYS3d\s*\d+]` regex).
+  const cite = range.parallel_cites?.[0];
+  if (!cite) return null;
+  const tokens = cite.split(/\s+/).filter(Boolean);
+  if (!tokens.length) return null;
+  // `\s*` between tokens (not `\s+`) — pdfplumber sometimes packs the cite
+  // glyphs without inter-word spacing (e.g. `[76NYS3d 45]`). Allow either
+  // form so the regex still anchors on the right header.
+  const escaped = tokens
+    .map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .join('\\s*');
+  // Trailing `—` is typical but optional: vacatur-notice memos and a few
+  // other special memos omit it.
+  return new RegExp('\\[\\s*' + escaped + '\\s*\\]\\s*—?');
+}
 
-  const parts = [];
-  for (const p of pages) {
-    if (p.page_index < citeP || p.page_index > endP) continue;
-    const pageText = p.text_raw || '';
-    let from = 0, to = pageText.length;
-    if (p.page_index === citeP) from = startOff;
-    if (p.page_index === endP && endOff !== null) to = endOff;
-    let slice = pageText.slice(from, to);
-    if (p.page_index !== citeP) {
-      // Strip leading running-head line(s) on continuation pages.
-      while (true) {
-        const nl = slice.indexOf('\n');
-        if (nl === -1) break;
-        const firstLine = slice.slice(0, nl);
-        if (!firstLine.trim()) { slice = slice.slice(nl + 1); continue; }
-        if (isRunningHeadLine(firstLine)) { slice = slice.slice(nl + 1); break; }
-        break;
-      }
-    }
-    parts.push(slice);
-  }
-  let combined = parts.join('\n').trim();
-  if (!combined) return '';
-  const bodyStart = findMemoBodyStart(combined, 0);
-  const body = combined.slice(bodyStart).trim();
-  const trimmed = trimNextMemoCaption(body);
-  return normalizeLineWraps(trimmed);
+function extractMemoSectionText(pages, range) {
+  const startP = range.start_page_index;
+  const endP   = range.text_end_page_index ?? range.end_page_index;
+
+  const combined = combineNy3dPages(pages, range, {
+    endPage: endP,
+    endOffset: range.text_end_offset,
+    dropAllSmallFont: true,
+  });
+
+  // Anchor on the case's specific parallel cite header. AD3d / Misc 3d
+  // memos place a `[<vol> NYS3d <pg>]` (often with trailing `—`) just
+  // before the body. Without a known cite we can't reliably locate the
+  // body start; bail out so the caller doesn't emit a malformed opinion.
+  const citeRe = buildMemoCiteRe(range);
+  if (!citeRe) return null;
+  const citeMatch = combined.match(citeRe);
+  if (!citeMatch) return null;
+  let bodyStart = citeMatch.index + citeMatch[0].length;
+  while (bodyStart < combined.length && /\s/.test(combined[bodyStart])) bodyStart++;
+
+  const bodyStartPageBreak = findPageBreakBefore(combined, bodyStart);
+  // Trim the trailing next-memo caption. text_end_offset truncates the
+  // last page just before the next memo's `[` cite, so combined ends with
+  // the next memo's caption block (`12 In the Matter of …`). Strip that
+  // tail before normalization.
+  const bodyRaw = trimNextMemoCaption(combined.slice(bodyStart).trim());
+  if (!bodyRaw) return null;
+  const normalized = normalizeLineWraps(bodyRaw);
+  const processed = processBodyText(normalized);
+
+  return {
+    opinion_index: 0,
+    opinion_type: 'memorandum',
+    author: null,
+    start_page_index: startP,
+    end_page_index: endP,
+    text: processed.text,
+    footnote_markers: processed.footnote_markers,
+    page_breaks: processed.page_breaks,
+    body_start_page: bodyStartPageBreak,
+  };
 }
 
 /**
@@ -1565,7 +2003,22 @@ function segmentPages(pages, caseRange, opinionTypeOverride) {
  */
 export function extractCaseFootnotes(pages, caseRange) {
   const startP = caseRange.start_page_index;
-  const endP   = caseRange.text_end_page_index ?? caseRange.end_page_index;
+  // For opinion-section cases use end_page_index (the last page that
+  // BELONGS to this case), NOT text_end_page_index — the next case's
+  // start page would carry SUMMARY + HEADNOTES whose numbered entries
+  // (`1.`, `2.`, …) look identical to footnotes at 8.98pt and pollute
+  // attribution.
+  //
+  // For memo-section cases there's no SUMMARY/HEADNOTES preamble (memos
+  // start with cite-header + topic block), so extending the walk through
+  // text_end_page_index is safe and lets us recover footnotes whose text
+  // wraps onto the next memo's start page (e.g. fn 5 of 243 AD3d 986
+  // physically lives on the page where 243 AD3d 991 begins). False-positive
+  // pickup of the next memo's own footnotes is filtered downstream by
+  // the body-marker reconciliation in unanchoredCaseFootnotes.
+  const endP = caseRange.section === 'memoranda'
+    ? (caseRange.text_end_page_index ?? caseRange.end_page_index)
+    : caseRange.end_page_index;
 
   // Skip pages before OPINION OF THE COURT — those are editorial preamble
   // (SUMMARY / HEADNOTE / APPEARANCES OF COUNSEL) where numbered HEADNOTE
@@ -1583,9 +2036,16 @@ export function extractCaseFootnotes(pages, caseRange) {
   }
 
   const out = [];
+  // Track the last marker seen across pages so a footnote sequence
+  // crossing a page boundary (fn 99 → fn 100) keeps its monotonic
+  // plausibility check working. Without this, the first marker on a new
+  // page is treated as having no prior context and the cap-at-99
+  // fallback rejects markers ≥ 100 (Rochester Police Locust Club has fns
+  // up through 110+; without the carry-over they were silently dropped).
+  let lastMarker = null;
   for (const p of pages) {
     if (p.page_index < bodyStartP || p.page_index > endP) continue;
-    const fns = extractPageFootnotes(p);
+    const fns = extractPageFootnotes(p, lastMarker);
     if (!fns.length) continue;
     const volPage = getVolumePage(p);
     for (const fn of fns) {
@@ -1596,6 +2056,7 @@ export function extractCaseFootnotes(pages, caseRange) {
         volume_page: volPage,
       });
     }
+    lastMarker = fns[fns.length - 1].marker;
   }
   return out;
 }
@@ -1640,7 +2101,7 @@ function extractAd3dOpinions(pages, caseRange, caseFootnotes) {
   if (!opinion) return [];
 
   const cleaned = opinion.text;
-  const allFnMarkers  = opinion.footnote_markers || [];
+  const allFnMarkers  = injectAsteriskMarkers(cleaned, opinion.footnote_markers || [], caseFootnotes);
   const allPageBreaks = opinion.page_breaks || [];
 
   // Find inline concurrence/dissent markers in the cleaned text. Only count
@@ -1671,10 +2132,23 @@ function extractAd3dOpinions(pages, caseRange, caseFootnotes) {
     });
   }
 
-  return segments.map((seg, i) => {
+  // Shared across segments so a footnote claimed by one segment can't be
+  // re-claimed by another via the ±1 page fallback. See
+  // attributeSegmentFootnotes for the rationale.
+  const claimed = new Set();
+  const lastIdx = segments.length - 1;
+  const result = segments.map((seg, i) => {
     let segText = cleaned.slice(seg.rawStart, seg.rawEnd);
+    // Last segment: include markers at offset == cleaned.length. A
+    // footnote marker at the very tail of the body (the case ends with
+    // `…for [two] year[s].‘‘` immediately followed by `<FN>3<FN_END>`)
+    // gets recorded by processBodyText at offset = cleaned.length and
+    // would otherwise be dropped by the strict `< rawEnd` filter when
+    // rawEnd equals cleaned.length. For non-last segments, strict `<` is
+    // correct: a marker at the next segment's rawStart belongs there.
+    const upperOp = i === lastIdx ? '<=' : '<';
     let segFnMarkers = allFnMarkers
-      .filter(m => m.offset >= seg.rawStart && m.offset < seg.rawEnd)
+      .filter(m => m.offset >= seg.rawStart && (upperOp === '<=' ? m.offset <= seg.rawEnd : m.offset < seg.rawEnd))
       .map(m => ({ offset: m.offset - seg.rawStart, marker: m.marker }));
     let segPageBreaks = allPageBreaks
       .filter(pb => pb.offset >= seg.rawStart && pb.offset < seg.rawEnd)
@@ -1684,12 +2158,21 @@ function extractAd3dOpinions(pages, caseRange, caseFootnotes) {
         volume_page: pb.volume_page,
       }));
 
-    // Trim segment text and adjust offsets in lockstep.
+    // Trim segment text and adjust offsets in lockstep. A marker that
+    // sat right before trailing whitespace gets clamped to trimmed.length
+    // (the end of the segment) rather than dropped — see the parallel
+    // comment in extractNy3dOpinions for full rationale.
     const trimmed = segText.trim();
     const trimAdjustment = segText.indexOf(trimmed);
     const adj = (off) => off - trimAdjustment;
     const finalFnMarkers = segFnMarkers
-      .map(m => ({ offset: adj(m.offset), marker: m.marker }))
+      .map(m => {
+        const off = adj(m.offset);
+        return {
+          offset: off > trimmed.length ? trimmed.length : off,
+          marker: m.marker,
+        };
+      })
       .filter(m => m.offset >= 0 && m.offset <= trimmed.length);
     const finalPageBreaks = segPageBreaks
       .map(pb => ({ ...pb, offset: adj(pb.offset) }))
@@ -1697,15 +2180,22 @@ function extractAd3dOpinions(pages, caseRange, caseFootnotes) {
 
     // Page break that preceded this segment's start — used as the fallback
     // page anchor for footnotes whose marker offset sits before any in-segment
-    // page break (i.e., on the page where the segment begins).
+    // page break (i.e., on the page where the segment begins). For the first
+    // segment (rawStart=0) on the OPINION OF THE COURT page, no in-body
+    // page-break sentinel exists (it sat in the editorial preamble we sliced
+    // off), so fall back to the body-start page captured by
+    // extractOpinionSectionText. Without this, marker `1` on the opinion's
+    // first page never matches the case-level footnote `1` (page mismatch:
+    // null vs the real page_index) and surfaces as `text: null`.
     const fallbackPageBreak =
-      [...allPageBreaks].reverse().find(pb => pb.offset <= seg.rawStart) || null;
+      [...allPageBreaks].reverse().find(pb => pb.offset <= seg.rawStart) ||
+      opinion.body_start_page;
 
     const segObj = {
       footnote_markers: finalFnMarkers,
       page_breaks: finalPageBreaks,
     };
-    const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, fallbackPageBreak);
+    const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, fallbackPageBreak, claimed);
 
     return {
       opinion_index: i,
@@ -1718,59 +2208,136 @@ function extractAd3dOpinions(pages, caseRange, caseFootnotes) {
       page_breaks: finalPageBreaks,
     };
   });
+  // Attach unanchored case-level footnotes to opinion 0; see the parallel
+  // comment in extractNy3dOpinions.
+  if (result[0]) {
+    result[0].footnotes = (result[0].footnotes || []).concat(
+      unanchoredCaseFootnotes(caseFootnotes, claimed, (result[0].footnotes || []).length)
+    );
+  }
+  return result;
 }
 
 /**
- * AD3d / Misc 3d memoranda path. The boundary walker tracks body offsets in
- * text_raw, which doesn't carry the in-body footnote-marker sentinels. Rather
- * than rebuild that offset machinery against lines-based output (the memo
- * walker is delicate), we keep extractMemoText for the body and attach
- * case-level footnotes directly.
+ * AD3d / Misc 3d memoranda path.
  *
- * Without per-marker body offsets, the footnotes land on opinion 0 with
- * body_offset=null. The schema permits null body_offset; the admin UI shows
- * footnote text under the case but doesn't anchor it to a specific position.
- * This is acceptable for memos because:
- *   - they're typically short single-paragraph entries
- *   - footnote density on AD3d memos is low (~0.1 per case)
- * Multi-opinion memos lump all case footnotes onto opinion 0.
+ * Same shape as extractAd3dOpinions: builds a sentinel-bearing body via
+ * extractMemoSectionText, finds inline concur/dissent split points,
+ * partitions the global footnote-marker / page-break arrays per segment,
+ * and attributes each marker to a case-level footnote by (marker, page).
+ *
+ * Resolves four memo-specific issues that the old extractMemoText had:
+ *   1. Body anchored on cite-header + byline → topic-block headnotes
+ *      (reporter-prepared editorial content) no longer leak into the body.
+ *   2. Footnote-band lines filtered by font-size → footnote bodies no
+ *      longer get glued into body text mid-paragraph.
+ *   3. Paragraph breaks reconstructed from x0 indent → bodies are no
+ *      longer one-paragraph blobs.
+ *   4. unanchoredCaseFootnotes filters by body-marker set → wrap-around
+ *      footnotes from a neighboring memo (e.g. Dunkez fn 5 wrapping onto
+ *      Mercado's start page) no longer attribute to the wrong case.
  */
 function extractAd3dMemo(pages, caseRange, caseFootnotes) {
-  const text = extractMemoText(pages, caseRange);
-  if (!text) return [];
-  const startP = caseRange.start_page_index;
-  const endP   = caseRange.text_end_page_index ?? caseRange.end_page_index;
+  const memo = extractMemoSectionText(pages, caseRange);
+  if (!memo) return [];
 
-  const memoFootnotes = (caseFootnotes || []).map((fn, i) => ({
-    footnote_index: i,
-    marker: fn.marker,
-    text: fn.text,
-    body_offset: null,
-    page_index: fn.page_index,
-    volume_page: fn.volume_page,
-  }));
+  const cleaned = memo.text;
+  const allFnMarkers  = injectAsteriskMarkers(cleaned, memo.footnote_markers || [], caseFootnotes);
+  const allPageBreaks = memo.page_breaks || [];
 
-  const split = splitMultiOpinion(text, 'memorandum', null);
-  if (split) {
-    return split.map((seg, i) => ({
-      opinion_index: i,
-      opinion_type: i === 0 ? 'memorandum' : seg.type,
-      author: seg.author,
-      start_page_index: startP,
-      end_page_index: endP,
-      text: seg.text,
-      footnotes: i === 0 ? memoFootnotes : [],
-      page_breaks: [],
-    }));
+  // Find inline concurrence/dissent markers — same gating as extractAd3dOpinions.
+  const markers = (cleaned.length >= 200)
+    ? findOpinionMarkers(cleaned).filter(m =>
+        m.offset > 100 && hasPriorOpinionEnd(cleaned, m.offset)
+      )
+    : [];
+
+  const segments = [];
+  segments.push({
+    type: memo.opinion_type,
+    author: memo.author,
+    rawStart: 0,
+    rawEnd: markers[0]?.offset ?? cleaned.length,
+  });
+  for (let i = 0; i < markers.length; i++) {
+    segments.push({
+      type: markers[i].type,
+      author: markers[i].author,
+      rawStart: markers[i].offset,
+      rawEnd: markers[i + 1]?.offset ?? cleaned.length,
+    });
   }
-  return [{
-    opinion_index: 0,
-    opinion_type: 'memorandum',
-    author: null,
-    start_page_index: startP,
-    end_page_index: endP,
-    text,
-    footnotes: memoFootnotes,
-    page_breaks: [],
-  }];
+
+  const claimed = new Set();
+  const lastIdx = segments.length - 1;
+  const result = segments.map((seg, i) => {
+    let segText = cleaned.slice(seg.rawStart, seg.rawEnd);
+    const upperOp = i === lastIdx ? '<=' : '<';
+    let segFnMarkers = allFnMarkers
+      .filter(m => m.offset >= seg.rawStart && (upperOp === '<=' ? m.offset <= seg.rawEnd : m.offset < seg.rawEnd))
+      .map(m => ({ offset: m.offset - seg.rawStart, marker: m.marker }));
+    let segPageBreaks = allPageBreaks
+      .filter(pb => pb.offset >= seg.rawStart && pb.offset < seg.rawEnd)
+      .map(pb => ({
+        offset: pb.offset - seg.rawStart,
+        page_index: pb.page_index,
+        volume_page: pb.volume_page,
+      }));
+
+    const trimmed = segText.trim();
+    const trimAdjustment = segText.indexOf(trimmed);
+    const adj = (off) => off - trimAdjustment;
+    const finalFnMarkers = segFnMarkers
+      .map(m => {
+        const off = adj(m.offset);
+        return { offset: off > trimmed.length ? trimmed.length : off, marker: m.marker };
+      })
+      .filter(m => m.offset >= 0 && m.offset <= trimmed.length);
+    const finalPageBreaks = segPageBreaks
+      .map(pb => ({ ...pb, offset: adj(pb.offset) }))
+      .filter(pb => pb.offset >= 0 && pb.offset <= trimmed.length);
+
+    const fallbackPageBreak =
+      [...allPageBreaks].reverse().find(pb => pb.offset <= seg.rawStart) ||
+      memo.body_start_page;
+
+    const segObj = {
+      footnote_markers: finalFnMarkers,
+      page_breaks: finalPageBreaks,
+    };
+    const footnotes = attributeSegmentFootnotes(segObj, caseFootnotes, fallbackPageBreak, claimed);
+
+    return {
+      opinion_index: i,
+      opinion_type: seg.type,
+      author: seg.author,
+      start_page_index: memo.start_page_index,
+      end_page_index: memo.end_page_index,
+      text: trimmed,
+      footnotes,
+      page_breaks: finalPageBreaks,
+    };
+  });
+
+  // Build the body-marker set across ALL segments, then attach unanchored
+  // case-level footnotes to opinion 0 — but only those whose marker is
+  // present in the body. This drops wrap-around footnotes from a
+  // neighboring memo without affecting legitimate orphan footnotes whose
+  // page-based attribution failed (those still match the body-marker set).
+  const bodyMarkerSet = new Set();
+  for (const seg of result) {
+    for (const m of seg.footnotes || []) bodyMarkerSet.add(normalizeMarker(m.marker));
+    // Also include in-body markers that were UNCLAIMED (text=null) — they
+    // still represent body markers for filtering purposes.
+  }
+  if (result[0]) {
+    result[0].footnotes = (result[0].footnotes || []).concat(
+      unanchoredCaseFootnotes(
+        caseFootnotes, claimed,
+        (result[0].footnotes || []).length,
+        bodyMarkerSet
+      )
+    );
+  }
+  return result;
 }

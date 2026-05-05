@@ -7,7 +7,7 @@
  *     → sections.classifyPages          (front_matter / tables / opinions / motions / memoranda / digest)
  *     → case_boundaries.detectCaseBoundaries  (per-case start/end + parallel cite + canonical citation)
  *     → for each case:
- *         case_header.extractCaseHeader        (caption, decision_date, summary, headnotes)
+ *         case_header.extractCaseHeader        (caption, decision_date, header_end_top)
  *         case_boundaries.extractRunningHeadName (short cite from continuation-page running head)
  *         opinions.extractOpinions              (per-opinion type/author/text via small subtitle)
  *
@@ -20,8 +20,9 @@ import { detectCaseBoundaries, extractRunningHeadName } from './case_boundaries.
 import { extractCaseHeader, deriveDepartment } from './case_header.js';
 import { extractOpinions, extractCaseFootnotes } from './opinions.js';
 import { buildTocMap, pickTocName } from './toc_parser.js';
-import { assignCuries } from './curie.js';
+import { assignCuries, caseCurieBase } from './curie.js';
 import { recombineWords } from './small_caps.js';
+import { walkMotionsSection, walkMemoMotionEntries } from './motion_calendar.js';
 
 /**
  * Find AD3d memo-section department banners. AD3d memos are organized into
@@ -464,9 +465,6 @@ export function parseCases(pages, volumeMeta) {
       parallel_cites: range.parallel_cites,
       court_name:     courtName,
       source_url:     sourceUrl,
-      summary_text:   header.summary_text,
-      disposition_line: header.disposition_line,
-      headnotes_text: header.headnotes_text,
       opinions,
       footnotes,
       provenance: {
@@ -476,6 +474,22 @@ export function parseCases(pages, volumeMeta) {
       },
     });
   }
+
+  // Motion-calendar entries — line-based denials/grants/dismissals that the
+  // parallel-cite walker doesn't recognize. Two source layouts:
+  //   1. The dedicated NY3d "Motions for Leave to Appeal" section (skipped
+  //      entirely by detectCaseBoundaries).
+  //   2. NY3d motion entries interleaved within the memoranda section.
+  // De-dupe (2) against the cases we already emitted by base-CURIE so a
+  // substantive memo's (caption, page) pair isn't double-counted.
+  const motionsCases = walkMotionsSection(sortedPages, classification, volumeMeta);
+  const existingBases = new Set();
+  for (const c of cases) {
+    const base = caseCurieBase(volumeMeta, c.first_page, c.name);
+    if (base) existingBases.add(base);
+  }
+  const memoMotionCases = walkMemoMotionEntries(sortedPages, classification, volumeMeta, existingBases);
+  cases.push(...motionsCases, ...memoMotionCases);
 
   // Assign CURIEs in-place. Each case gets `case_curie`; each opinion gets
   // `curie`. Collision-disambiguation suffix `:NN` is appended when two

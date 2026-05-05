@@ -196,6 +196,26 @@ function walkSection(pages, classification, section, volumeMeta) {
   const inSection = pages.filter((p, i) => classification[i].section === section);
   if (!inSection.length) return [];
 
+  // Build the list of contiguous in-section page ranges. Some Misc 3d
+  // volumes interleave 'opinions' and 'abstracts' blocks; without
+  // tracking these blocks separately the case-end-page cap below would
+  // run a case in the FIRST opinions block all the way through the
+  // abstracts section to just before the next case in the SECOND
+  // opinions block (e.g. Hayes v Mia's Bathhouse for Pets, 57 Misc 3d 78,
+  // ended up with end_page_index=169 instead of 134 because the next
+  // case's parallel cite was on page 170).
+  const sectionBlocks = [];
+  for (let i = 0; i < pages.length; i++) {
+    if (classification[i].section !== section) continue;
+    const last = sectionBlocks[sectionBlocks.length - 1];
+    if (last && pages[i].page_index === last.end + 1) last.end = pages[i].page_index;
+    else sectionBlocks.push({ start: pages[i].page_index, end: pages[i].page_index });
+  }
+  const blockEndFor = (pageIdx) => {
+    const blk = sectionBlocks.find(b => pageIdx >= b.start && pageIdx <= b.end);
+    return blk ? blk.end : null;
+  };
+
   const reporter = volumeMeta?.reporter || 'NY3d';
   const runRe = runHeadCiteRegex(reporter);
 
@@ -338,7 +358,13 @@ function walkSection(pages, classification, section, volumeMeta) {
     // fall back to the cite's page if no preceding prefix was found.
     const start = firstPages[i].start_page_index;
     const citePage = firstPages[i].page_index;
-    const rawEnd = i + 1 < firstPages.length ? firstPages[i + 1].start_page_index - 1 : sectionEnd;
+    // End cap: next case's start - 1, OR end of section. ALSO capped at
+    // the end of THIS case's contiguous in-section block, so cases never
+    // bleed across a non-section interlude (e.g., the Misc 3d abstracts
+    // block sandwiched between two opinions blocks).
+    const blockEnd = blockEndFor(start) ?? sectionEnd;
+    const candidateEnd = i + 1 < firstPages.length ? firstPages[i + 1].start_page_index - 1 : sectionEnd;
+    const rawEnd = Math.min(candidateEnd, blockEnd);
     const end = Math.max(rawEnd, start);
 
     // Find the canonical citation. The bracketed running-head cite on
@@ -411,6 +437,15 @@ function walkSection(pages, classification, section, volumeMeta) {
       start, firstPages[i].start_offset,
       citePage, firstPages[i].offset
     );
+
+    // Defense in depth: strip any leading memo-number digit on memoranda
+    // captions. extractCaptionRaw already strips when its prefix-detection
+    // anchored on the start_offset; this catches secondary detections of
+    // the same case where start_offset lands past the digit but the
+    // recombined text still carries it at the head.
+    if (section === 'memoranda' && captionRaw) {
+      captionRaw = captionRaw.replace(/^\s*\d{1,3}\s+(?=[A-Z]|\d)/, '');
+    }
 
     // NY3d motion-decision fallback. Regular extraction returns empty when
     // start_offset == cite_offset (no AD3d-style memo prefix matched, which
@@ -603,10 +638,11 @@ function extractNyMotionCaption(text, citeOffset) {
 }
 
 /**
- * Cluster a (already-recombined) word array into visual lines and return
- * the joined text for each line. Lines are sorted top-to-bottom; words
- * within a line are sorted left-to-right. Two words belong to the same
- * line if their `top` values differ by less than 2.5pt.
+ * Cluster a (already-recombined) word array into visual lines. Each line
+ * record carries `top`, `text`, and the underlying `words` array (for the
+ * cross-row body splice pass that follows). Lines are sorted top-to-bottom;
+ * words within a line are sorted left-to-right. Two words belong to the
+ * same line if their `top` values differ by less than 2.5pt.
  */
 function recombinedLines(words) {
   if (!words.length) return [];
@@ -617,7 +653,7 @@ function recombinedLines(words) {
   const flush = () => {
     if (!cur.length) return;
     const ws = cur.slice().sort((a, b) => a.x0 - b.x0);
-    lines.push({ top: curTop, text: ws.map(w => w.text).join(' ') });
+    lines.push({ top: curTop, text: ws.map(w => w.text).join(' '), words: ws });
   };
   for (const w of sorted) {
     if (curTop === null || Math.abs(w.top - curTop) <= 2.5) {
@@ -631,6 +667,172 @@ function recombinedLines(words) {
   }
   flush();
   return lines;
+}
+
+// Body word size cap used by the orphan-row splice. Small-caps body
+// fragments render at 6.98pt; section banners (SUMMARY, HEADNOTE,
+// APPEARANCES OF COUNSEL, …) render at 8.98pt. Both are all-caps but only
+// the 6.98pt fragments are wrap continuation candidates. Threshold of 8
+// cleanly separates them. Bumping back to 9 (the lead-cap floor) would
+// false-positive on banners, splicing "summary" into the previous case's
+// hyphenated word.
+const ORPHAN_BODY_MAX_SIZE = 8;
+
+/**
+ * Second pass over the recombined line records: detect rows whose words are
+ * ALL small-caps body fragments (i.e., the per-cap recombiner couldn't pair
+ * them with anything on their own row), and splice them into the most
+ * recent prior line whose last word ends with a hyphen — the wrapped lead
+ * they continue.
+ *
+ * Empirical patterns this resolves (from validator survey):
+ *
+ *   "...v Purchase Col-"           ← row K with hyphenated lead
+ *   "LEGE OF THE"                  ← row K+2 (or K+1) all body fragments
+ *   "State University ... Respon-" ← row K+1 leads
+ *
+ * The first body fragment ("LEGE") continues the wrapped word with no
+ * space ("Col-" + "lege" → "College"); subsequent fragments get a space
+ * before each ("College" + " of" + " the"). The orphan row is removed.
+ *
+ * Lookback is bounded to 3 prior lines: typical caption layouts have at
+ * most one intervening leads-row between the wrapped lead and its body
+ * continuation. A wider window would risk attaching footnote / headnote
+ * fragments to unrelated headers.
+ */
+export function spliceOrphanBodyRows(lines) {
+  const out = [];
+  for (const line of lines) {
+    const allBody = line.words.length > 0
+      && line.words.every(w => w.size < ORPHAN_BODY_MAX_SIZE && /^[A-Z]/.test(w.text));
+    if (!allBody) {
+      out.push(line);
+      continue;
+    }
+    // Find the orphan's host caps row — the line directly above with a
+    // small baseline gap (< 6pt). The orphan and its host form one visual
+    // row pair; the splice TARGET (the wrap source) lives one row pair
+    // earlier.
+    let hostIdx = -1;
+    if (out.length > 0 && (line.top - out[out.length - 1].top) < 6) {
+      hostIdx = out.length - 1;
+    }
+
+    // Determine whether the orphan fragments sit AT THE LEFT of the host
+    // caps row (i.e., before the host's first lead cap). When true, the
+    // orphan is wrap continuation from the previous row pair — even if
+    // the previous row's last word is a non-hyphenated recombined small-
+    // caps word (e.g., `Committee` wrapping to `of the` on the next row).
+    let orphanAtLeft = false;
+    if (hostIdx >= 0) {
+      const host = out[hostIdx];
+      const firstHostCap = host.words.find(w => w.size >= 9);
+      if (firstHostCap && line.words[0].x0 < firstHostCap.x0) {
+        orphanAtLeft = true;
+      }
+    }
+
+    // Find the splice target. Hyphenated leads (`Depart-`) are the
+    // strongest signal and always splice. Non-hyphenated recombined words
+    // splice only when the orphan is at the left of its host (the more
+    // conservative case to avoid attaching unrelated orphans). Plain text
+    // hyphenated wraps like `Peti-` continuing as `tioner` are NOT
+    // targets — `_recombined` distinguishes small-caps merges from
+    // ordinary soft-hyphen line wraps.
+    let target = null;
+    const startK = (hostIdx >= 0 ? hostIdx - 1 : out.length - 1);
+    for (let k = startK; k >= 0 && k >= startK - 3; k--) {
+      const prev = out[k];
+      const lastW = prev.words[prev.words.length - 1];
+      if (!lastW || !lastW._recombined) continue;
+      const hyphenated = /-$/.test(lastW.text);
+      if (hyphenated || orphanAtLeft) {
+        target = { line: prev, lastWord: lastW, hyphenated };
+        break;
+      }
+    }
+    // Partition the orphan row into contiguous groups by an 8pt gap. Each
+    // group is a separate piece of small-caps body text that the per-cap
+    // recombiner couldn't pair. A row like Utica's `ING IN OF THE` splits
+    // into `[ING, IN]` and `[OF, THE]`: the first group is wrap continuation
+    // from row N-1's `Proceed-`, the second sits between two leads on the
+    // host row and prepends to the lead on its right (`Real` → `of the Real`).
+    const TAKE_GAP = 8;
+    const groups = [[line.words[0]]];
+    for (let k = 1; k < line.words.length; k++) {
+      const gap = line.words[k].x0 - line.words[k - 1].x1;
+      if (gap > TAKE_GAP) groups.push([]);
+      groups[groups.length - 1].push(line.words[k]);
+    }
+
+    const leftover = [];
+    if (target) {
+      // Group 0 splices into the wrap target.
+      //   - Hyphenated target: strip trailing hyphen; first fragment glues
+      //     directly to continue the wrapped word (`Depart` + `ment`).
+      //   - Non-hyphenated target: first fragment starts a separate word
+      //     with a leading space (`Committee` + ` of`).
+      const taken = groups[0];
+      let merged = target.hyphenated
+        ? target.lastWord.text.slice(0, -1)
+        : target.lastWord.text;
+      for (let k = 0; k < taken.length; k++) {
+        const frag = taken[k].text.toLowerCase();
+        if (k === 0 && target.hyphenated) {
+          merged += frag;
+        } else {
+          merged += ' ' + frag;
+        }
+      }
+      target.lastWord.text = merged;
+      target.line.text = target.line.words.map(w => w.text).join(' ');
+    } else {
+      // No splice target — keep group 0 as leftover.
+      leftover.push(...groups[0]);
+    }
+
+    // Subsequent groups: prepend to the next recombined lead to the right
+    // on the orphan's host row pair. This handles intra-row orphans like
+    // `OF THE` between Article 11 and Real (Real becomes "of the Real").
+    for (let g = 1; g < groups.length; g++) {
+      const grp = groups[g];
+      const grpLeft = grp[0].x0;
+      // The host row pair includes the orphan and its host caps row.
+      // We look for a recombined lead whose x0 is just to the right of
+      // the orphan group, on either the host caps row OR the orphan row's
+      // top range (within ~6pt of either).
+      let nextLead = null;
+      if (hostIdx >= 0) {
+        const host = out[hostIdx];
+        const candidates = host.words
+          .filter(w => w._recombined && w.x0 > grpLeft)
+          .sort((a, b) => a.x0 - b.x0);
+        if (candidates.length) nextLead = candidates[0];
+      }
+      if (nextLead) {
+        let merged = '';
+        for (let k = 0; k < grp.length; k++) {
+          merged += (k > 0 ? ' ' : '') + grp[k].text.toLowerCase();
+        }
+        nextLead.text = merged + ' ' + nextLead.text;
+        out[hostIdx].text = out[hostIdx].words.map(w => w.text).join(' ');
+      } else {
+        leftover.push(...grp);
+      }
+    }
+
+    if (leftover.length) {
+      out.push({
+        top: line.top,
+        x0: line.x0,
+        x1: line.x1,
+        size: line.size,
+        text: leftover.map(w => w.text).join(' '),
+        words: leftover,
+      });
+    }
+  }
+  return out;
 }
 
 /**
@@ -667,7 +869,7 @@ function extractCaptionRaw(pages, startPage, startOffset, citePage, citeOffset) 
   for (const p of pages) {
     if (p.page_index < startPage || p.page_index > citePage) continue;
     const recombined = recombineWords(p.words || []);
-    const lines = recombinedLines(recombined);
+    const lines = spliceOrphanBodyRows(recombinedLines(recombined));
     parts.push(lines.map(l => l.text).join('\n'));
   }
   let allText = parts.join('\n');
@@ -675,7 +877,9 @@ function extractCaptionRaw(pages, startPage, startOffset, citePage, citeOffset) 
   // Slice from the memo-prefix line. Match `<digit><space><opener>` at line
   // start. The opener `(?:[A-Z][a-z]|...)` requires a real caption word,
   // not a body cite like `1 NY3d 100` (which has uppercase-only `NY` after
-  // the digit).
+  // the digit). After locating the prefix line, drop the prefix digit
+  // itself — it's the memo's stack position within the day, not part of
+  // the caption.
   if (prefixDigit) {
     const re = new RegExp(
       '(?:^|\\n)\\s*' + prefixDigit +
@@ -684,7 +888,7 @@ function extractCaptionRaw(pages, startPage, startOffset, citePage, citeOffset) 
     const m = re.exec(allText);
     if (m) {
       const lineStart = allText.lastIndexOf('\n', m.index) + 1;
-      allText = allText.slice(lineStart);
+      allText = allText.slice(lineStart).replace(/^\s*\d+\s+/, '');
     }
   }
 

@@ -62,8 +62,6 @@ async function main() {
     console.log(`  parallel:    ${c.parallel_cites.join(' / ')}`);
     console.log(`  decided:     ${h.decision_date || '?'}  (argued: ${h.argued_date || '?'}, ${h.argued_or_submitted || '?'})`);
     console.log(`  caption:     ${(h.caption_text || '<none>').slice(0, 180)}`);
-    if (h.disposition_line) console.log(`  disposition: ${h.disposition_line.slice(0, 140)}`);
-    if (h.headnotes_text)   console.log(`  headnotes:   ${h.headnotes_text.slice(0, 140)}…`);
     if (h.warnings.length)  console.log(`  warnings:    ${h.warnings.join('; ')}`);
     printed++;
   }

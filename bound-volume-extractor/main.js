@@ -50,7 +50,7 @@ const PDFS_DIR   = path.join(ROOT, 'pdfs');
 const OUTPUT_DIR = path.join(ROOT, 'output');
 const AUDIT_DIR  = path.join(ROOT, 'audit');
 
-const PARSER_VERSION = '0.6.14';
+const PARSER_VERSION = '0.6.60';
 
 async function ensureDirs() {
   await mkdir(PDFS_DIR,   { recursive: true });

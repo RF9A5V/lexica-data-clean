@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.2",
+  "batch_id": "a471bc2a-632b-42af-9dc4-483f26a3dafc",
+  "parser_version": "0.1.0",
+  "source_pdf_sha256": "546611cc1c7fdb8d2dc0ea46512b2217c8924d01e26b30bd15bf1e993e288c55",
+  "target_source_db": "ny_trial",
+  "volume": {
+    "reporter": "Misc 3d",
+    "volume": 2026,
+    "year": 2026,
+    "kind": "slip_op"
+  },
+  "cases": [
+    {
+      "case_curie": "nyslopopu:2026:50206",
+      "name": "Maddy v Garvey",
+      "name_abbreviation": "Maddy v Garvey",
+      "caption_text": "Maddy v Garvey",
+      "decision_date": "2026-02-06",
+      "docket_number": "2024-801 K C",
+      "first_page": null,
+      "last_page": null,
+      "source_url": "https://www.nycourts.gov/reporter/3dseries/2026/2026_50206.htm",
+      "court_department": null,
+      "citation": "2026 NY Slip Op 50206(U)",
+      "parallel_cites": [
+        "88 Misc 3d 129(A)"
+      ],
+      "captions": [],
+      "opinions": [
+        {
+          "opinion_index": 0,
+          "opinion_type": "opinion",
+          "author": null,
+          "text": "Pollack, Pollack, Isaac & DeCicco, LLP (Brian J. Isaac and Lori Parkman of counsel), for appellant. Scahill Law Group, PC (Gerard Ferrara of counsel), for respondents.\n\nAppeal from an order of the Civil Court of the City of New York, Kings County (Ellen E. Edwards, J.), dated July 11, 2023. The order, in effect, granted the branch of defendants' motion seeking to vacate an order of the same court dated February 3, 2022 granting plaintiff's motion to vacate a January 8, 2020 order of the court (Odessa Kennedy, J. ) dismissing the complaint and, upon such vacatur, denied plaintiff's motion to vacate the January 8, 2020 dismissal of the complaint.\n\nORDERED that the order dated July 11, 2022 is reversed, without costs, defendants' motion to vacate the February 3, 2022 order is denied, and the matter is remitted to the Civil Court for a trial on the issue of serious injury.\n\nPlaintiff commenced this action in Supreme Court, Kings County, in March of 2013 to recover for serious injuries he sustained on June 23, 2012 in a motor vehicle accident with a car operated by defendant James Garvey and owned by defendant Diane Garvey. Defendants filed an answer and discovery was conducted. Thereafter, defendants' motion for summary judgment on the threshold issue of serious injury was denied and plaintiff's cross-motion for summary judgment on liability was granted. The case was transferred to the Civil Court, Kings County (see CPLR 325 [d]), and a jury trial began in April 2019. After three days of testimony, the Civil Court (Michael Gerstein, J.) granted plaintiff's motion for a mistrial stating that defense counsel's inappropriate behavior, even after he was warned, had prejudiced the jury.\n\nThe parties thereafter appeared twice in June 2019 for a pair of unsuccessful settlement [*2]conferences and again in October 2019, at which time the trial was adjourned to January 8, 2020. Plaintiff's counsel submitted an affidavit of prior engagement dated January 7, 2020 stating that he was not prepared to proceed on January 8, 2020. The Civil Court (Odessa Kennedy, J.) rejected the affidavit and dismissed the complaint, stating that the matter had been adjourned 16 times.\n\nThereafter, plaintiff moved to vacate the January 8, 2020 dismissal order and restore the action to the trial calendar, arguing, among other things, that, since the end of the trial, the case had only been on the calendar three times and it was improper for the court to reject his affidavit of prior engagement on January 8, 2020. In opposition, defendants argued that the court properly dismissed the action as it had been marked final. Defendants failed to appear on the motion's return date of February 3, 2022, and, by order dated February 3, 2022, the court (Ellen E. Edwards, J.) granted plaintiff's motion on default (see Rudsky v Schechtman, 219 AD3d 1453 [2023]). In an order dated July 11, 2022, the Civil Court (Ellen E. Edwards, J.) granted defendants' opposed motion to, in effect, vacate the February 3, 2022 dismissal order, finding that defendants \"demonstrated a reasonable justification for the[ir] failure to appear and present [their] arguments in opposition to the motion to vacate dismissal at the hearing held on February 3, 2022.\" Upon vacating the February 3, 2022 dismissal order and restoring the matter to the calendar, the court denied plaintiff's motion to vacate the January 8, 2020 dismissal of the complaint and to restore the action to the trial calendar. Plaintiff appeals.\n\nA defendant seeking to vacate its default pursuant to CPLR 5015 (a) (1) on the ground of excusable default must demonstrate a reasonable excuse for the default and a potentially meritorious defense to the action (see CPLR 5015 [a] [1]; Allstate Ins. Co. v North Shore Univ. Hosp., 163 AD3d 745 [2018]). \"Law office failure may qualify as a reasonable excuse for a party's default if the claim of such failure is supported by a credible\" and detailed explanation of the default (Maruf v E.B. Mgt. Props., LLC, 181 AD3d 670, 671 [2020]).\n\nHere, defendants failed to provide a detailed and credible explanation for failing to appear at oral argument on February 3, 2022, as their excuse that they failed to appear resulted from law office failure was conclusory and unsubstantiated (see Rudsky v Schechtman, 219 AD3d 1453; HSBC Bank USA, N.A. v Hutchinson, 215 AD3d 645 [2023]). While defense counsel stated that his office had \"repeatedly called and communicated with the Court in seeking status updates on this motion, and have always been informed by the responding clerk that this motion was still pending with no outstanding dates,\" counsel provided no details as to any of those calls, such as the dates, or who placed the calls, or whom they spoke to, etc. Moreover, counsel admitted that his \"office was not in receipt or even aware of\" the February 3, 2022 order until May 23, 2022, which undermines his assertion that his office had repeatedly called and communicated with the court. Insofar as counsel's conclusory and unsubstantiated claim of law office failure does not constitute a reasonable excuse for counsel's default, it is unnecessary to determine whether defendants demonstrated the existence of a potentially meritorious defense (see Hingorani v Venus Enters. 11 Corp., 208 AD3d 1229 [2022]).\n\nAccordingly, the order dated July 11, 2022 is reversed, defendant's motion to vacate the February 3, 2022 order is denied, and the matter is remitted for a trial on the issue of serious injury.\n\nOTTLEY, J.P., TOUSSAINT and MUNDY, JJ., concur.",
+          "page_breaks": [],
+          "footnotes": [],
+          "curie": "nyslopopu:2026:50206#0-opinion"
+        }
+      ]
+    }
+  ]
+}

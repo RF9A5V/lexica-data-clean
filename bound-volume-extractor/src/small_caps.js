@@ -33,8 +33,26 @@
 // Leading-cap word may be preceded by punctuation that pdfplumber bundles
 // (e.g. ",W" / "(S" when there's no space between punctuation and the cap).
 // Capture group 1 is the alpha portion used for length-checking.
-const STARTING_CAP_WITH_PREFIX = /^[^A-Za-z]*([A-Z][A-Z']*)$/;
-const ALL_CAPS = /^[A-Z']+$/;
+//
+// Accepts both straight `'` (U+0027) and curly `’` (U+2019) apostrophes —
+// names like `O'Reilly` / `O’Brien` show up with either form depending on
+// how the typesetter exported the PDF; without the curly variant `O’R`
+// fails as a starting cap and its body fragment ends up orphaned.
+//
+// Unicode property `\p{Lu}` matches uppercase letters across scripts so
+// names like `González`, `Génot`, `Žáček` pass — `[A-Z]` would reject
+// the accented capitals and leave their body fragments orphaned in the
+// output. The `u` flag is required for `\p{...}` syntax.
+const STARTING_CAP_WITH_PREFIX = /^[^\p{L}]*(\p{Lu}[\p{Lu}'’]*)$/u;
+// Body fragment text. All-caps letters, optionally bracketed by a hyphen:
+//   - trailing hyphen (`OL-`) for soft-hyphen wraps that continue on the
+//     next visual row as `LEGE`. The hyphen is preserved in the merged
+//     word so the downstream cross-row splice can recognize the wrap.
+//   - leading hyphen (`-C`) for the second cap of a hyphenated compound
+//     surname (e.g. Ling-Cohan: `L`+`ING`+`-C`+`OHAN`). Without this the
+//     hyphen-prefixed cap stays a separate recombined word and the
+//     output ends up as `Ling -Cohan` with an extra space.
+const ALL_CAPS = /^-?[\p{Lu}'’]+-?$/u;
 
 const MIN_CAP_SIZE          = 9;     // pt; anything smaller can't be the lead
 const MAX_CAP_LENGTH        = 4;     // chars; lead cap is typically 1-3

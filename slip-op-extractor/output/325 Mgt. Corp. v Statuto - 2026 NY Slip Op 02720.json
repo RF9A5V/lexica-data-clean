@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.2",
+  "batch_id": "865f7c71-56d8-4d74-8b81-8a88c432fb7d",
+  "parser_version": "0.1.0",
+  "source_pdf_sha256": "750e735d20c8aa0a504fcb6d1c04489aabb49ecb9bd815fdff48aa096a80393f",
+  "target_source_db": "ny_appellate",
+  "volume": {
+    "reporter": "AD3d",
+    "volume": 2026,
+    "year": 2026,
+    "kind": "slip_op"
+  },
+  "cases": [
+    {
+      "case_curie": "nyslopop:2026:2720",
+      "name": "325 Management Corp., Plaintiff-Respondent, v Danielle Statuto, Defendant-Appellant.",
+      "name_abbreviation": "325 Mgt. Corp. v Statuto",
+      "caption_text": "325 Management Corp., Plaintiff-Respondent, v Danielle Statuto, Defendant-Appellant.",
+      "decision_date": "2026-04-30",
+      "docket_number": "2025-02263",
+      "first_page": null,
+      "last_page": null,
+      "source_url": "https://www.nycourts.gov/reporter/current/3dseries/2026/2026_02720.shtml",
+      "court_department": 1,
+      "citation": "2026 NY Slip Op 02720",
+      "parallel_cites": [],
+      "captions": [],
+      "opinions": [
+        {
+          "opinion_index": 0,
+          "opinion_type": "opinion",
+          "author": null,
+          "text": "Decided and Entered: April 30, 2026\n\nIndex No. 157359/21|Appeal No. 6489|Case No. 2025-02263|\n\nBefore: Kennedy, J.P., Gesmer, González, Rosado, Chan, JJ.\n\n[*1]\n\nAppeal from order, Supreme Court, New York County (Paul A. Goetz, J.), entered March 13, 2025, which denied defendant's CPLR 2221(d) motion for leave to reargue, unanimously dismissed, without costs, as taken from a nonappealable paper.\n\nNo appeal lies as of right from an order denying reargument (CPLR 5701[a]; see Manhattan Telecom., Corp. v Coordinated Behavioral Care, Inc., 216 AD3d 428, 428 [1st Dept 2023]), and we decline to deem defendant's notice of appeal an application for leave to appeal from the order denying reargument (cf. All Craft Fabricators, Inc. v ATC Assoc., Inc., 153 AD3d 1159, 1160 [1st Dept 2017] [notice of appeal from an order not appealable as of right deemed to be a motion for leave to appeal where relief granted by Supreme Court, sua sponte dismissal of the complaint, was of an \"extraordinary nature\"]).\n\nTHIS CONSTITUTES THE DECISION AND ORDER OF THE SUPREME COURT, APPELLATE DIVISION, FIRST DEPARTMENT.\n\nENTERED: April 30, 2026",
+          "page_breaks": [],
+          "footnotes": [],
+          "curie": "nyslopop:2026:2720#0-opinion"
+        }
+      ]
+    }
+  ]
+}

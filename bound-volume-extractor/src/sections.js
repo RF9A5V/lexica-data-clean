@@ -32,7 +32,16 @@ const BANNERS = [
   { section: 'opinions',  re: /^SELECTED\s+CASES\s+DECIDED$/i },  // Misc 3d
   { section: 'motions',   re: /^MOTIONS\s+FOR\s+LEAVE\s+TO\s+APPEAL$/i },
   { section: 'memoranda', re: /^MEMORANDA$/i },
-  { section: 'abstracts', re: /^Abstracts\s+of\s+Other\s+Court\s+Cases(\s+Selected\s+for)?$/i }, // Misc 3d unreported (A)-cites; banner is 2-line, first line ends "...Selected for"
+  // Misc 3d index sections that come AFTER the regular opinion text. Banner
+  // is two visual lines — first line ends "...Selected for", second line is
+  // "Online Publication". Two known variants:
+  //   - "Abstracts of Other Court Cases Selected for / Online Publication"
+  //   - "Abstracts of Appellate Term Cases Selected for / Online Publication"
+  // Without classifying these as their own section, the boundary walker
+  // treats abstract listings as opinion-body continuation and bleeds the
+  // index content into the previous case (e.g. Hayes v Mia's Bathhouse for
+  // Pets, 57 Misc 3d 78, picks up 30+ pages of "APPELLATE TERM ABSTRACTS").
+  { section: 'abstracts', re: /^Abstracts\s+of\s+(?:Other\s+Court|Appellate\s+Term)\s+Cases(\s+Selected\s+for)?$/i },
   { section: 'digest',    re: /^DIGEST[-\s]INDEX$/i },
   { section: 'digest',    re: /^TABLE\s+OF\s+STATUTES(\s+CONSTRUED)?$/i },
   { section: 'errata',    re: /^(CUMULATIVE\s+)?ERRATA(\s+TABLE)?$/i },

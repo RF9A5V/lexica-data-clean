@@ -9,10 +9,9 @@
  *   <CAPTION block — multiple lines, party names in small caps>
  *   <Argued|Submitted DATE; decided DATE>              ← date line
  *   SUMMARY                                            ← optional section
- *     <summary text, ending with a disposition line like
- *      "<lower court cite>, affirmed/reversed/modified.">
+ *     <reporter-prepared summary, ending with a procedural disposition>
  *   HEADNOTES (or HEADNOTE)                            ← headnotes block
- *     <numbered headnotes>
+ *     <numbered, reporter-prepared headnotes>
  *   RESEARCH REFERENCES                                ← end of header
  *     ... opinion body begins thereafter on later pages ...
  *
@@ -23,6 +22,11 @@
  * We render lines by recombining words (small_caps.js) and grouping by
  * `top` coordinate. Then we walk lines top-to-bottom matching markers.
  *
+ * SUMMARY and HEADNOTES blocks are reporter-prepared editorial content
+ * (West/NY-Reporter copyright). We detect the section markers — the
+ * `header_end_top` they pin lets the body extractor know where the
+ * opinion starts — but never extract or emit the text itself.
+ *
  * Returns:
  *   {
  *     parallel_cites: [...],     // already detected; passed in
@@ -30,15 +34,13 @@
  *     decision_date: string|null,// ISO yyyy-mm-dd
  *     argued_date: string|null,  // ISO; may be null
  *     argued_or_submitted: 'argued' | 'submitted' | null,
- *     summary_text: string|null,
- *     disposition_line: string|null, // last line of summary, often `<cite>, affirmed.`
- *     headnotes_text: string|null,   // raw headnotes block
  *     header_end_top: number|null,   // y where header ends (opinion body starts on later pages)
  *     warnings: [string],
  *   }
  */
 
 import { recombineWords } from './small_caps.js';
+import { spliceOrphanBodyRows } from './case_boundaries.js';
 
 const MONTHS = {
   january:  '01', february: '02', march:    '03', april:   '04',
@@ -101,7 +103,11 @@ function buildLines(words) {
     }
   }
   if (current.length) lines.push(makeLine(current, currentTop));
-  return lines;
+  // Cross-row body splice: orphan body fragments that wrap from a hyphenated
+  // lead on an earlier row (e.g. `Col-` + `LEGE OF THE` → `College of the`).
+  // The splice mutates the hyphenated lead's text in-place and drops the
+  // orphan row; subsequent code that reads `line.text` sees the fixed form.
+  return spliceOrphanBodyRows(lines);
 }
 
 function makeLine(words, top) {
@@ -325,38 +331,13 @@ export function extractCaseHeader(pageRecord, parallel_cites, nextPageRecord) {
   const arguedOrSubmitted = dateInfo?.kind          ?? null;
 
   // SUMMARY / HEADNOTES section markers (everything after the date line).
+  // We locate these markers only to anchor `header_end_top` below — the
+  // SUMMARY and HEADNOTES blocks themselves are reporter-prepared
+  // editorial content and are never extracted or emitted.
   const searchStart = dateIdx === -1 ? 0 : dateIdx + 1;
-  const summaryIdx   = findSectionLine(lines, searchStart, SUMMARY_MARKER);
   const headnotesIdx = findSectionLine(lines, searchStart, HEADNOTES_MARKER);
   const researchIdx  = findSectionLine(lines, searchStart, RESEARCH_MARKER);
   const appearIdx    = findSectionLine(lines, searchStart, APPEARANCES_MARKER);
-
-  // Summary block: between SUMMARY and (HEADNOTES or end). Disposition is the
-  // last non-empty line of the summary block.
-  let summaryText = null;
-  let dispositionLine = null;
-  if (summaryIdx !== -1) {
-    const summaryEnd = headnotesIdx !== -1 ? headnotesIdx
-                     : researchIdx  !== -1 ? researchIdx
-                     : appearIdx    !== -1 ? appearIdx
-                     : lines.length;
-    const summaryLines = lines.slice(summaryIdx + 1, summaryEnd)
-      .map(l => l.text.trim()).filter(Boolean);
-    if (summaryLines.length) {
-      summaryText = summaryLines.join(' ');
-      dispositionLine = summaryLines[summaryLines.length - 1];
-    }
-  }
-
-  // Headnotes block: between HEADNOTES and (RESEARCH REFERENCES or APPEARANCES OF COUNSEL or end).
-  let headnotesText = null;
-  if (headnotesIdx !== -1) {
-    const headnotesEnd = researchIdx !== -1 ? researchIdx
-                       : appearIdx   !== -1 ? appearIdx
-                       : lines.length;
-    headnotesText = lines.slice(headnotesIdx + 1, headnotesEnd)
-      .map(l => l.text.trim()).filter(Boolean).join(' ');
-  }
 
   // Where does the body begin? On the FIRST page, the header occupies the
   // upper portion; the opinion body itself usually starts on a later page
@@ -381,9 +362,6 @@ export function extractCaseHeader(pageRecord, parallel_cites, nextPageRecord) {
     argued_date: arguedDate,
     argued_or_submitted: arguedOrSubmitted,
     court_department: deriveDepartment(dateInfo?.court_attribution),
-    summary_text: summaryText,
-    disposition_line: dispositionLine,
-    headnotes_text: headnotesText,
     header_end_top: headerEndTop,
     warnings,
   };

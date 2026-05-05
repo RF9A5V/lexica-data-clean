@@ -158,8 +158,15 @@ function unsquashName(name) {
   out = out.replace(/([A-Za-z\.])v([A-Z])/g, '$1 v $2');
   out = out.replace(/\s+/g, ' ').trim();
   // Trailing `v` after a letter or period: "Peoplev" → "People v",
-  // "P.L.L.C.v" → "P.L.L.C. v".
-  out = out.replace(/([A-Za-z\.])v$/, '$1 v');
+  // "P.L.L.C.v" → "P.L.L.C. v". ONLY apply when no `v` separator exists
+  // elsewhere — otherwise this misfires on real names ending in `v`
+  // (e.g. "Bank of N.Y. Mellon v Zavolunov" gets corrupted to
+  // "Bank of N.Y. Mellon v Zavoluno v"). The case marker `v` is already
+  // separated by then, so the rule is only needed for the
+  // `<plaintiff>v<EOL>` shape from squashed ToC text like `Peoplev`.
+  if (!/\sv\s/.test(out)) {
+    out = out.replace(/([A-Za-z\.])v$/, '$1 v');
+  }
   return out;
 }
 
@@ -250,35 +257,148 @@ export function buildTocMap(pages, classification, volumeMeta) {
  *      Works for memos where caption_raw has small-caps splits.
  *
  * Scores from both methods are summed; highest-scoring candidate wins.
- * Ties go to the first candidate (alphabetically-first ToC entry).
+ *
+ * Tie-break / preference: NY ToCs index every case under both parties —
+ * `Springut Law PC v Profil Institut …` (plaintiff-first, alphabetized
+ * under S) AND `Profil Institut …, Springut Law PC v` (defendant-first,
+ * alphabetized under P). The plaintiff-first form is the standard short
+ * cite. To bias toward it, after scoring we pick the highest plaintiff-
+ * first candidate whose score is at least 50% of the overall max — the
+ * threshold lets us still fall through to a defendant-first candidate
+ * when the plaintiff-first form is clearly the wrong case (token
+ * overlap is much weaker).
  */
 export function pickTocName(tocMap, volumePage, caption) {
   const candidates = tocMap.get(volumePage);
   if (!candidates || !candidates.length) return null;
-  if (candidates.length === 1) return candidates[0];
-  if (!caption) return candidates[0];
+  if (candidates.length === 1) return normalizeTocName(candidates[0]);
+  if (!caption) return preferPlaintiffFirst(candidates);
 
   const capTokens = new Set(tokensFor(caption));
   const capsFragments = [...new Set(
     (caption.match(/\b[A-Z]{3,}\b/g) || []).map(f => f.toLowerCase())
   )];
 
-  let best = candidates[0];
-  let bestScore = -1;
-  for (const cand of candidates) {
+  const scored = candidates.map(cand => {
     let score = 0;
-    // Token overlap.
     for (const t of tokensFor(cand)) if (capTokens.has(t)) score++;
-    // Caps-fragment substring against squashed candidate.
     if (capsFragments.length) {
       const candSquashed = cand.toLowerCase().replace(/[^a-z]/g, '');
       for (const frag of capsFragments) {
         if (candSquashed.includes(frag)) score++;
       }
     }
-    if (score > bestScore) { bestScore = score; best = cand; }
+    return { cand, score };
+  });
+  const maxScore = Math.max(...scored.map(s => s.score));
+
+  // Prefer the highest-scoring plaintiff-first candidate when its score
+  // clears the half-of-max bar. The cutoff catches multi-case ToC pages
+  // (the right plaintiff-first form for THIS case will share most tokens
+  // with the caption, even when its defendant-first sibling slightly
+  // edges it out via an extra incidental token like a memo number).
+  const isDefendantFirst = (s) => /\sv\s*$/.test(s);
+  const plaintiffScored = scored.filter(s => !isDefendantFirst(s.cand));
+  if (plaintiffScored.length) {
+    const bestPlaintiff = plaintiffScored.reduce((a, b) => (b.score > a.score ? b : a));
+    if (bestPlaintiff.score >= maxScore * 0.5) return normalizeTocName(bestPlaintiff.cand);
   }
-  return best;
+
+  // Fall through: take the overall winner (defendant-first form, or any
+  // candidate if there's no plaintiff-first alternative).
+  return normalizeTocName(scored.reduce((a, b) => (b.score > a.score ? b : a)).cand);
+}
+
+// Caption-less fallback: prefer a plaintiff-first candidate when present.
+function preferPlaintiffFirst(candidates) {
+  if (!candidates.length) return null;
+  if (candidates.length === 1) return normalizeTocName(candidates[0]);
+  const isDefendantFirst = (s) => /\sv\s*$/.test(s);
+  const plaintiffFirst = candidates.find(c => !isDefendantFirst(c));
+  return normalizeTocName(plaintiffFirst || candidates[0]);
+}
+
+// Strip ` (Firstname)` style parentheticals from a short case name. NY
+// reporters add a defendant's first name in parens to disambiguate cases
+// in the same volume (`People v Smith (John)` distinguishes from another
+// `People v Smith (Mary)`). The official short cite drops it; the full
+// caption text on the case modal still has it for users who want it.
+//
+// Decision rules — strip when the parenthetical content:
+//   - is empty / a single capitalized name (`Michael`, `O'Neil`, `Génot`)
+//   - is a name + middle initial (`Shaina D.`, `Kelly V.[D.]`)
+//   - is `née Name` or `de Name` (lowercase particle + capitalized name)
+// Keep when the content includes any of these signals (descriptive
+// parenthetical, not a personal-name disambiguator):
+//   - a comma, `§`, or digits
+//   - any keyword that signals an entity / proceeding / cross-reference:
+//     `of`, `the`, `Matter`, `See`, `Dept`, `Town`, `County`, `City`,
+//     `State`, `Assn`, `Corp`, `Inc`, `LLC`, `Court`, `District`,
+//     `Board`, `Commission`, `Local`, `Union`, `Project`, `Fund`,
+//     `Trust`, `Estate`, `Company`, `Services`, `Ltd`
+const STRUCTURAL_PAREN_KEYWORDS = /\b(?:of|the|in|on|at|see|matter|dept|department|town|county|city|state|assn|association|corp|corporation|inc|llc|llp|court|district|board|commission|commissioner|local|union|reciprocal|project|fund|trust|estate|company|services|ltd|co|bank|hospital|hosp)\b/i;
+
+/**
+ * Reorder ToC-inverted "Matter of" forms to natural "Matter of X v Y".
+ *
+ * The volume's Table of Cases indexes Article 78 / disciplinary / probate
+ * cases with the petitioner pulled to the front for alphabetization:
+ *   "Aponte, Matter of, v Olatoye"     → "Matter of Aponte v Olatoye"
+ *   "Dunkez ... Inc., Matter of, v X"  → "Matter of Dunkez ... Inc. v X"
+ *   "Dibble, Matter of"                → "Matter of Dibble"
+ *
+ * The pattern is unambiguous because real captions never contain the
+ * literal substring `, Matter of,` — it's purely an indexing convention.
+ * The trailing-`, Matter of$` form (no `v`) covers guardianship/probate
+ * cases where there's no opposing party.
+ *
+ * Normalization preserves any commas inside the petitioner name (e.g.
+ * `Dunkez Private Home Care, Inc., Matter of, v X`): we strip a single
+ * trailing comma after the petitioner segment when joining `Matter of`
+ * to it (else "Matter of Dunkez Private Home Care, Inc., v X" reads with
+ * a stray comma before `v`).
+ */
+export function normalizeMatterOf(name) {
+  if (!name) return name;
+  let out = name;
+  // With v: `<X>, Matter of, v <Y>` → `Matter of <X> v <Y>`
+  out = out.replace(/^(.+?),\s*Matter of,\s*v\s+(.+)$/, (_, x, y) => {
+    const xClean = x.replace(/,\s*$/, '');
+    return `Matter of ${xClean} v ${y}`;
+  });
+  // No v: `<X>, Matter of` → `Matter of <X>`
+  out = out.replace(/^(.+?),\s*Matter of\s*$/, (_, x) => {
+    const xClean = x.replace(/,\s*$/, '');
+    return `Matter of ${xClean}`;
+  });
+  return out;
+}
+
+/**
+ * Apply the full normalization pipeline to a name picked from the ToC:
+ *   1. Strip personal-name parentheticals (`(John)`)
+ *   2. Reorder ToC-inverted `Matter of` forms
+ */
+export function normalizeTocName(name) {
+  return normalizeMatterOf(stripPersonalParenthetical(name));
+}
+
+export function stripPersonalParenthetical(name) {
+  if (!name) return name;
+  return name
+    .replace(/\s*\(([^)]*)\)/g, (full, content) => {
+      const c = content.trim();
+      if (!c) return '';                                      // empty () — drop
+      if (/[,§\d]/.test(c)) return full;                      // commas/numbers/§ — keep
+      if (STRUCTURAL_PAREN_KEYWORDS.test(c)) return full;     // descriptive — keep
+      // Personal-name shape: starts with capital, lowercase particle
+      // (`de`, `née`), or curly/straight quote — strip.
+      if (/^(?:[A-Z]|née|de\s+[A-Z]|['’"‘“])/.test(c)) return '';
+      return full;
+    })
+    // Collapse any double spaces left after stripping.
+    .replace(/\s{2,}/g, ' ')
+    .trim();
 }
 
 const TOKEN_STOPWORDS = new Set([

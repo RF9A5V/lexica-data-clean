@@ -9,6 +9,12 @@ import path from 'path';
 import pg from 'pg';
 import dotenv from 'dotenv';
 import { getJurisdiction, getCliArgs, DATABASE_CONFIG, PATHS, EXTRACTION_CONFIG } from './config.js';
+// Awkward cross-component import (co-data → co-collection) needed for
+// opinion-curie generation. The merged DB enforces opinions.curie NOT NULL,
+// so direct INSERTs under --target=ny_caselaw must populate it inline rather
+// than deferring to a separate backfillOpinionCuries pass. Legacy ingestion
+// is unaffected (opinions.curie nullable in legacy schema).
+import { generateOpinionCurie } from '../../../co-collection/src/utils/curieGeneration.js';
 
 // Load environment variables
 dotenv.config();
@@ -16,9 +22,24 @@ dotenv.config();
 const { Pool } = pg;
 
 /**
- * Create database connection pool
+ * Create database connection pool.
+ *
+ * Track B / B3 §1: under --target=ny_caselaw, the per-source DATABASE_CONFIG
+ * is bypassed in favor of MERGE_TARGET_URL (the merged ny_caselaw DB). Caller
+ * passes `{ target: 'ny_caselaw' }` as the second arg to opt in.
  */
-function createPool(config = DATABASE_CONFIG) {
+function createPool(config = DATABASE_CONFIG, opts = {}) {
+  if (opts.target === 'ny_caselaw') {
+    if (!process.env.MERGE_TARGET_URL) {
+      throw new Error('createPool: --target=ny_caselaw requires MERGE_TARGET_URL env var.');
+    }
+    return new Pool({
+      connectionString: process.env.MERGE_TARGET_URL,
+      max: 10,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+    });
+  }
   return new Pool({
     host: config.host,
     port: config.port,
@@ -32,11 +53,21 @@ function createPool(config = DATABASE_CONFIG) {
 }
 
 /**
- * Create database schema
+ * Create database schema.
+ *
+ * Under --target=ny_caselaw the merged DB already has its schema (built by
+ * `co-data/caselaw-merge/src/phases/phase03_cases.js` with source_ref etc.).
+ * Skip the legacy CREATE-TABLE path so we don't accidentally try to apply
+ * the legacy schema (which lacks source_ref) on top of it.
  */
 async function createSchema(pool, options = {}) {
-  const { verbose = false } = options;
-  
+  const { verbose = false, target = null } = options;
+
+  if (target === 'ny_caselaw') {
+    if (verbose) console.log('Skipping createSchema — merged ny_caselaw DB already has its schema.');
+    return;
+  }
+
   if (verbose) console.log('Creating database schema...');
   
   const client = await pool.connect();
@@ -232,7 +263,13 @@ async function insertCases(pool, cases, options = {}) {
     batchSize = EXTRACTION_CONFIG.batchSize,
     expectedReporter = null,
     sourceId = null,
+    target = null,
+    sourceRef = null,
   } = options;
+  const merged = target === 'ny_caselaw';
+  if (merged && !sourceRef) {
+    throw new Error('insertCases: --target=ny_caselaw requires options.sourceRef to stamp on cases + opinions.');
+  }
   let officialCitesRebuilt = 0;
   let officialCitesFallback = 0;
   
@@ -259,31 +296,60 @@ async function insertCases(pool, cases, options = {}) {
             continue;
           }
           
-          // Insert case with original_id
-          await client.query(`
-            INSERT INTO cases (
-              id, name, name_abbreviation, decision_date, docket_number,
-              first_page, last_page, file_name, court_name, court_name_abbreviation,
-              court_id, jurisdiction_name, jurisdiction_abbreviation, jurisdiction_id,
-              original_id
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
-          `, [
-            caseData.id,
-            caseData.name,
-            caseData.name_abbreviation,
-            caseData.decision_date,
-            caseData.docket_number,
-            caseData.first_page,
-            caseData.last_page,
-            caseData.file_name,
-            caseData.court_name,
-            caseData.court_name_abbreviation,
-            caseData.court_id,
-            caseData.jurisdiction_name,
-            caseData.jurisdiction_abbreviation,
-            caseData.jurisdiction_id,
-            caseData.id // Store the original case.law ID
-          ]);
+          // Insert case with original_id. Stamp source_ref under --target=ny_caselaw
+          // (merged DB requires source_ref NOT NULL on cases).
+          if (merged) {
+            await client.query(`
+              INSERT INTO cases (
+                id, name, name_abbreviation, decision_date, docket_number,
+                first_page, last_page, file_name, court_name, court_name_abbreviation,
+                court_id, jurisdiction_name, jurisdiction_abbreviation, jurisdiction_id,
+                original_id, source_ref
+              ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)
+            `, [
+              caseData.id,
+              caseData.name,
+              caseData.name_abbreviation,
+              caseData.decision_date,
+              caseData.docket_number,
+              caseData.first_page,
+              caseData.last_page,
+              caseData.file_name,
+              caseData.court_name,
+              caseData.court_name_abbreviation,
+              caseData.court_id,
+              caseData.jurisdiction_name,
+              caseData.jurisdiction_abbreviation,
+              caseData.jurisdiction_id,
+              caseData.id,
+              sourceRef,
+            ]);
+          } else {
+            await client.query(`
+              INSERT INTO cases (
+                id, name, name_abbreviation, decision_date, docket_number,
+                first_page, last_page, file_name, court_name, court_name_abbreviation,
+                court_id, jurisdiction_name, jurisdiction_abbreviation, jurisdiction_id,
+                original_id
+              ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
+            `, [
+              caseData.id,
+              caseData.name,
+              caseData.name_abbreviation,
+              caseData.decision_date,
+              caseData.docket_number,
+              caseData.first_page,
+              caseData.last_page,
+              caseData.file_name,
+              caseData.court_name,
+              caseData.court_name_abbreviation,
+              caseData.court_id,
+              caseData.jurisdiction_name,
+              caseData.jurisdiction_abbreviation,
+              caseData.jurisdiction_id,
+              caseData.id // Store the original case.law ID
+            ]);
+          }
           
           // Build the authoritative official citation from archive provenance
           // when available, rather than trusting CAP's free-text cite string.
@@ -324,8 +390,11 @@ async function insertCases(pool, cases, options = {}) {
             officialCitesFallback++;
           }
           
-          // Insert case citations (cites_to) with cited_case_ids
-          if (caseData.cites_to && caseData.cites_to.length > 0) {
+          // Insert case citations (cites_to) with cited_case_ids. The
+          // case_citations table is a legacy construct that doesn't exist in
+          // the merged DB (merge phase derives cross-case relations
+          // differently). Skip silently under --target=ny_caselaw.
+          if (!merged && caseData.cites_to && caseData.cites_to.length > 0) {
             for (const citedCase of caseData.cites_to) {
               await client.query(`
                 INSERT INTO case_citations (case_id, cited_case, category, reporter, opinion_index, pin_cites, cited_case_ids)
@@ -342,13 +411,37 @@ async function insertCases(pool, cases, options = {}) {
             }
           }
           
-          // Insert opinions
+          // Insert opinions. Under merged, also stamp source_ref + populate
+          // opinion_index (array position) + opinion curie (op:<caseId>#... —
+          // the merged schema has both NOT NULL on curie and a unique index on
+          // (case_id, opinion_index)). Legacy ingestion deferred curies to
+          // backfillOpinionCuries.js; merged can't because of the NOT NULL.
           if (caseData.opinions && caseData.opinions.length > 0) {
-            for (const opinion of caseData.opinions) {
-              await client.query(`
-                INSERT INTO opinions (case_id, opinion_type, author, text)
-                VALUES ($1, $2, $3, $4)
-              `, [caseData.id, opinion.type, opinion.author, opinion.text]);
+            if (merged) {
+              for (let opIdx = 0; opIdx < caseData.opinions.length; opIdx++) {
+                const opinion = caseData.opinions[opIdx];
+                const curie = generateOpinionCurie(Number(caseData.id), opIdx, {
+                  type: opinion.type,
+                  author: opinion.author,
+                });
+                if (!curie) {
+                  throw new Error(
+                    `Failed to generate opinion curie for case ${caseData.id} opinion #${opIdx} (type=${opinion.type}, author=${opinion.author}). ` +
+                    `Under --target=ny_caselaw all opinions need a deterministic curie at INSERT time.`,
+                  );
+                }
+                await client.query(`
+                  INSERT INTO opinions (case_id, opinion_type, author, text, source_ref, opinion_index, curie)
+                  VALUES ($1, $2, $3, $4, $5, $6, $7)
+                `, [caseData.id, opinion.type, opinion.author, opinion.text, sourceRef, opIdx, curie]);
+              }
+            } else {
+              for (const opinion of caseData.opinions) {
+                await client.query(`
+                  INSERT INTO opinions (case_id, opinion_type, author, text)
+                  VALUES ($1, $2, $3, $4)
+                `, [caseData.id, opinion.type, opinion.author, opinion.text]);
+              }
             }
           }
           
@@ -470,26 +563,34 @@ async function loadCasesFromFile(pool, filePath, options = {}) {
 }
 
 /**
- * Get database statistics
+ * Get database statistics.
+ *
+ * Under merged target, the case_citations table doesn't exist (legacy-only),
+ * so that stat is omitted. Caller passes `{ target: 'ny_caselaw' }` to opt
+ * into the merged stat shape.
  */
-async function getDatabaseStats(pool) {
+async function getDatabaseStats(pool, options = {}) {
+  const { target = null } = options;
+  const merged = target === 'ny_caselaw';
   const client = await pool.connect();
-  
+
   try {
     const stats = {};
-    
+
     // Count cases
     const casesResult = await client.query('SELECT COUNT(*) as count FROM cases');
     stats.cases = parseInt(casesResult.rows[0].count);
-    
+
     // Count citations
     const citationsResult = await client.query('SELECT COUNT(*) as count FROM citations');
     stats.citations = parseInt(citationsResult.rows[0].count);
-    
-    // Count case citations
-    const caseCitationsResult = await client.query('SELECT COUNT(*) as count FROM case_citations');
-    stats.case_citations = parseInt(caseCitationsResult.rows[0].count);
-    
+
+    // Count case citations (legacy table — merged DB lacks it)
+    if (!merged) {
+      const caseCitationsResult = await client.query('SELECT COUNT(*) as count FROM case_citations');
+      stats.case_citations = parseInt(caseCitationsResult.rows[0].count);
+    }
+
     // Count opinions
     const opinionsResult = await client.query('SELECT COUNT(*) as count FROM opinions');
     stats.opinions = parseInt(opinionsResult.rows[0].count);

@@ -19,7 +19,11 @@ function normalizeSource(source, index) {
   const zip_urls = Array.isArray(source.zip_urls) ? source.zip_urls.filter(Boolean) : [];
   const urls_file = source.urls_file || null; // optional explicit path to save/load scraped URLs
 
-  return { id, label, scrape_urls, zip_urls, urls_file };
+  // Preserve passthrough fields used by downstream steps: `reporter` (load
+  // step's official-cite reconstruction), `source_ref` (load step's merged-
+  // target stamping + extract-citations step), and anything else callers
+  // attached. Spread first so normalized fields above win.
+  return { ...source, id, label, scrape_urls, zip_urls, urls_file };
 }
 
 export async function loadConfig(configPath) {

@@ -27,15 +27,31 @@ import path from 'path';
 function parseStepArg() {
   const args = process.argv.slice(2);
   const stepArg = args.find(arg => arg.startsWith('--step='))?.split('=')[1];
-  
+
   const validSteps = ['all', 'scrape', 'download', 'extract', 'extract-citations', 'load'];
   const step = stepArg || 'all';
-  
+
   if (!validSteps.includes(step)) {
     throw new Error(`Invalid step: ${step}. Valid steps: ${validSteps.join(', ')}`);
   }
-  
+
   return step;
+}
+
+/**
+ * Parse --target=ny_caselaw (Track B / B3 §1). Returns 'ny_caselaw' or null.
+ * Validates that MERGE_TARGET_URL is set when --target is requested.
+ */
+function parseTargetArg() {
+  const args = process.argv.slice(2);
+  const target = args.find(a => a.startsWith('--target='))?.split('=')[1] || null;
+  if (target && target !== 'ny_caselaw') {
+    throw new Error(`--target=${target} is not supported (use --target=ny_caselaw or omit for legacy).`);
+  }
+  if (target === 'ny_caselaw' && !process.env.MERGE_TARGET_URL) {
+    throw new Error('--target=ny_caselaw requires MERGE_TARGET_URL env var.');
+  }
+  return target;
 }
 
 /**
@@ -261,21 +277,38 @@ async function runConfigPipeline(configPath, step, options) {
       if (dryRun) {
         console.log('Would create database schema and load case data');
       } else {
-        const pool = createPool(cfg.database);
+        const pool = createPool(cfg.database, { target: options.target });
+        const sourceRef = source.source_ref || null;
+        if (options.target === 'ny_caselaw' && !sourceRef) {
+          throw new Error(
+            `Source '${sourceId}' in config '${configPath}' is missing 'source_ref' — required under --target=ny_caselaw so loader can stamp it on cases/opinions.`,
+          );
+        }
+        if (options.target === 'ny_caselaw') {
+          console.log(`  Target: MERGED DB (ny_caselaw) — stamping source_ref='${sourceRef}' on cases + opinions`);
+        }
         try {
           const client = await pool.connect();
           await client.query('SELECT NOW()');
           client.release();
-          await createSchema(pool, { verbose });
-          // Write config metadata (jurisdiction, court_level, reporter, etc.)
-          await insertMetadata(pool, cfg.metadata, { verbose });
+          await createSchema(pool, { verbose, target: options.target });
+          // Write config metadata (jurisdiction, court_level, reporter, etc.).
+          // Skip under merged: the metadata table is a legacy-DB construct and
+          // does not exist in the merged schema.
+          if (options.target !== 'ny_caselaw') {
+            await insertMetadata(pool, cfg.metadata, { verbose });
+          } else if (verbose) {
+            console.log('  Skipping insertMetadata — merged DB has no metadata table.');
+          }
           const dataFile = path.resolve(`./data/processed/${sourceId}-cases.json`);
           const result = await loadCasesFromFile(pool, dataFile, {
             verbose,
             sourceId,
             expectedReporter: source.reporter || null,
+            target: options.target,
+            sourceRef,
           });
-          const stats = await getDatabaseStats(pool);
+          const stats = await getDatabaseStats(pool, { target: options.target });
           console.log(`  ✅ Loaded ${result.inserted} cases (${result.skipped} skipped)`);
           if (result.officialCitesRebuilt) {
             console.log(`  🔧 Rebuilt ${result.officialCitesRebuilt} official citations from archive provenance`);
@@ -296,38 +329,45 @@ async function runConfigPipeline(configPath, step, options) {
  * Step 4: Load data into database
  */
 async function runLoadStep(jurisdiction, options) {
-  const { verbose, dryRun } = options;
-  
+  const { verbose, dryRun, target } = options;
+
   console.log('\n🗄️  Step 4: Loading data into database...');
-  
+
   if (dryRun) {
     console.log('Would create database schema and load case data');
     return { inserted: 0, skipped: 0 };
   }
-  
-  const pool = createPool();
-  
+
+  if (target === 'ny_caselaw') {
+    throw new Error(
+      '--target=ny_caselaw requires --config mode (single-jurisdiction mode has no per-source source_ref to stamp). ' +
+      `Pass --config=./configs/<source>.json with a 'source_ref' field on each source.`,
+    );
+  }
+
+  const pool = createPool(undefined, { target });
+
   try {
     // Test connection
     const client = await pool.connect();
     await client.query('SELECT NOW()');
     client.release();
-    
+
     // Create schema
-    await createSchema(pool, { verbose });
-    
+    await createSchema(pool, { verbose, target });
+
     // Load data
     const dataFile = path.resolve(`./data/processed/${jurisdiction}-cases.json`);
-    const result = await loadCasesFromFile(pool, dataFile, { verbose });
-    
+    const result = await loadCasesFromFile(pool, dataFile, { verbose, target });
+
     // Get statistics
     const stats = await getDatabaseStats(pool);
-    
+
     console.log(`✅ Loaded ${result.inserted} cases (${result.skipped} skipped)`);
     console.log(`📊 Database now contains ${stats.cases} total cases`);
-    
+
     return result;
-    
+
   } finally {
     await pool.end();
   }
@@ -361,8 +401,13 @@ async function main() {
     if (dryRun) console.log('Mode: DRY RUN');
     if (verbose) console.log('Mode: VERBOSE');
     
+    const target = parseTargetArg();
+    if (target === 'ny_caselaw') {
+      console.log(`Target: MERGED DB (ny_caselaw) via MERGE_TARGET_URL`);
+    }
+
     const startTime = Date.now();
-    const options = { verbose, dryRun, limit, offset };
+    const options = { verbose, dryRun, limit, offset, target };
     
     if (config) {
       // Config-driven multi-source pipeline

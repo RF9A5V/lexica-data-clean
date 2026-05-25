@@ -1,20 +1,27 @@
 #!/usr/bin/env node
 /**
  * Bound-Volume Bulk-Upload — push parsed cases.json files from
- * ./output/<volume>/cases.json into co-collection's bulk-ingest API.
+ * ./out/<volume>/cases.json into co-collection's bulk-ingest API.
  *
  * Usage:
  *   node upload.js list                          # list local volumes + their ingestion state
  *   node upload.js upload <vol> [<vol>...]       # upload specific volume(s)
- *   node upload.js upload-all                    # upload every output/<vol>/cases.json
+ *   node upload.js upload-all                    # upload every out/<vol>/cases.json
  *
  * Auth (one of):
  *   --email=<addr> --password=<pw>     (or env CO_ADMIN_EMAIL / CO_ADMIN_PASSWORD)
  *   --token=<jwt>                       (or env CO_ADMIN_TOKEN — skips login)
  *
  * Flags:
+ *   --target=<env>        Resolve base-url and per-volume source ref by env:
+ *                         local | staging | prod. On staging/prod the upload
+ *                         passes ?source=<ref> per volume (since the parser-
+ *                         emitted target_source_db only resolves on local).
+ *                         Overridden by --base-url= or env CO_COLLECTION_URL.
  *   --base-url=<url>      Collection base URL (default: env CO_COLLECTION_URL or http://localhost:3001)
- *   --source=<ref>        Override target_source_db resolution (e.g. ny_appellate)
+ *   --source=<ref>        Force target_source_db override for every volume in
+ *                         the run (escape hatch — only useful with --reporter
+ *                         or a single explicit volume).
  *   --reporter=<name>     Filter by reporter suffix: AD3d | Misc3d | NY3d
  *   --confirm             Confirm (queue worker) when validation has no errors
  *   --overwrite           Pass overwrite=true on confirm (re-ingest into existing rows)
@@ -43,7 +50,7 @@ import { fileURLToPath } from 'node:url';
 import { Blob } from 'node:buffer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const OUTPUT_DIR = path.join(__dirname, 'output');
+const OUTPUT_DIR = path.join(__dirname, 'out');
 
 // -------- args --------
 
@@ -150,11 +157,19 @@ class Client {
     return payload;
   }
 
-  async upload(casesPath, fileName, sourceOverride) {
+  async upload(casesPath, fileName, sourceOverride, { mergeTarget = false } = {}) {
     const buf = await readFile(casesPath);
     const fd = new FormData();
     fd.append('file', new Blob([buf], { type: 'application/json' }), fileName);
-    const qs = sourceOverride ? `?source=${encodeURIComponent(sourceOverride)}` : '';
+    const params = new URLSearchParams();
+    if (sourceOverride) params.set('source', sourceOverride);
+    // Track B / B3 §1: signal that the upload should be applied against the
+    // merged ny_caselaw DB. Server persists the flag but currently REJECTS
+    // confirmed merge_target jobs (the merged-aware matcher/inserter aren't
+    // implemented yet) — surface that explicitly so callers know the upload
+    // lands as pending_review but won't apply.
+    if (mergeTarget) params.set('merge_target', 'true');
+    const qs = params.toString() ? `?${params.toString()}` : '';
     const url = `${this.baseUrl}/admin/api/bulk-ingest/upload${qs}`;
     const res = await fetch(url, {
       method: 'POST',
@@ -264,8 +279,8 @@ async function cmdList(client, flags) {
     }
     return;
   }
-  // Need to know what's already ingested. Lift target sources from the files.
-  const refs = await collectSourceRefs(volumes, flags);
+  // Need to know what's already ingested. Lift target sources from the volume names.
+  const refs = collectSourceRefs(volumes, flags);
   const idx = await buildExistingIndex(client, refs);
   console.log(`local volumes: ${volumes.length}    existing ingestions indexed: ${idx.size}`);
   console.log('volume       size   status         ingestion');
@@ -308,13 +323,12 @@ async function cmdUpload(client, flags, requestedVolumes) {
   const overwrite = bool(flags.overwrite);
   const wait = bool(flags.wait);
   const skipExisting = bool(flags['skip-existing']);
-  const sourceOverride = flags.source || null;
   const intervalMs = parseInt(flags['poll-interval'] || '3000', 10);
   const timeoutMs = parseInt(flags['poll-timeout'] || '600', 10) * 1000;
 
   let existingIndex = null;
   if (skipExisting) {
-    const refs = await collectSourceRefs(volumes, flags);
+    const refs = collectSourceRefs(volumes, flags);
     existingIndex = await buildExistingIndex(client, refs);
     console.log(`[skip-existing] indexed ${existingIndex.size} prior ingestions across ${refs.length} source(s)`);
   }
@@ -342,14 +356,19 @@ async function cmdUpload(client, flags, requestedVolumes) {
       }
     }
 
+    const uploadOverride = uploadOverrideFor(v.name, flags);
+    const reportedSource = uploadOverride || sourceRefFor(v.name, flags) || meta.targetSourceDb;
+    const mergeTarget = bool(flags['merge-target']);
+
     if (dryRun) {
-      console.log(`${tag} dry-run — would upload ${meta.cases} cases (${(v.size / 1024 / 1024).toFixed(1)} MiB), source=${sourceOverride || meta.targetSourceDb}`);
+      const mergeNote = mergeTarget ? ' [merge_target=true — server will REJECT confirms]' : '';
+      console.log(`${tag} dry-run — would upload ${meta.cases} cases (${(v.size / 1024 / 1024).toFixed(1)} MiB), source=${reportedSource}${uploadOverride ? ' (override)' : ''}${mergeNote}`);
       continue;
     }
 
     let ingestion;
     try {
-      ingestion = await client.upload(v.casesPath, `${v.name}.cases.json`, sourceOverride);
+      ingestion = await client.upload(v.casesPath, `${v.name}.cases.json`, uploadOverride, { mergeTarget });
     } catch (err) {
       console.error(`${tag} upload failed: ${err.message}`);
       summary.failed++;
@@ -457,36 +476,80 @@ async function readMeta(casesPath) {
   };
 }
 
-async function collectSourceRefs(volumes, flags) {
+function collectSourceRefs(volumes, flags) {
   if (flags.source) return [String(flags.source)];
   const set = new Set();
   for (const v of volumes) {
-    try {
-      const meta = await readMeta(v.casesPath);
-      // We don't have the app DB locally; fall back to the *physical* DB name
-      // (the API will resolve it server-side, but for index-building we want
-      // app-level source_ref). Best we can do: query both physical and the
-      // common refs. The skip index keys by sha256 anyway, so listing under
-      // the wrong ref just yields no rows — harmless.
-      if (meta.targetSourceDb) {
-        // Map physical → known refs heuristically; falls back to the physical
-        // name itself if unknown.
-        const ref = PHYSICAL_TO_REF[meta.targetSourceDb] || meta.targetSourceDb;
-        set.add(ref);
-      }
-    } catch { /* ignore */ }
+    const ref = sourceRefFor(v.name, flags);
+    if (ref) set.add(ref);
   }
   return [...set];
 }
 
-// Memory: Source ref vs DB name (saved 2026-04-XX). The sources table uses
-// app-level refs (ny_supreme/ny_appellate/ny_trial); the parser writes the
-// physical DB name (ny_reporter/ny_appellate_division/ny_trial_courts).
-const PHYSICAL_TO_REF = {
-  ny_reporter: 'ny_supreme',
-  ny_appellate_division: 'ny_appellate',
-  ny_trial_courts: 'ny_trial',
+// Per-target source identifiers, keyed by reporter suffix. Source refs are
+// the same on every environment (ny_supreme / ny_appellate / ny_trial); what
+// differs is the physical DB name. The parser bakes the *dev* physical
+// names (ny_reporter / ny_appellate_division / ny_trial_courts) into each
+// cases.json's `target_source_db`, and on local the sources table maps
+// those names back to source refs. Staging and prod don't carry that drift —
+// the DB names match the source refs — so the parser-emitted names won't
+// resolve there. uploadOverrideFor() detects that mismatch and tells the
+// upload call to pass `?source=<ref>` instead.
+const SOURCE_TARGETS = {
+  local: {
+    NY3d:   { source_ref: 'ny_supreme',   db_name: 'ny_reporter' },
+    AD3d:   { source_ref: 'ny_appellate', db_name: 'ny_appellate_division' },
+    Misc3d: { source_ref: 'ny_trial',     db_name: 'ny_trial_courts' },
+  },
+  staging: {
+    NY3d:   { source_ref: 'ny_supreme',   db_name: 'ny_supreme' },
+    AD3d:   { source_ref: 'ny_appellate', db_name: 'ny_appellate' },
+    Misc3d: { source_ref: 'ny_trial',     db_name: 'ny_trial' },
+  },
+  prod: {
+    NY3d:   { source_ref: 'ny_supreme',   db_name: 'ny_supreme' },
+    AD3d:   { source_ref: 'ny_appellate', db_name: 'ny_appellate' },
+    Misc3d: { source_ref: 'ny_trial',     db_name: 'ny_trial' },
+  },
 };
+
+function targetEnv(flags) {
+  return String(flags.target || 'local').toLowerCase();
+}
+
+function targetTable(flags) {
+  return SOURCE_TARGETS[targetEnv(flags)] || SOURCE_TARGETS.local;
+}
+
+function sourceRefFor(volumeName, flags) {
+  return targetTable(flags)[reporterOf(volumeName)]?.source_ref || null;
+}
+
+function uploadOverrideFor(volumeName, flags) {
+  // --source=<ref> is a global escape hatch (applies to every volume).
+  if (flags.source) return String(flags.source);
+  const reporter = reporterOf(volumeName);
+  const entry = targetTable(flags)[reporter];
+  if (!entry) return null;
+  // If the target's db_name matches the parser-emitted dev physical name,
+  // the server can resolve it on its own — leave the override unset.
+  // Otherwise pass source_ref so the lookup bypasses the database_url scan.
+  const devDbName = SOURCE_TARGETS.local[reporter]?.db_name;
+  return entry.db_name === devDbName ? null : entry.source_ref;
+}
+
+// --target=… → base URL. Hostnames match the Fly app names; bump if those
+// ever change. Returns null for unknown targets so resolution falls
+// through to the local default.
+const TARGET_URLS = {
+  local:   'http://localhost:3001',
+  staging: 'https://curia-collection-staging.fly.dev',
+  prod:    'https://co-collection.fly.dev',
+};
+function resolveTargetUrl(target) {
+  if (!target) return null;
+  return TARGET_URLS[String(target).toLowerCase()] || null;
+}
 
 // -------- entry --------
 
@@ -500,7 +563,14 @@ async function main() {
     return;
   }
 
-  const baseUrl = flags['base-url'] || process.env.CO_COLLECTION_URL || 'http://localhost:3001';
+  // --target=local|staging|prod is a convenience over --base-url. Explicit
+  // --base-url and CO_COLLECTION_URL still win so existing CI scripts don't
+  // change behavior.
+  const baseUrl =
+    flags['base-url']
+    || process.env.CO_COLLECTION_URL
+    || resolveTargetUrl(flags.target)
+    || 'http://localhost:3001';
 
   // Auth is required when we'll talk to the API. `list` without creds, and
   // `--dry-run` without `--skip-existing`, both stay local.
@@ -551,7 +621,10 @@ Common flags:
   --base-url=<url>                  collection base URL (env CO_COLLECTION_URL, default http://localhost:3001)
   --email=<addr> --password=<pw>    admin credentials (env CO_ADMIN_EMAIL / CO_ADMIN_PASSWORD)
   --token=<jwt>                     admin JWT (env CO_ADMIN_TOKEN; skips login)
-  --source=<ref>                    override target_source_db resolution
+  --source=<ref>                    force target_source_db override for every volume in the run
+  --merge-target                    upload with merge_target=true (Track B / B3 §1). Server persists
+                                    the flag but REJECTS confirmed jobs until the merged-aware
+                                    matcher/inserter ships — use for ahead-of-server upload staging only.
   --reporter=<AD3d|Misc3d|NY3d>     filter to one reporter
   --start-from=<vol>                resume from a specific volume (sorted natural order)
   --limit=<N>                       process at most N volumes after filtering

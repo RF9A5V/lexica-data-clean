@@ -7,10 +7,18 @@ import { writeFile } from 'fs/promises';
  * The shape is intentionally flat and verbose — every record carries
  * `batch_id`, source attribution, and the originating PDF's hash so any row
  * can be traced back to its provenance for audit/rollback.
+ *
+ * Schema 0.3: per-case citations are emitted as a rich `citations[]` array
+ * (matching slip-op-extractor's 0.3 shape), replacing the legacy
+ * `citation` (string) + `parallel_cites` (string[]) fields. The downstream
+ * 0.3 validator branches on this shape only — keeping bound-volume and
+ * slip-op outputs in lockstep means the validator no longer needs the
+ * 0.1/0.2 branches.
  */
 export async function writeJson(outPath, result) {
+  const cases = (result.cases || []).map(transformCaseToV03);
   const doc = {
-    schema_version: '0.2',
+    schema_version: '0.3',
     batch_id: result.batch_id,
     parser_version: result.parser_version,
     source_pdf: result.source_pdf,
@@ -18,12 +26,50 @@ export async function writeJson(outPath, result) {
     parsed_at: result.parsed_at,
     target_source_db: result.volume?.source_db || null,
     volume: result.volume,
-    cases: result.cases,
+    cases,
     stats: result.stats,
     warnings: result.warnings,
   };
   await writeFile(outPath, JSON.stringify(doc, null, 2));
   return doc;
+}
+
+/**
+ * Convert a parser-emitted case object (schema 0.2 in-memory shape, with
+ * top-level `citation` + `parallel_cites` strings) into the 0.3 shape with
+ * a `citations[]` array.
+ *
+ * Rules:
+ *   - `citation` becomes the first entry as `citation_type: 'official'`,
+ *     carrying the case_curie as its `curie` (mirrors how slip-op-extractor
+ *     stamps the curie onto its slip_op-typed entry).
+ *   - Each `parallel_cites` entry becomes a `citation_type: 'parallel'`
+ *     entry with `curie: null` (regional reporters get no curie at parse
+ *     time — the inserter assigns the case-level curie at insert).
+ *   - Cite strings are normalized to dotted form via `normalizeCite()`
+ *     (the parser emits compact "30 NY3d 1" form; the source DBs and
+ *     validator expect "30 N.Y.3d 1").
+ *   - All other case fields pass through unchanged.
+ */
+function transformCaseToV03(c) {
+  const citations = [];
+  if (c.citation) {
+    citations.push({
+      cite: normalizeCite(c.citation),
+      citation_type: 'official',
+      curie: c.case_curie || null,
+    });
+  }
+  for (const pc of c.parallel_cites || []) {
+    if (!pc) continue;
+    citations.push({
+      cite: normalizeCite(pc),
+      citation_type: 'parallel',
+      curie: null,
+    });
+  }
+  const { citation, parallel_cites, ...rest } = c;
+  return { ...rest, citations };
 }
 
 /**
@@ -46,9 +92,11 @@ export async function writeJson(outPath, result) {
  * JSON: `DELETE FROM cases WHERE curie IN ('…', '…', …)` (citations and
  * opinions cascade-delete via FK).
  *
- * Provenance is tracked entirely in the audit JSON — `original_id` and
- * `file_name` are left NULL since those are CAP-specific. The audit file
- * holds the (case_curie → batch_id) mapping needed for rollback.
+ * Provenance is tracked entirely in the audit JSON — `original_id` is left
+ * NULL since CAP assigns it; the audit file holds the (case_curie → batch_id)
+ * mapping needed for rollback. `file_name` IS populated (since assignCuries
+ * synthesizes a `<page>-<position>` value matching the CAP convention) so
+ * stacked-memo cases sharing a page caption hash to distinct values.
  */
 export async function writeSql(outPath, result) {
   const cases = result.cases || [];
@@ -174,7 +222,7 @@ function emitCaseStatement(c, ctx) {
   out.push(`WITH new_case AS (`);
   out.push(`  INSERT INTO cases (`);
   out.push(`    id, name, name_abbreviation, decision_date, docket_number,`);
-  out.push(`    first_page, last_page, court_name, court_name_abbreviation, court_id,`);
+  out.push(`    first_page, last_page, file_name, court_name, court_name_abbreviation, court_id,`);
   out.push(`    jurisdiction_name, jurisdiction_abbreviation, jurisdiction_id,`);
   out.push(`    curie, source_url, court_department`);
   out.push(`  ) VALUES (`);
@@ -185,6 +233,7 @@ function emitCaseStatement(c, ctx) {
   out.push(`    ${sqlString(c.docket_number)},`);
   out.push(`    ${sqlString(c.first_page != null ? String(c.first_page) : null)},`);
   out.push(`    ${sqlString(c.last_page != null ? String(c.last_page) : null)},`);
+  out.push(`    ${sqlString(c.file_name)},`);
   out.push(`    ${sqlString(courtName)},`);
   out.push(`    ${sqlString(courtAbbrev)},`);
   out.push(`    ${courtId == null ? 'NULL' : courtId},`);

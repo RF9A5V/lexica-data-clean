@@ -1,47 +1,49 @@
 #!/usr/bin/env node
 /**
  * Bound-Volume Bulk-Upload — push parsed cases.json files from
- * ./out/<volume>/cases.json into co-collection's bulk-ingest API.
+ * ./out/<volume>/cases.json into co-backend's bulk-ingest API.
  *
  * Usage:
  *   node upload.js list                          # list local volumes + their ingestion state
  *   node upload.js upload <vol> [<vol>...]       # upload specific volume(s)
  *   node upload.js upload-all                    # upload every out/<vol>/cases.json
  *
- * Auth (one of):
+ * Auth:
  *   --email=<addr> --password=<pw>     (or env CO_ADMIN_EMAIL / CO_ADMIN_PASSWORD)
- *   --token=<jwt>                       (or env CO_ADMIN_TOKEN — skips login)
+ *
+ *   co-backend uses Phoenix session + CSRF (the old co-collection bearer-token
+ *   flow is gone). `login()` POSTs /api/auth/login, stashes the
+ *   _curia_obscura_backend_key cookie from Set-Cookie, and stashes the
+ *   csrf_token from the response body. Subsequent admin calls send both
+ *   `Cookie:` and `X-CSRF-Token:` headers.
  *
  * Flags:
- *   --target=<env>        Resolve base-url and per-volume source ref by env:
- *                         local | staging | prod. On staging/prod the upload
- *                         passes ?source=<ref> per volume (since the parser-
- *                         emitted target_source_db only resolves on local).
- *                         Overridden by --base-url= or env CO_COLLECTION_URL.
- *   --base-url=<url>      Collection base URL (default: env CO_COLLECTION_URL or http://localhost:3001)
- *   --source=<ref>        Force target_source_db override for every volume in
- *                         the run (escape hatch — only useful with --reporter
- *                         or a single explicit volume).
+ *   --target=<env>        local | staging | prod (resolves base-url)
+ *   --base-url=<url>      Backend base URL (default: env CO_BACKEND_URL or http://localhost:4000)
+ *   --source=<ref>        Force source override for every volume in the run
+ *                         (escape hatch — only useful with --reporter or a
+ *                         single explicit volume). The server now REQUIRES
+ *                         ?source=<ref> on every upload, so we always send it.
  *   --reporter=<name>     Filter by reporter suffix: AD3d | Misc3d | NY3d
- *   --confirm             Confirm (queue worker) when validation has no errors
- *   --overwrite           Pass overwrite=true on confirm (re-ingest into existing rows)
- *   --wait                Poll each confirmed ingestion to terminal state
+ *   --wait                Poll each ingestion to terminal state
  *   --skip-existing       Skip volumes whose source_pdf_sha256 is already ingested
- *                         (non-failed, non-cancelled)
  *   --dry-run             Resolve & report what would happen, upload nothing
  *   --limit=<N>           Only process first N volumes (after filtering)
  *   --start-from=<vol>    Skip volumes whose dir name sorts before this one
  *   --poll-interval=<ms>  Wait-mode poll cadence (default 3000)
  *   --poll-timeout=<sec>  Per-ingestion wait cap (default 600)
  *
+ * Status enum (new server, auto-apply on validation pass):
+ *   uploaded → applying → applied | needs_review | failed
+ *
  * Examples:
  *   # Smoke-test one volume against local
  *   node upload.js upload 157AD3d --email=admin@local --password=changeme --dry-run
  *
- *   # Upload everything to staging, auto-confirm and wait for the worker
- *   CO_COLLECTION_URL=https://co-collection-staging.fly.dev \
+ *   # Upload everything to staging, wait for the worker
+ *   CO_BACKEND_URL=https://curia-backend-staging.fly.dev \
  *   CO_ADMIN_EMAIL=… CO_ADMIN_PASSWORD=… \
- *     node upload.js upload-all --confirm --wait --skip-existing
+ *     node upload.js upload-all --wait --skip-existing
  */
 
 import { readFile, readdir, stat } from 'node:fs/promises';
@@ -103,18 +105,24 @@ function reporterOf(volumeName) {
 
 // -------- HTTP --------
 
+const SESSION_COOKIE_NAME = '_curia_obscura_backend_key';
+
 class Client {
-  constructor({ baseUrl, token }) {
+  constructor({ baseUrl }) {
     this.baseUrl = baseUrl.replace(/\/$/, '');
-    this.token = token || null;
+    this.sessionCookie = null;
+    this.csrfToken = null;
   }
 
-  authHeader() {
-    return this.token ? { Authorization: `Bearer ${this.token}` } : {};
+  authHeaders() {
+    const h = {};
+    if (this.sessionCookie) h['Cookie'] = `${SESSION_COOKIE_NAME}=${this.sessionCookie}`;
+    if (this.csrfToken) h['X-CSRF-Token'] = this.csrfToken;
+    return h;
   }
 
   async login(email, password) {
-    const url = `${this.baseUrl}/admin/api/login`;
+    const url = `${this.baseUrl}/api/auth/login`;
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
@@ -124,17 +132,42 @@ class Client {
       const text = await res.text().catch(() => '');
       throw new Error(`Admin login failed (HTTP ${res.status}): ${text}`);
     }
-    // The login endpoint returns the JWT only via Set-Cookie — pull it out.
+    // Phoenix session lives in the Set-Cookie header; CSRF token lives in body.
+    // Set-Cookie may concatenate multiple cookies — pull the session one by name.
     const setCookie = res.headers.get('set-cookie') || '';
-    const m = setCookie.match(/admin_token=([^;]+)/);
-    if (!m) throw new Error('Admin login succeeded but no admin_token cookie returned');
-    this.token = m[1];
+    const m = setCookie.match(new RegExp(`${SESSION_COOKIE_NAME}=([^;,\\s]+)`));
+    if (!m) {
+      throw new Error(`Admin login succeeded but no ${SESSION_COOKIE_NAME} cookie returned`);
+    }
+    this.sessionCookie = m[1];
+    // Phoenix's auth/login doesn't persist `_csrf_token` into the session
+    // cookie it sends back (the `get_csrf_token()` call mutates a local conn
+    // that doesn't make it into the response pipeline). So the login-response
+    // token is bound to nothing the server can verify. Fix: GET /api/csrf_token
+    // with the login cookie. That call generates a token AND mutates the
+    // session, producing a Set-Cookie whose new session payload carries the
+    // matching `_csrf_token`. Both the new cookie AND the new token must be
+    // captured for subsequent calls to validate.
+    const csrfRes = await fetch(`${this.baseUrl}/api/csrf_token`, {
+      headers: { Cookie: `${SESSION_COOKIE_NAME}=${this.sessionCookie}` },
+    });
+    if (!csrfRes.ok) {
+      throw new Error(`Failed to fetch post-login CSRF token (HTTP ${csrfRes.status})`);
+    }
+    const csrfSetCookie = csrfRes.headers.get('set-cookie') || '';
+    const updated = csrfSetCookie.match(new RegExp(`${SESSION_COOKIE_NAME}=([^;,\\s]+)`));
+    if (updated) this.sessionCookie = updated[1];
+    const csrfPayload = await csrfRes.json().catch(() => null);
+    if (!csrfPayload || !csrfPayload.csrf_token) {
+      throw new Error('CSRF token endpoint returned no csrf_token');
+    }
+    this.csrfToken = csrfPayload.csrf_token;
   }
 
   async request(method, p, { json, query } = {}) {
     const qs = query ? '?' + new URLSearchParams(query).toString() : '';
     const url = `${this.baseUrl}${p}${qs}`;
-    const headers = { ...this.authHeader() };
+    const headers = { ...this.authHeaders() };
     let body;
     if (json !== undefined) {
       headers['content-type'] = 'application/json';
@@ -157,23 +190,20 @@ class Client {
     return payload;
   }
 
-  async upload(casesPath, fileName, sourceOverride, { mergeTarget = false } = {}) {
+  async upload(casesPath, fileName, sourceOverride) {
+    if (!sourceOverride) {
+      throw new Error(`upload(${fileName}) requires a source ref — the server now strictly requires ?source=<ref>`);
+    }
     const buf = await readFile(casesPath);
     const fd = new FormData();
     fd.append('file', new Blob([buf], { type: 'application/json' }), fileName);
     const params = new URLSearchParams();
-    if (sourceOverride) params.set('source', sourceOverride);
-    // Track B / B3 §1: signal that the upload should be applied against the
-    // merged ny_caselaw DB. Server persists the flag but currently REJECTS
-    // confirmed merge_target jobs (the merged-aware matcher/inserter aren't
-    // implemented yet) — surface that explicitly so callers know the upload
-    // lands as pending_review but won't apply.
-    if (mergeTarget) params.set('merge_target', 'true');
-    const qs = params.toString() ? `?${params.toString()}` : '';
+    params.set('source', sourceOverride);
+    const qs = `?${params.toString()}`;
     const url = `${this.baseUrl}/admin/api/bulk-ingest/upload${qs}`;
     const res = await fetch(url, {
       method: 'POST',
-      headers: this.authHeader(),
+      headers: this.authHeaders(),
       body: fd,
     });
     const ct = res.headers.get('content-type') || '';
@@ -192,16 +222,6 @@ class Client {
     return payload.ingestion;
   }
 
-  confirm(id, { overwrite = false } = {}) {
-    return this.request('POST', `/admin/api/bulk-ingest/${id}/confirm`, {
-      json: { overwrite },
-    });
-  }
-
-  cancel(id) {
-    return this.request('POST', `/admin/api/bulk-ingest/${id}/cancel`);
-  }
-
   get(id) {
     return this.request('GET', `/admin/api/bulk-ingest/${id}`);
   }
@@ -216,12 +236,14 @@ class Client {
 
 // -------- existing-ingestion lookup (for --skip-existing) --------
 
+// New status enum on co-backend:
+//   uploaded → applying → applied | needs_review | failed
+// All non-failed rows block re-upload of the same SHA.
 const TERMINAL_BLOCKING_STATUSES = new Set([
-  'pending_review',
-  'confirmed',
-  'running',
-  'completed',
-  'reverting', // mid-revert; once reverted the user can re-upload
+  'uploaded',
+  'applying',
+  'applied',
+  'needs_review',
 ]);
 
 async function buildExistingIndex(client, sourceRefs) {
@@ -252,7 +274,7 @@ async function buildExistingIndex(client, sourceRefs) {
 // -------- waiter --------
 
 const TERMINAL_FINAL_STATUSES = new Set([
-  'completed', 'failed', 'cancelled', 'reverted',
+  'applied', 'failed', 'needs_review',
 ]);
 
 async function waitForTerminal(client, id, { intervalMs, timeoutMs }) {
@@ -319,8 +341,6 @@ async function cmdUpload(client, flags, requestedVolumes) {
   }
 
   const dryRun = bool(flags['dry-run']);
-  const confirm = bool(flags.confirm);
-  const overwrite = bool(flags.overwrite);
   const wait = bool(flags.wait);
   const skipExisting = bool(flags['skip-existing']);
   const intervalMs = parseInt(flags['poll-interval'] || '3000', 10);
@@ -333,7 +353,7 @@ async function cmdUpload(client, flags, requestedVolumes) {
     console.log(`[skip-existing] indexed ${existingIndex.size} prior ingestions across ${refs.length} source(s)`);
   }
 
-  const summary = { uploaded: 0, skipped: 0, failed: 0, validationErrors: 0, confirmed: 0, completed: 0 };
+  const summary = { uploaded: 0, skipped: 0, failed: 0, validationErrors: 0, applied: 0, needsReview: 0 };
   let i = 0;
   for (const v of volumes) {
     i++;
@@ -356,56 +376,54 @@ async function cmdUpload(client, flags, requestedVolumes) {
       }
     }
 
-    const uploadOverride = uploadOverrideFor(v.name, flags);
-    const reportedSource = uploadOverride || sourceRefFor(v.name, flags) || meta.targetSourceDb;
-    const mergeTarget = bool(flags['merge-target']);
+    const sourceRef = sourceRefFor(v.name, flags);
+    if (!sourceRef) {
+      console.error(`${tag} cannot resolve source ref (unknown reporter "${reporterOf(v.name)}"; pass --source=<ref> to override)`);
+      summary.failed++;
+      continue;
+    }
 
     if (dryRun) {
-      const mergeNote = mergeTarget ? ' [merge_target=true — server will REJECT confirms]' : '';
-      console.log(`${tag} dry-run — would upload ${meta.cases} cases (${(v.size / 1024 / 1024).toFixed(1)} MiB), source=${reportedSource}${uploadOverride ? ' (override)' : ''}${mergeNote}`);
+      console.log(`${tag} dry-run — would upload ${meta.cases} cases (${(v.size / 1024 / 1024).toFixed(1)} MiB), source=${sourceRef}`);
       continue;
     }
 
     let ingestion;
     try {
-      ingestion = await client.upload(v.casesPath, `${v.name}.cases.json`, uploadOverride, { mergeTarget });
+      ingestion = await client.upload(v.casesPath, `${v.name}.cases.json`, sourceRef);
     } catch (err) {
       console.error(`${tag} upload failed: ${err.message}`);
-      summary.failed++;
+      // Surface validation errors when the server returned them on a 422.
+      const vErrs = err.payload?.ingestion?.validation_errors || err.payload?.validation_errors;
+      if (Array.isArray(vErrs) && vErrs.length) {
+        for (const e of vErrs.slice(0, 3)) {
+          console.error(`${tag}     ${e.path || e.field || ''}: ${e.message}`);
+        }
+        summary.validationErrors++;
+      } else {
+        summary.failed++;
+      }
       continue;
     }
     summary.uploaded++;
-    const errCount = (ingestion.validation_errors || []).length;
-    const warnCount = (ingestion.validation_warnings || []).length;
+    // Server wraps errors/warnings as { items: [...] } to keep JSON shape flat-ish.
+    const errCount = (ingestion.validation_errors?.items || ingestion.validation_errors || []).length;
+    const warnCount = (ingestion.validation_warnings?.items || ingestion.validation_warnings || []).length;
     const counts = ingestion.metrics?.counts || {};
     console.log(
-      `${tag} uploaded id=${ingestion.id} source=${ingestion.source_ref} ` +
+      `${tag} uploaded id=${ingestion.id} source=${ingestion.source_ref} status=${ingestion.status} ` +
       `cases=${counts.cases ?? '?'} ops=${counts.opinions ?? '?'} ` +
       `errs=${errCount} warns=${warnCount}`
     );
 
     if (errCount > 0) {
       summary.validationErrors++;
-      console.warn(`${tag}   ⚠ has ${errCount} validation error(s) — not eligible for confirm`);
-      // Surface first few so the operator knows why
-      for (const e of (ingestion.validation_errors || []).slice(0, 3)) {
-        console.warn(`${tag}     ${e.path}: ${e.message}`);
+      console.warn(`${tag}   has ${errCount} validation error(s) — left at status=uploaded, NOT enqueued`);
+      for (const e of (ingestion.validation_errors?.items || ingestion.validation_errors || []).slice(0, 3)) {
+        console.warn(`${tag}     ${e.path || e.field || ''}: ${e.message}`);
       }
       continue;
     }
-
-    if (!confirm) continue;
-
-    let confirmed;
-    try {
-      confirmed = await client.confirm(ingestion.id, { overwrite });
-    } catch (err) {
-      console.error(`${tag} confirm failed: ${err.message}`);
-      summary.failed++;
-      continue;
-    }
-    summary.confirmed++;
-    console.log(`${tag}   confirmed (worker will pick up; status=${confirmed.ingestion?.status || 'confirmed'})`);
 
     if (!wait) continue;
 
@@ -414,9 +432,12 @@ async function cmdUpload(client, flags, requestedVolumes) {
       const dur = final.completed_at && final.started_at
         ? `${Math.round((new Date(final.completed_at) - new Date(final.started_at)) / 1000)}s`
         : '?';
-      if (final.status === 'completed') {
-        summary.completed++;
-        console.log(`${tag}   ✓ completed in ${dur}`);
+      if (final.status === 'applied') {
+        summary.applied++;
+        console.log(`${tag}   ✓ applied in ${dur}`);
+      } else if (final.status === 'needs_review') {
+        summary.needsReview++;
+        console.log(`${tag}   ⌛ needs_review in ${dur} — fuzzy match candidates await operator review`);
       } else {
         summary.failed++;
         console.error(`${tag}   ✗ ended status=${final.status}: ${final.error_message || '(no error message)'}`);
@@ -432,8 +453,8 @@ async function cmdUpload(client, flags, requestedVolumes) {
   console.log(`  uploaded:           ${summary.uploaded}`);
   console.log(`  skipped (existing): ${summary.skipped}`);
   console.log(`  with validation errors: ${summary.validationErrors}`);
-  console.log(`  confirmed:          ${summary.confirmed}`);
-  console.log(`  completed:          ${summary.completed}`);
+  console.log(`  applied:            ${summary.applied}`);
+  console.log(`  needs_review:       ${summary.needsReview}`);
   console.log(`  failed:             ${summary.failed}`);
 }
 
@@ -486,65 +507,29 @@ function collectSourceRefs(volumes, flags) {
   return [...set];
 }
 
-// Per-target source identifiers, keyed by reporter suffix. Source refs are
-// the same on every environment (ny_supreme / ny_appellate / ny_trial); what
-// differs is the physical DB name. The parser bakes the *dev* physical
-// names (ny_reporter / ny_appellate_division / ny_trial_courts) into each
-// cases.json's `target_source_db`, and on local the sources table maps
-// those names back to source refs. Staging and prod don't carry that drift —
-// the DB names match the source refs — so the parser-emitted names won't
-// resolve there. uploadOverrideFor() detects that mismatch and tells the
-// upload call to pass `?source=<ref>` instead.
-const SOURCE_TARGETS = {
-  local: {
-    NY3d:   { source_ref: 'ny_supreme',   db_name: 'ny_reporter' },
-    AD3d:   { source_ref: 'ny_appellate', db_name: 'ny_appellate_division' },
-    Misc3d: { source_ref: 'ny_trial',     db_name: 'ny_trial_courts' },
-  },
-  staging: {
-    NY3d:   { source_ref: 'ny_supreme',   db_name: 'ny_supreme' },
-    AD3d:   { source_ref: 'ny_appellate', db_name: 'ny_appellate' },
-    Misc3d: { source_ref: 'ny_trial',     db_name: 'ny_trial' },
-  },
-  prod: {
-    NY3d:   { source_ref: 'ny_supreme',   db_name: 'ny_supreme' },
-    AD3d:   { source_ref: 'ny_appellate', db_name: 'ny_appellate' },
-    Misc3d: { source_ref: 'ny_trial',     db_name: 'ny_trial' },
-  },
+// Reporter suffix → source ref. The merged co-backend uses a single canonical
+// source ref per source across every environment (local / staging / prod) —
+// the per-env physical-DB drift that the old co-collection world had is gone.
+const SOURCE_REFS = {
+  NY3d:   'ny_supreme',
+  AD3d:   'ny_appellate',
+  Misc3d: 'ny_trial',
 };
 
-function targetEnv(flags) {
-  return String(flags.target || 'local').toLowerCase();
-}
-
-function targetTable(flags) {
-  return SOURCE_TARGETS[targetEnv(flags)] || SOURCE_TARGETS.local;
-}
-
 function sourceRefFor(volumeName, flags) {
-  return targetTable(flags)[reporterOf(volumeName)]?.source_ref || null;
-}
-
-function uploadOverrideFor(volumeName, flags) {
   // --source=<ref> is a global escape hatch (applies to every volume).
   if (flags.source) return String(flags.source);
   const reporter = reporterOf(volumeName);
-  const entry = targetTable(flags)[reporter];
-  if (!entry) return null;
-  // If the target's db_name matches the parser-emitted dev physical name,
-  // the server can resolve it on its own — leave the override unset.
-  // Otherwise pass source_ref so the lookup bypasses the database_url scan.
-  const devDbName = SOURCE_TARGETS.local[reporter]?.db_name;
-  return entry.db_name === devDbName ? null : entry.source_ref;
+  return reporter ? (SOURCE_REFS[reporter] || null) : null;
 }
 
-// --target=… → base URL. Hostnames match the Fly app names; bump if those
-// ever change. Returns null for unknown targets so resolution falls
-// through to the local default.
+// --target=… → base URL. Hostnames match the co-backend Fly app names;
+// bump if those ever change. Returns null for unknown targets so resolution
+// falls through to the local default.
 const TARGET_URLS = {
-  local:   'http://localhost:3001',
-  staging: 'https://curia-collection-staging.fly.dev',
-  prod:    'https://co-collection.fly.dev',
+  local:   'http://localhost:4000',
+  staging: 'https://curia-backend-staging.fly.dev',
+  prod:    'https://curia-obscura-backend.fly.dev',
 };
 function resolveTargetUrl(target) {
   if (!target) return null;
@@ -564,31 +549,28 @@ async function main() {
   }
 
   // --target=local|staging|prod is a convenience over --base-url. Explicit
-  // --base-url and CO_COLLECTION_URL still win so existing CI scripts don't
+  // --base-url and CO_BACKEND_URL still win so existing CI scripts don't
   // change behavior.
   const baseUrl =
     flags['base-url']
-    || process.env.CO_COLLECTION_URL
+    || process.env.CO_BACKEND_URL
     || resolveTargetUrl(flags.target)
-    || 'http://localhost:3001';
+    || 'http://localhost:4000';
 
   // Auth is required when we'll talk to the API. `list` without creds, and
   // `--dry-run` without `--skip-existing`, both stay local.
   let client = null;
-  const haveAnyCred = !!(flags.email || flags.token || process.env.CO_ADMIN_TOKEN || process.env.CO_ADMIN_EMAIL);
+  const haveAnyCred = !!(flags.email || process.env.CO_ADMIN_EMAIL);
   const isDryNoCheck = bool(flags['dry-run']) && !bool(flags['skip-existing']);
   const wantsAuth = !((cmd === 'list' && !haveAnyCred) || isDryNoCheck);
   if (wantsAuth) {
-    const token = flags.token || process.env.CO_ADMIN_TOKEN;
-    client = new Client({ baseUrl, token });
-    if (!token) {
-      const email = flags.email || process.env.CO_ADMIN_EMAIL;
-      const password = flags.password || process.env.CO_ADMIN_PASSWORD;
-      if (!email || !password) {
-        throw new Error('Missing credentials: pass --token=… or --email=… --password=… (or set CO_ADMIN_TOKEN, or CO_ADMIN_EMAIL+CO_ADMIN_PASSWORD)');
-      }
-      await client.login(email, password);
+    client = new Client({ baseUrl });
+    const email = flags.email || process.env.CO_ADMIN_EMAIL;
+    const password = flags.password || process.env.CO_ADMIN_PASSWORD;
+    if (!email || !password) {
+      throw new Error('Missing credentials: pass --email=… --password=… (or set CO_ADMIN_EMAIL + CO_ADMIN_PASSWORD)');
     }
+    await client.login(email, password);
   }
 
   switch (cmd) {
@@ -613,28 +595,28 @@ function printUsage() {
   console.log(`Bound-Volume Bulk-Upload
 
 Commands:
-  list                              list local output/<vol> dirs (with collection state if creds given)
+  list                              list local out/<vol> dirs (with backend state if creds given)
   upload <vol> [<vol>...]           upload specific volume(s)
-  upload-all                        upload every output/<vol>/cases.json
+  upload-all                        upload every out/<vol>/cases.json
 
 Common flags:
-  --base-url=<url>                  collection base URL (env CO_COLLECTION_URL, default http://localhost:3001)
+  --target=<env>                    local | staging | prod (resolves base-url)
+  --base-url=<url>                  backend base URL (env CO_BACKEND_URL, default http://localhost:4000)
   --email=<addr> --password=<pw>    admin credentials (env CO_ADMIN_EMAIL / CO_ADMIN_PASSWORD)
-  --token=<jwt>                     admin JWT (env CO_ADMIN_TOKEN; skips login)
-  --source=<ref>                    force target_source_db override for every volume in the run
-  --merge-target                    upload with merge_target=true (Track B / B3 §1). Server persists
-                                    the flag but REJECTS confirmed jobs until the merged-aware
-                                    matcher/inserter ships — use for ahead-of-server upload staging only.
+  --source=<ref>                    force source override for every volume in the run
+                                    (escape hatch; reporter suffix mapping is otherwise automatic)
   --reporter=<AD3d|Misc3d|NY3d>     filter to one reporter
   --start-from=<vol>                resume from a specific volume (sorted natural order)
   --limit=<N>                       process at most N volumes after filtering
   --skip-existing                   skip volumes whose source_pdf_sha256 is already ingested
-  --confirm                         queue worker after each upload (only when no validation errors)
-  --overwrite                       confirm with overwrite=true (re-ingest)
-  --wait                            wait for each confirmed ingestion to reach a terminal status
+  --wait                            wait for each ingestion to reach a terminal status
+                                    (applied | failed | needs_review)
   --poll-interval=<ms>              wait poll cadence (default 3000)
   --poll-timeout=<sec>              per-ingestion wait cap (default 600)
   --dry-run                         report only; upload nothing
+
+Note: the server auto-applies when validation passes — no separate confirm
+step. Status flow: uploaded → applying → applied | needs_review | failed.
 `);
 }
 

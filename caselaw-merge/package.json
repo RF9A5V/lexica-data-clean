@@ -1,0 +1,19 @@
+{
+  "name": "caselaw-merge",
+  "version": "0.1.0",
+  "description": "Track B / B1 — idempotent merge of NY source DBs (ny_reporter + ny_trial_courts + ny_appellate_division) into a single ny_caselaw DB.",
+  "type": "module",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "phase": "node main.js --phase"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.5",
+    "pg-copy-streams": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

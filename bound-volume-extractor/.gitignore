@@ -1,6 +1,6 @@
-# Input PDFs are large; place locally, not in git.
-pdfs/*.pdf
-pdfs/*.PDF
+# Raw input PDFs (large; place locally, not in git).
+in/*
+!in/.gitkeep
 
 # All generated artifacts.
 output/*
@@ -19,3 +19,6 @@ __pycache__/
 .venv/
 
 .env
+
+out/
+in/

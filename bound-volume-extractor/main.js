@@ -4,18 +4,18 @@
  * structured JSON / SQL for import into Curia Obscura source DBs.
  *
  * Usage:
- *   node main.js parse-all                    # parse every PDF in ./pdfs/, skipping fresh ones
+ *   node main.js parse-all                    # parse every PDF in ./in/, skipping fresh ones
  *   node main.js parse-all --force            # re-parse everything regardless of freshness
  *   node main.js parse-all --dry-run          # report what would be parsed/skipped, no work
  *   node main.js parse-all --concurrency=4    # parse N PDFs in parallel (default 4)
  *   node main.js parse <pdf>                  # parse a single PDF (full pipeline)
  *   node main.js extract <pdf>                # just the Python extraction step (writes raw NDJSON)
- *   node main.js status                       # list each PDF in pdfs/ and its parse state
+ *   node main.js status                       # list each PDF in in/ and its parse state
  *   node main.js audit list                   # list all parsed batches
  *   node main.js audit show <id>              # show one batch's audit record
  *
- * Place input PDFs under ./pdfs/. Per-PDF outputs land under
- * ./output/<pdf-stem>/ with canonical filenames:
+ * Place input PDFs under ./in/. Per-PDF outputs land under
+ * ./out/<pdf-stem>/ with canonical filenames:
  *   cases.json   — structured parse output (this is what the admin UI ingests)
  *   cases.sql    — equivalent SQL script (kept for parity / out-of-band psql apply)
  *   raw.ndjson   — page-by-page Python extraction (debugging artifact)
@@ -46,11 +46,11 @@ import { validateAllOutputs, printValidationReport } from './src/validate.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
-const PDFS_DIR   = path.join(ROOT, 'pdfs');
-const OUTPUT_DIR = path.join(ROOT, 'output');
+const PDFS_DIR   = path.join(ROOT, 'in');
+const OUTPUT_DIR = path.join(ROOT, 'out');
 const AUDIT_DIR  = path.join(ROOT, 'audit');
 
-const PARSER_VERSION = '0.6.60';
+const PARSER_VERSION = '0.6.61';
 
 async function ensureDirs() {
   await mkdir(PDFS_DIR,   { recursive: true });
@@ -171,7 +171,7 @@ async function cmdExtract(pdfPath) {
 
 /**
  * Parse a single PDF end-to-end. Writes canonical artifacts under
- * output/<stem>/ and copies the audit record into the same directory for
+ * out/<stem>/ and copies the audit record into the same directory for
  * self-containment.
  */
 async function cmdParse(pdfPath, opts = {}) {
@@ -309,7 +309,7 @@ async function cmdParse(pdfPath, opts = {}) {
 }
 
 /**
- * Parse every PDF under ./pdfs/. Skips those whose existing cases.json was
+ * Parse every PDF under ./in/. Skips those whose existing cases.json was
  * produced by the current parser_version against the current PDF sha.
  *
  * Flags:
@@ -417,7 +417,7 @@ async function cmdParseAll(opts = {}) {
 }
 
 /**
- * Show, for each PDF in ./pdfs/, whether it's been parsed and whether the
+ * Show, for each PDF in ./in/, whether it's been parsed and whether the
  * parse is fresh against the current parser_version + PDF sha.
  */
 async function cmdStatus() {
@@ -482,25 +482,25 @@ function showHelp() {
   console.log(`
 Bound-Volume Extractor
 
-  node main.js parse-all                  Parse every PDF in ./pdfs/, skipping fresh ones
+  node main.js parse-all                  Parse every PDF in ./in/, skipping fresh ones
   node main.js parse-all --force          Re-parse everything regardless of freshness
   node main.js parse-all --dry-run        Report what would be parsed/skipped, no work
   node main.js parse-all --cached         Reuse existing raw.ndjson when present (faster)
   node main.js parse-all --concurrency=N  Run N parses in parallel (default 4)
   node main.js parse <pdf>                Parse a single PDF (full pipeline)
   node main.js extract <pdf>              Run extraction only (writes raw NDJSON)
-  node main.js status                     Per-PDF parse state under ./pdfs/
+  node main.js status                     Per-PDF parse state under ./in/
   node main.js audit list                 List all parsed batches
   node main.js audit show <id>            Show one batch's audit record
-  node main.js validate                   Quality-check every output/<vol>/cases.json
+  node main.js validate                   Quality-check every out/<vol>/cases.json
   node main.js validate --volume=<v>      Validate a single volume directory
   node main.js validate --verbose         Include sample refs for soft issues
   node main.js validate --json            Emit a JSON report on stdout
   node main.js validate --strict          Exit 1 if any hard issues exist
 
 Layout:
-  pdfs/<stem>.pdf      input
-  output/<stem>/
+  in/<stem>.pdf      input
+  out/<stem>/
     cases.json         structured parse output (admin UI uploads this)
     cases.sql          equivalent SQL script
     raw.ndjson         page-by-page Python extraction

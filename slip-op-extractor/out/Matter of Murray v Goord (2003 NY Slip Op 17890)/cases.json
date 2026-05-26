@@ -1,0 +1,45 @@
+{
+  "schema_version": "0.3",
+  "batch_id": "3e0d2113-5e0c-4868-a545-9b1845a17303",
+  "parser_version": "0.1.0",
+  "source_pdf_sha256": "9b698236a7419fb22ac7d7d626dc6e6350d1e50fe88faa7e3720b7a5ea3c4547",
+  "target_source_db": "ny_supreme",
+  "cases": [
+    {
+      "case_curie": "nyslopop:2003:17890",
+      "name": "In the Matter of Ricky Murray, Respondent, v Glenn S. Goord, as Commissioner of the New York State Department of Correctional Services, et al., Appellants.",
+      "name_abbreviation": "Matter of Murray v Goord",
+      "caption_text": "In the Matter of Ricky Murray, Respondent, v Glenn S. Goord, as Commissioner of the New York State Department of Correctional Services, et al., Appellants.",
+      "decision_date": "2003-10-28",
+      "docket_number": null,
+      "first_page": null,
+      "last_page": null,
+      "source_url": "https://www.nycourts.gov/reporter/3dseries/2003/2003_17890.htm",
+      "court_department": null,
+      "captions": [],
+      "opinions": [
+        {
+          "opinion_index": 0,
+          "opinion_type": "opinion",
+          "author": "Read, J.",
+          "text": "Argued September 10, 2003; decided October 28, 2003\n\nMatter of Murray v Goord, 298 AD2d 94, affirmed.\n\nOpinion by Read, J.\n\nIn 1996, petitioner was convicted after a jury trial of both criminal possession of a controlled substance in the third degree and criminal sale of a controlled substance in the third degree. The trial judge sentenced him to concurrent indeterminate terms of imprisonment of 7� to 15 years. The next year, a second trial judge sentenced petitioner, upon his plea of guilty to manslaughter in the first degree, to an indeterminate [*2]term of imprisonment of 7� to 15 years. Consistent with the discretion afforded by Penal Law � 70.25 (1) and as provided in the negotiated plea,[FN*] the second trial judge specified that petitioner was to serve his sentence for manslaughter consecutively to the undischarged term of the sentence imposed on him the previous year for the unrelated controlled substance convictions.\n\nUpon petitioner's appeal, the Appellate Division reversed the controlled substance convictions, and remitted for a new trial. The Appellate Division, however, found \"no reason to reverse the unrelated judgment [of conviction for manslaughter], rendered upon [petitioner's] negotiated plea, where the sentence agreement provided for consecutive sentences\" (268 AD2d 349, 350 [2000]).\n\nIn lieu of retrial, the People and petitioner negotiated a plea of guilty to criminal sale of a controlled substance in the third degree in exchange for a sentence of 4� to 9 years, to be served concurrently with the sentence previously imposed for the manslaughter conviction. Yet a third trial judge sentenced petitioner in accordance with this plea agreement and issued the commitment order.\n\nAfter his arrival at prison, petitioner asked the Department of Correctional Services (DOCS) to compute his parole eligibility date {**1 NY3d at 32}(the date when an inmate's minimum period or minimum aggregate period of imprisonment is satisfied). DOCS, he learned, was computing the time that he owed as though his two sentences were to run consecutively for an aggregate term of 12 to 24 years rather than concurrently for a term of 7� to 15 years. Petitioner's attorney was subsequently advised of DOCS' position that the Appellate Division's decision in Matter of Muntaqim v Herbert (277 AD2d 976 [4th Dept 2000], lv denied 96 NY2d 704 [2001]) dictated that the relationship between petitioner's [*3]sentences remain consecutive because \"so ordered\" by the second judge in the sentencing chain. This CPLR article 78 proceeding ensued.\n\nThe dispute here boils down to the question of whether, when there is a vacated judgment of conviction and subsequent resentencing of someone subject to an undischarged term of imprisonment, the prerogative to decide whether sentences should run consecutively or concurrently always remains with the second judge who acts in the sentencing sequence. We agree with the Appellate Division below that the sentencing discretion afforded by Penal Law � 70.25 (1) devolves upon the last judge in the sentencing chain, who was the third judge here. Penal Law � 70.30 (5) and CPL 430.10, when read together with Penal Law � 70.25 (1), do not require otherwise. Moreover, divesting the last sentencing judge of this discretion would, as an unwise subsidiary consequence, limit the parties' latitude in negotiating a plea.\n\nTwo additional points merit comment. First, Muntaqim, which is indistinguishable from the facts of this case, is no longer good law and is not to be followed. Second, DOCS is not free to disregard a commitment order, as it did here.\n\nDOCS claims to have been forced to choose between inconsistent directives�Penal Law � 70.30 (5) as interpreted in Muntaqim, the sole appellate authority at the time, and the common-law rule of \"last in time.\" At oral argument, DOCS' attorney, although expressing a preference for the Muntaqim rule, candidly asked us simply to establish either rule as the certain one going forward. While we appreciate DOCS' dilemma, \"prison officials are conclusively bound by the contents of commitment papers accompanying a prisoner\" (Middleton v State of New York, 54 AD2d 450, 452 [3d Dept 1976], affd 43 NY2d 678 [1977] on op below [emphasis added]). DOCS' only valid option in circumstances such as these is to comply with the plain terms of the last commitment order received.{**1 NY3d at 33}\n\nAccordingly, the order of the Appellate Division should be affirmed, with costs.\n\nChief Judge Kaye and Judges G.B. Smith, Ciparick, Rosenblatt and Graffeo concur.\n\nOrder affirmed, with costs. [*4]\n\n\"when a person who is subject to [an] undischarged term of imprisonment imposed at a previous time by a court of this state is sentenced to an additional term of imprisonment, the sentence or sentences imposed by the court shall run either concurrently or consecutively with respect to each other and the undischarged term or terms in such manner as the court directs at the time of sentence.\"",
+          "page_breaks": [],
+          "footnotes": [],
+          "curie": "nyslopop:2003:17890#0-opinion"
+        }
+      ],
+      "citations": [
+        {
+          "cite": "2003 NY Slip Op 17890",
+          "citation_type": "slip_op",
+          "curie": "nyslopop:2003:17890"
+        },
+        {
+          "cite": "1 NY3d 29",
+          "citation_type": "official",
+          "curie": "ny3d:1:29:matter-of-murray-v-goord"
+        }
+      ]
+    }
+  ]
+}

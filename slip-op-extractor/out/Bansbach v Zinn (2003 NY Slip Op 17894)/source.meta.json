@@ -1,0 +1,12 @@
+{
+  "stem": "Bansbach v Zinn (2003 NY Slip Op 17894)",
+  "format": "html-legacy",
+  "parser_version": "0.1.0",
+  "source_sha256": "fa8d99a65f10f590d37467b035527a829d6e7fc85117fb58543e95a4f1233669",
+  "parsed_at": "2026-05-06T13:06:40.298Z",
+  "target_source_db": "ny_supreme",
+  "case_count": 1,
+  "case_curies": [
+    "nyslopop:2003:17894"
+  ]
+}

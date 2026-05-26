@@ -5,10 +5,12 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "resolve-index": "node scripts/resolve_index.js"
   },
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.0.0",
+    "pg": "^8.11.0"
   },
   "engines": {
     "node": ">=18"

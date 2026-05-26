@@ -1,2 +1,13 @@
 node_modules/
 output/
+
+# Raw input files. Three sibling dirs by input type:
+#   in/index/  — LRB monthly index HTML pages (resolve_index.js)
+#   in/html/   — slip-op HTML pages (main.js)
+#   in/pdf/    — slip-op PDFs (main.js)
+in/index/*
+in/html/*
+in/pdf/*
+!in/index/.gitkeep
+!in/html/.gitkeep
+!in/pdf/.gitkeep

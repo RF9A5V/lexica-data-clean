@@ -1,0 +1,780 @@
+{
+  "generated": "2026-05-19T16:12:01.608Z",
+  "source": "ny_appellate_division PDF cohort — stored (audit-corrected) court_department + extracted panels",
+  "cases_used": 61164,
+  "justice_count": 154,
+  "confident_count": 138,
+  "note": "parser uses entries with conf >= 0.8 and n >= 3; others kept for review",
+  "justices": {
+    "A.J.P.": {
+      "dept": 1,
+      "conf": 0.929,
+      "n": 14
+    },
+    "A.P.J": {
+      "dept": 1,
+      "conf": 0.667,
+      "n": 3
+    },
+    "A.P.J.": {
+      "dept": 2,
+      "conf": 0.675,
+      "n": 345
+    },
+    "Aarons": {
+      "dept": 3,
+      "conf": 0.997,
+      "n": 4334
+    },
+    "Abdus-Salaam": {
+      "dept": 2,
+      "conf": 0.75,
+      "n": 4
+    },
+    "Accordingly": {
+      "dept": 3,
+      "conf": 0.667,
+      "n": 6
+    },
+    "Acosta": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1459
+    },
+    "Andrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 447
+    },
+    "Austin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2917
+    },
+    "Balkin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2262
+    },
+    "Bannister": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3523
+    },
+    "Barros": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4820
+    },
+    "Brathwaite Nelson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4822
+    },
+    "Breyer": {
+      "dept": 4,
+      "conf": 0.5,
+      "n": 6
+    },
+    "Carni": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2459
+    },
+    "Centra": {
+      "dept": 4,
+      "conf": 0.999,
+      "n": 2912
+    },
+    "Ceresia": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1659
+    },
+    "Ch.": {
+      "dept": 3,
+      "conf": 0.364,
+      "n": 11
+    },
+    "Chambers": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4805
+    },
+    "Chan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 136
+    },
+    "Christopher": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4960
+    },
+    "Ciparick": {
+      "dept": 1,
+      "conf": 0.4,
+      "n": 5
+    },
+    "Clark": {
+      "dept": 3,
+      "conf": 0.997,
+      "n": 4269
+    },
+    "Cohen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2152
+    },
+    "Colangelo": {
+      "dept": 3,
+      "conf": 0.994,
+      "n": 1416
+    },
+    "Connolly": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4945
+    },
+    "Corcoran": {
+      "dept": 3,
+      "conf": 1,
+      "n": 20
+    },
+    "Cur-": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4
+    },
+    "Curran": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4922
+    },
+    "DeJoseph": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2589
+    },
+    "Del-Conte": {
+      "dept": 4,
+      "conf": 1,
+      "n": 18
+    },
+    "DelConte": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1175
+    },
+    "Devine": {
+      "dept": 3,
+      "conf": 0.996,
+      "n": 1785
+    },
+    "Dillon": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5257
+    },
+    "Dowling": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2396
+    },
+    "Duffy": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4875
+    },
+    "Egan Jr .": {
+      "dept": 3,
+      "conf": 1,
+      "n": 57
+    },
+    "Egan Jr.": {
+      "dept": 3,
+      "conf": 0.999,
+      "n": 3682
+    },
+    "Egan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 15
+    },
+    "Eng": {
+      "dept": 2,
+      "conf": 1,
+      "n": 15
+    },
+    "Fahey": {
+      "dept": 3,
+      "conf": 0.5,
+      "n": 4
+    },
+    "Feinman": {
+      "dept": 1,
+      "conf": 0.8,
+      "n": 5
+    },
+    "Fisher": {
+      "dept": 3,
+      "conf": 0.999,
+      "n": 1697
+    },
+    "Fitzgerald": {
+      "dept": 3,
+      "conf": 1,
+      "n": 4
+    },
+    "Ford": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2336
+    },
+    "Friedman J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Friedman": {
+      "dept": 1,
+      "conf": 0.999,
+      "n": 3873
+    },
+    "Garcia": {
+      "dept": 2,
+      "conf": 0.4,
+      "n": 5
+    },
+    "Garry P.J.": {
+      "dept": 3,
+      "conf": 1,
+      "n": 3
+    },
+    "Garry": {
+      "dept": 3,
+      "conf": 0.998,
+      "n": 3752
+    },
+    "Genovesi": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2328
+    },
+    "Gesmer": {
+      "dept": 1,
+      "conf": 0.999,
+      "n": 3988
+    },
+    "Gische": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2814
+    },
+    "Goldberg Velazquez": {
+      "dept": 2,
+      "conf": 1,
+      "n": 97
+    },
+    "Golia": {
+      "dept": 2,
+      "conf": 1,
+      "n": 640
+    },
+    "Gonzalez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 21
+    },
+    "Gorsuch": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Graffeo": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 4
+    },
+    "Greenwood": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1473
+    },
+    "Hagler": {
+      "dept": 1,
+      "conf": 1,
+      "n": 160
+    },
+    "Hall": {
+      "dept": 2,
+      "conf": 0.992,
+      "n": 123
+    },
+    "Hannah": {
+      "dept": 4,
+      "conf": 1,
+      "n": 753
+    },
+    "Higgitt": {
+      "dept": 1,
+      "conf": 0.999,
+      "n": 1733
+    },
+    "Hinds-Radix": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2731
+    },
+    "Hom": {
+      "dept": 2,
+      "conf": 1,
+      "n": 588
+    },
+    "Iannacci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4807
+    },
+    "JJ. Gesmer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "JJ. Renwick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "JJ. Tom": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Jr .": {
+      "dept": 1,
+      "conf": 0.952,
+      "n": 21
+    },
+    "Kahn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1206
+    },
+    "Kapnick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4383
+    },
+    "Kavanaugh": {
+      "dept": 1,
+      "conf": 0.4,
+      "n": 5
+    },
+    "Keane": {
+      "dept": 4,
+      "conf": 1,
+      "n": 913
+    },
+    "Kennedy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2428
+    },
+    "Kern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4456
+    },
+    "LaSalle": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3384
+    },
+    "Landicino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1075
+    },
+    "Lawton": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "Leventhal": {
+      "dept": 2,
+      "conf": 0.999,
+      "n": 2164
+    },
+    "Levine": {
+      "dept": 3,
+      "conf": 1,
+      "n": 3
+    },
+    "Lindley": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4843
+    },
+    "Love": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1131
+    },
+    "Lynch": {
+      "dept": 3,
+      "conf": 0.996,
+      "n": 4117
+    },
+    "Mackey": {
+      "dept": 3,
+      "conf": 0.998,
+      "n": 847
+    },
+    "Maltese": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3743
+    },
+    "Manzanet - Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Manzanet": {
+      "dept": 1,
+      "conf": 1,
+      "n": 8
+    },
+    "Manzanet-  Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Manzanet-Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4092
+    },
+    "Mastro": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2822
+    },
+    "Mazzarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2381
+    },
+    "Mc-Cormack": {
+      "dept": 2,
+      "conf": 1,
+      "n": 72
+    },
+    "Mc-Shan": {
+      "dept": 3,
+      "conf": 0.993,
+      "n": 148
+    },
+    "McCarthy J.P.": {
+      "dept": 3,
+      "conf": 1,
+      "n": 4
+    },
+    "McCarthy": {
+      "dept": 3,
+      "conf": 0.998,
+      "n": 662
+    },
+    "McCormack": {
+      "dept": 2,
+      "conf": 0.998,
+      "n": 541
+    },
+    "McGuire": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "McShan": {
+      "dept": 3,
+      "conf": 0.997,
+      "n": 1540
+    },
+    "Mccormack": {
+      "dept": 2,
+      "conf": 1,
+      "n": 14
+    },
+    "Mendez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2286
+    },
+    "Michael": {
+      "dept": 1,
+      "conf": 1,
+      "n": 779
+    },
+    "Miller": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5003
+    },
+    "Montour": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1857
+    },
+    "Moskowitz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Moulton": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4577
+    },
+    "Mulvey": {
+      "dept": 3,
+      "conf": 0.997,
+      "n": 1922
+    },
+    "NeMoyer": {
+      "dept": 4,
+      "conf": 0.999,
+      "n": 3256
+    },
+    "Nowak": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1186
+    },
+    "Ogden": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1639
+    },
+    "Oing": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3909
+    },
+    "O’Neill Levy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1044
+    },
+    "P.": {
+      "dept": 3,
+      "conf": 0.846,
+      "n": 13
+    },
+    "Peradotto": {
+      "dept": 4,
+      "conf": 0.999,
+      "n": 3302
+    },
+    "Pigott": {
+      "dept": 4,
+      "conf": 0.667,
+      "n": 6
+    },
+    "Pitt - Burke": {
+      "dept": 1,
+      "conf": 1,
+      "n": 10
+    },
+    "Pitt": {
+      "dept": 1,
+      "conf": 1,
+      "n": 528
+    },
+    "Pitt-Burke": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1118
+    },
+    "Powers": {
+      "dept": 3,
+      "conf": 0.999,
+      "n": 904
+    },
+    "Pritzker": {
+      "dept": 3,
+      "conf": 0.998,
+      "n": 4252
+    },
+    "Quirk": {
+      "dept": 2,
+      "conf": 1,
+      "n": 73
+    },
+    "Renwick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3621
+    },
+    "Reynolds Fitzgerald": {
+      "dept": 3,
+      "conf": 0.997,
+      "n": 2831
+    },
+    "Richter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1699
+    },
+    "Rivera": {
+      "dept": 2,
+      "conf": 0.995,
+      "n": 3895
+    },
+    "Rodriguez III": {
+      "dept": 1,
+      "conf": 1,
+      "n": 51
+    },
+    "Rodriguez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1565
+    },
+    "Roman": {
+      "dept": 2,
+      "conf": 0.999,
+      "n": 2598
+    },
+    "Rosado": {
+      "dept": 1,
+      "conf": 1,
+      "n": 914
+    },
+    "Rumsey": {
+      "dept": 3,
+      "conf": 0.999,
+      "n": 1205
+    },
+    "Saxe": {
+      "dept": 1,
+      "conf": 0.6,
+      "n": 5
+    },
+    "Scarpulla": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2151
+    },
+    "Scheinkman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1619
+    },
+    "Scudder": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "Sgroi": {
+      "dept": 2,
+      "conf": 1,
+      "n": 810
+    },
+    "Shulman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2083
+    },
+    "Singh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4148
+    },
+    "Smith": {
+      "dept": 4,
+      "conf": 0.998,
+      "n": 4410
+    },
+    "Sotomayor": {
+      "dept": 2,
+      "conf": 0.667,
+      "n": 3
+    },
+    "Stevens": {
+      "dept": 1,
+      "conf": 0.333,
+      "n": 3
+    },
+    "Sweeny": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1222
+    },
+    "Taylor": {
+      "dept": 2,
+      "conf": 0.999,
+      "n": 1679
+    },
+    "Tom": {
+      "dept": 1,
+      "conf": 0.999,
+      "n": 1352
+    },
+    "Troutman": {
+      "dept": 4,
+      "conf": 0.998,
+      "n": 2582
+    },
+    "Ventura": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1101
+    },
+    "Voutsinas": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1676
+    },
+    "Wan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1706
+    },
+    "Warhit": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1674
+    },
+    "Webber": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4426
+    },
+    "Whalen": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3662
+    },
+    "Wilson": {
+      "dept": 3,
+      "conf": 0.35,
+      "n": 20
+    },
+    "Winslow": {
+      "dept": 4,
+      "conf": 0.999,
+      "n": 3213
+    },
+    "Wooten": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3465
+    },
+    "Zayas": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1176
+    }
+  }
+}

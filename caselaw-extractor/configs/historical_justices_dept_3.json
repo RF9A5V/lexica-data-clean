@@ -1,0 +1,786 @@
+{
+  "dept": 3,
+  "compiled_at": "2026-05-21",
+  "coverage": "1896-2026",
+  "sources": [
+    "https://en.wikipedia.org/wiki/New_York_State_Supreme_Court,_Appellate_Division,_Third_Department",
+    "https://history.nycourts.gov/biographies/app-div-third-dept-judges/",
+    "https://history.nycourts.gov/wp-content/uploads/2018/11/History_Appellate-Third-1896-1996.pdf",
+    "https://www.nycourts.gov/ad3/about/justices-of-the-court.shtml",
+    "https://www.nycourts.gov/ad3/about/about-the-court.shtml",
+    "https://www.nycourts.gov/ad3/about/ad3-court-history.pdf",
+    "https://ballotpedia.org/Elizabeth_A._Garry",
+    "https://ballotpedia.org/Karen_K._Peters",
+    "https://ballotpedia.org/Anthony_Cardona",
+    "https://ballotpedia.org/Thomas_Mercure",
+    "https://ballotpedia.org/Eugene_Devine",
+    "https://ballotpedia.org/John_C._Egan",
+    "https://ballotpedia.org/Sharon_A._M._Aarons",
+    "https://ballotpedia.org/Stan_L._Pritzker",
+    "https://ballotpedia.org/Christine_M._Clark",
+    "https://ballotpedia.org/Michael_C._Lynch",
+    "https://ballotpedia.org/Phillip_R._Rumsey",
+    "https://ballotpedia.org/Robert_Rose_(New_York)",
+    "https://ballotpedia.org/Anthony_Kane",
+    "https://ballotpedia.org/Bernard_Malone",
+    "https://ballotpedia.org/Michael_Mackey",
+    "https://ballotpedia.org/Christina_Ryba",
+    "https://ballotpedia.org/Molly_R._Fitzgerald",
+    "https://ballotpedia.org/Leslie_Stein",
+    "https://history.nycourts.gov/biography/robert-mulvey/",
+    "https://history.nycourts.gov/biography/phillip-rumsey/",
+    "https://history.nycourts.gov/biography/anthony-v-cardona/",
+    "https://history.nycourts.gov/biography/thomas-e-mercure/",
+    "https://history.nycourts.gov/biography/karen-k-peters/",
+    "https://history.nycourts.gov/biography/leslie-e-stein-2/",
+    "https://history.nycourts.gov/biography/e-michael-kavanagh/",
+    "https://history.nycourts.gov/biography/william-e-mccarthy/",
+    "https://history.nycourts.gov/biography/bernard-j-malone-jr/",
+    "https://www.nycourts.gov/ad3/about/bios/aarons.shtml",
+    "https://www.nycourts.gov/ad3/about/bios/pritzker.shtml",
+    "https://www.nycourts.gov/ad3/about/bios/lynch.shtml",
+    "https://www.nycourts.gov/ad3/about/bios/corcoran.shtml",
+    "https://nycourts.gov/ad3/about/bios/mackey.shtml",
+    "https://www.nycourts.gov/ad3/bios/ClarkBios.html",
+    "https://www.nycourts.gov/ad3/Bios/RumseyBios.html",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-appointments-fill-vacancies-third-department-appellate-division",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-designations-third-department-appellate-division",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-appointments-new-york-state-supreme-court-appellate-division",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-designations-appellate-divisions-second-and-third-judicial",
+    "https://nycourts.gov/ad3/about/news-alerts/j-ryba-sworn-in-ad3.shtml",
+    "https://nycourts.gov/ad3/about/news-alerts/j-corcoran-sworn-in-ad3.shtml",
+    "https://en.wikipedia.org/wiki/Karen_K._Peters",
+    "https://en.wikipedia.org/wiki/Leslie_Stein",
+    "https://en.wikipedia.org/wiki/Anthony_T._Kane"
+  ],
+  "justices": [
+    {
+      "surname": "Parker",
+      "full_name": "Charles E. Parker",
+      "depts_served": [{"dept": 3, "start_year": 1896, "end_year": 1907}],
+      "presiding": true,
+      "notes": "First Presiding Justice (designated October 1895, served 1896-1907)"
+    },
+    {
+      "surname": "Herrick",
+      "full_name": "D. Cady Herrick",
+      "depts_served": [{"dept": 3, "start_year": 1896, "end_year": 1900}],
+      "presiding": false,
+      "notes": "Original 1896 appointee; resigned to return to trial bench"
+    },
+    {
+      "surname": "Landon",
+      "full_name": "Judson S. Landon",
+      "depts_served": [{"dept": 3, "start_year": 1896, "end_year": 1899}],
+      "presiding": false,
+      "notes": "Original 1896 appointee; later elected to Court of Appeals (1900-1901)"
+    },
+    {
+      "surname": "Putnam",
+      "full_name": "John R. Putnam",
+      "depts_served": [{"dept": 3, "start_year": 1896, "end_year": 1899}],
+      "presiding": false,
+      "notes": "Original 1896 appointee; died en route to the Philippines in fall 1899"
+    },
+    {
+      "surname": "Merwin",
+      "full_name": "Milton H. Merwin",
+      "depts_served": [{"dept": 3, "start_year": 1896, "end_year": 1900}],
+      "presiding": false,
+      "notes": "Original 1896 appointee"
+    },
+    {
+      "surname": "Kellogg",
+      "full_name": "S. Alonzo Kellogg",
+      "depts_served": [{"dept": 3, "start_year": 1899, "end_year": 1903}],
+      "presiding": false,
+      "notes": "Father of Justice Henry T. Kellogg; Plattsburgh"
+    },
+    {
+      "surname": "Edwards",
+      "full_name": "Samuel Edwards",
+      "depts_served": [{"dept": 3, "start_year": 1900, "end_year": 1901}],
+      "presiding": false,
+      "notes": "Hudson"
+    },
+    {
+      "surname": "Chase",
+      "full_name": "Emory A. Chase",
+      "depts_served": [{"dept": 3, "start_year": 1901, "end_year": 1906}],
+      "presiding": false,
+      "notes": "Catskill; elected to Court of Appeals 1906"
+    },
+    {
+      "surname": "Fursman",
+      "full_name": "Edgar L. Fursman",
+      "depts_served": [{"dept": 3, "start_year": 1902, "end_year": 1902}],
+      "presiding": false,
+      "notes": "Troy"
+    },
+    {
+      "surname": "Chester",
+      "full_name": "Alden Chester",
+      "depts_served": [{"dept": 3, "start_year": 1902, "end_year": 1909}],
+      "presiding": false,
+      "notes": "Albany; author of legal histories of New York"
+    },
+    {
+      "surname": "Houghton",
+      "full_name": "James W. Houghton",
+      "depts_served": [{"dept": 3, "start_year": 1903, "end_year": 1913}],
+      "presiding": false,
+      "notes": "Saratoga Springs; service 1903-1905, then 1910-1913"
+    },
+    {
+      "surname": "Smith",
+      "full_name": "Walter Lloyd Smith",
+      "depts_served": [{"dept": 3, "start_year": 1905, "end_year": 1915}],
+      "presiding": true,
+      "notes": "Elmira; designated Justice November 1905, Presiding Justice 1907-1915; later transferred to AD-1"
+    },
+    {
+      "surname": "Cochrane",
+      "full_name": "Aaron V.S. Cochrane",
+      "depts_served": [{"dept": 3, "start_year": 1906, "end_year": 1928}],
+      "presiding": true,
+      "notes": "Hudson; served 1906-1911, returned November 1915, Presiding Justice 1922-1928"
+    },
+    {
+      "surname": "Coman",
+      "full_name": "Henry B. Coman",
+      "depts_served": [{"dept": 3, "start_year": 1907, "end_year": 1907}],
+      "presiding": false,
+      "notes": "Shortest service on the Court — one day, August 2, 1907"
+    },
+    {
+      "surname": "Sewell",
+      "full_name": "Albert H. Sewell",
+      "depts_served": [{"dept": 3, "start_year": 1907, "end_year": 1917}],
+      "presiding": false,
+      "notes": "Walton; served 1907-1912, then again in 1917"
+    },
+    {
+      "surname": "Betts",
+      "full_name": "James A. Betts",
+      "depts_served": [{"dept": 3, "start_year": 1911, "end_year": 1912}],
+      "presiding": false,
+      "notes": "Kingston"
+    },
+    {
+      "surname": "Lyon",
+      "full_name": "George F. Lyon",
+      "depts_served": [{"dept": 3, "start_year": 1912, "end_year": 1919}],
+      "presiding": false,
+      "notes": "Binghamton"
+    },
+    {
+      "surname": "Howard",
+      "full_name": "Wesley O. Howard",
+      "depts_served": [{"dept": 3, "start_year": 1913, "end_year": 1916}],
+      "presiding": false,
+      "notes": "Troy"
+    },
+    {
+      "surname": "Woodward",
+      "full_name": "John M. Woodward",
+      "depts_served": [{"dept": 3, "start_year": 1913, "end_year": 1922}],
+      "presiding": false,
+      "notes": "Jamestown"
+    },
+    {
+      "surname": "Kellogg",
+      "full_name": "John M. Kellogg",
+      "depts_served": [{"dept": 3, "start_year": 1905, "end_year": 1921}],
+      "presiding": true,
+      "notes": "Ogdensburg; designated Associate Justice November 1905, Presiding Justice 1915-1921"
+    },
+    {
+      "surname": "Kellogg",
+      "full_name": "Henry T. Kellogg",
+      "depts_served": [{"dept": 3, "start_year": 1918, "end_year": 1926}],
+      "presiding": false,
+      "notes": "Plattsburgh; son of Justice S. Alonzo Kellogg; elected to Court of Appeals 1926"
+    },
+    {
+      "surname": "Kiley",
+      "full_name": "Michael H. Kiley",
+      "depts_served": [{"dept": 3, "start_year": 1920, "end_year": 1923}],
+      "presiding": false,
+      "notes": "Cazenovia"
+    },
+    {
+      "surname": "Van Kirk",
+      "full_name": "Charles C. Van Kirk",
+      "depts_served": [{"dept": 3, "start_year": 1921, "end_year": 1932}],
+      "presiding": true,
+      "notes": "Greenwich, Washington County; Presiding Justice 1928-1932"
+    },
+    {
+      "surname": "Hinman",
+      "full_name": "Harold J. Hinman",
+      "depts_served": [{"dept": 3, "start_year": 1922, "end_year": 1932}],
+      "presiding": false,
+      "notes": "Albany; former Majority Leader of NY State Assembly"
+    },
+    {
+      "surname": "Hasbrouck",
+      "full_name": "Gilbert D.B. Hasbrouck",
+      "depts_served": [{"dept": 3, "start_year": 1922, "end_year": 1932}],
+      "presiding": false,
+      "notes": "Kingston; served 1922-1932 with stint 1928-1930; later Presiding Judge of Court of Claims"
+    },
+    {
+      "surname": "McCann",
+      "full_name": "George McCann",
+      "depts_served": [{"dept": 3, "start_year": 1923, "end_year": 1929}],
+      "presiding": false,
+      "notes": "Elmira"
+    },
+    {
+      "surname": "Davis",
+      "full_name": "Rowland L. Davis",
+      "depts_served": [{"dept": 3, "start_year": 1926, "end_year": 1931}],
+      "presiding": false,
+      "notes": "Cortland"
+    },
+    {
+      "surname": "Whitmyer",
+      "full_name": "Edward C. Whitmyer",
+      "depts_served": [{"dept": 3, "start_year": 1927, "end_year": 1931}],
+      "presiding": false,
+      "notes": "Schenectady"
+    },
+    {
+      "surname": "Hill",
+      "full_name": "James P. Hill",
+      "depts_served": [{"dept": 3, "start_year": 1927, "end_year": 1948}],
+      "presiding": true,
+      "notes": "Norwich; appointed to Court December 13, 1927; Presiding Justice 1933-1948 (longest PJ tenure, 16 years)"
+    },
+    {
+      "surname": "Rhodes",
+      "full_name": "Leon C. Rhodes",
+      "depts_served": [{"dept": 3, "start_year": 1931, "end_year": 1939}],
+      "presiding": false,
+      "notes": "Binghamton"
+    },
+    {
+      "surname": "McNamee",
+      "full_name": "Daniel V. McNamee",
+      "depts_served": [{"dept": 3, "start_year": 1932, "end_year": 1939}],
+      "presiding": false,
+      "notes": "Hudson"
+    },
+    {
+      "surname": "Crapser",
+      "full_name": "John C. Crapser",
+      "depts_served": [{"dept": 3, "start_year": 1933, "end_year": 1943}],
+      "presiding": false,
+      "notes": "Massena"
+    },
+    {
+      "surname": "Bliss",
+      "full_name": "F. Walter Bliss",
+      "depts_served": [{"dept": 3, "start_year": 1933, "end_year": 1944}],
+      "presiding": false,
+      "notes": "Middleburgh; youngest justice to serve on the Third Department (age 40 at appointment)"
+    },
+    {
+      "surname": "Heffernan",
+      "full_name": "Christopher J. Heffernan",
+      "depts_served": [{"dept": 3, "start_year": 1933, "end_year": 1952}],
+      "presiding": false,
+      "notes": "Amsterdam"
+    },
+    {
+      "surname": "Schenck",
+      "full_name": "Gilbert V. Schenck",
+      "depts_served": [{"dept": 3, "start_year": 1939, "end_year": 1944}],
+      "presiding": false,
+      "notes": "Albany"
+    },
+    {
+      "surname": "Foster",
+      "full_name": "Sydney F. Foster",
+      "depts_served": [{"dept": 3, "start_year": 1939, "end_year": 1960}],
+      "presiding": true,
+      "notes": "Liberty (Sullivan County); served 1939-1942, returned 1944-1948, Presiding Justice 1949-1960; appointed Court of Appeals 1960"
+    },
+    {
+      "surname": "Brewster",
+      "full_name": "O. Byron Brewster",
+      "depts_served": [{"dept": 3, "start_year": 1944, "end_year": 1952}],
+      "presiding": false,
+      "notes": "Elizabethtown; traced ancestry to Elder William Brewster of the Mayflower"
+    },
+    {
+      "surname": "Lawrence",
+      "full_name": "Ellsworth C. Lawrence",
+      "depts_served": [{"dept": 3, "start_year": 1945, "end_year": 1946}],
+      "presiding": false,
+      "notes": "Malone"
+    },
+    {
+      "surname": "Russell",
+      "full_name": "Pierce H. Russell",
+      "depts_served": [{"dept": 3, "start_year": 1947, "end_year": 1948}],
+      "presiding": false,
+      "notes": "Troy"
+    },
+    {
+      "surname": "Deyo",
+      "full_name": "Martin W. Deyo",
+      "depts_served": [{"dept": 3, "start_year": 1948, "end_year": 1951}],
+      "presiding": false,
+      "notes": "Binghamton"
+    },
+    {
+      "surname": "Santry",
+      "full_name": "William F. Santry",
+      "depts_served": [{"dept": 3, "start_year": 1949, "end_year": 1949}],
+      "presiding": false,
+      "notes": "Oneida"
+    },
+    {
+      "surname": "Bergan",
+      "full_name": "Francis Bergan",
+      "depts_served": [{"dept": 3, "start_year": 1949, "end_year": 1963}],
+      "presiding": true,
+      "notes": "Albany; Presiding Justice 1960-1963; elected to Court of Appeals 1963"
+    },
+    {
+      "surname": "Coon",
+      "full_name": "William H. Coon",
+      "depts_served": [{"dept": 3, "start_year": 1950, "end_year": 1963}],
+      "presiding": false,
+      "notes": "Cortland"
+    },
+    {
+      "surname": "Halpern",
+      "full_name": "Philip Halpern",
+      "depts_served": [{"dept": 3, "start_year": 1952, "end_year": 1957}],
+      "presiding": false,
+      "notes": "Buffalo; law school dean at University of Buffalo"
+    },
+    {
+      "surname": "Imrie",
+      "full_name": "Daniel F. Imrie",
+      "depts_served": [{"dept": 3, "start_year": 1953, "end_year": 1955}],
+      "presiding": false,
+      "notes": "Glens Falls"
+    },
+    {
+      "surname": "Zeller",
+      "full_name": "Howard A. Zeller",
+      "depts_served": [{"dept": 3, "start_year": 1954, "end_year": 1957}],
+      "presiding": false,
+      "notes": "Munnsville"
+    },
+    {
+      "surname": "Gibson",
+      "full_name": "James Gibson",
+      "depts_served": [{"dept": 3, "start_year": 1955, "end_year": 1969}],
+      "presiding": true,
+      "notes": "Hudson Falls; Presiding Justice 1964-1969; appointed to Court of Appeals September 1969"
+    },
+    {
+      "surname": "Herlihy",
+      "full_name": "J. Clarence Herlihy",
+      "depts_served": [{"dept": 3, "start_year": 1958, "end_year": 1982}],
+      "presiding": true,
+      "notes": "Glens Falls; designated March 1958; Presiding Justice 1969-1975 (mandatory retirement); continued as certificated Justice through 1982 — longest tenure on the Court (24+ years)"
+    },
+    {
+      "surname": "Reynolds",
+      "full_name": "Walter B. Reynolds",
+      "depts_served": [{"dept": 3, "start_year": 1958, "end_year": 1976}],
+      "presiding": false,
+      "notes": "Elmira; uncle of Justice D. Bruce Crew III"
+    },
+    {
+      "surname": "Taylor",
+      "full_name": "Donald S. Taylor",
+      "depts_served": [{"dept": 3, "start_year": 1961, "end_year": 1968}],
+      "presiding": false,
+      "notes": "Troy"
+    },
+    {
+      "surname": "Aulisi",
+      "full_name": "Felix J. Aulisi",
+      "depts_served": [{"dept": 3, "start_year": 1964, "end_year": 1971}],
+      "presiding": false,
+      "notes": "Amsterdam"
+    },
+    {
+      "surname": "Hamm",
+      "full_name": "Herbert D. Hamm",
+      "depts_served": [{"dept": 3, "start_year": 1964, "end_year": 1966}],
+      "presiding": false,
+      "notes": "Troy"
+    },
+    {
+      "surname": "Staley",
+      "full_name": "Ellis J. Staley Jr.",
+      "depts_served": [{"dept": 3, "start_year": 1966, "end_year": 1980}],
+      "presiding": false,
+      "notes": "Loudonville; served 1966-1974, then 1978-1980"
+    },
+    {
+      "surname": "Brink",
+      "full_name": "Robert O. Brink",
+      "depts_served": [{"dept": 3, "start_year": 1966, "end_year": 1966}],
+      "presiding": false,
+      "notes": "Binghamton; brief tenure November 17 to December 31, 1966"
+    },
+    {
+      "surname": "Gabrielli",
+      "full_name": "Domenick L. Gabrielli",
+      "depts_served": [{"dept": 3, "start_year": 1967, "end_year": 1972}],
+      "presiding": false,
+      "notes": "Bath; elected to Court of Appeals 1972"
+    },
+    {
+      "surname": "Cooke",
+      "full_name": "Lawrence H. Cooke",
+      "depts_served": [{"dept": 3, "start_year": 1969, "end_year": 1974}],
+      "presiding": false,
+      "notes": "Monticello; elected to Court of Appeals 1974; Chief Judge 1979-1984"
+    },
+    {
+      "surname": "Greenblott",
+      "full_name": "Louis M. Greenblott",
+      "depts_served": [{"dept": 3, "start_year": 1969, "end_year": 1980}],
+      "presiding": false,
+      "notes": "Binghamton"
+    },
+    {
+      "surname": "Sweeney",
+      "full_name": "Michael E. Sweeney",
+      "depts_served": [{"dept": 3, "start_year": 1969, "end_year": 1983}],
+      "presiding": false,
+      "notes": "Saratoga Springs"
+    },
+    {
+      "surname": "Simons",
+      "full_name": "Richard D. Simons",
+      "depts_served": [{"dept": 3, "start_year": 1971, "end_year": 1972}],
+      "presiding": false,
+      "notes": "Rome; appointed to Court of Appeals 1983; Acting Chief Judge 1992-1993"
+    },
+    {
+      "surname": "Kane",
+      "full_name": "T. Paul Kane",
+      "depts_served": [{"dept": 3, "start_year": 1972, "end_year": 1990}],
+      "presiding": false,
+      "notes": "Cobleskill"
+    },
+    {
+      "surname": "Main",
+      "full_name": "Robert G. Main",
+      "depts_served": [{"dept": 3, "start_year": 1973, "end_year": 1987}],
+      "presiding": false,
+      "notes": "Malone"
+    },
+    {
+      "surname": "Larkin",
+      "full_name": "John L. Larkin",
+      "depts_served": [{"dept": 3, "start_year": 1974, "end_year": 1979}],
+      "presiding": false,
+      "notes": "Kingston"
+    },
+    {
+      "surname": "Koreman",
+      "full_name": "Harold E. Koreman",
+      "depts_served": [{"dept": 3, "start_year": 1975, "end_year": 1977}],
+      "presiding": true,
+      "notes": "Albany; designated August 1975, Presiding Justice December 31, 1975 through end of 1977"
+    },
+    {
+      "surname": "Mahoney",
+      "full_name": "A. Franklin Mahoney",
+      "depts_served": [{"dept": 3, "start_year": 1976, "end_year": 1993}],
+      "presiding": true,
+      "notes": "Troy; Presiding Justice 1978-1991; certificated Justice through end of 1993"
+    },
+    {
+      "surname": "Mikoll",
+      "full_name": "Ann T. Mikoll",
+      "depts_served": [{"dept": 3, "start_year": 1977, "end_year": 2000}],
+      "presiding": false,
+      "notes": "Buffalo; first woman appointed to the Third Department; one of the first two women appointed to the Appellate Division statewide (with Justice Denman in AD-4)"
+    },
+    {
+      "surname": "Casey",
+      "full_name": "John T. Casey",
+      "depts_served": [{"dept": 3, "start_year": 1979, "end_year": 1994}],
+      "presiding": false,
+      "notes": "Troy; appointed December 20, 1979; certificated Justice after 1991 mandatory retirement"
+    },
+    {
+      "surname": "Weiss",
+      "full_name": "Leonard A. Weiss",
+      "depts_served": [{"dept": 3, "start_year": 1981, "end_year": 1994}],
+      "presiding": true,
+      "notes": "Albany; Presiding Justice 1992-1993; retired September 1994"
+    },
+    {
+      "surname": "Yesawich",
+      "full_name": "Paul J. Yesawich Jr.",
+      "depts_served": [{"dept": 3, "start_year": 1981, "end_year": 1998}],
+      "presiding": false,
+      "notes": "Cortland; appointed January 5, 1981; certificated Justice from 1993 mandatory retirement"
+    },
+    {
+      "surname": "Levine",
+      "full_name": "Howard A. Levine",
+      "depts_served": [{"dept": 3, "start_year": 1982, "end_year": 1993}],
+      "presiding": false,
+      "notes": "Schenectady; appointed to Court of Appeals 1993"
+    },
+    {
+      "surname": "Harvey",
+      "full_name": "Norman L. Harvey",
+      "depts_served": [{"dept": 3, "start_year": 1984, "end_year": 1993}],
+      "presiding": false,
+      "notes": "Plattsburgh"
+    },
+    {
+      "surname": "Mercure",
+      "full_name": "Thomas E. Mercure",
+      "depts_served": [{"dept": 3, "start_year": 1988, "end_year": 2014}],
+      "presiding": false,
+      "notes": "Hudson Falls; effective January 1, 1988; retired March 1, 2014; temporarily sat on Court of Appeals in 1994"
+    },
+    {
+      "surname": "Crew",
+      "full_name": "D. Bruce Crew III",
+      "depts_served": [{"dept": 3, "start_year": 1991, "end_year": 2005}],
+      "presiding": false,
+      "notes": "Elmira; effective January 1, 1991; nephew of Justice Walter B. Reynolds"
+    },
+    {
+      "surname": "Cardona",
+      "full_name": "Anthony V. Cardona",
+      "depts_served": [{"dept": 3, "start_year": 1993, "end_year": 2011}],
+      "presiding": true,
+      "notes": "Westerlo; designated September 8, 1993; Presiding Justice from January 1, 1994 until his death December 4, 2011"
+    },
+    {
+      "surname": "White",
+      "full_name": "James N. White",
+      "depts_served": [{"dept": 3, "start_year": 1993, "end_year": 2000}],
+      "presiding": false,
+      "notes": "Amsterdam; appointed September 8, 1993"
+    },
+    {
+      "surname": "Peters",
+      "full_name": "Karen K. Peters",
+      "depts_served": [{"dept": 3, "start_year": 1994, "end_year": 2017}],
+      "presiding": true,
+      "notes": "Kingston; appointed February 3, 1994; first woman elected to Supreme Court in Third Department; Presiding Justice from April 5, 2012 (first woman PJ) until December 2017 retirement"
+    },
+    {
+      "surname": "Spain",
+      "full_name": "Edward O. Spain",
+      "depts_served": [{"dept": 3, "start_year": 1994, "end_year": 2008}],
+      "presiding": false,
+      "notes": "Troy; effective December 30, 1994"
+    },
+    {
+      "surname": "Carpinello",
+      "full_name": "Anthony J. Carpinello",
+      "depts_served": [{"dept": 3, "start_year": 1996, "end_year": 2007}],
+      "presiding": false,
+      "notes": "East Greenbush; appointed June 25, 1996"
+    },
+    {
+      "surname": "Graffeo",
+      "full_name": "Victoria A. Graffeo",
+      "depts_served": [{"dept": 3, "start_year": 1998, "end_year": 2001}],
+      "presiding": false,
+      "notes": "Appointed to Court of Appeals 2001"
+    },
+    {
+      "surname": "Mugglin",
+      "full_name": "Carl J. Mugglin",
+      "depts_served": [{"dept": 3, "start_year": 1999, "end_year": 2007}],
+      "presiding": false,
+      "notes": "Delaware County; appointed June 14, 1999; retired end of 2007"
+    },
+    {
+      "surname": "Rose",
+      "full_name": "Robert S. Rose",
+      "depts_served": [{"dept": 3, "start_year": 2000, "end_year": 2017}],
+      "presiding": false,
+      "notes": "Binghamton; appointed March 2, 2000; retired December 2017"
+    },
+    {
+      "surname": "Lahtinen",
+      "full_name": "John A. Lahtinen",
+      "depts_served": [{"dept": 3, "start_year": 2000, "end_year": 2014}],
+      "presiding": false,
+      "notes": "Plattsburgh area; appointed effective March 6, 2000"
+    },
+    {
+      "surname": "Kane",
+      "full_name": "Anthony T. Kane",
+      "depts_served": [{"dept": 3, "start_year": 2002, "end_year": 2009}],
+      "presiding": false,
+      "notes": "Sullivan County; appointed July 31, 2002"
+    },
+    {
+      "surname": "Stein",
+      "full_name": "Leslie E. Stein",
+      "depts_served": [{"dept": 3, "start_year": 2008, "end_year": 2015}],
+      "presiding": false,
+      "notes": "Appointed February 11, 2008; confirmed to Court of Appeals February 2015"
+    },
+    {
+      "surname": "Kavanagh",
+      "full_name": "E. Michael Kavanagh",
+      "depts_served": [{"dept": 3, "start_year": 2008, "end_year": 2015}],
+      "presiding": false,
+      "notes": "Originally appointed to AD-1 (2006); redesignated to AD-3 February 11, 2008"
+    },
+    {
+      "surname": "Malone",
+      "full_name": "Bernard J. Malone Jr.",
+      "depts_served": [{"dept": 3, "start_year": 2008, "end_year": 2012}],
+      "presiding": false,
+      "notes": "Albany; originally appointed to AD-1 (2005), redesignated to AD-3 February 11, 2008; left bench December 31, 2012"
+    },
+    {
+      "surname": "McCarthy",
+      "full_name": "William E. McCarthy",
+      "depts_served": [{"dept": 3, "start_year": 2009, "end_year": 2016}],
+      "presiding": false,
+      "notes": "Albany; originally appointed to AD-2 (2006); redesignated to AD-3 effective January 30, 2009"
+    },
+    {
+      "surname": "Garry",
+      "full_name": "Elizabeth A. Garry",
+      "depts_served": [{"dept": 3, "start_year": 2009, "end_year": 2026}],
+      "presiding": true,
+      "notes": "Effective March 19, 2009; 16th Presiding Justice (January 1, 2018-present); first openly LGBTQ Presiding Justice in the state"
+    },
+    {
+      "surname": "Egan",
+      "full_name": "John C. Egan Jr.",
+      "depts_served": [{"dept": 3, "start_year": 2010, "end_year": 2025}],
+      "presiding": false,
+      "notes": "Albany; effective February 4, 2010; left office August 8, 2025"
+    },
+    {
+      "surname": "Devine",
+      "full_name": "Eugene P. Devine",
+      "depts_served": [{"dept": 3, "start_year": 2014, "end_year": 2020}],
+      "presiding": false,
+      "notes": "Schenectady; appointed April 15, 2014; resigned November 30, 2020 to serve as Schenectady Public Safety Commissioner"
+    },
+    {
+      "surname": "Clark",
+      "full_name": "Christine M. Clark",
+      "depts_served": [{"dept": 3, "start_year": 2014, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Schenectady; appointed April 15, 2014"
+    },
+    {
+      "surname": "Lynch",
+      "full_name": "Michael C. Lynch",
+      "depts_served": [{"dept": 3, "start_year": 2014, "end_year": 2022}],
+      "presiding": false,
+      "notes": "Albany; appointed 2014"
+    },
+    {
+      "surname": "Aarons",
+      "full_name": "Sharon A.M. Aarons",
+      "depts_served": [{"dept": 3, "start_year": 2016, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Effective March 1, 2016; first woman of color appointed to AD-3"
+    },
+    {
+      "surname": "Mulvey",
+      "full_name": "Robert C. Mulvey",
+      "depts_served": [{"dept": 3, "start_year": 2016, "end_year": 2021}],
+      "presiding": false,
+      "notes": "Tompkins County; appointed effective March 1, 2016; retired January 29, 2021; first Tompkins-based judge on AD-3"
+    },
+    {
+      "surname": "Rumsey",
+      "full_name": "Phillip R. Rumsey",
+      "depts_served": [{"dept": 3, "start_year": 2017, "end_year": 2019}],
+      "presiding": false,
+      "notes": "Cortland County; effective May 26, 2017; retired October 2019"
+    },
+    {
+      "surname": "Pritzker",
+      "full_name": "Stan L. Pritzker",
+      "depts_served": [{"dept": 3, "start_year": 2017, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Effective May 26, 2017"
+    },
+    {
+      "surname": "Colangelo",
+      "full_name": "John P. Colangelo",
+      "depts_served": [{"dept": 3, "start_year": 2019, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Appointed effective November 6, 2019"
+    },
+    {
+      "surname": "Reynolds Fitzgerald",
+      "full_name": "Molly Reynolds Fitzgerald",
+      "depts_served": [{"dept": 3, "start_year": 2019, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Broome County area; appointed effective November 6, 2019; redesignated for five-year term effective January 1, 2022"
+    },
+    {
+      "surname": "Ceresia",
+      "full_name": "Andrew G. Ceresia",
+      "depts_served": [{"dept": 3, "start_year": 2022, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Rensselaer County; appointed January 2022"
+    },
+    {
+      "surname": "Fisher",
+      "full_name": "Lisa M. Fisher",
+      "depts_served": [{"dept": 3, "start_year": 2022, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Greene County; appointed January 2022"
+    },
+    {
+      "surname": "McShan",
+      "full_name": "Eddie J. McShan",
+      "depts_served": [{"dept": 3, "start_year": 2022, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Appointed January 2022"
+    },
+    {
+      "surname": "Mackey",
+      "full_name": "L. Michael Mackey",
+      "depts_served": [{"dept": 3, "start_year": 2023, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Albany County; appointed effective August 21, 2023; sworn in September 6, 2023"
+    },
+    {
+      "surname": "Powers",
+      "full_name": "Mark L. Powers",
+      "depts_served": [{"dept": 3, "start_year": 2023, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Appointed in 2023; sworn in September 6, 2023"
+    },
+    {
+      "surname": "Corcoran",
+      "full_name": "Justin O. Corcoran",
+      "depts_served": [{"dept": 3, "start_year": 2025, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Albany; designated October 17, 2025; effective October 30, 2025; sworn in November 17, 2025"
+    },
+    {
+      "surname": "Ryba",
+      "full_name": "Christina L. Ryba",
+      "depts_served": [{"dept": 3, "start_year": 2026, "end_year": 2026}],
+      "presiding": false,
+      "notes": "Albany County; sworn in March 24, 2026; first Black Justice elected from the Third Department to serve on the Appellate Division"
+    }
+  ]
+}

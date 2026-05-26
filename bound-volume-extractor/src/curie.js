@@ -92,13 +92,33 @@ function slugAuthor(author) {
  *
  * Cases with no derivable CURIE (missing volume_page, etc.) get
  * `case_curie: null` and are skipped for opinion CURIEs as well.
+ *
+ * Also synthesizes `file_name` on every case as `<padded-page>-<padded-occ>`
+ * (e.g. `0904-01`, `0904-02`). The format mirrors the CAP-imported cohort's
+ * file_name and gives stacked-memo cases sharing a page caption a stable,
+ * content-derivable disambiguator — without it those cases collapse on the
+ * Phase-1 case_curie hash (see docs/planning/case-curie-content-derived.md).
+ * Pre-existing `c.file_name` is preserved if a caller already set one.
  */
 export function assignCuries(cases, volumeMeta) {
   const baseCounts = new Map();    // base CURIE → next occurrence number
+  const pageCounts = new Map();    // volume_page → next position-on-page
   let collisionCount = 0;
   let caseCount = 0;
   for (const c of cases) {
-    const base = caseCurieBase(volumeMeta, c.volume_page ?? c.first_page, c.name);
+    const page = c.volume_page ?? c.first_page;
+
+    // file_name: <4-digit page>-<2-digit position-on-page>. Independent of
+    // curie collision counting because two cases can share a page without
+    // sharing a curie base (different names) yet still benefit from the
+    // disambiguator on the content-hash side.
+    if (c.file_name == null && page != null) {
+      const pos = (pageCounts.get(String(page)) || 0) + 1;
+      pageCounts.set(String(page), pos);
+      c.file_name = `${String(page).padStart(4, '0')}-${String(pos).padStart(2, '0')}`;
+    }
+
+    const base = caseCurieBase(volumeMeta, page, c.name);
     if (!base) {
       c.case_curie = null;
       for (const op of c.opinions || []) op.curie = null;

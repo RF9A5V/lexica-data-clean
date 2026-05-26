@@ -1,0 +1,16 @@
+{
+  "name": "nys-extractor",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "Fetches NYS consolidated/unconsolidated laws from NYSenate Open Legislation API and loads into nys_legislative Postgres",
+  "main": "src/index.js",
+  "scripts": {
+    "fetch": "node src/index.js fetch",
+    "load": "node src/index.js load"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.3"
+  }
+}

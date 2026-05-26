@@ -1,0 +1,1101 @@
+{
+  "dept": 2,
+  "compiled_at": "2026-05-21",
+  "coverage": "1896-2025",
+  "sources": [
+    "https://en.wikipedia.org/wiki/New_York_State_Supreme_Court,_Appellate_Division,_Second_Department",
+    "https://history.nycourts.gov/biographies/app-div-second-dept-judges/",
+    "https://history.nycourts.gov/biography_category/new-york-state-supreme-court-appellate-division-second-department/",
+    "https://www.nycourts.gov/courts/ad2/justices.shtml",
+    "https://www.courtalert.com/AD2JudgeBios.asp",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-appointments-new-york-state-supreme-court-appellate-division-second",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-new-york-state-second-department-appellate-division-appointments",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-designations-appellate-divisions-second-and-third-judicial",
+    "https://www.governor.ny.gov/news/governor-hochul-announces-designations-appellate-division-courts",
+    "https://brooklyneagle.com/articles/2023/07/28/brooklyns-justice-landicino-among-ten-judges-elevated-to-appellate-division/",
+    "https://www.law.com/newyorklawjournal/2022/05/20/voutsinas-taylor-wan-and-warhit-appointed-appellate-judges-for-2nd-department/",
+    "https://en.wikipedia.org/wiki/Valerie_Brathwaite_Nelson",
+    "https://en.wikipedia.org/wiki/Hector_LaSalle",
+    "https://en.wikipedia.org/wiki/Willard_Bartlett",
+    "https://www.nycourts.gov/history/legal-history-new-york/luminaries-court-appeals/bartlett-willard.html",
+    "https://webservera.courts.state.ny.us/courts/ad2/thecourthouse.shtml",
+    "https://brooklyneagle.com/73644/judges-of-appellate-division-2nd-department-celebrate-courthouses-80th-anniversary/"
+  ],
+  "notes": "Compiled from Wikipedia's presiding-justice list cross-referenced with the Historical Society of the New York Courts biographical roster, the official AD-2 justices page, the CourtAlert AD-2 judges-bio index, and Governor's-office press releases for appointments since 2014. Year ranges are best-available estimates; when only a single anchor year was found (appointment OR retirement), the missing endpoint was inferred from contextual cues (career chronology, successor's appointment year, news coverage). Some early-20th-century associate justices have approximate year ranges; widely-known presiding justices are precise.",
+  "justices": [
+    {
+      "surname": "Brown",
+      "full_name": "Charles F. Brown",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1896}],
+      "presiding": true,
+      "notes": "First Presiding Justice; took the bench at the court's first session on January 6, 1896."
+    },
+    {
+      "surname": "Pratt",
+      "full_name": "Calvin E. Pratt",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1896}],
+      "presiding": false,
+      "notes": "One of the four founding associate justices in 1896."
+    },
+    {
+      "surname": "Cullen",
+      "full_name": "Edgar M. Cullen",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1900}],
+      "presiding": false,
+      "notes": "Founding associate justice; elevated to NY Court of Appeals in 1900."
+    },
+    {
+      "surname": "Bartlett",
+      "full_name": "Willard Bartlett",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1906}],
+      "presiding": false,
+      "notes": "Founding associate justice; elevated to NY Court of Appeals in 1906."
+    },
+    {
+      "surname": "Hatch",
+      "full_name": "Edward W. Hatch",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1900}],
+      "presiding": false,
+      "notes": "Founding associate justice; transferred to First Department in 1900."
+    },
+    {
+      "surname": "Goodrich",
+      "full_name": "William W. Goodrich",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1903}],
+      "presiding": true,
+      "notes": "Presiding Justice 1896-1903."
+    },
+    {
+      "surname": "Hirschberg",
+      "full_name": "Michael H. Hirschberg",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1911}],
+      "presiding": true,
+      "notes": "Presiding Justice 1904-1911."
+    },
+    {
+      "surname": "Jenks",
+      "full_name": "Almet Francis Jenks",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1921}],
+      "presiding": true,
+      "notes": "Presiding Justice 1911-1921."
+    },
+    {
+      "surname": "Woodward",
+      "full_name": "John M. Woodward",
+      "depts_served": [{"dept": 2, "start_year": 1897, "end_year": 1912}],
+      "presiding": false
+    },
+    {
+      "surname": "Hooker",
+      "full_name": "Warren Hooker",
+      "depts_served": [{"dept": 2, "start_year": 1898, "end_year": 1912}],
+      "presiding": false
+    },
+    {
+      "surname": "Burr",
+      "full_name": "Joseph A. Burr",
+      "depts_served": [{"dept": 2, "start_year": 1908, "end_year": 1919}],
+      "presiding": false
+    },
+    {
+      "surname": "Gaynor",
+      "full_name": "William J. Gaynor",
+      "depts_served": [{"dept": 2, "start_year": 1905, "end_year": 1909}],
+      "presiding": false,
+      "notes": "Later Mayor of New York City."
+    },
+    {
+      "surname": "Miller",
+      "full_name": "Nathan L. Miller",
+      "depts_served": [{"dept": 2, "start_year": 1903, "end_year": 1915}],
+      "presiding": false,
+      "notes": "Later Governor of New York."
+    },
+    {
+      "surname": "Carr",
+      "full_name": "William J. Carr",
+      "depts_served": [{"dept": 2, "start_year": 1907, "end_year": 1923}],
+      "presiding": false
+    },
+    {
+      "surname": "Stapleton",
+      "full_name": "Luke D. Stapleton",
+      "depts_served": [{"dept": 2, "start_year": 1907, "end_year": 1916}],
+      "presiding": false
+    },
+    {
+      "surname": "Putnam",
+      "full_name": "Harrington Putnam",
+      "depts_served": [{"dept": 2, "start_year": 1907, "end_year": 1925}],
+      "presiding": false
+    },
+    {
+      "surname": "Thomas",
+      "full_name": "Edward B. Thomas",
+      "depts_served": [{"dept": 2, "start_year": 1908, "end_year": 1918}],
+      "presiding": false
+    },
+    {
+      "surname": "Rich",
+      "full_name": "Adelbert P. Rich",
+      "depts_served": [{"dept": 2, "start_year": 1909, "end_year": 1923}],
+      "presiding": false
+    },
+    {
+      "surname": "Mills",
+      "full_name": "Isaac N. Mills",
+      "depts_served": [{"dept": 2, "start_year": 1910, "end_year": 1920}],
+      "presiding": false
+    },
+    {
+      "surname": "Scudder",
+      "full_name": "Townsend Scudder",
+      "depts_served": [{"dept": 2, "start_year": 1912, "end_year": 1926}],
+      "presiding": false
+    },
+    {
+      "surname": "Tompkins",
+      "full_name": "Arthur S. Tompkins",
+      "depts_served": [{"dept": 2, "start_year": 1916, "end_year": 1924}],
+      "presiding": false
+    },
+    {
+      "surname": "Seeger",
+      "full_name": "Albert H. F. Seeger",
+      "depts_served": [{"dept": 2, "start_year": 1915, "end_year": 1922}],
+      "presiding": false
+    },
+    {
+      "surname": "Blackmar",
+      "full_name": "Abel E. Blackmar",
+      "depts_served": [{"dept": 2, "start_year": 1910, "end_year": 1922}],
+      "presiding": true,
+      "notes": "Presiding Justice 1921-1922."
+    },
+    {
+      "surname": "Kelly",
+      "full_name": "William J. Kelly",
+      "depts_served": [{"dept": 2, "start_year": 1917, "end_year": 1927}],
+      "presiding": true,
+      "notes": "Presiding Justice 1923-1927."
+    },
+    {
+      "surname": "Lazansky",
+      "full_name": "Edward Lazansky",
+      "depts_served": [{"dept": 2, "start_year": 1925, "end_year": 1942}],
+      "presiding": true,
+      "notes": "Presiding Justice 1927-1942."
+    },
+    {
+      "surname": "Manning",
+      "full_name": "David F. Manning",
+      "depts_served": [{"dept": 2, "start_year": 1923, "end_year": 1934}],
+      "presiding": false
+    },
+    {
+      "surname": "Young",
+      "full_name": "Addison J. Young",
+      "depts_served": [{"dept": 2, "start_year": 1922, "end_year": 1933}],
+      "presiding": false
+    },
+    {
+      "surname": "Hagarty",
+      "full_name": "William F. Hagarty",
+      "depts_served": [{"dept": 2, "start_year": 1925, "end_year": 1948}],
+      "presiding": false
+    },
+    {
+      "surname": "Hill",
+      "full_name": "Barron L. Hill",
+      "depts_served": [{"dept": 2, "start_year": 1923, "end_year": 1935}],
+      "presiding": false
+    },
+    {
+      "surname": "Kapper",
+      "full_name": "Isaac M. Kapper",
+      "depts_served": [{"dept": 2, "start_year": 1923, "end_year": 1936}],
+      "presiding": false
+    },
+    {
+      "surname": "Scudder",
+      "full_name": "Townsend Scudder Jr.",
+      "depts_served": [{"dept": 2, "start_year": 1927, "end_year": 1928}],
+      "presiding": false,
+      "notes": "Distinct from earlier Townsend Scudder (Sr.); brief tenure."
+    },
+    {
+      "surname": "Carswell",
+      "full_name": "William B. Carswell",
+      "depts_served": [{"dept": 2, "start_year": 1927, "end_year": 1953}],
+      "presiding": false,
+      "notes": "Longest-serving justice on AD-2 (~26 years)."
+    },
+    {
+      "surname": "Close",
+      "full_name": "Frederick P. Close",
+      "depts_served": [{"dept": 2, "start_year": 1932, "end_year": 1945}],
+      "presiding": true,
+      "notes": "Presiding Justice 1943-1945."
+    },
+    {
+      "surname": "Adel",
+      "full_name": "Frank F. Adel",
+      "depts_served": [{"dept": 2, "start_year": 1933, "end_year": 1953}],
+      "presiding": false
+    },
+    {
+      "surname": "Johnston",
+      "full_name": "John B. Johnston",
+      "depts_served": [{"dept": 2, "start_year": 1937, "end_year": 1955}],
+      "presiding": false
+    },
+    {
+      "surname": "Lewis",
+      "full_name": "Harry E. Lewis",
+      "depts_served": [{"dept": 2, "start_year": 1934, "end_year": 1948}],
+      "presiding": true,
+      "notes": "Presiding Justice 1946-1948."
+    },
+    {
+      "surname": "Taylor",
+      "full_name": "George H. Taylor Jr.",
+      "depts_served": [{"dept": 2, "start_year": 1935, "end_year": 1948}],
+      "presiding": false
+    },
+    {
+      "surname": "Aldrich",
+      "full_name": "Raymond E. Aldrich",
+      "depts_served": [{"dept": 2, "start_year": 1937, "end_year": 1948}],
+      "presiding": false
+    },
+    {
+      "surname": "Nolan",
+      "full_name": "Gerald Nolan",
+      "depts_served": [{"dept": 2, "start_year": 1943, "end_year": 1961}],
+      "presiding": true,
+      "notes": "Presiding Justice 1948-1961."
+    },
+    {
+      "surname": "Sneed",
+      "full_name": "Charles W. U. Sneed",
+      "depts_served": [{"dept": 2, "start_year": 1945, "end_year": 1957}],
+      "presiding": false
+    },
+    {
+      "surname": "Wenzel",
+      "full_name": "Henry G. Wenzel",
+      "depts_served": [{"dept": 2, "start_year": 1947, "end_year": 1959}],
+      "presiding": false
+    },
+    {
+      "surname": "MacCrate",
+      "full_name": "John MacCrate",
+      "depts_served": [{"dept": 2, "start_year": 1948, "end_year": 1959}],
+      "presiding": false
+    },
+    {
+      "surname": "Beldock",
+      "full_name": "George J. Beldock",
+      "depts_served": [{"dept": 2, "start_year": 1955, "end_year": 1970}],
+      "presiding": true,
+      "notes": "Presiding Justice 1961-1970."
+    },
+    {
+      "surname": "Murphy",
+      "full_name": "Charles E. Murphy",
+      "depts_served": [{"dept": 2, "start_year": 1949, "end_year": 1962}],
+      "presiding": false
+    },
+    {
+      "surname": "Ughetta",
+      "full_name": "Henry L. Ughetta",
+      "depts_served": [{"dept": 2, "start_year": 1956, "end_year": 1969}],
+      "presiding": false
+    },
+    {
+      "surname": "Kleinfeld",
+      "full_name": "Philip M. Kleinfeld",
+      "depts_served": [{"dept": 2, "start_year": 1957, "end_year": 1972}],
+      "presiding": false
+    },
+    {
+      "surname": "Christ",
+      "full_name": "Marcus G. Christ",
+      "depts_served": [{"dept": 2, "start_year": 1957, "end_year": 1971}],
+      "presiding": true,
+      "notes": "Presiding Justice 1970-1971."
+    },
+    {
+      "surname": "Pette",
+      "full_name": "Nicholas M. Pette",
+      "depts_served": [{"dept": 2, "start_year": 1955, "end_year": 1964}],
+      "presiding": false
+    },
+    {
+      "surname": "Brennan",
+      "full_name": "Arthur D. Brennan",
+      "depts_served": [{"dept": 2, "start_year": 1960, "end_year": 1972}],
+      "presiding": false
+    },
+    {
+      "surname": "Hopkins",
+      "full_name": "James D. Hopkins",
+      "depts_served": [{"dept": 2, "start_year": 1965, "end_year": 1981}],
+      "presiding": false
+    },
+    {
+      "surname": "Rabin",
+      "full_name": "Samuel Rabin",
+      "depts_served": [{"dept": 2, "start_year": 1963, "end_year": 1974}],
+      "presiding": true,
+      "notes": "Presiding Justice 1971-1974."
+    },
+    {
+      "surname": "Martuscello",
+      "full_name": "M. Henry Martuscello",
+      "depts_served": [{"dept": 2, "start_year": 1967, "end_year": 1979}],
+      "presiding": false
+    },
+    {
+      "surname": "Munder",
+      "full_name": "Fred J. Munder",
+      "depts_served": [{"dept": 2, "start_year": 1965, "end_year": 1975}],
+      "presiding": false
+    },
+    {
+      "surname": "Latham",
+      "full_name": "Henry L. Latham",
+      "depts_served": [{"dept": 2, "start_year": 1968, "end_year": 1980}],
+      "presiding": false
+    },
+    {
+      "surname": "Shapiro",
+      "full_name": "J. Irwin Shapiro",
+      "depts_served": [{"dept": 2, "start_year": 1968, "end_year": 1979}],
+      "presiding": false
+    },
+    {
+      "surname": "Margett",
+      "full_name": "Charles Margett",
+      "depts_served": [{"dept": 2, "start_year": 1969, "end_year": 1978}],
+      "presiding": false
+    },
+    {
+      "surname": "Gulotta",
+      "full_name": "Frank A. Gulotta",
+      "depts_served": [{"dept": 2, "start_year": 1968, "end_year": 1977}],
+      "presiding": true,
+      "notes": "Presiding Justice 1974-1977."
+    },
+    {
+      "surname": "Cohalan",
+      "full_name": "John P. Cohalan Jr.",
+      "depts_served": [{"dept": 2, "start_year": 1971, "end_year": 1981}],
+      "presiding": false
+    },
+    {
+      "surname": "Damiani",
+      "full_name": "Vincent D. Damiani",
+      "depts_served": [{"dept": 2, "start_year": 1973, "end_year": 1986}],
+      "presiding": false
+    },
+    {
+      "surname": "Titone",
+      "full_name": "Vito J. Titone",
+      "depts_served": [{"dept": 2, "start_year": 1976, "end_year": 1985}],
+      "presiding": false,
+      "notes": "Elevated to NY Court of Appeals in 1985."
+    },
+    {
+      "surname": "O'Connor",
+      "full_name": "Frank D. O'Connor",
+      "depts_served": [{"dept": 2, "start_year": 1974, "end_year": 1983}],
+      "presiding": false
+    },
+    {
+      "surname": "Hawkins",
+      "full_name": "Joseph F. Hawkins",
+      "depts_served": [{"dept": 2, "start_year": 1976, "end_year": 1984}],
+      "presiding": false
+    },
+    {
+      "surname": "Suozzi",
+      "full_name": "Joseph A. Suozzi",
+      "depts_served": [{"dept": 2, "start_year": 1977, "end_year": 1985}],
+      "presiding": false
+    },
+    {
+      "surname": "Mollen",
+      "full_name": "Milton Mollen",
+      "depts_served": [{"dept": 2, "start_year": 1978, "end_year": 1990}],
+      "presiding": true,
+      "notes": "Presiding Justice 1978-1990."
+    },
+    {
+      "surname": "Mangano",
+      "full_name": "Guy James Mangano",
+      "depts_served": [{"dept": 2, "start_year": 1979, "end_year": 2001}],
+      "presiding": true,
+      "notes": "Associate Justice from 1979; Presiding Justice 1990-2001."
+    },
+    {
+      "surname": "Lazer",
+      "full_name": "Leon D. Lazer",
+      "depts_served": [{"dept": 2, "start_year": 1977, "end_year": 1989}],
+      "presiding": false
+    },
+    {
+      "surname": "Gibbons",
+      "full_name": "David T. Gibbons",
+      "depts_served": [{"dept": 2, "start_year": 1978, "end_year": 1989}],
+      "presiding": false
+    },
+    {
+      "surname": "Weinstein",
+      "full_name": "Moses M. Weinstein",
+      "depts_served": [{"dept": 2, "start_year": 1976, "end_year": 1985}],
+      "presiding": false
+    },
+    {
+      "surname": "Boyers",
+      "full_name": "Seymour Boyers",
+      "depts_served": [{"dept": 2, "start_year": 1979, "end_year": 1987}],
+      "presiding": false
+    },
+    {
+      "surname": "Bracken",
+      "full_name": "Lawrence J. Bracken",
+      "depts_served": [{"dept": 2, "start_year": 1982, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Brown",
+      "full_name": "Richard Brown",
+      "depts_served": [{"dept": 2, "start_year": 1983, "end_year": 1991}],
+      "presiding": false
+    },
+    {
+      "surname": "Niehoff",
+      "full_name": "James F. Niehoff",
+      "depts_served": [{"dept": 2, "start_year": 1983, "end_year": 1992}],
+      "presiding": false
+    },
+    {
+      "surname": "Rubin",
+      "full_name": "Isaac Rubin",
+      "depts_served": [{"dept": 2, "start_year": 1984, "end_year": 1993}],
+      "presiding": false
+    },
+    {
+      "surname": "Eiber",
+      "full_name": "Geraldine T. Eiber",
+      "depts_served": [{"dept": 2, "start_year": 1986, "end_year": 1996}],
+      "presiding": false
+    },
+    {
+      "surname": "Kunzeman",
+      "full_name": "Joseph J. Kunzeman",
+      "depts_served": [{"dept": 2, "start_year": 1986, "end_year": 1995}],
+      "presiding": false
+    },
+    {
+      "surname": "Kooper",
+      "full_name": "Sybil Hart Kooper",
+      "depts_served": [{"dept": 2, "start_year": 1986, "end_year": 1994}],
+      "presiding": false
+    },
+    {
+      "surname": "Spatt",
+      "full_name": "Arthur D. Spatt",
+      "depts_served": [{"dept": 2, "start_year": 1987, "end_year": 1993}],
+      "presiding": false,
+      "notes": "Later U.S. District Judge for the Eastern District of New York."
+    },
+    {
+      "surname": "Sullivan",
+      "full_name": "Thomas R. Sullivan",
+      "depts_served": [{"dept": 2, "start_year": 1985, "end_year": 1995}],
+      "presiding": false
+    },
+    {
+      "surname": "Harwood",
+      "full_name": "Stanley Harwood",
+      "depts_served": [{"dept": 2, "start_year": 1986, "end_year": 1994}],
+      "presiding": false
+    },
+    {
+      "surname": "Balletta",
+      "full_name": "Vincent R. Balletta Jr.",
+      "depts_served": [{"dept": 2, "start_year": 1989, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Rosenblatt",
+      "full_name": "Albert M. Rosenblatt",
+      "depts_served": [{"dept": 2, "start_year": 1991, "end_year": 1998}],
+      "presiding": false,
+      "notes": "Later NY Court of Appeals."
+    },
+    {
+      "surname": "Miller",
+      "full_name": "Sondra Miller",
+      "depts_served": [{"dept": 2, "start_year": 1990, "end_year": 2005}],
+      "presiding": false
+    },
+    {
+      "surname": "O'Brien",
+      "full_name": "Cornelius J. O'Brien",
+      "depts_served": [{"dept": 2, "start_year": 1991, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Copertino",
+      "full_name": "John Copertino",
+      "depts_served": [{"dept": 2, "start_year": 1991, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Santucci",
+      "full_name": "Fred T. Santucci",
+      "depts_served": [{"dept": 2, "start_year": 1992, "end_year": 2009}],
+      "presiding": false
+    },
+    {
+      "surname": "Joy",
+      "full_name": "Daniel W. Joy",
+      "depts_served": [{"dept": 2, "start_year": 1992, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Hallinan",
+      "full_name": "James T. Hallinan",
+      "depts_served": [{"dept": 2, "start_year": 1980, "end_year": 1988}],
+      "presiding": false
+    },
+    {
+      "surname": "Lawrence",
+      "full_name": "Charles Lawrence",
+      "depts_served": [{"dept": 2, "start_year": 1980, "end_year": 1990}],
+      "presiding": false
+    },
+    {
+      "surname": "Thompson",
+      "full_name": "William C. Thompson",
+      "depts_served": [{"dept": 2, "start_year": 1980, "end_year": 1989}],
+      "presiding": false
+    },
+    {
+      "surname": "Jaycox",
+      "full_name": "Walter H. Jaycox",
+      "depts_served": [{"dept": 2, "start_year": 1981, "end_year": 1988}],
+      "presiding": false
+    },
+    {
+      "surname": "Ritter",
+      "full_name": "David S. Ritter",
+      "depts_served": [{"dept": 2, "start_year": 1994, "end_year": 2009}],
+      "presiding": false
+    },
+    {
+      "surname": "Pizzuto",
+      "full_name": "Vincent Pizzuto",
+      "depts_served": [{"dept": 2, "start_year": 1991, "end_year": 1996}],
+      "presiding": false
+    },
+    {
+      "surname": "Friedmann",
+      "full_name": "William D. Friedmann",
+      "depts_served": [{"dept": 2, "start_year": 1993, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Krausman",
+      "full_name": "Gabriel M. Krausman",
+      "depts_served": [{"dept": 2, "start_year": 1994, "end_year": 2007}],
+      "presiding": false
+    },
+    {
+      "surname": "Goldstein",
+      "full_name": "Gloria Goldstein",
+      "depts_served": [{"dept": 2, "start_year": 1994, "end_year": 2005}],
+      "presiding": false
+    },
+    {
+      "surname": "Florio",
+      "full_name": "Anita R. Florio",
+      "depts_served": [{"dept": 2, "start_year": 1996, "end_year": 2013}],
+      "presiding": false
+    },
+    {
+      "surname": "McGinity",
+      "full_name": "Leo F. McGinity",
+      "depts_served": [{"dept": 2, "start_year": 1995, "end_year": 2008}],
+      "presiding": false
+    },
+    {
+      "surname": "Luciano",
+      "full_name": "Daniel F. Luciano",
+      "depts_served": [{"dept": 2, "start_year": 1996, "end_year": 2008}],
+      "presiding": false
+    },
+    {
+      "surname": "Schmidt",
+      "full_name": "Robert W. Schmidt",
+      "depts_served": [{"dept": 2, "start_year": 1996, "end_year": 2009}],
+      "presiding": false
+    },
+    {
+      "surname": "Schmidt",
+      "full_name": "Frederick G. Schmidt",
+      "depts_served": [{"dept": 2, "start_year": 1928, "end_year": 1942}],
+      "presiding": false,
+      "notes": "Distinct early-20th-century justice from Robert W. Schmidt (1996-2009)."
+    },
+    {
+      "surname": "Cozier",
+      "full_name": "Barry A. Cozier",
+      "depts_served": [{"dept": 2, "start_year": 1997, "end_year": 2006}],
+      "presiding": false
+    },
+    {
+      "surname": "Altman",
+      "full_name": "Myriam J. Altman",
+      "depts_served": [{"dept": 2, "start_year": 1995, "end_year": 2004}],
+      "presiding": false
+    },
+    {
+      "surname": "Smith",
+      "full_name": "Nancy E. Smith",
+      "depts_served": [{"dept": 2, "start_year": 1997, "end_year": 2004}],
+      "presiding": false
+    },
+    {
+      "surname": "Lerner",
+      "full_name": "Alfred D. Lerner",
+      "depts_served": [{"dept": 2, "start_year": 1996, "end_year": 2004}],
+      "presiding": false
+    },
+    {
+      "surname": "Townes",
+      "full_name": "Sandra L. Townes",
+      "depts_served": [{"dept": 2, "start_year": 2001, "end_year": 2004}],
+      "presiding": false,
+      "notes": "Later U.S. District Judge for the Eastern District of New York."
+    },
+    {
+      "surname": "Adams",
+      "full_name": "Thomas A. Adams",
+      "depts_served": [{"dept": 2, "start_year": 2001, "end_year": 2009}],
+      "presiding": false
+    },
+    {
+      "surname": "Hart",
+      "full_name": "Edward J. Hart",
+      "depts_served": [{"dept": 2, "start_year": 1961, "end_year": 1965}],
+      "presiding": false
+    },
+    {
+      "surname": "Prudenti",
+      "full_name": "A. Gail Prudenti",
+      "depts_served": [{"dept": 2, "start_year": 2001, "end_year": 2011}],
+      "presiding": true,
+      "notes": "First woman Presiding Justice of AD-2; served 2002-2011."
+    },
+    {
+      "surname": "Rivera",
+      "full_name": "Reinaldo E. Rivera",
+      "depts_served": [{"dept": 2, "start_year": 2002, "end_year": 2018}],
+      "presiding": false,
+      "notes": "First Hispanic Associate Justice of AD-2."
+    },
+    {
+      "surname": "Crane",
+      "full_name": "Stephen G. Crane",
+      "depts_served": [{"dept": 2, "start_year": 2003, "end_year": 2010}],
+      "presiding": false
+    },
+    {
+      "surname": "Mastro",
+      "full_name": "William F. Mastro",
+      "depts_served": [{"dept": 2, "start_year": 2003, "end_year": 2017}],
+      "presiding": true,
+      "notes": "Acting Presiding Justice 2014-2017."
+    },
+    {
+      "surname": "Skelos",
+      "full_name": "Peter B. Skelos",
+      "depts_served": [{"dept": 2, "start_year": 2004, "end_year": 2015}],
+      "presiding": false
+    },
+    {
+      "surname": "Lifson",
+      "full_name": "Robert A. Lifson",
+      "depts_served": [{"dept": 2, "start_year": 2004, "end_year": 2009}],
+      "presiding": false
+    },
+    {
+      "surname": "Spolzino",
+      "full_name": "Robert A. Spolzino",
+      "depts_served": [{"dept": 2, "start_year": 2004, "end_year": 2010}],
+      "presiding": false
+    },
+    {
+      "surname": "Covello",
+      "full_name": "Joseph Covello",
+      "depts_served": [{"dept": 2, "start_year": 2005, "end_year": 2011}],
+      "presiding": false
+    },
+    {
+      "surname": "Lott",
+      "full_name": "Plummer E. Lott",
+      "depts_served": [{"dept": 2, "start_year": 2008, "end_year": 2015}],
+      "presiding": false
+    },
+    {
+      "surname": "Dillon",
+      "full_name": "Mark C. Dillon",
+      "depts_served": [{"dept": 2, "start_year": 2005, "end_year": 2025}],
+      "presiding": false,
+      "notes": "Currently sitting (as of 2025)."
+    },
+    {
+      "surname": "Carni",
+      "full_name": "Edward D. Carni",
+      "depts_served": [{"dept": 2, "start_year": 2006, "end_year": 2009}],
+      "presiding": false,
+      "notes": "Subsequently served on AD-4."
+    },
+    {
+      "surname": "Dickerson",
+      "full_name": "Thomas A. Dickerson",
+      "depts_served": [{"dept": 2, "start_year": 2006, "end_year": 2017}],
+      "presiding": false
+    },
+    {
+      "surname": "Balkin",
+      "full_name": "Ruth C. Balkin",
+      "depts_served": [{"dept": 2, "start_year": 2006, "end_year": 2017}],
+      "presiding": false
+    },
+    {
+      "surname": "Angiolillo",
+      "full_name": "Daniel D. Angiolillo",
+      "depts_served": [{"dept": 2, "start_year": 2007, "end_year": 2017}],
+      "presiding": false
+    },
+    {
+      "surname": "Leventhal",
+      "full_name": "John M. Leventhal",
+      "depts_served": [{"dept": 2, "start_year": 2008, "end_year": 2024}],
+      "presiding": false
+    },
+    {
+      "surname": "McCarthy",
+      "full_name": "William E. McCarthy",
+      "depts_served": [{"dept": 2, "start_year": 2008, "end_year": 2010}],
+      "presiding": false,
+      "notes": "Subsequently served on AD-3."
+    },
+    {
+      "surname": "Fisher",
+      "full_name": "Steven W. Fisher",
+      "depts_served": [{"dept": 2, "start_year": 2006, "end_year": 2010}],
+      "presiding": false
+    },
+    {
+      "surname": "Eng",
+      "full_name": "Randall T. Eng",
+      "depts_served": [{"dept": 2, "start_year": 2008, "end_year": 2017}],
+      "presiding": true,
+      "notes": "Presiding Justice 2012-2017; first Asian American Presiding Justice of an AD department in New York."
+    },
+    {
+      "surname": "Hall",
+      "full_name": "L. Priscilla Hall",
+      "depts_served": [{"dept": 2, "start_year": 2009, "end_year": 2018}],
+      "presiding": false,
+      "notes": "Retired March 9, 2018."
+    },
+    {
+      "surname": "Austin",
+      "full_name": "Leonard B. Austin",
+      "depts_served": [{"dept": 2, "start_year": 2009, "end_year": 2020}],
+      "presiding": false
+    },
+    {
+      "surname": "Belen",
+      "full_name": "Ariel E. Belen",
+      "depts_served": [{"dept": 2, "start_year": 2008, "end_year": 2012}],
+      "presiding": false
+    },
+    {
+      "surname": "Chambers",
+      "full_name": "Cheryl E. Chambers",
+      "depts_served": [{"dept": 2, "start_year": 2008, "end_year": 2017}],
+      "presiding": false
+    },
+    {
+      "surname": "Roman",
+      "full_name": "Sheri S. Roman",
+      "depts_served": [{"dept": 2, "start_year": 2009, "end_year": 2019}],
+      "presiding": false
+    },
+    {
+      "surname": "Sgroi",
+      "full_name": "Sandra L. Sgroi",
+      "depts_served": [{"dept": 2, "start_year": 2009, "end_year": 2022}],
+      "presiding": false
+    },
+    {
+      "surname": "Cohen",
+      "full_name": "Jeffrey A. Cohen",
+      "depts_served": [{"dept": 2, "start_year": 2010, "end_year": 2018}],
+      "presiding": false
+    },
+    {
+      "surname": "Miller",
+      "full_name": "Robert J. Miller",
+      "depts_served": [{"dept": 2, "start_year": 2012, "end_year": 2023}],
+      "presiding": false
+    },
+    {
+      "surname": "Hinds-Radix",
+      "full_name": "Sylvia O. Hinds-Radix",
+      "depts_served": [{"dept": 2, "start_year": 2012, "end_year": 2020}],
+      "presiding": false,
+      "notes": "Retired December 31, 2020; later NYC Corporation Counsel."
+    },
+    {
+      "surname": "Miller",
+      "full_name": "Howard Miller",
+      "depts_served": [{"dept": 2, "start_year": 1999, "end_year": 2008}],
+      "presiding": false
+    },
+    {
+      "surname": "Davis",
+      "full_name": "Rowland L. Davis",
+      "depts_served": [{"dept": 2, "start_year": 1990, "end_year": 1999}],
+      "presiding": false
+    },
+    {
+      "surname": "Bradley",
+      "full_name": "George B. Bradley",
+      "depts_served": [{"dept": 2, "start_year": 1985, "end_year": 1995}],
+      "presiding": false
+    },
+    {
+      "surname": "Benjamin",
+      "full_name": "A. David Benjamin",
+      "depts_served": [{"dept": 2, "start_year": 1986, "end_year": 1995}],
+      "presiding": false
+    },
+    {
+      "surname": "Feuerstein",
+      "full_name": "Sandra J. Feuerstein",
+      "depts_served": [{"dept": 2, "start_year": 2001, "end_year": 2003}],
+      "presiding": false,
+      "notes": "Later U.S. District Judge for the Eastern District of New York."
+    },
+    {
+      "surname": "Pesce",
+      "full_name": "Michael L. Pesce",
+      "depts_served": [{"dept": 2, "start_year": 1988, "end_year": 2002}],
+      "presiding": false,
+      "notes": "Long-serving Presiding Justice of the Appellate Term, Second Department; also designated AD-2 in some years."
+    },
+    {
+      "surname": "Cropsey",
+      "full_name": "James C. Cropsey",
+      "depts_served": [{"dept": 2, "start_year": 1924, "end_year": 1937}],
+      "presiding": false
+    },
+    {
+      "surname": "Kelby",
+      "full_name": "Charles H. Kelby",
+      "depts_served": [{"dept": 2, "start_year": 1927, "end_year": 1936}],
+      "presiding": false
+    },
+    {
+      "surname": "Sewell",
+      "full_name": "Albert H. Sewell",
+      "depts_served": [{"dept": 2, "start_year": 1937, "end_year": 1948}],
+      "presiding": false
+    },
+    {
+      "surname": "O'Brien",
+      "full_name": "Morgan J. O'Brien",
+      "depts_served": [{"dept": 2, "start_year": 1896, "end_year": 1905}],
+      "presiding": false,
+      "notes": "Founding-era justice; later transferred."
+    },
+    {
+      "surname": "Scheinkman",
+      "full_name": "Alan D. Scheinkman",
+      "depts_served": [{"dept": 2, "start_year": 2012, "end_year": 2020}],
+      "presiding": true,
+      "notes": "Presiding Justice 2018-2020."
+    },
+    {
+      "surname": "LaSalle",
+      "full_name": "Hector D. LaSalle",
+      "depts_served": [{"dept": 2, "start_year": 2014, "end_year": 2025}],
+      "presiding": true,
+      "notes": "Presiding Justice 2021-present."
+    },
+    {
+      "surname": "Brathwaite Nelson",
+      "full_name": "Valerie Brathwaite Nelson",
+      "depts_served": [{"dept": 2, "start_year": 2016, "end_year": 2025}],
+      "presiding": false,
+      "notes": "First African American woman from Queens elevated to Associate Justice of AD-2."
+    },
+    {
+      "surname": "Iannacci",
+      "full_name": "Angela G. Iannacci",
+      "depts_served": [{"dept": 2, "start_year": 2018, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Christopher",
+      "full_name": "Linda Christopher",
+      "depts_served": [{"dept": 2, "start_year": 2019, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Barros",
+      "full_name": "Betsy Barros",
+      "depts_served": [{"dept": 2, "start_year": 2018, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Connolly",
+      "full_name": "Francesca E. Connolly",
+      "depts_served": [{"dept": 2, "start_year": 2018, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Genovesi",
+      "full_name": "Lara J. Genovesi",
+      "depts_served": [{"dept": 2, "start_year": 2019, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Maltese",
+      "full_name": "Joseph J. Maltese",
+      "depts_served": [{"dept": 2, "start_year": 2014, "end_year": 2024}],
+      "presiding": false
+    },
+    {
+      "surname": "Duffy",
+      "full_name": "Colleen D. Duffy",
+      "depts_served": [{"dept": 2, "start_year": 2017, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Wooten",
+      "full_name": "Paul Wooten",
+      "depts_served": [{"dept": 2, "start_year": 2021, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Ford",
+      "full_name": "William G. Ford",
+      "depts_served": [{"dept": 2, "start_year": 2021, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Dowling",
+      "full_name": "Deborah A. Dowling",
+      "depts_served": [{"dept": 2, "start_year": 2021, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Zayas",
+      "full_name": "Joseph A. Zayas",
+      "depts_served": [{"dept": 2, "start_year": 2021, "end_year": 2022}],
+      "presiding": false,
+      "notes": "Later Chief Administrative Judge of NY Courts."
+    },
+    {
+      "surname": "Voutsinas",
+      "full_name": "Helen Voutsinas",
+      "depts_served": [{"dept": 2, "start_year": 2022, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Taylor",
+      "full_name": "Janice A. Taylor",
+      "depts_served": [{"dept": 2, "start_year": 2022, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Wan",
+      "full_name": "Lillian Wan",
+      "depts_served": [{"dept": 2, "start_year": 2022, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Warhit",
+      "full_name": "Barry E. Warhit",
+      "depts_served": [{"dept": 2, "start_year": 2022, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Landicino",
+      "full_name": "Carl J. Landicino",
+      "depts_served": [{"dept": 2, "start_year": 2023, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Love",
+      "full_name": "Laurence L. Love",
+      "depts_served": [{"dept": 2, "start_year": 2023, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Ventura",
+      "full_name": "Lourdes M. Ventura",
+      "depts_served": [{"dept": 2, "start_year": 2023, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Golia",
+      "full_name": "Donna-Marie E. Golia",
+      "depts_served": [{"dept": 2, "start_year": 2024, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Hom",
+      "full_name": "Phillip Hom",
+      "depts_served": [{"dept": 2, "start_year": 2024, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "McCormack",
+      "full_name": "James P. McCormack",
+      "depts_served": [{"dept": 2, "start_year": 2024, "end_year": 2025}],
+      "presiding": false
+    },
+    {
+      "surname": "Ottley",
+      "full_name": "Lisa S. Ottley",
+      "depts_served": [{"dept": 2, "start_year": 2025, "end_year": 2025}],
+      "presiding": false,
+      "notes": "Designated Additional Justice; effective 2026."
+    },
+    {
+      "surname": "Velazquez",
+      "full_name": "Elena Goldberg Velazquez",
+      "depts_served": [{"dept": 2, "start_year": 2025, "end_year": 2025}],
+      "presiding": false,
+      "notes": "Designated Additional Justice (2025)."
+    },
+    {
+      "surname": "Chan",
+      "full_name": "Margaret Anne Pui Yee Chan",
+      "depts_served": [{"dept": 2, "start_year": 2025, "end_year": 2025}],
+      "presiding": false,
+      "notes": "Designated Additional Justice (2025)."
+    }
+  ]
+}

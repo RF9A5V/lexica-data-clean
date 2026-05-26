@@ -23,6 +23,7 @@ import { buildTocMap, pickTocName } from './toc_parser.js';
 import { assignCuries, caseCurieBase } from './curie.js';
 import { recombineWords } from './small_caps.js';
 import { walkMotionsSection, walkMemoMotionEntries } from './motion_calendar.js';
+import { resolveVolumeDepartments } from './department.js';
 
 /**
  * Find AD3d memo-section department banners. AD3d memos are organized into
@@ -496,6 +497,14 @@ export function parseCases(pages, volumeMeta) {
   // cases share (volume, page, name-slug). Done here (not in writeSql) so
   // the JSON output also carries CURIEs for downstream consumers.
   assignCuries(cases, volumeMeta);
+
+  // Re-derive court_department from the opinion text itself (recited county +
+  // panel justices). This supersedes banner inheritance, which silently
+  // mislabels whole page-runs when banner detection misfires; banner/header
+  // attribution is kept only as the fallback when the text is silent. AD3d
+  // only — NY3d / Misc 3d have no departments. (Post-pass so the per-volume
+  // justice roster can be bootstrapped from every case in the volume.)
+  warnings.push(...resolveVolumeDepartments(cases, { reporter }));
 
   return { cases, warnings };
 }

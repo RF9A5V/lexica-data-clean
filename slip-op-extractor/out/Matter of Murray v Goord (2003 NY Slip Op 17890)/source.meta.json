@@ -1,0 +1,12 @@
+{
+  "stem": "Matter of Murray v Goord (2003 NY Slip Op 17890)",
+  "format": "html-legacy",
+  "parser_version": "0.1.0",
+  "source_sha256": "9b698236a7419fb22ac7d7d626dc6e6350d1e50fe88faa7e3720b7a5ea3c4547",
+  "parsed_at": "2026-05-06T13:06:40.310Z",
+  "target_source_db": "ny_supreme",
+  "case_count": 1,
+  "case_curies": [
+    "nyslopop:2003:17890"
+  ]
+}

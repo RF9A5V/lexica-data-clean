@@ -1,5 +1,5 @@
 /**
- * Output validator — scans ./output/<volume>/cases.json files for data-quality
+ * Output validator — scans ./out/<volume>/cases.json files for data-quality
  * issues that would either block ingestion (hard) or surface as bad data once
  * loaded (soft).
  *
@@ -20,6 +20,8 @@
  *     DIVISION REPORTS, 3d SERIES" or N.Y.3d / Misc 3d variants)
  *   - decision_date not YYYY-MM-DD
  *   - parser_version on volume doesn't match the current parser
+ *   - department skew (AD3d): one department dominates the volume — the
+ *     signature of a banner-detection failure that mislabelled page-runs
  *
  * Usage (as module):
  *   import { validateAllOutputs, validateVolume } from './src/validate.js';
@@ -68,6 +70,7 @@ export function validateVolumeData(volumeName, data, opts = {}) {
       runningHeadInCaption: [],
       badDateFormat: [],
       parserVersionMismatch: false,
+      departmentSkew: false,
     },
   };
 
@@ -107,6 +110,32 @@ export function validateVolumeData(volumeName, data, opts = {}) {
     const captionTexts = [c.caption_text, ...(c.captions || []).map(cap => cap?.name)];
     if (captionTexts.some(t => t && RUNNING_HEAD_RE.test(t))) {
       issues.soft.runningHeadInCaption.push(ref);
+    }
+  }
+
+  // Department-skew tripwire (AD3d only): a real bound volume interleaves all
+  // four departments fairly evenly. One department dominating is the
+  // signature of a banner-detection failure that lumped page-runs together —
+  // exactly what department.js's text-based resolution is meant to prevent,
+  // so a skew surviving into the output warrants a look.
+  if (data?.volume?.reporter === 'AD3d') {
+    const dist = [0, 0, 0, 0, 0];
+    let withDept = 0;
+    for (const c of cases) {
+      const d = c.court_department;
+      if (d >= 1 && d <= 4) { dist[d]++; withDept++; }
+    }
+    if (withDept >= 40) {
+      let top = 1;
+      for (let d = 2; d <= 4; d++) if (dist[d] > dist[top]) top = d;
+      const share = dist[top] / withDept;
+      if (share > 0.6) {
+        issues.soft.departmentSkew = {
+          distribution: { 1: dist[1], 2: dist[2], 3: dist[3], 4: dist[4] },
+          dominant_department: top,
+          dominant_share: Number(share.toFixed(3)),
+        };
+      }
     }
   }
 
@@ -168,7 +197,7 @@ export async function validateAllOutputs(outputDir, opts = {}) {
     },
     soft_totals: {
       noDate: 0, noSourceUrl: 0, runningHeadInCaption: 0, badDateFormat: 0,
-      parserVersionMismatch: 0,
+      parserVersionMismatch: 0, departmentSkew: 0,
     },
   };
   for (const r of reports) {
@@ -181,7 +210,7 @@ export async function validateAllOutputs(outputDir, opts = {}) {
     for (const k of Object.keys(rollup.soft_totals)) {
       const v = r.issues?.soft?.[k];
       if (Array.isArray(v)) rollup.soft_totals[k] += v.length;
-      else if (v && k === 'parserVersionMismatch') rollup.soft_totals.parserVersionMismatch++;
+      else if (v && (k === 'parserVersionMismatch' || k === 'departmentSkew')) rollup.soft_totals[k]++;
     }
   }
 
@@ -231,6 +260,9 @@ export function printValidationReport({ reports, rollup }, opts = {}) {
         }
       } else if (v && k === 'parserVersionMismatch') {
         console.log(`    soft parserVersionMismatch: file=${v.file_version} current=${v.current_version}`);
+      } else if (v && k === 'departmentSkew') {
+        console.log(`    soft departmentSkew: dept ${v.dominant_department} = ` +
+          `${(v.dominant_share * 100).toFixed(0)}% of volume  dist=${JSON.stringify(v.distribution)}`);
       }
     }
   }

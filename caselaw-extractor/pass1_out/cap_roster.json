@@ -1,0 +1,9077 @@
+{
+  "built_at": "2026-05-21T14:03:39.951Z",
+  "n_records": 657519,
+  "n_voted": 249782,
+  "justices": {
+    "Carro": {
+      "dept": 1,
+      "conf": 0.9914091550198744,
+      "n": 7799
+    },
+    "Rosenberger": {
+      "dept": 1,
+      "conf": 0.9919013570698964,
+      "n": 13706
+    },
+    "Ellerin": {
+      "dept": 1,
+      "conf": 0.9931516046730227,
+      "n": 14894
+    },
+    "Asch": {
+      "dept": 1,
+      "conf": 0.9893577527533721,
+      "n": 8081
+    },
+    "P.": {
+      "dept": 2,
+      "conf": 0.9607360893075179,
+      "n": 57330
+    },
+    "Joy": {
+      "dept": 2,
+      "conf": 0.9996515679442509,
+      "n": 5740
+    },
+    "Friedmann": {
+      "dept": 2,
+      "conf": 0.9994199535962877,
+      "n": 6896
+    },
+    "Krausman": {
+      "dept": 2,
+      "conf": 0.9997145847207687,
+      "n": 10511
+    },
+    "Wallach": {
+      "dept": 1,
+      "conf": 0.9917600527356625,
+      "n": 12136
+    },
+    "Kupferman": {
+      "dept": 1,
+      "conf": 0.9915204432877173,
+      "n": 11911
+    },
+    "Tom": {
+      "dept": 1,
+      "conf": 0.9949857620403615,
+      "n": 16154
+    },
+    "Pine": {
+      "dept": 4,
+      "conf": 0.9867781450515264,
+      "n": 10286
+    },
+    "Fallon": {
+      "dept": 4,
+      "conf": 0.9658931082981715,
+      "n": 2844
+    },
+    "Callahan": {
+      "dept": 4,
+      "conf": 0.9728091444405957,
+      "n": 5774
+    },
+    "Davis": {
+      "dept": 4,
+      "conf": 0.9614389233954451,
+      "n": 3864
+    },
+    "Boehm": {
+      "dept": 4,
+      "conf": 0.9662373825269753,
+      "n": 2873
+    },
+    "Ritter": {
+      "dept": 2,
+      "conf": 0.9988634376639273,
+      "n": 11438
+    },
+    "Copertino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5659
+    },
+    "Goldstein": {
+      "dept": 2,
+      "conf": 0.9992082343626286,
+      "n": 10104
+    },
+    "O’Brien": {
+      "dept": 2,
+      "conf": 0.9985250737463127,
+      "n": 6780
+    },
+    "Florio": {
+      "dept": 2,
+      "conf": 0.9991248309332484,
+      "n": 12569
+    },
+    "Balletta": {
+      "dept": 2,
+      "conf": 0.9986192613047981,
+      "n": 5794
+    },
+    "Hart": {
+      "dept": 2,
+      "conf": 0.9995621716287215,
+      "n": 2284
+    },
+    "Ross": {
+      "dept": 1,
+      "conf": 0.989021329987453,
+      "n": 9564
+    },
+    "Rubin": {
+      "dept": 1,
+      "conf": 0.6432287296526262,
+      "n": 17877
+    },
+    "Balio": {
+      "dept": 4,
+      "conf": 0.9741007194244604,
+      "n": 5560
+    },
+    "Lawton": {
+      "dept": 4,
+      "conf": 0.9825085324232082,
+      "n": 7032
+    },
+    "Doerr": {
+      "dept": 4,
+      "conf": 0.9742578368279012,
+      "n": 4817
+    },
+    "Nardelli": {
+      "dept": 1,
+      "conf": 0.9931863420609401,
+      "n": 13062
+    },
+    "Williams": {
+      "dept": 1,
+      "conf": 0.9902210884353742,
+      "n": 11760
+    },
+    "Pizzuto": {
+      "dept": 2,
+      "conf": 0.9998239126606797,
+      "n": 5679
+    },
+    "Altman": {
+      "dept": 2,
+      "conf": 0.998407412769654,
+      "n": 6907
+    },
+    "Rosenblatt": {
+      "dept": 2,
+      "conf": 0.996276298640849,
+      "n": 5371
+    },
+    "Miller": {
+      "dept": 2,
+      "conf": 0.9986996098829649,
+      "n": 22301
+    },
+    "Denman": {
+      "dept": 4,
+      "conf": 0.986073500967118,
+      "n": 5170
+    },
+    "Murphy": {
+      "dept": 1,
+      "conf": 0.9501547987616099,
+      "n": 9690
+    },
+    "Sullivan": {
+      "dept": 1,
+      "conf": 0.6560821769688232,
+      "n": 27745
+    },
+    "Lawrence": {
+      "dept": 2,
+      "conf": 0.9990050988682999,
+      "n": 8041
+    },
+    "Green": {
+      "dept": 4,
+      "conf": 0.9875,
+      "n": 10720
+    },
+    "Santucci": {
+      "dept": 2,
+      "conf": 0.9991289198606271,
+      "n": 12628
+    },
+    "Den-man": {
+      "dept": 4,
+      "conf": 0.9941860465116279,
+      "n": 344
+    },
+    "Bracken": {
+      "dept": 2,
+      "conf": 0.995459527164553,
+      "n": 6387
+    },
+    "Bitter": {
+      "dept": 2,
+      "conf": 1,
+      "n": 6
+    },
+    "Thompson": {
+      "dept": 2,
+      "conf": 0.9965252815720106,
+      "n": 8346
+    },
+    "Law-ton": {
+      "dept": 4,
+      "conf": 0.9744525547445255,
+      "n": 274
+    },
+    "Gold-stein": {
+      "dept": 2,
+      "conf": 0.9977220956719818,
+      "n": 439
+    },
+    "Kassal": {
+      "dept": 1,
+      "conf": 0.9940878378378378,
+      "n": 5920
+    },
+    "Crew III": {
+      "dept": 3,
+      "conf": 0.6363636363636364,
+      "n": 44
+    },
+    "Yesawich Jr.": {
+      "dept": 3,
+      "conf": 0.46153846153846156,
+      "n": 26
+    },
+    "Floria": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Wallace": {
+      "dept": 1,
+      "conf": 0.9433962264150944,
+      "n": 53
+    },
+    "Breitel": {
+      "dept": 1,
+      "conf": 0.9401709401709402,
+      "n": 117
+    },
+    "Friedr mann": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Nardelli. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McCooe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 18
+    },
+    "JJ. Boehm": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. R": {
+      "dept": 1,
+      "conf": 1,
+      "n": 89
+    },
+    "Friedman": {
+      "dept": 1,
+      "conf": 0.998988024962051,
+      "n": 11858
+    },
+    "Milonas": {
+      "dept": 1,
+      "conf": 0.9941218809980806,
+      "n": 8336
+    },
+    "Mazzarelli": {
+      "dept": 1,
+      "conf": 0.9974742568486497,
+      "n": 15441
+    },
+    "Andrias": {
+      "dept": 1,
+      "conf": 0.998663947683004,
+      "n": 14221
+    },
+    "Saxe": {
+      "dept": 1,
+      "conf": 0.9992022973835354,
+      "n": 12536
+    },
+    "Luciano": {
+      "dept": 2,
+      "conf": 0.9998584972406962,
+      "n": 7067
+    },
+    "McGinity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5756
+    },
+    "Lerner": {
+      "dept": 1,
+      "conf": 0.9774541101356744,
+      "n": 5012
+    },
+    "Brennan": {
+      "dept": 2,
+      "conf": 0.9958906274695748,
+      "n": 6327
+    },
+    "Mc-Cooe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mc-Ginity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 259
+    },
+    "Florin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 8
+    },
+    "Andidas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 136
+    },
+    "JJ..": {
+      "dept": 1,
+      "conf": 0.7058823529411765,
+      "n": 17
+    },
+    "Kraus man": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "HcGinity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gabrielli": {
+      "dept": 3,
+      "conf": 0.723404255319149,
+      "n": 94
+    },
+    "Prudenti": {
+      "dept": 2,
+      "conf": 0.9928057553956835,
+      "n": 2780
+    },
+    "Cozier": {
+      "dept": 2,
+      "conf": 0.9994145199063232,
+      "n": 3416
+    },
+    "Buckley": {
+      "dept": 1,
+      "conf": 0.9991203635830523,
+      "n": 6821
+    },
+    "Gonzalez": {
+      "dept": 1,
+      "conf": 0.9992523923444976,
+      "n": 6688
+    },
+    "Marlow": {
+      "dept": 1,
+      "conf": 0.9993795243019649,
+      "n": 4835
+    },
+    "Schmidt": {
+      "dept": 2,
+      "conf": 0.998858610358111,
+      "n": 7009
+    },
+    "Townes": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2338
+    },
+    "Pigott": {
+      "dept": 4,
+      "conf": 0.9981822903142041,
+      "n": 3851
+    },
+    "Hurlbutt": {
+      "dept": 4,
+      "conf": 0.9989522212908634,
+      "n": 4772
+    },
+    "Gorski": {
+      "dept": 4,
+      "conf": 0.9995688726018539,
+      "n": 4639
+    },
+    "J.R": {
+      "dept": 2,
+      "conf": 0.6439420699399505,
+      "n": 2831
+    },
+    "Crane": {
+      "dept": 2,
+      "conf": 0.9992033459470225,
+      "n": 5021
+    },
+    "Rivera": {
+      "dept": 2,
+      "conf": 0.996880612534266,
+      "n": 10579
+    },
+    "Smith": {
+      "dept": 4,
+      "conf": 0.42345909020338457,
+      "n": 12882
+    },
+    "Adams": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4098
+    },
+    "Wisner": {
+      "dept": 4,
+      "conf": 0.9990381532542482,
+      "n": 3119
+    },
+    "Scudder": {
+      "dept": 4,
+      "conf": 0.9994883601944231,
+      "n": 7818
+    },
+    "Mastro": {
+      "dept": 2,
+      "conf": 0.9973838426119715,
+      "n": 9556
+    },
+    "Kehoe": {
+      "dept": 4,
+      "conf": 0.9996925914540424,
+      "n": 3253
+    },
+    "Hayes": {
+      "dept": 4,
+      "conf": 0.9997495617330328,
+      "n": 3993
+    },
+    "Cardona": {
+      "dept": 3,
+      "conf": 0.6451612903225806,
+      "n": 31
+    },
+    "Peters": {
+      "dept": 3,
+      "conf": 0.5161290322580645,
+      "n": 62
+    },
+    "Spain": {
+      "dept": 3,
+      "conf": 0.42857142857142855,
+      "n": 42
+    },
+    "Rrausman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 18
+    },
+    "EJ": {
+      "dept": 2,
+      "conf": 0.36470588235294116,
+      "n": 85
+    },
+    "Mugglin": {
+      "dept": 3,
+      "conf": 0.6,
+      "n": 30
+    },
+    "Rose": {
+      "dept": 3,
+      "conf": 0.6470588235294118,
+      "n": 51
+    },
+    "Lahtinen": {
+      "dept": 3,
+      "conf": 0.6341463414634146,
+      "n": 41
+    },
+    "Kane": {
+      "dept": 3,
+      "conf": 0.8805460750853242,
+      "n": 293
+    },
+    "Fine": {
+      "dept": 4,
+      "conf": 0.9846153846153847,
+      "n": 65
+    },
+    "BJ": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "J.B": {
+      "dept": 2,
+      "conf": 0.42857142857142855,
+      "n": 56
+    },
+    "Erudenti": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Wesley": {
+      "dept": 4,
+      "conf": 0.9462465245597775,
+      "n": 1079
+    },
+    "Wallach J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Do-err": {
+      "dept": 4,
+      "conf": 0.9523809523809523,
+      "n": 42
+    },
+    "JJ. '": {
+      "dept": 1,
+      "conf": 0.7,
+      "n": 10
+    },
+    "Fuchs-berg": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Colabella": {
+      "dept": 1,
+      "conf": 1,
+      "n": 486
+    },
+    "Nardeili": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "J. P. Wallach": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Milona.s": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mercure": {
+      "dept": 3,
+      "conf": 0.5333333333333333,
+      "n": 75
+    },
+    "Levine": {
+      "dept": 3,
+      "conf": 0.5555555555555556,
+      "n": 72
+    },
+    "Plorio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 54
+    },
+    "Sullivan J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 13
+    },
+    "Nardelli J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "JJ. Ellerin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kaye": {
+      "dept": 1,
+      "conf": 0.7727272727272727,
+      "n": 22
+    },
+    "Meyer": {
+      "dept": 1,
+      "conf": 0.5833333333333334,
+      "n": 12
+    },
+    "Andelas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 19
+    },
+    "Nabdelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Jr.": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 8
+    },
+    "Hurl-butt": {
+      "dept": 4,
+      "conf": 1,
+      "n": 134
+    },
+    "Santueci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 21
+    },
+    "Torn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 6
+    },
+    "Santucci J.P.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Pipe": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Adrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.P. Saxe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Feuerstein": {
+      "dept": 2,
+      "conf": 0.9996946564885496,
+      "n": 3275
+    },
+    "Acting P.J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 48
+    },
+    "Scalia": {
+      "dept": 1,
+      "conf": 0.8333333333333334,
+      "n": 6
+    },
+    "Lemer": {
+      "dept": 1,
+      "conf": 0.8360655737704918,
+      "n": 122
+    },
+    "Burns": {
+      "dept": 4,
+      "conf": 0.9864978902953586,
+      "n": 1185
+    },
+    "Mar-low": {
+      "dept": 1,
+      "conf": 1,
+      "n": 65
+    },
+    "Carpinello": {
+      "dept": 3,
+      "conf": 0.5853658536585366,
+      "n": 41
+    },
+    "Muggiin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "EL Miller": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Luciano arid Schmidt": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bums": {
+      "dept": 4,
+      "conf": 0.9827586206896551,
+      "n": 58
+    },
+    "Ellerin P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J j.": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Lazer": {
+      "dept": 2,
+      "conf": 0.9941031941031941,
+      "n": 2035
+    },
+    "Scudder JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Andrias arid Buckley": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Thomspon": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Nardelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Wallaeh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 26
+    },
+    "Graffeo": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 22
+    },
+    "Harlan": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 14
+    },
+    "Peuerstein": {
+      "dept": 2,
+      "conf": 1,
+      "n": 22
+    },
+    "JJ.'": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Aadrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "JJ. .": {
+      "dept": 1,
+      "conf": 0.7142857142857143,
+      "n": 21
+    },
+    "McGinjty": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Andrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Easterbrook": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Titone": {
+      "dept": 2,
+      "conf": 0.9939498703543648,
+      "n": 3471
+    },
+    "Ellekin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Eosenberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 12
+    },
+    "Saxe J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "J.P. Mazzarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Santucei": {
+      "dept": 2,
+      "conf": 1,
+      "n": 12
+    },
+    "Lupiano": {
+      "dept": 1,
+      "conf": 0.9977917981072555,
+      "n": 3170
+    },
+    "Friedman JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Wallaeh.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting F.J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Prudent": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Aridrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mikoll": {
+      "dept": 3,
+      "conf": 0.7542372881355932,
+      "n": 118
+    },
+    "Mazzafelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "William": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Fried-mann": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5
+    },
+    "Feuer-stein": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Rosen-berger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Mazza-relli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 6
+    },
+    "San-tucci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Maz-zarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 92
+    },
+    "An-drias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Kraus-man": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenberger J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Florid": {
+      "dept": 2,
+      "conf": 0.8888888888888888,
+      "n": 9
+    },
+    "A. P. J.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 161
+    },
+    "Friedman. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Krausmari": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Kxausman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "H. Miller": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Andrias. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "P. J. Rosenberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Scuddqr": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Hazzarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Ch.": {
+      "dept": 1,
+      "conf": 0.609375,
+      "n": 64
+    },
+    "O’brien": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "However": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "William McCooe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Inc.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5
+    },
+    "Green J. P.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Andbias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Milorias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Denman P. J.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Seudder": {
+      "dept": 4,
+      "conf": 0.8571428571428571,
+      "n": 7
+    },
+    "Keboe": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Hurlhutt": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Coopertino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bailo": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4
+    },
+    "Fuchsberg": {
+      "dept": 1,
+      "conf": 0.5172413793103449,
+      "n": 29
+    },
+    "Goldstein apd Feuerstein": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "O’Connor": {
+      "dept": 2,
+      "conf": 0.9966047985513807,
+      "n": 4418
+    },
+    "Saxe. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Kfausman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Ellerin. P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "S. Miller": {
+      "dept": 2,
+      "conf": 1,
+      "n": 7
+    },
+    "McGini'ty": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kehoe And Burns": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Mc.Ginity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Toni": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Wallach atid Friedman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sullivan P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Coper tino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Casey": {
+      "dept": 3,
+      "conf": 0.6344086021505376,
+      "n": 93
+    },
+    "Ellerbst": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tqm": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Buckley JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Williams J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Eubin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.P.. Saxe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Jn": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. -": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bergan": {
+      "dept": 3,
+      "conf": 0.9296066252587992,
+      "n": 483
+    },
+    "Mas tro": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Santu.cci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Cooke": {
+      "dept": 3,
+      "conf": 0.8850574712643678,
+      "n": 174
+    },
+    "P'.": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Breyer": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Alt-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "M’cGinity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Colabella.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ellebin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Suozzi": {
+      "dept": 2,
+      "conf": 0.9957446808510638,
+      "n": 1175
+    },
+    "Simons": {
+      "dept": 4,
+      "conf": 0.8627819548872181,
+      "n": 532
+    },
+    "Marlow JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Glen": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mdecoll": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P..J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Coperttno": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "White": {
+      "dept": 1,
+      "conf": 0.3333333333333333,
+      "n": 27
+    },
+    "Miller'": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Stevens": {
+      "dept": 1,
+      "conf": 0.9860426929392446,
+      "n": 1218
+    },
+    "Hiller": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Creme": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Jasen": {
+      "dept": 1,
+      "conf": 0.4666666666666667,
+      "n": 15
+    },
+    "Law-ton. JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "Silverman": {
+      "dept": 1,
+      "conf": 0.9956165984804208,
+      "n": 3422
+    },
+    "J- P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sandler": {
+      "dept": 1,
+      "conf": 0.9960959286112661,
+      "n": 3586
+    },
+    "Colabella. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Freedman": {
+      "dept": 1,
+      "conf": 0.9986518368722616,
+      "n": 2967
+    },
+    "Copertirio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Krausrnan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Lifson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3282
+    },
+    "Fisher": {
+      "dept": 2,
+      "conf": 0.9993512110726643,
+      "n": 4624
+    },
+    "Martoche": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3621
+    },
+    "Catterson": {
+      "dept": 1,
+      "conf": 0.9989027869212201,
+      "n": 4557
+    },
+    "Skelos": {
+      "dept": 2,
+      "conf": 0.9960411718131433,
+      "n": 7578
+    },
+    "Sweeny": {
+      "dept": 1,
+      "conf": 0.9990990990990991,
+      "n": 7770
+    },
+    "Martoehe": {
+      "dept": 4,
+      "conf": 1,
+      "n": 10
+    },
+    "Spolzino": {
+      "dept": 2,
+      "conf": 0.9992360580595875,
+      "n": 3927
+    },
+    "BJ.": {
+      "dept": 1,
+      "conf": 0.4864864864864865,
+      "n": 37
+    },
+    "Pradenti": {
+      "dept": 2,
+      "conf": 1,
+      "n": 8
+    },
+    "Cercone": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ji": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Sullivan Goldstein": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bohem": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4
+    },
+    "Collabella": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lawton JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Rllerin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lerher": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Amdrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 6
+    },
+    "Majrlow": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Andrias J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Frudenti": {
+      "dept": 2,
+      "conf": 1,
+      "n": 19
+    },
+    "Ellerxn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGuire": {
+      "dept": 1,
+      "conf": 0.9975835682641966,
+      "n": 2483
+    },
+    "Malone": {
+      "dept": 1,
+      "conf": 0.9993932038834952,
+      "n": 1648
+    },
+    "Covello": {
+      "dept": 2,
+      "conf": 0.9994969818913481,
+      "n": 3976
+    },
+    "Lunn": {
+      "dept": 2,
+      "conf": 0.5639175257731959,
+      "n": 1940
+    },
+    "Dillon": {
+      "dept": 2,
+      "conf": 0.7764106507738152,
+      "n": 10403
+    },
+    "Harlow": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Halone": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Co vello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 48
+    },
+    "GonzEilez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Adams J.P.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Santucci arid Lunn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Tom. J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tom J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Gonzales": {
+      "dept": 1,
+      "conf": 1,
+      "n": 9
+    },
+    "Scudder Burns": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Andreas": {
+      "dept": 1,
+      "conf": 0.9090909090909091,
+      "n": 11
+    },
+    "RJ": {
+      "dept": 4,
+      "conf": 0.42857142857142855,
+      "n": 7
+    },
+    "BuckleyP.J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Wachtler": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 12
+    },
+    "Mazzarellli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Allen": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Lawton": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Freidmann": {
+      "dept": 2,
+      "conf": 1,
+      "n": 6
+    },
+    "J .P.": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Eller in": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Accordingly": {
+      "dept": 2,
+      "conf": 0.8571428571428571,
+      "n": 7
+    },
+    "J'J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Mazzarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P.j Balletta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P. Jf.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cupertino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Haft": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzarelli.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ginsburg": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J. Pi": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Burke": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Mazarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Black-mun": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Williams. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Hancock": {
+      "dept": 4,
+      "conf": 0.9920564872021183,
+      "n": 1133
+    },
+    "Steuer": {
+      "dept": 1,
+      "conf": 0.9921976592977894,
+      "n": 769
+    },
+    "Nardelli arid Andrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gulotta": {
+      "dept": 2,
+      "conf": 0.9992076069730587,
+      "n": 3786
+    },
+    "Lerner P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Sulllivan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Goldstein arid McGinity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Erausman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Dissenting": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Callaban": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Boehm JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "P.y Ritter": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Milohas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Page": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Read": {
+      "dept": 1,
+      "conf": 0.8571428571428571,
+      "n": 7
+    },
+    "Mironas": {
+      "dept": 1,
+      "conf": 0.9333333333333333,
+      "n": 15
+    },
+    "Mazzarelh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Nardelh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Sweeny JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Pamess": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rubin. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mangano": {
+      "dept": 2,
+      "conf": 0.9977584757635192,
+      "n": 3569
+    },
+    "P.' J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Balio. JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Pigot": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Pine'": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Nardelii": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Bellacosa": {
+      "dept": 1,
+      "conf": 1,
+      "n": 6
+    },
+    "Buckely": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Saxe.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Goldstein arid Adams": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P.J. Saxe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Corp.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Feuersteiri": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Townes aiid Rivera": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Green Hayes": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Law-toil": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Catterson JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "GorsM": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Brown": {
+      "dept": 2,
+      "conf": 0.9977947413061917,
+      "n": 5895
+    },
+    "Kooper": {
+      "dept": 2,
+      "conf": 0.9994633753689295,
+      "n": 3727
+    },
+    "Harwood": {
+      "dept": 2,
+      "conf": 0.9997887621461766,
+      "n": 4734
+    },
+    "Kunzeman": {
+      "dept": 2,
+      "conf": 0.998842145889618,
+      "n": 5182
+    },
+    "Boomer": {
+      "dept": 4,
+      "conf": 0.9896157840083074,
+      "n": 3852
+    },
+    "Lowery": {
+      "dept": 4,
+      "conf": 0.9345088161209067,
+      "n": 397
+    },
+    "Eiber": {
+      "dept": 2,
+      "conf": 0.9998333611064822,
+      "n": 6001
+    },
+    "Hooper": {
+      "dept": 2,
+      "conf": 1,
+      "n": 890
+    },
+    "Fiber": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1557
+    },
+    "Ellerin.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Sullivan Kassal": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Pmdenti": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Peste": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Freidman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Buckley Lerner": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "ELlerin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Milenas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Weiss": {
+      "dept": 3,
+      "conf": 0.6323529411764706,
+      "n": 68
+    },
+    "Yesawich": {
+      "dept": 1,
+      "conf": 0.9040902679830748,
+      "n": 709
+    },
+    "JJ. Ross": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Smith. JJ.": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "J. P. Milonas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Harvey": {
+      "dept": 3,
+      "conf": 0.58,
+      "n": 50
+    },
+    "Rupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 8
+    },
+    "Adams arid Luciano": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzarelli J.P.": {
+      "dept": 1,
+      "conf": 0.8333333333333334,
+      "n": 6
+    },
+    "Ruben": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Brums": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Van Voorhis": {
+      "dept": 1,
+      "conf": 0.9444444444444444,
+      "n": 18
+    },
+    "Rosenberger.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Marshall": {
+      "dept": 1,
+      "conf": 0.5454545454545454,
+      "n": 11
+    },
+    "Mishler": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Adam": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Powell": {
+      "dept": 1,
+      "conf": 0.9230769230769231,
+      "n": 13
+    },
+    "Thus": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Peck": {
+      "dept": 1,
+      "conf": 0.875,
+      "n": 16
+    },
+    "J.j Bracken": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Milonas J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Moule": {
+      "dept": 4,
+      "conf": 0.9932126696832579,
+      "n": 884
+    },
+    "Keeper": {
+      "dept": 2,
+      "conf": 1,
+      "n": 20
+    },
+    "Alexander": {
+      "dept": 1,
+      "conf": 0.9960526315789474,
+      "n": 760
+    },
+    "P. J. Carro": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Asch. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Parness": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kiipferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Kupferman J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Jawn A. Sandifer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Sandifer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Asen": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Ellerin Kupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Kupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 30
+    },
+    "Smith JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Rubin.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Rubin JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Rosenberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Pizztito": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Smith": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Thomas": {
+      "dept": 1,
+      "conf": 0.75,
+      "n": 4
+    },
+    "P.. J.": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "A- P. J.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Davis JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Douglas": {
+      "dept": 1,
+      "conf": 0.625,
+      "n": 8
+    },
+    "Denmam": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Ru-bin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Mahoney": {
+      "dept": 4,
+      "conf": 0.6382978723404256,
+      "n": 141
+    },
+    "Kassai": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Stewart": {
+      "dept": 2,
+      "conf": 0.7142857142857143,
+      "n": 7
+    },
+    "Smith.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Edith Miller": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "William P. McCooe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "JJ. Wallach": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kupfermari": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Murphy P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Cohen": {
+      "dept": 2,
+      "conf": 0.999282468309017,
+      "n": 4181
+    },
+    "Lasker": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Handler": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Acting P.": {
+      "dept": 2,
+      "conf": 0.9952153110047847,
+      "n": 209
+    },
+    "Ross. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Aseh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Pkzuto": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Santueei": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Riber": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gopertino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.P..": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Kassal JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Milonas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "J. 'P.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Jones": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Rosenberger Wallach": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "FitzGerald": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McNally": {
+      "dept": 1,
+      "conf": 0.9796839729119639,
+      "n": 443
+    },
+    "Ross JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenbergek": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Brandeis": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 8
+    },
+    "Beohm": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Ascii": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sulli-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Fuld": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 8
+    },
+    "Kassel": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Carro.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kennard": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Rosenblatt arid Ritter": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "PizzutoL": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hopkins": {
+      "dept": 2,
+      "conf": 0.9963221772710555,
+      "n": 5438
+    },
+    "Pizzutto": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. without costs": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Halpern": {
+      "dept": 3,
+      "conf": 0.955,
+      "n": 200
+    },
+    "Kuperman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Krausmah": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Rosenberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ross. Asch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tom. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Dooley": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kufperman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "JJ. Sullivan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Asce": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Wailach": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kruasman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Santticci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Nardelu": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Atman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Waliach": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Altmaq": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Caran": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P..": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Davus": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Ascb": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "O'Brien": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Wait lack": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bulletta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzarrelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Mazzarelli. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Krawsman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Roesnberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mountain": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Afidrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kratisman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Murphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 9
+    },
+    "Muprhy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Santuccci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Goldman": {
+      "dept": 4,
+      "conf": 0.9701492537313433,
+      "n": 134
+    },
+    "BaHo": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "J. Kupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "So": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Froessel": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Hargett": {
+      "dept": 2,
+      "conf": 0.9960474308300395,
+      "n": 506
+    },
+    "Lane": {
+      "dept": 1,
+      "conf": 0.9988843436221644,
+      "n": 2689
+    },
+    "Coppertino": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rubin J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "PJ-": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "WIsner": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Gonzalez JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGiriity": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lawton arid Hayes": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Buckley P.J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Florioj": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Andrais": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ellerin Tom": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "AndriaS": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Prudent i": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Friedtiian": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tom .": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Scudd.er": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Burr": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Scuddef": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Williams arid Catterson": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Phyllis Gangel Jacob": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Tom": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Mazzajrelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Birns": {
+      "dept": 1,
+      "conf": 0.9975308641975309,
+      "n": 2430
+    },
+    "Helen Freedman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.P.E": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.'P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Najrdelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Naxdelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rubin-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenbeger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lazansky": {
+      "dept": 2,
+      "conf": 1,
+      "n": 90
+    },
+    "Hagarty": {
+      "dept": 2,
+      "conf": 0.9888888888888889,
+      "n": 270
+    },
+    "Carswell": {
+      "dept": 2,
+      "conf": 0.9858490566037735,
+      "n": 424
+    },
+    "Close": {
+      "dept": 2,
+      "conf": 0.9857142857142858,
+      "n": 140
+    },
+    "Adel": {
+      "dept": 2,
+      "conf": 0.9875666074600356,
+      "n": 563
+    },
+    "Taylor": {
+      "dept": 3,
+      "conf": 0.5406976744186046,
+      "n": 344
+    },
+    "O’Malley": {
+      "dept": 1,
+      "conf": 0.9230769230769231,
+      "n": 13
+    },
+    "Untermyer": {
+      "dept": 1,
+      "conf": 0.8695652173913043,
+      "n": 23
+    },
+    "Johnston": {
+      "dept": 2,
+      "conf": 0.9931350114416476,
+      "n": 437
+    },
+    "Martin": {
+      "dept": 1,
+      "conf": 0.9090909090909091,
+      "n": 22
+    },
+    "McAvoy": {
+      "dept": 1,
+      "conf": 0.8333333333333334,
+      "n": 6
+    },
+    "Glennon": {
+      "dept": 1,
+      "conf": 0.75,
+      "n": 36
+    },
+    "Cohn": {
+      "dept": 1,
+      "conf": 0.8775510204081632,
+      "n": 49
+    },
+    "Cbapseb": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Bliss": {
+      "dept": 3,
+      "conf": 0.8333333333333334,
+      "n": 12
+    },
+    "Heffebnan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Dore": {
+      "dept": 1,
+      "conf": 0.8444444444444444,
+      "n": 45
+    },
+    "Laughlin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Scott": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Clarke": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Foster": {
+      "dept": 3,
+      "conf": 0.9838709677419355,
+      "n": 186
+    },
+    "Abel": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "CarsweE": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Hill": {
+      "dept": 2,
+      "conf": 0.9914273467638234,
+      "n": 2333
+    },
+    "Crapser": {
+      "dept": 3,
+      "conf": 0.8,
+      "n": 10
+    },
+    "Hefieman": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Sehenek": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Heffeman": {
+      "dept": 3,
+      "conf": 1,
+      "n": 5
+    },
+    "Sehenck": {
+      "dept": 3,
+      "conf": 1,
+      "n": 2
+    },
+    "Townley": {
+      "dept": 1,
+      "conf": 0.8214285714285714,
+      "n": 28
+    },
+    "Cars-well": {
+      "dept": 2,
+      "conf": 1,
+      "n": 12
+    },
+    "Spina": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sosman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cordy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "G.B. Smith": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Steadman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "O'Connor": {
+      "dept": 2,
+      "conf": 0.9090909090909091,
+      "n": 11
+    },
+    "Bradley": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Greany": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Crosby": {
+      "dept": 4,
+      "conf": 1,
+      "n": 5
+    },
+    "Cunningham": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "Taylor. Dowling": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "McCurn": {
+      "dept": 4,
+      "conf": 0.9629629629629629,
+      "n": 27
+    },
+    "Hefiernan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Schenck": {
+      "dept": 3,
+      "conf": 0.6,
+      "n": 5
+    },
+    "Poster": {
+      "dept": 3,
+      "conf": 1,
+      "n": 28
+    },
+    "Heffernan": {
+      "dept": 3,
+      "conf": 0.9634146341463414,
+      "n": 82
+    },
+    "Townlet": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Dowling": {
+      "dept": 4,
+      "conf": 0.9,
+      "n": 10
+    },
+    "Harris": {
+      "dept": 4,
+      "conf": 1,
+      "n": 6
+    },
+    "Schenek": {
+      "dept": 3,
+      "conf": 1,
+      "n": 3
+    },
+    "Brewster": {
+      "dept": 3,
+      "conf": 0.9473684210526315,
+      "n": 95
+    },
+    "Acting P. J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 144
+    },
+    "Lewis": {
+      "dept": 2,
+      "conf": 0.9826086956521739,
+      "n": 115
+    },
+    "Aldrich": {
+      "dept": 2,
+      "conf": 1,
+      "n": 49
+    },
+    "J-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Hagarly": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hag-arty": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Acting": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Heeeebuau": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Soheuck": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Hirsehberg": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hagarty Johnston": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Taylob": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Nolan": {
+      "dept": 2,
+      "conf": 0.9974937343358395,
+      "n": 399
+    },
+    "Aeting-P. J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sneed": {
+      "dept": 2,
+      "conf": 0.9914529914529915,
+      "n": 117
+    },
+    "ITntermyer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ad'el": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Van Yoorhis": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Russell": {
+      "dept": 3,
+      "conf": 0.9285714285714286,
+      "n": 14
+    },
+    "Aid-rich": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Johestoe": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bbewsteb": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Fostee": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bussell": {
+      "dept": 3,
+      "conf": 1,
+      "n": 3
+    },
+    "Deyo": {
+      "dept": 3,
+      "conf": 0.9821428571428571,
+      "n": 56
+    },
+    "Love": {
+      "dept": 4,
+      "conf": 0.9230769230769231,
+      "n": 13
+    },
+    "C-lehhoh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Does": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Callahah": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Yah Yooehis": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting P. J": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rolan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Hagaety": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Cabswell": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Larkin": {
+      "dept": 3,
+      "conf": 0.8878504672897196,
+      "n": 107
+    },
+    "Aldrich. JJ.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Taylok": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Habbis": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "McCubn": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Wenzel": {
+      "dept": 2,
+      "conf": 0.9947552447552448,
+      "n": 572
+    },
+    "McCukn": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "All concur with Dowling": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. i": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Shientag": {
+      "dept": 1,
+      "conf": 0.8461538461538461,
+      "n": 13
+    },
+    "Santry": {
+      "dept": 3,
+      "conf": 0.75,
+      "n": 4
+    },
+    "Kim-ball": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Piper": {
+      "dept": 4,
+      "conf": 0.9444444444444444,
+      "n": 18
+    },
+    "Vaughan": {
+      "dept": 4,
+      "conf": 0.92,
+      "n": 25
+    },
+    "Dobe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MacCrate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 153
+    },
+    "Kimball": {
+      "dept": 4,
+      "conf": 0.9166666666666666,
+      "n": 24
+    },
+    "Shxentag": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Coon": {
+      "dept": 3,
+      "conf": 0.9891774891774892,
+      "n": 462
+    },
+    "Glennoh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Yan Yoorhis": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "J J.": {
+      "dept": 3,
+      "conf": 0.5833333333333334,
+      "n": 12
+    },
+    "MaeCrate": {
+      "dept": 2,
+      "conf": 0.9807692307692307,
+      "n": 104
+    },
+    "Bieffeman": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "MoCurn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MeCurn": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Van Voobhis": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Mac Crate": {
+      "dept": 2,
+      "conf": 0.8,
+      "n": 5
+    },
+    "Mac-Crate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 11
+    },
+    "P.- J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Imrie": {
+      "dept": 3,
+      "conf": 0.9907407407407407,
+      "n": 108
+    },
+    "McCrate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Beldoek": {
+      "dept": 2,
+      "conf": 0.9938461538461538,
+      "n": 325
+    },
+    "Beldock": {
+      "dept": 2,
+      "conf": 1,
+      "n": 851
+    },
+    "Salpern": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Nplan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hefferuan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Mae-Crate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "P. J. Carswell": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Vax Voorhis": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Callahax": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Shiextag": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Wenzel MaeCrate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Peek": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Harto che": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Zeller": {
+      "dept": 3,
+      "conf": 0.9824561403508771,
+      "n": 57
+    },
+    "Wheeler": {
+      "dept": 4,
+      "conf": 1,
+      "n": 16
+    },
+    "Halpem": {
+      "dept": 3,
+      "conf": 0.9411764705882353,
+      "n": 17
+    },
+    "Ktmbat.t.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Pipes": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Van Duseb": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "F. J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hon. William J. Kelly": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Van Duser": {
+      "dept": 4,
+      "conf": 1,
+      "n": 6
+    },
+    "Bergart": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting P": {
+      "dept": 2,
+      "conf": 1,
+      "n": 18
+    },
+    "Bergak": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Halperk": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Pipee": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Wheeleb": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Bastow": {
+      "dept": 4,
+      "conf": 0.5064935064935064,
+      "n": 77
+    },
+    "Botein": {
+      "dept": 1,
+      "conf": 0.9772727272727273,
+      "n": 88
+    },
+    "Wilcox": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bergah": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Cooet": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sweeny .": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bbeitel": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Babin": {
+      "dept": 2,
+      "conf": 0.8651685393258427,
+      "n": 89
+    },
+    "Wbuzel": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ughetta": {
+      "dept": 2,
+      "conf": 0.9967585089141004,
+      "n": 2468
+    },
+    "Hallinan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 303
+    },
+    "Rabin": {
+      "dept": 2,
+      "conf": 0.9804575786463299,
+      "n": 6294
+    },
+    "Cox": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Imrie. JJ.": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "HaeCrate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hurphy": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Frank": {
+      "dept": 1,
+      "conf": 1,
+      "n": 15
+    },
+    "TJghetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 35
+    },
+    "Gibson": {
+      "dept": 3,
+      "conf": 0.984375,
+      "n": 320
+    },
+    "Kleinfeld": {
+      "dept": 2,
+      "conf": 0.9976798143851509,
+      "n": 2586
+    },
+    "Ughetta.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Markewich": {
+      "dept": 1,
+      "conf": 0.9979555328392538,
+      "n": 3913
+    },
+    "Capozzoli": {
+      "dept": 1,
+      "conf": 0.9976042165788213,
+      "n": 2087
+    },
+    "Tilzer": {
+      "dept": 1,
+      "conf": 0.9953007518796992,
+      "n": 1064
+    },
+    "Nunez": {
+      "dept": 1,
+      "conf": 0.9983193277310924,
+      "n": 1785
+    },
+    "Witmer": {
+      "dept": 4,
+      "conf": 0.9037433155080213,
+      "n": 187
+    },
+    "Greenblott": {
+      "dept": 3,
+      "conf": 0.895397489539749,
+      "n": 239
+    },
+    "Koreman": {
+      "dept": 3,
+      "conf": 0.9130434782608695,
+      "n": 23
+    },
+    "Main": {
+      "dept": 3,
+      "conf": 0.8558558558558559,
+      "n": 222
+    },
+    "Reynolds": {
+      "dept": 3,
+      "conf": 0.9686567164179104,
+      "n": 670
+    },
+    "Cardamone": {
+      "dept": 4,
+      "conf": 0.9558011049723757,
+      "n": 181
+    },
+    "Wither": {
+      "dept": 4,
+      "conf": 0.9090909090909091,
+      "n": 22
+    },
+    "Christ": {
+      "dept": 2,
+      "conf": 0.9976030680728667,
+      "n": 6258
+    },
+    "Munder": {
+      "dept": 2,
+      "conf": 0.9977094240837696,
+      "n": 3056
+    },
+    "Shapiro": {
+      "dept": 2,
+      "conf": 0.999136628534427,
+      "n": 4633
+    },
+    "Latham": {
+      "dept": 2,
+      "conf": 0.998212689901698,
+      "n": 3357
+    },
+    "Margett": {
+      "dept": 2,
+      "conf": 0.9989469989469989,
+      "n": 2849
+    },
+    "Martuscello": {
+      "dept": 2,
+      "conf": 0.9985063480209111,
+      "n": 4017
+    },
+    "Benjamin": {
+      "dept": 2,
+      "conf": 0.9984599589322382,
+      "n": 3896
+    },
+    "Cardamons": {
+      "dept": 4,
+      "conf": 1,
+      "n": 9
+    },
+    "Del Vecchio": {
+      "dept": 4,
+      "conf": 0.9838709677419355,
+      "n": 62
+    },
+    "Lynch": {
+      "dept": 1,
+      "conf": 0.997254632807138,
+      "n": 1457
+    },
+    "Cohalan": {
+      "dept": 2,
+      "conf": 0.9982403217697335,
+      "n": 3978
+    },
+    "Valente": {
+      "dept": 1,
+      "conf": 0.9478260869565217,
+      "n": 115
+    },
+    "Sweeney": {
+      "dept": 3,
+      "conf": 0.8953846153846153,
+      "n": 325
+    },
+    "Marsh": {
+      "dept": 4,
+      "conf": 0.9926470588235294,
+      "n": 136
+    },
+    "Acting' p. J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hence no vacancy. Nunez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lat-ham": {
+      "dept": 2,
+      "conf": 1,
+      "n": 13
+    },
+    "P. J. Wenzel": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Halperh": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Gibsoh": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Order filed.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MaoCrate": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "All concur": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Lone": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Beldook": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleineeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "McCtjbN": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "VattghaN": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuscelio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Hallirum": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hunder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5
+    },
+    "Hallman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 12
+    },
+    "Larldn": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "SteveNS": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "BergaN": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cohairn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Greenbiott": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Beldoct": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Land": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuscello'": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Yesowich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Iiupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Wenzel Beldock": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Herlihy": {
+      "dept": 3,
+      "conf": 0.9481641468682506,
+      "n": 463
+    },
+    "P.VL": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Lupiano arid Lane": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Bergan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Ma-honey": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Damiani": {
+      "dept": 2,
+      "conf": 0.9958238420653,
+      "n": 2634
+    },
+    "Hawkins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1590
+    },
+    "Damiami": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Silver-man": {
+      "dept": 1,
+      "conf": 0.9864864864864865,
+      "n": 148
+    },
+    "Kleinfeld. JJ.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "M. M. Frank": {
+      "dept": 1,
+      "conf": 1,
+      "n": 22
+    },
+    "Hollinan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Klein-feld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "BeldoCk": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Berg an": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ.-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Mollen": {
+      "dept": 2,
+      "conf": 0.9967845659163987,
+      "n": 622
+    },
+    "Angiolillo": {
+      "dept": 2,
+      "conf": 0.9985710883543701,
+      "n": 4199
+    },
+    "McCarthy": {
+      "dept": 2,
+      "conf": 0.9933554817275747,
+      "n": 1505
+    },
+    "Balkin": {
+      "dept": 2,
+      "conf": 0.9986756915832843,
+      "n": 6796
+    },
+    "Carni": {
+      "dept": 4,
+      "conf": 0.8118169398907104,
+      "n": 2928
+    },
+    "Dickerson": {
+      "dept": 2,
+      "conf": 0.9985820072475186,
+      "n": 6347
+    },
+    "Kavanagh": {
+      "dept": 1,
+      "conf": 0.9744,
+      "n": 625
+    },
+    "Garni": {
+      "dept": 4,
+      "conf": 0.545866935483871,
+      "n": 1984
+    },
+    "Ti-tone": {
+      "dept": 2,
+      "conf": 1,
+      "n": 9
+    },
+    "Bbrgan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "G-ibson": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Baltin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 31
+    },
+    "Bergen": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "LupiaHo": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzoli-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Hartuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 24
+    },
+    "Bkeitbl": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Pette": {
+      "dept": 2,
+      "conf": 0.998792270531401,
+      "n": 828
+    },
+    "Yolan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "TTghetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lane JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "M. M. Prank": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Yalente": {
+      "dept": 1,
+      "conf": 1,
+      "n": 11
+    },
+    "No opinion": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Ughatta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Centra": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4571
+    },
+    "Honorable Morris Spector": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Hollen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 12
+    },
+    "Valen te": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kleinfbld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Stevens P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Dghetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzolli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Beldock. Murphy": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bergnn": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "McGuire JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Hop-tins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Catterr n": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Morphy": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Nunez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Evans": {
+      "dept": 1,
+      "conf": 0.9975728155339806,
+      "n": 824
+    },
+    "Mellen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Bkeitel": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rabie": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Eager": {
+      "dept": 1,
+      "conf": 0.9862542955326461,
+      "n": 291
+    },
+    "Noonan": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 6
+    },
+    "Beldovk": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gtbson": {
+      "dept": 3,
+      "conf": 1,
+      "n": 2
+    },
+    "Hbrlihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 2
+    },
+    "O’Con-nor": {
+      "dept": 2,
+      "conf": 1,
+      "n": 110
+    },
+    "P. J. Birns": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Evans Lane": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Moflen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 6
+    },
+    "ICleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 30
+    },
+    "Stettbr": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P Latham": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Brehhah": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "J.QP.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Evans": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Silverman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Fein": {
+      "dept": 1,
+      "conf": 0.9970287223506108,
+      "n": 3029
+    },
+    "Goldberg": {
+      "dept": 2,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Tit one": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ilopkins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Shaprio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Staley": {
+      "dept": 3,
+      "conf": 0.9040247678018576,
+      "n": 323
+    },
+    "ITerlihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Valexte": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Steueb": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Schnepp": {
+      "dept": 4,
+      "conf": 0.9969016266460109,
+      "n": 1291
+    },
+    "Herliky": {
+      "dept": 3,
+      "conf": 1,
+      "n": 3
+    },
+    "Ug’hetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Christ'": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "HopMns": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5
+    },
+    "Hillj": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Henry": {
+      "dept": 4,
+      "conf": 0.9811320754716981,
+      "n": 53
+    },
+    "Kleinfcld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Ughe-tta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Aulisi": {
+      "dept": 3,
+      "conf": 0.9747474747474747,
+      "n": 198
+    },
+    "MoClusky": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Markewieh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 127
+    },
+    "Indeed": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Hghetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5
+    },
+    "Gulptta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Uglietta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Brenfian": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rfibin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rahin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Ra.bin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Murpny": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Silverman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mr.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Hopldns": {
+      "dept": 2,
+      "conf": 1,
+      "n": 6
+    },
+    "Klenfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "B-abin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "ICIeinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ug'hetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 7
+    },
+    "Ilill": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Brennan-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Chidst": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "TTill": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Eabin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Raibin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 8
+    },
+    "Hamm": {
+      "dept": 3,
+      "conf": 0.9878048780487805,
+      "n": 82
+    },
+    "Christ’": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Atjlisi": {
+      "dept": 3,
+      "conf": 1,
+      "n": 9
+    },
+    "TIamm": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "BrenUan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ughbtta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Axjlisi": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Eeynolds": {
+      "dept": 3,
+      "conf": 1,
+      "n": 2
+    },
+    "Bloom": {
+      "dept": 1,
+      "conf": 0.9961538461538462,
+      "n": 2340
+    },
+    "Rabin.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Heblihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 8
+    },
+    "J'": {
+      "dept": 2,
+      "conf": 1,
+      "n": 5
+    },
+    "Rabin. Valente. Stevens": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Stetter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Del Veeehio": {
+      "dept": 4,
+      "conf": 1,
+      "n": 5
+    },
+    "Lazek": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Laser": {
+      "dept": 2,
+      "conf": 1,
+      "n": 63
+    },
+    "Heklihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Herlii-iy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Ughetfca": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sales": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hangano": {
+      "dept": 2,
+      "conf": 0.9090909090909091,
+      "n": 11
+    },
+    "Bill": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rabin. Valente": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Iierlihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 3
+    },
+    "Ball": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "MeNally": {
+      "dept": 1,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Maktuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hoptins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gibbons": {
+      "dept": 2,
+      "conf": 0.9996810207336523,
+      "n": 3135
+    },
+    "ITopkins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Jackson": {
+      "dept": 2,
+      "conf": 0.8,
+      "n": 5
+    },
+    "Markewfch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ralbin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Managano": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Del Veechio": {
+      "dept": 4,
+      "conf": 0.8333333333333334,
+      "n": 6
+    },
+    "Yeswich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Aitlisi": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Brink": {
+      "dept": 3,
+      "conf": 1,
+      "n": 7
+    },
+    "Boss": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Shea": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Del Yecehio": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Beynolds": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "VAIC": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGivern": {
+      "dept": 1,
+      "conf": 0.9868131868131869,
+      "n": 455
+    },
+    "Hundes": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Lupiano": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Frankfurter": {
+      "dept": 2,
+      "conf": 0.6666666666666666,
+      "n": 6
+    },
+    "McGtvern": {
+      "dept": 1,
+      "conf": 0.9166666666666666,
+      "n": 12
+    },
+    "Tilzer.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "McGiveen": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Weinstein": {
+      "dept": 2,
+      "conf": 0.9977965479250827,
+      "n": 5446
+    },
+    "Mangan o": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McGrivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Daminai": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuseello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 459
+    },
+    "Del Vecehio": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "Lupiano.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mengano": {
+      "dept": 2,
+      "conf": 1,
+      "n": 16
+    },
+    "Rossr JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Hopkins arid Benjamin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McGivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 33
+    },
+    "Macken": {
+      "dept": 1,
+      "conf": 0.9879518072289156,
+      "n": 83
+    },
+    "Martus cello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "JJ. Resettled order": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Aul'isi": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Lupiano Silverman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mar tus cello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Struer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Benjaman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "MartusceUo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lazeb": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Bloom": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Mitndbr": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Washington": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "G-abrielli": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Cohalah": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Del Veoohio": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "J.j Brennan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mencher": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lippman": {
+      "dept": 1,
+      "conf": 0.9989189189189189,
+      "n": 925
+    },
+    "MeGrivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Jb.": {
+      "dept": 3,
+      "conf": 1,
+      "n": 4
+    },
+    "MeGivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 92
+    },
+    "JJ. Motion granted": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Klemfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Beennan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mahgano": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lazer’": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McGivera": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Martas cello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Fahey": {
+      "dept": 4,
+      "conf": 0.9990173599737963,
+      "n": 3053
+    },
+    "Benjamin a": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mun-der": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Rabih": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rabip": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Telzer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "J. Reynolds": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Mar.tuseello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mender": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "JiJ.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ben jamin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "MartusceEo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gbeehblott": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Murphy P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "JJ. All concur herein": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Murhpy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Klein-field": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "McHally": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Houle": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4
+    },
+    "Muiphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bims": {
+      "dept": 1,
+      "conf": 1,
+      "n": 44
+    },
+    "Blackmun": {
+      "dept": 1,
+      "conf": 0.8,
+      "n": 5
+    },
+    "Bazer": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McGiverh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Gbeenblott": {
+      "dept": 3,
+      "conf": 1,
+      "n": 4
+    },
+    "Markewioh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "P.'J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "MoGtvern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Mottle": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Timer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 9
+    },
+    "Maceen": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Martusoello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Weinstejn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McGivebn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Markswigh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGtyeret": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mabkewich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 8
+    },
+    "Kupeebmax": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mackex": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "McG-rvERN": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kitpeermah": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupperman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "Stetjer": {
+      "dept": 1,
+      "conf": 0.8333333333333334,
+      "n": 6
+    },
+    "Rabin'": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Steeter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Magano": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Maoken": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Caro": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGovern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "MoGtivbrn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bloom concur": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Martnseello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Maeken": {
+      "dept": 1,
+      "conf": 1,
+      "n": 13
+    },
+    "Acting P.' J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "MeG-ivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MgGivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tilzeb": {
+      "dept": 1,
+      "conf": 0.8571428571428571,
+      "n": 7
+    },
+    "Eageb": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McGtverit": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ti tone": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lu-piano": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "All concur except Birns": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Maxtuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mitnder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Gkeenblott": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Ghilotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "LaZer": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lazer.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleinfield": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ktjpferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Marand Latham": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Nuhez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gulotta'": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gullota": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "MeGivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "J. F.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 13
+    },
+    "MoGivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Machen": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "G-ulotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 14
+    },
+    "Grulotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 24
+    },
+    "Watts": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Kupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Steuee": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Latham arid Christ": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "BlRNS": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gtjlotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lathams": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupfebman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "I McGivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupeermah": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Ktjpfermax": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupeerman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 12
+    },
+    "Lathm": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupfebmau": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ktjpfeeman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzolt": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mangana": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Shapiro.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Markswich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Ktjpeermak": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mtjnder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Mukphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Gfulotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Me Giver n": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGivebw": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Stbueb": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MoGtivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Carrro": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzoili": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "G-reenblott": {
+      "dept": 3,
+      "conf": 1,
+      "n": 7
+    },
+    "JJ. Steuer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Capozzoli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGtverh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupfermah": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Shapieo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McG-iyern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MeGrivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "MoG-iverx": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Munder Martuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Markevich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Cafozzoli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Crulotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ.j Murphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Niehoff": {
+      "dept": 2,
+      "conf": 0.998134825472955,
+      "n": 3753
+    },
+    "Boyers": {
+      "dept": 2,
+      "conf": 0.9986586183769283,
+      "n": 1491
+    },
+    "S truer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tilzee": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Stetxeb": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McG-ivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 5
+    },
+    "J. P. Sullivan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "McGrivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Orders": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sweenev": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Revnolds.": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Latha-m": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "MoNahly": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J..P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Bennan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gfreenblott": {
+      "dept": 3,
+      "conf": 1,
+      "n": 2
+    },
+    "Boyer": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Qulotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Latham atid Shapiro": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Nunez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Glulotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gullotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Construction Co.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "MeCivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cf. Burke": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupeebman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Kepferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Tiber": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "N-'nez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Martnscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Markewich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Moore": {
+      "dept": 1,
+      "conf": 1,
+      "n": 19
+    },
+    "Giilotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Capazzoli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kupf erman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "J. P.-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Beniamin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Justice Munder. Munder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Tenney": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Birns": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Neihoff": {
+      "dept": 2,
+      "conf": 1,
+      "n": 16
+    },
+    "Mundeb": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Latte": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brennen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Cohalari": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Chrjst": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Stener": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Mackeh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Datham": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Tilzbr": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzo'li": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Boy.ers": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Martascello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting F.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Martttscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Schenpp": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Martusello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mabtuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "McLiyern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lupia.no": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Stetjeb": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Munder.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Del Yecchio": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "Titoiie": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "F.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Kalodner": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Van Dusen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Roberts": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Mubphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "P. J. Sullivan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Muephy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Asch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "MartusceHo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gohalan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Alexander.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lake": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting ' P.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Carro j Milonas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sandier": {
+      "dept": 1,
+      "conf": 1,
+      "n": 13
+    },
+    "Carra": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Justice Asch. Kassal": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sullvan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Niehoffi": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Yesawieh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 9
+    },
+    "O’Donnell": {
+      "dept": 4,
+      "conf": 0.9971949509116409,
+      "n": 713
+    },
+    "JJ. Sandler": {
+      "dept": 1,
+      "conf": 1,
+      "n": 9
+    },
+    "Boyeif": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Peradotto": {
+      "dept": 4,
+      "conf": 1,
+      "n": 4317
+    },
+    "Scnhepp": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Dillon. P. J.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Lehman": {
+      "dept": 1,
+      "conf": 0.3333333333333333,
+      "n": 3
+    },
+    "Clark": {
+      "dept": 1,
+      "conf": 0.9981072555205047,
+      "n": 1585
+    },
+    "MikoII": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "See Silverman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brown.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Harland": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rujpin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. Asch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Denman": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Alexander": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Jo.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Crane arid Mastro": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mouie": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Lynch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Feradotto": {
+      "dept": 4,
+      "conf": 1,
+      "n": 60
+    },
+    "Kuperfman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gibbon": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Stecher": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Andrews": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gibbohs": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "O'Donnell": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Kassal.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Browri": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Levy": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hand": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "O’Connor arid Weinstein": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rospnberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Pine. JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 6
+    },
+    "O’connor": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Niehoif": {
+      "dept": 2,
+      "conf": 1,
+      "n": 17
+    },
+    "NiehofF": {
+      "dept": 2,
+      "conf": 1,
+      "n": 13
+    },
+    "Spatt": {
+      "dept": 2,
+      "conf": 0.9997167941093175,
+      "n": 3531
+    },
+    "Eng": {
+      "dept": 2,
+      "conf": 0.9947877885331348,
+      "n": 4029
+    },
+    "Austin": {
+      "dept": 2,
+      "conf": 0.9994354535190064,
+      "n": 5314
+    },
+    "Sgroi": {
+      "dept": 2,
+      "conf": 0.9991909385113269,
+      "n": 4944
+    },
+    "Renwick": {
+      "dept": 1,
+      "conf": 0.9986149584487535,
+      "n": 5054
+    },
+    "Moskowitz": {
+      "dept": 1,
+      "conf": 0.9980642663569493,
+      "n": 5166
+    },
+    "A.EJ.": {
+      "dept": 2,
+      "conf": 0.5384615384615384,
+      "n": 52
+    },
+    "Leventhal": {
+      "dept": 2,
+      "conf": 0.99900149775337,
+      "n": 6009
+    },
+    "Richter": {
+      "dept": 1,
+      "conf": 0.9974348011970928,
+      "n": 4678
+    },
+    "Abdus-Salaam": {
+      "dept": 1,
+      "conf": 0.9980732177263969,
+      "n": 1557
+    },
+    "Hall": {
+      "dept": 2,
+      "conf": 0.9996078431372549,
+      "n": 5100
+    },
+    "Chambers": {
+      "dept": 2,
+      "conf": 0.9995027349577325,
+      "n": 6033
+    },
+    "Roman": {
+      "dept": 2,
+      "conf": 0.9725264169068204,
+      "n": 5205
+    },
+    "DeGrasse": {
+      "dept": 1,
+      "conf": 0.9991594284113197,
+      "n": 3569
+    },
+    "Manzanet-Daniels": {
+      "dept": 1,
+      "conf": 0.9979808177688037,
+      "n": 3962
+    },
+    "Acosta": {
+      "dept": 1,
+      "conf": 0.9983996799359872,
+      "n": 4999
+    },
+    "A.PJ.": {
+      "dept": 4,
+      "conf": 0.7073170731707317,
+      "n": 41
+    },
+    "Lott": {
+      "dept": 2,
+      "conf": 0.9993595901376882,
+      "n": 3123
+    },
+    "Belen": {
+      "dept": 2,
+      "conf": 0.9996041171813144,
+      "n": 2526
+    },
+    "Mangarlo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "A.P.J.": {
+      "dept": 2,
+      "conf": 0.8320610687022901,
+      "n": 131
+    },
+    "Degrasse": {
+      "dept": 1,
+      "conf": 1,
+      "n": 13
+    },
+    "Sconiers": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2172
+    },
+    "Schnepp. JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Lindley": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3355
+    },
+    "A.P.J": {
+      "dept": 2,
+      "conf": 1,
+      "n": 7
+    },
+    "Braken": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Dillon P. J.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Hilonas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Balkan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 10
+    },
+    "Runzeman": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Bindley": {
+      "dept": 4,
+      "conf": 1,
+      "n": 157
+    },
+    "AbdusSalaam": {
+      "dept": 1,
+      "conf": 1,
+      "n": 136
+    },
+    "ManzanetDaniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 389
+    },
+    "A.BJ.": {
+      "dept": 1,
+      "conf": 0.3333333333333333,
+      "n": 3
+    },
+    "Shelos": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Whalen": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2156
+    },
+    "Gangel Jacob": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "De-Grasse": {
+      "dept": 1,
+      "conf": 1,
+      "n": 65
+    },
+    "Fptedman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Valentino": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1446
+    },
+    "Milonas. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bickerson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gische": {
+      "dept": 1,
+      "conf": 0.9984370115661144,
+      "n": 3199
+    },
+    "Feinman": {
+      "dept": 1,
+      "conf": 0.998180991359709,
+      "n": 2199
+    },
+    "Kupferman. J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Hinds-Radix": {
+      "dept": 2,
+      "conf": 0.9996984318455971,
+      "n": 3316
+    },
+    "Gurfein": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Gonzalez EJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mulphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenberger JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Lawdon": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "LeGrand": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenberg": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Manga.no": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenberg-er": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Batkin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 7
+    },
+    "J. Rosenberger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Boomer": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Malone JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Helen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 32
+    },
+    "Respondent. JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J. Green": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Saxe J.E": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ostrau": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "F.J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 6
+    },
+    "Clifford": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Andersen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Harwogd": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Holmes": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Mart oche": {
+      "dept": 4,
+      "conf": 1,
+      "n": 3
+    },
+    "J.F": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rosenburger": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lawton arid Davis": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Kunzemari": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Weinistein": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sp'att": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sullivan Harwood": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Asch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bal-Baland Rosenblatt": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lawton. JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "BaUetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hardwood": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Pi": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Keating": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "B'alletta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Naedelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Rosy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Billon": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Garro": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ellerrin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupferman J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Molonas": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.R.": {
+      "dept": 2,
+      "conf": 0.8,
+      "n": 5
+    },
+    "Flaum": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ripple": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cummings": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzakelli": {
+      "dept": 1,
+      "conf": 0.875,
+      "n": 8
+    },
+    "Coveflo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lunn.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Snath": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Kavanaugh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kavanagh JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzaeelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Had": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.EP.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Manzanet Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "JBalkin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Friedman J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Fbeedman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gische JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "J.P. Renwick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "WTialen": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Lipson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Stein": {
+      "dept": 3,
+      "conf": 0.56,
+      "n": 25
+    },
+    "Manzanet-Baniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Covelio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ren wick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 21
+    },
+    "Ajidrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Moskowttz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Garry": {
+      "dept": 3,
+      "conf": 0.5,
+      "n": 18
+    },
+    "BeGrasse": {
+      "dept": 1,
+      "conf": 1,
+      "n": 7
+    },
+    "Egan Jr.": {
+      "dept": 3,
+      "conf": 0.9230769230769231,
+      "n": 13
+    },
+    "Renwtck": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "VUialen": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzareili": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lindley Sconiers": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Livingston": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Friedman J.E": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "R.S. Smith": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "J.E Moskowitz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ral kin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "J. Nardelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "DeGeasse": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Lev-enthal": {
+      "dept": 2,
+      "conf": 1,
+      "n": 14
+    },
+    "A.costa": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Moshpwitz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Catter-son": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Anurias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Abdus-Saeaam": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Moskowxtz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Suelos": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hinds- Radix": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJR": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Limn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Anderias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Straub": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Amgiolillo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "DeGrasse JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "McCarthy arid Chambers": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Souter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Renwick JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Prtjdenti": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Cami": {
+      "dept": 4,
+      "conf": 0.6666666666666666,
+      "n": 6
+    },
+    "Eeradotto": {
+      "dept": 4,
+      "conf": 1,
+      "n": 18
+    },
+    "Lhnn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "R.J.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Andrias J.E": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Leventhar": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Eenwick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.P.n": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Balkinn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mazzarelli J.E": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Adbus-Salaam": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Fahey Garni": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Ajntgiolillo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "P..": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Dickerson arid Lott": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gorsld": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "J.E Mazzarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Abdus-Saalam": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cabrunes": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Cattebson": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGuibe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Richter JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Flbrio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Tom J.P": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Catteeson": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Barrett": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Freedman JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Saxe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Skelds": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "NardeUi": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Andfias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Mazanet-Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "J.jR": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Fahey Carni": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Gonzalez P.J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "BEdkin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "RomEin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Leyenthal": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.P. Sweeny": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Andeias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Dickerson arid Leventhal": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Malone Jr.": {
+      "dept": 3,
+      "conf": 0.8888888888888888,
+      "n": 9
+    },
+    "JJ. a": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Pine arid Gorski": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Eine": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Konenkamp": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hubbs": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Maltese": {
+      "dept": 2,
+      "conf": 0.9988184324537219,
+      "n": 2539
+    },
+    "Duffy": {
+      "dept": 2,
+      "conf": 0.9992307692307693,
+      "n": 2600
+    },
+    "LaSalle": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2529
+    },
+    "Kapnick": {
+      "dept": 1,
+      "conf": 0.9976331360946745,
+      "n": 2535
+    },
+    "Cardozo": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ciparick": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 4
+    },
+    "J..": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "E.P.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Antorias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "C.arni": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Cbhen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Tom J.E": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Kennedy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Lott arid Cohen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P.J. Mazzarelli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.E Friedman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "DeJoseph": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1553
+    },
+    "Barros": {
+      "dept": 2,
+      "conf": 0.9995610184372257,
+      "n": 2278
+    },
+    "Flo'rio": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "De Joseph": {
+      "dept": 4,
+      "conf": 1,
+      "n": 43
+    },
+    "Saxe J.P": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Scooters": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Winter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Nelson": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Moskowitz JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Cajrni": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "A.RJ.": {
+      "dept": 2,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "JJ. Kavanagh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "S.antucci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Spolzind": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sullivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Renwiek": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "EJ. Williams": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bal kin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Peinman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Abramson": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brewer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Gishe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 3
+    },
+    "Moskowitz Richter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P.J..": {
+      "dept": 1,
+      "conf": 0.3333333333333333,
+      "n": 3
+    },
+    "Gesmer": {
+      "dept": 1,
+      "conf": 0.99748322147651,
+      "n": 1192
+    },
+    "Troutman": {
+      "dept": 4,
+      "conf": 1,
+      "n": 773
+    },
+    "Kahn": {
+      "dept": 1,
+      "conf": 0.9983079526226735,
+      "n": 1182
+    },
+    "Nemoyer": {
+      "dept": 4,
+      "conf": 1,
+      "n": 38
+    },
+    "Curran": {
+      "dept": 4,
+      "conf": 1,
+      "n": 731
+    },
+    "Kapnick JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Webber": {
+      "dept": 1,
+      "conf": 0.996542783059637,
+      "n": 1157
+    },
+    "Connolly": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1070
+    },
+    "Cur-ran": {
+      "dept": 4,
+      "conf": 1,
+      "n": 49
+    },
+    "Trout-man": {
+      "dept": 4,
+      "conf": 1,
+      "n": 38
+    },
+    "Feinmajst": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "DeGbasse": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lindley Whalen": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "NeMoyer": {
+      "dept": 4,
+      "conf": 1,
+      "n": 761
+    },
+    "Brathwaite Nelson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 957
+    },
+    "And": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Anosta": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Agosta": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Fein man": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J.F.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Devine": {
+      "dept": 3,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Dye": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Hind-Radix": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Baxter": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sgroi.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Co.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Acosta Moskowitz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Renwxck": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Clajrk": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Homan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Majntzanet-Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "BeJoseph": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Manning": {
+      "dept": 2,
+      "conf": 0.75,
+      "n": 4
+    },
+    "Kelby": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Young": {
+      "dept": 2,
+      "conf": 0.9,
+      "n": 10
+    },
+    "Finch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Rich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kapper": {
+      "dept": 2,
+      "conf": 1,
+      "n": 7
+    },
+    "High": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Tompkins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 6
+    },
+    "Merrell": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Woodward": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rhodes": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 2
+    },
+    "McNamee": {
+      "dept": 2,
+      "conf": 0.5,
+      "n": 2
+    },
+    "MeAvoy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Hagartt": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "A.PJ": {
+      "dept": 4,
+      "conf": 0.8571428571428571,
+      "n": 7
+    },
+    "A.EJ": {
+      "dept": 2,
+      "conf": 0.6666666666666666,
+      "n": 6
+    },
+    "MeitIow": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "MazzarelH": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "A.RJ": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Wilfiams": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "A..PJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Carswell Johnston": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bus-sell": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "McCtjrn": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Go on": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "CarsweH": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Halpcrn": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Wenzell": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Markewich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Foster P. J.": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupferinan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting PJ.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hopkins Munder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Latharn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bergaet": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Halperx": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Kttpeerman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ltjpiano": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Irmie": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Jt": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McCivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Lttmbard": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Banjamin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Martusecllo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mttnder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 3
+    },
+    "Witmbb": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Gardamone": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Markewich J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kaufman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Bebgan": {
+      "dept": 3,
+      "conf": 1,
+      "n": 2
+    },
+    "Benjamin.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Kupferman J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Shapiro JJ.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Benjamih": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ughetta. Hallinan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Markbwioh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Uahetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Beldock. Ughetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Nunez qnd Yesawich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Shapiro-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gebson": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Judgment": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Legislature. Kleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "H allin an": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Prank": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "NIpWpIO": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mahkewich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Christ-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuscellq": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kle-infeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "B.eldoek": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P’ette": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Diamiani": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzole": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lupi.ano": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McClusky": {
+      "dept": 4,
+      "conf": 0.6666666666666666,
+      "n": 3
+    },
+    "Capozzgli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rajbin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mabgett": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sxjozzi": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Damaini": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Birns": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ughetita": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "O’Connor.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleinfold": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Chbist": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Pettb": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleinfeid": {
+      "dept": 2,
+      "conf": 1,
+      "n": 4
+    },
+    "Markewdch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bamiani": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "McClitsky": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleinleld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Angiohllo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Gibson": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Oakes": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lumbard": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Balkm": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Ajigiolillo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Brennau": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Damiapi": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Special Term. Kleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ughtta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hill ami Rabin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Him": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "MeGlusky": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Del Vecohio": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "J.-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "O'Con-nor": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleinteld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Cooil": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "H-ill": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lane. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Iileinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Suilivan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupeferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brennan ad Hopkins": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Herliliy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Keynolds": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Eleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleihfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "Ivleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Rrennlan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hopkins.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Klejnfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ra'bin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Herlihv": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "EQeinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Klainfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "HerlEy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Benajmin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mnnder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kleinf eld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Jb": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Gabbielli": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Damikni": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Appellant. P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Lam. J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rss": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Fein J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J. Appellant. Birns": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ji P.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. Herlihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Ross Appellant. Yesawich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Appellant.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Hopkins andKleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Bleinfeld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "IIerlihy": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Creenblott": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Remsen Associates": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Klein - feld": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuscellp": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sandler Sullivan": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Bloom ad Carro": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Dfllon": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J Benjamin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Sieuer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Nunez. J. P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P.j-Kupeerman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Maokew": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Julotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Brehnah": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupeermax": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Murphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Eupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Shapibo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "McG-ivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Eein": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Markewich. J. P.. Nunez": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brennan ahd Benjamin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Motile": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Lathain": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Miirphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Markwich": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Marttjscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ktjpeebmae": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Hackee": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGtvebe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGiverri": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Markewich. Murphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupfermak": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzolx": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Culotta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.j Shapiro": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kupfbbman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGtvbrn": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Atener": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Murider": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Markewich'": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ross Carro": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Oapozzoli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Medical Center": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Edmund Di Lello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Witmeb": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "J. .P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McGtivem": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Coholan": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Blunder": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Btartuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J.' P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mc'Givern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Martucsello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lvpiako": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Steves": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ktjpferman-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brenhah": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Behjamih": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting dlo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Gulotfa": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Munoer": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Cappozzoli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozzoli arid Macken": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mundeiy Latham": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mttitoer": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "S teuer": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Guloita": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Moule JJ.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuscelle": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Otherwise": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mtjbpht": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Capozjzoli": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J'.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 2
+    },
+    "McGtivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "P. -J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McHivern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Kupferman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Mar.tuscello": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Kttpfermapt": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Carro. Asch": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Martuscehlo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Marltewieh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "J. P. Lupiano": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "P. J.-": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Acting Pj J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Lupiaho": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJV": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Lqpiano": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Jacobs": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "J. Pv Murphy": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Doerr Denman": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Staton": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Thomson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Fein": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "ULazer": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Hughes": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Black": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Schnepp.": {
+      "dept": 4,
+      "conf": 1,
+      "n": 2
+    },
+    "Cairo": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Fein. JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Catterson": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Manazanet-Daniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Roman JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Law-ton attd Schnepp": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Mariache": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Rassal": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Varni": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "BalkIn": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. Renwick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. further proceedings": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Ross Kassal": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "McLaughlin": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Merritt": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Peudenti": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Nichols": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Peradott": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Angioiillo": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "P.RJ.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Eelen": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Catterson. Renwick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Manzanet-Daniels JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Sweeny J.P.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Bar-ros": {
+      "dept": 2,
+      "conf": 1,
+      "n": 55
+    },
+    "Web-ber": {
+      "dept": 1,
+      "conf": 1,
+      "n": 48
+    },
+    "Fein-man": {
+      "dept": 1,
+      "conf": 1,
+      "n": 60
+    },
+    "Scud-der": {
+      "dept": 4,
+      "conf": 1,
+      "n": 22
+    },
+    "Moskow-itz": {
+      "dept": 1,
+      "conf": 1,
+      "n": 40
+    },
+    "Madden": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "DeJo-seph": {
+      "dept": 4,
+      "conf": 1,
+      "n": 14
+    },
+    "P- J-": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "JJ. I": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Beldock-Ughetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Botein. P. J.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ugbetta": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Haebis": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "McCtjen": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "MacCratc": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ajmdrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Brath-waite Nelson": {
+      "dept": 2,
+      "conf": 1,
+      "n": 14
+    },
+    "Peradot-to": {
+      "dept": 4,
+      "conf": 0.9565217391304348,
+      "n": 23
+    },
+    "Friendman": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Manzanet-Daniel": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kotler": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kajmick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Hali": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Mulvey": {
+      "dept": 3,
+      "conf": 1,
+      "n": 1
+    },
+    "Gisci-ie": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Rivera.": {
+      "dept": 1,
+      "conf": 0.5,
+      "n": 2
+    },
+    "Kapnxck": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kern": {
+      "dept": 1,
+      "conf": 1,
+      "n": 226
+    },
+    "Manzanet-D aniels": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Ajndrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Moulton": {
+      "dept": 1,
+      "conf": 1,
+      "n": 217
+    },
+    "Oing": {
+      "dept": 1,
+      "conf": 1,
+      "n": 215
+    },
+    "Iannacci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 176
+    },
+    "Singh": {
+      "dept": 1,
+      "conf": 1,
+      "n": 243
+    },
+    "Con-' nolly": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ajstdrias": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Kap-nick": {
+      "dept": 1,
+      "conf": 1,
+      "n": 4
+    },
+    "Christopher": {
+      "dept": 2,
+      "conf": 1,
+      "n": 155
+    },
+    "Duify": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Ian-nacci": {
+      "dept": 2,
+      "conf": 1,
+      "n": 11
+    },
+    "Kern JJ.": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "R J.": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    },
+    "Winslow": {
+      "dept": 4,
+      "conf": 1,
+      "n": 188
+    },
+    "TVoutman": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Win-slow": {
+      "dept": 4,
+      "conf": 1,
+      "n": 1
+    },
+    "Gisehe": {
+      "dept": 1,
+      "conf": 1,
+      "n": 2
+    },
+    "Gesxner": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Andri'as": {
+      "dept": 1,
+      "conf": 1,
+      "n": 1
+    },
+    "Babkin": {
+      "dept": 2,
+      "conf": 1,
+      "n": 1
+    }
+  }
+}

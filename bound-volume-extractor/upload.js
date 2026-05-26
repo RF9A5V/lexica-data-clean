@@ -222,8 +222,11 @@ class Client {
     return payload.ingestion;
   }
 
-  get(id) {
-    return this.request('GET', `/admin/api/bulk-ingest/${id}`);
+  async get(id) {
+    // Server wraps as { ingestion: {...} }. Unwrap for caller convenience —
+    // mirrors `client.upload()` which already returns `payload.ingestion`.
+    const payload = await this.request('GET', `/admin/api/bulk-ingest/${id}`);
+    return payload?.ingestion ?? payload;
   }
 
   list({ source, status, limit = 200 } = {}) {
